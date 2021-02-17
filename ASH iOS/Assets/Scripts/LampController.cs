@@ -1,21 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LampController : MonoBehaviour
+public class LampController : DeviceController
 {
     [SerializeField]
-    public GameObject lamp;
+    public GameObject _light { get; set; }
 
-    public void turnOnAndOff()
-    {
-        if (lamp.active == true)
-        {
-            lamp.SetActive(false);
-        }
-        else
-        {
-            lamp.SetActive(true);
-        }
-    }
 }

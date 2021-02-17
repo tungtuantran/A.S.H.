@@ -2,31 +2,71 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * saveDeviceCollection() if device gets added, removed or updated
+ * loadDeviceCollection() if app gets (re)started
+ * 
+ *
+ */
 public class DeviceCollection : MonoBehaviour
 {
+    private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
 
     public List<Device> registeredDevices { get; set; } = new List<Device>();
 
 
-    public void addRegisteredDevice(Device device)
+    static DeviceCollection()
+    {
+    }
+
+    private DeviceCollection()
+    {
+    }
+
+    public static DeviceCollection DeviceCollectionInstance{
+        get
+        {
+            return deviceCollectionInstance;
+        }
+    }
+
+    private void Awake()
+    {
+        LoadDeviceCollection();
+    }
+
+    public Device GetRegisteredDeviceByDeviceId(int deviceId)
+    {
+        foreach(Device device in registeredDevices){
+            if(device.id == deviceId)
+            {
+                return device;
+            }
+        }
+        return null;
+    }
+
+    public void AddRegisteredDevice(Device device)
     {
         this.registeredDevices.Add(device);
         this.SaveDeviceCollection();
     }
 
-    public void deleteRegisteredDevice(Device device)
+    public void RemoveRegisteredDevice(Device device)
     {
         this.registeredDevices.Remove(device);
         this.SaveDeviceCollection();
     }
 
-    private void SaveDeviceCollection()                 //has to be called if sth needs to be updated
+    public void SaveDeviceCollection()                 //has to be called if sth needs to be updated
     {
         SaveSystem.SaveDeviceCollection(this);
     }
 
-    private void LoadDeviceCollection()                                                 
+    public void LoadDeviceCollection()                                                 
     {
+        registeredDevices.Clear();                      //TODO: even neccesary if loadDeviceCollection gets only called when app starts?
+
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
         for(int i=0; i < deviceCollectionData.deviceDatas.Length; i++)
         {
@@ -46,7 +86,7 @@ public class DeviceCollection : MonoBehaviour
 
             if (device != null)
             {
-                device.SetLoadedDeviceData(deviceData);
+                device.LoadDevice(deviceData);
                 registeredDevices.Add(device);
             }
         }

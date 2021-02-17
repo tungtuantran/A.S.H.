@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Device: MonoBehaviour
+public abstract class Device
 {
+    private DeviceCollection deviceCollection = DeviceCollection.DeviceCollectionInstance;
+
+    //[SerializeField]
+    //public DeviceDisplay deviceDisplay { get; set; }
+
+    [SerializeField]
+    public GameObject devicePrefab { get; set; }           //??? useful???
+
     public string deviceName { get; set; }
     public int id { get; set; }
     public string _name { get; set; }                       //name chosen by user
@@ -18,19 +26,22 @@ public abstract class Device: MonoBehaviour
         //add device to deviceCollection
     }
 
-    
-    public void SaveDevice()            //TODO: save into deviceCollection class instead
+    public void addDevice()                                 //save Device
     {
-        //SaveSystem.SaveDevice(this);
+        deviceCollection.AddRegisteredDevice(this);
     }
 
-    public void LoadDevice()            //TODO: load from deviceCollection class instead
+    public void removeDevice()
     {
-        //IDeviceData deviceData = SaveSystem.LoadDevice(this.GetType().Name);
-        //SetLoadedDeviceData(deviceData);
+        deviceCollection.RemoveRegisteredDevice(this);      //save-function is called in removeRegisteredDevice()
     }
 
-    public abstract void SetLoadedDeviceData(IDeviceData deviceData);
+    public void UpdateDevice()                              //update/save new device settings
+    {
+        deviceCollection.SaveDeviceCollection();            //if device get updated -> actually deviceCollection gets updated
+    }
+
+    public abstract void LoadDevice(IDeviceData deviceData);
 }
 
 public enum DeviceName

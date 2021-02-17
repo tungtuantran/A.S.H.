@@ -18,7 +18,7 @@ public class Lamp : Device
     {
     }
 
-    public override void SetLoadedDeviceData(IDeviceData deviceData)
+    public override void LoadDevice(IDeviceData deviceData)
     {
         LampData lampData = (LampData) deviceData;
         this.deviceName = lampData.deviceName;

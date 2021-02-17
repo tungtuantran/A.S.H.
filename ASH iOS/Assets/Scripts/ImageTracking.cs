@@ -8,11 +8,16 @@ using System;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracking : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject addDevicePopUp;
+    //Tracked Data of TrackedImage
+    public static int deviceId;
+
+    private string codeString;                      //example: TL1_001      //string name = trackedImage.referenceImage.name;
+    private string[] splittedCode;
+    private string deviceShortName;                   //TL1 = table_lamp1; ...
+    private string deviceName;
 
     [SerializeField]
-    private GameObject arDeviceController;            //ar interface for changing settings the device (on marker)
+    private GameObject addDevicePopUp;                  //pop up: own name has to be set
 
     [SerializeField]
     private DeviceCollection deviceCollection;
@@ -26,7 +31,6 @@ public class ImageTracking : MonoBehaviour
     private void Awake()
     {
         addDevicePopUp.SetActive(false);              //default: not active
-        arDeviceController.SetActive(false);
 
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
 
@@ -71,10 +75,9 @@ public class ImageTracking : MonoBehaviour
     private void UpdateImage(ARTrackedImage trackedImage)
     {
         
-        string codeString = trackedImage.referenceImage.name;       //example: TL1_001      //string name = trackedImage.referenceImage.name;
-        string[] splittedCode = codeString.Split('_');
-        string deviceShortName = splittedCode[0];                   //TL1 = table_lamp1; ...
-        int deviceId;
+        codeString = trackedImage.referenceImage.name;       //example: TL1_001      //string name = trackedImage.referenceImage.name;
+        splittedCode = codeString.Split('_');
+        deviceShortName = splittedCode[0];                   //TL1 = table_lamp1; ...
         try
         {
             deviceId = Convert.ToInt32(splittedCode[1]);            //example: 001, 002
@@ -84,7 +87,7 @@ public class ImageTracking : MonoBehaviour
             throw new InvalidMarkerException("Invalid Device ID");
         }
 
-        string deviceName = DeviceShortNameToName(deviceShortName);
+        deviceName = DeviceShortNameToName(deviceShortName);
 
         GameObject devicePrefab = spawnedDevicePrefabs[deviceName];
 
@@ -92,7 +95,7 @@ public class ImageTracking : MonoBehaviour
         devicePrefab.transform.position = position;
         devicePrefab.SetActive(true);
 
-        /*
+        
         foreach(GameObject gameObject in spawnedDevicePrefabs.Values)       //verhindert, dass mehrere prefabs gleichzeitig angezeigt werden, wenn mehrere marker zu sehen sind?
         {
             if(gameObject.name != deviceName)
@@ -100,7 +103,6 @@ public class ImageTracking : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        */
 
         //TODO: bool checken, ob hinzugefügt wurde oder nicht -> wenn ja, dann weiter (zeige an marker gehefteten AR-Controller), sonst nicht (return)
         bool deviceIsRegistered = checkIfDeviceIsRegistered(deviceId);
@@ -110,18 +112,37 @@ public class ImageTracking : MonoBehaviour
         }
         else
         {
-            arDeviceController.SetActive(true);
+            Device trackedDevice = deviceCollection.GetRegisteredDeviceByDeviceId(deviceId);
+            if(trackedDevice == null)                                        //TODO: neccessary? because it has to be != null
+            {
+                Debug.LogError("Device ID not Found");
+                throw new InvalidMarkerException("Device ID not found");
+            }
+        }
+    }
+
+    public void AddDevice()                 //TODO: ist testweise; eigentlich: AddLamp(string name)
+    {
+        switch (deviceShortName)
+        {
+            case "SL1":
+            case "SL2":
+            case "TL1":
+            case "TL4":
+            case "WL4":
+                DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(new Lamp(deviceName, deviceId, "RandomName"));  //TODO: aendern zu (deviceName, id, name)
+                break;
+            default:
+                Debug.LogError("Invalid Device Short Name");
+                throw new InvalidMarkerException("Invalid Device Short Name");
         }
     }
 
     private bool checkIfDeviceIsRegistered(int trackedDeviceId)
     {
-        foreach (Device device in deviceCollection.registeredDevices)
+        if (deviceCollection.GetRegisteredDeviceByDeviceId(trackedDeviceId) != null)
         {
-            if (device.id == trackedDeviceId)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }
