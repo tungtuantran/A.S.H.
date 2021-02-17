@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class LampData : IDeviceData
+{
+    public string _name { get; set; }
+    public int id { get; set; }
+    public bool isOn { get; set; } = false;
+
+    public float[] lightColor { get; set; }
+    public float lightBrightness { get; set; }               //10 out of 10
+    public float lightTemperature { get; set; }              //5 out of 10
+
+    public bool isTimerSet { get; set; }
+    public string timerStart { get; set; }                 //example: 09:01
+    public string timerStop { get; set; }
+    public bool[] timerDaysOfWeek { get; set; }
+
+    public LampData(Lamp lamp)
+    {
+        _name = lamp._name;
+        id = lamp.id;
+        isOn = lamp.isOn;
+
+        lightColor = new float[4];
+        lightColor[0] = lamp.lightColor.r;
+        lightColor[1] = lamp.lightColor.g;
+        lightColor[2] = lamp.lightColor.b;
+        lightColor[3] = lamp.lightColor.a;
+
+        lightBrightness = lamp.lightBrightness;
+        lightTemperature = lamp.lightTemperature;
+
+        isTimerSet = lamp.isTimerSet;
+        timerStart = lamp.timerStart;
+        timerStop = lamp.timerStop;
+        timerDaysOfWeek = lamp.timerDaysOfWeek;
+    }
+}

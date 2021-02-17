@@ -16,52 +16,52 @@ MonoBehaviour:
   m_GuidHigh: 11676276055946161056
   m_Images:
   - m_SerializedGuid:
-      m_GuidLow: 4795100088803197535
-      m_GuidHigh: 8759657456711523251
+      m_GuidLow: 4644805679458622461
+      m_GuidHigh: 946553805650438069
     m_SerializedTextureGuid:
       m_GuidLow: 3787205246786114298
       m_GuidHigh: 16509279956541634569
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: table_lamp1
+    m_Name: SL1_001
     m_Texture: {fileID: 2800000, guid: 422e92fadb1b348e09f8238ba6be1ce5, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 4717409672041381653
-      m_GuidHigh: 8108738973765964211
+      m_GuidLow: 5265217215543493617
+      m_GuidHigh: 6319581029399239609
     m_SerializedTextureGuid:
       m_GuidLow: 12989359013795143565
       m_GuidHigh: 4605692129978488491
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: table_lamp2
+    m_Name: SL2_002
     m_Texture: {fileID: 2800000, guid: d5471f8d7933b443ab162e1897b4ea3f, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 5724121815916395840
-      m_GuidHigh: 13029283117750200198
+      m_GuidLow: 5033054002697975173
+      m_GuidHigh: 15386696728268682680
     m_SerializedTextureGuid:
       m_GuidLow: 13024698723534140140
       m_GuidHigh: 1610623599215041371
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: table_lamp3
+    m_Name: TL1_003
     m_Texture: {fileID: 2800000, guid: 32bc72ec067bb4c15bdb124aa1155a16, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 5022146850692187439
-      m_GuidHigh: 17339923954871696003
+      m_GuidLow: 4783628101641264084
+      m_GuidHigh: 3588297305340614584
     m_SerializedTextureGuid:
       m_GuidLow: 9579844547020424855
       m_GuidHigh: 571468343636569659
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: table_lamp4
+    m_Name: TL4_004
     m_Texture: {fileID: 2800000, guid: fc9d869771db84f23baed6466e43ee07, type: 3}
   - m_SerializedGuid:
-      m_GuidLow: 5476457960587678016
-      m_GuidHigh: 5863724090849048198
+      m_GuidLow: 4989920917624269964
+      m_GuidHigh: 12922766451159843745
     m_SerializedTextureGuid:
       m_GuidLow: 3789767360443731657
       m_GuidHigh: 11033040908264791560
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: wall_lamp1
+    m_Name: WL4_005
     m_Texture: {fileID: 2800000, guid: d49e4ec9f555349708de7921403c1d99, type: 3}
