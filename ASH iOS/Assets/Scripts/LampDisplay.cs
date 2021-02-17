@@ -18,13 +18,22 @@ public class LampDisplay : DeviceDisplay
         Setup();
     }
 
-    private void Setup()
+    void Setup()
     {
-        SetTrackedDevice();
-        SetOnOff();
+        SetTrackedAndRegisteredDevice();
+        if (trackedDevice != null)          //if registered in DeviceCollection
+        {
+            ShowDeviceController();
+            SetOnOff();
+        }
     }
 
-    private void SetTrackedDevice()
+    private void ShowDeviceController()
+    {
+        aRDeviceController.SetActive(true);
+    }
+
+    private void SetTrackedAndRegisteredDevice()
     {
         trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }

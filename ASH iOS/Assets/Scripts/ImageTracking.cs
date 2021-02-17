@@ -123,6 +123,7 @@ public class ImageTracking : MonoBehaviour
 
     public void AddDevice()                 //TODO: ist testweise; eigentlich: AddLamp(string name)
     {
+        addDevicePopUp.SetActive(false);
         switch (deviceShortName)
         {
             case "SL1":

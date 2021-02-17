@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f290053038f74224b6d102555606862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aRController: {fileID: 2294911506255854121}
+  aRDeviceController: {fileID: 2937075617441557266}
   _light: {fileID: 100000}
 --- !u!1 &164948961062720404
 GameObject:
@@ -779,7 +779,7 @@ GameObject:
   - component: {fileID: 4749696071418954381}
   - component: {fileID: 5419411321512851373}
   m_Layer: 0
-  m_Name: LampController
+  m_Name: AR Lamp Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
