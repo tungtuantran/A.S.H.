@@ -6,8 +6,9 @@ using UnityEngine;
 [System.Serializable]
 public class LampData : IDeviceData
 {
-    public string _name { get; set; }
+    public string deviceName { get; set; }
     public int id { get; set; }
+    public string _name { get; set; }
     public bool isOn { get; set; } = false;
 
     public float[] lightColor { get; set; }
@@ -21,8 +22,9 @@ public class LampData : IDeviceData
 
     public LampData(Lamp lamp)
     {
-        _name = lamp._name;
+        deviceName = lamp.deviceName;
         id = lamp.id;
+        _name = lamp._name;
         isOn = lamp.isOn;
 
         lightColor = new float[4];

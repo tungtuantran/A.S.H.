@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
+/*
 public static class SaveSystem
 {
     public static void SaveDevice(Device device)
@@ -45,6 +46,39 @@ public static class SaveSystem
 
             stream.Close();
             return deviceData;                                                      //for example: if LampData is wanted -> Cast: (LampData) deviceData;
+        }
+        else
+        {
+            Debug.LogError("Save file not found in " + path);
+            return null;
+        }
+    }
+}
+*/
+
+public static class SaveSystem
+{
+    public static void SaveDeviceCollection(DeviceCollection deviceCollection)
+    {
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/deviceCollection.txt";
+        FileStream stream = new FileStream(path, FileMode.Create);
+
+        DeviceCollectionData deviceCollectionData = new DeviceCollectionData(deviceCollection);
+        formatter.Serialize(stream, deviceCollectionData);
+        stream.Close();
+    }
+
+    public static DeviceCollectionData LoadDeviceCollection()                         
+    {
+        string path = Application.persistentDataPath + "/deviceCollection.txt";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+            DeviceCollectionData deviceCollectionData = formatter.Deserialize(stream) as DeviceCollectionData;
+            stream.Close();
+            return deviceCollectionData;                               
         }
         else
         {

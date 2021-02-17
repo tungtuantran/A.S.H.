@@ -5,7 +5,8 @@ using UnityEngine;
 
 public interface IDeviceData
 {
-    string _name { get; set; }
+    string deviceName { get; set; }
     int id { get; set; }
+    string _name { get; set; }
     bool isOn { get; set; }
 }

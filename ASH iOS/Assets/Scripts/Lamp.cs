@@ -14,15 +14,16 @@ public class Lamp : Device
     public string timerStop { get; set; } = "";
     public bool[] timerDaysOfWeek { get; set; } = new bool[7];  //default: all false; [0]= Monday, [1] = Tuesday, ...
 
-    public Lamp(string name, int id): base(name, id)
+    public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {
     }
 
     public override void SetLoadedDeviceData(IDeviceData deviceData)
     {
         LampData lampData = (LampData) deviceData;
-        this._name = lampData._name;
+        this.deviceName = lampData.deviceName;
         this.id = lampData.id;
+        this._name = lampData._name;
         this.isOn = lampData.isOn;
 
         this.lightColor = new Color(lampData.lightColor[0], lampData.lightColor[1], lampData.lightColor[2], lampData.lightColor[3]);

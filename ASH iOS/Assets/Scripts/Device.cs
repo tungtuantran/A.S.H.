@@ -4,25 +4,30 @@ using UnityEngine;
 
 public abstract class Device: MonoBehaviour
 {
-    public string _name { get; set; }
+    public string deviceName { get; set; }
     public int id { get; set; }
+    public string _name { get; set; }                       //name chosen by user
     public bool isOn { get; set; } = false;
 
-    public Device(string name, int id)
+    public Device(string deviceName, int id, string name)
     {
-        this._name = name;
+        this.deviceName = deviceName;
         this.id = id;
+        this._name = name;
+
+        //add device to deviceCollection
     }
 
-    public void SaveDevice()
+    
+    public void SaveDevice()            //TODO: save into deviceCollection class instead
     {
-        SaveSystem.SaveDevice(this);
+        //SaveSystem.SaveDevice(this);
     }
 
-    public void LoadDevice()
+    public void LoadDevice()            //TODO: load from deviceCollection class instead
     {
-        IDeviceData deviceData = SaveSystem.LoadDevice(this.GetType().Name);
-        SetLoadedDeviceData(deviceData);
+        //IDeviceData deviceData = SaveSystem.LoadDevice(this.GetType().Name);
+        //SetLoadedDeviceData(deviceData);
     }
 
     public abstract void SetLoadedDeviceData(IDeviceData deviceData);

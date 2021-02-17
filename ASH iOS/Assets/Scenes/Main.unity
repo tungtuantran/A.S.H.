@@ -6834,19 +6834,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: On/Off
---- !u!114 &8557925126174319375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557925126174319543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7e4af0da06c472c8efa0feff246306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  light: {fileID: 40919614}
 --- !u!1 &8557925126174319520
 GameObject:
   m_ObjectHideFlags: 0
@@ -7106,7 +7093,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8557925126174319537}
-  - component: {fileID: 8557925126174319375}
+  - component: {fileID: 8557925126174319549}
   m_Layer: 0
   m_Name: Overview
   m_TagString: Untagged
@@ -7206,6 +7193,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8557925126174319549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557925126174319543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d7e4af0da06c472c8efa0feff246306, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 0}
 --- !u!1 &8557925126174319550
 GameObject:
   m_ObjectHideFlags: 0
@@ -8363,7 +8363,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8557925126174319375}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LightsController, Assembly-CSharp
         m_MethodName: turnOnAndOff
         m_Mode: 1

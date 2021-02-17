@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightsController : MonoBehaviour
+public class LampController : MonoBehaviour
 {
     [SerializeField]
-    public GameObject light;
+    public GameObject lamp;
 
     public void turnOnAndOff()
     {
-        if(light.active == true)
+        if (lamp.active == true)
         {
-            light.SetActive(false);
+            lamp.SetActive(false);
         }
         else
         {
-            light.SetActive(true);
+            lamp.SetActive(true);
         }
     }
 }
