@@ -7,6 +7,13 @@ public class LampDisplay : DeviceDisplay
     [SerializeField]
     public GameObject _light;
 
+    private void Awake()
+    {
+        addDeviceButton.SetActive(false);
+        removeDeviceButton.SetActive(false);
+
+    }
+
     void Start()
     {
         Setup();
@@ -21,26 +28,40 @@ public class LampDisplay : DeviceDisplay
     void Setup()
     {
         SetTrackedAndRegisteredDevice();
-        if (trackedDevice != null)          //if registered in DeviceCollection
+        if (trackedAndRegisteredDevice != null)          //if registered in DeviceCollection
         {
-            ShowDeviceController();
-            SetOnOff();
+            addDeviceButton.SetActive(false);
+            removeDeviceButton.SetActive(true);
+            aRDeviceController.SetActive(true);
+            SetDeviceOnOff();
+        }
+        else
+        {
+            addDeviceButton.SetActive(true);
+            removeDeviceButton.SetActive(false);
         }
     }
 
-    private void ShowDeviceController()
+    public void ShowHideDeviceController()
     {
-        aRDeviceController.SetActive(true);
+        if (aRDeviceController.activeSelf)
+        {
+            aRDeviceController.SetActive(false);
+        }
+        else
+        {
+            aRDeviceController.SetActive(true);
+        }
     }
 
     private void SetTrackedAndRegisteredDevice()
     {
-        trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
-    private void SetOnOff()
+    private void SetDeviceOnOff()
     {
-        if (trackedDevice.isOn)
+        if (trackedAndRegisteredDevice.isOn)
         {
             _light.SetActive(true);
         }
@@ -49,4 +70,48 @@ public class LampDisplay : DeviceDisplay
             _light.SetActive(false);
         }
     }
+
+    public void ShowHideAddDevicePopUp()            //for add device and cancel button
+    {
+        if (addDevicePopUp.activeSelf)              //Cancel Button
+        {
+            addDevicePopUp.SetActive(false);
+            addDeviceName.text = "";                //clears textInput if pop get canceled
+        }
+        else
+        {                                           //Add Button
+            addDevicePopUp.SetActive(true);
+        }
+    }
+
+    public void SaveAddedDevice()
+    {
+        ImageTracking.AddTrackedDevice(addDeviceName.text);
+
+        addDevicePopUp.SetActive(false);
+        addDeviceButton.SetActive(false);
+
+        addDeviceName.text = "";                    //clears textInput if pop get canceled
+    }
+
+    public void ShowHideRemoveTrackedAndRegisteredDevicePopUp()            //for add device and cancel button
+    {
+        if (removeDevicePopUp.activeSelf)                                   //Cancel Button
+        {
+            removeDevicePopUp.SetActive(false);
+        }
+        else
+        {
+            removeDevicePopUp.SetActive(true);
+        }
+    }
+
+    public void RemoveTrackedAndRegisteredDevice()
+    {
+        ImageTracking.RemoveTrackedDevice();
+
+        removeDevicePopUp.SetActive(false);
+        removeDevicePopUp.SetActive(false);
+    }
+
 }

@@ -5,15 +5,13 @@ using UnityEngine;
 public class LookAt : MonoBehaviour
 {
 
-    [SerializeField]
-    private GameObject menu;
-
-    private Transform aRCamera;
+    private Camera aRCamera;
 
     // Start is called before the first frame update
     void Start()
     {
-        aRCamera = Camera.main.transform;
+        aRCamera = Camera.main;
+        GetComponent<Canvas>().worldCamera = aRCamera;
     }
 
     // Update is called once per frame

@@ -42,6 +42,11 @@ public abstract class Device
     }
 
     public abstract void LoadDevice(IDeviceData deviceData);
+
+    public override string ToString()
+    {
+        return "DeviceName: " + deviceName + ", ID: " + id + " , Name: " + _name + ", isOn: " + isOn; 
+    }
 }
 
 public enum DeviceName

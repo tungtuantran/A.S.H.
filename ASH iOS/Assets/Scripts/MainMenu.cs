@@ -11,11 +11,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject canvas;
 
-    [SerializeField]
-    private GameObject aRCamera;
+    private Transform aRCamera;
 
     public float smoothFactor = 0.5f;
 
+    private void Awake()
+    {
+        aRCamera = Camera.main.transform;
+    }
 
     public void showGeneralOverview()
     {
@@ -55,9 +58,9 @@ public class MainMenu : MonoBehaviour
 
         Debug.Log("Current: " + canvas.transform.position.x + ", " + canvas.transform.position.y + ", " + canvas.transform.position.z);
 
-        canvas.transform.position = aRCamera.transform.position + aRCamera.transform.forward * distance;
+        canvas.transform.position = aRCamera.position + aRCamera.forward * distance;
 
-        Debug.Log("TargetPos: " + aRCamera.transform.position.x + ", " + aRCamera.transform.position.y + ", " + aRCamera.transform.position.z);
+        Debug.Log("TargetPos: " + aRCamera.position.x + ", " + aRCamera.position.y + ", " + aRCamera.position.z);
 
         Debug.Log("NewCurrent: " + canvas.transform.position.x + ", " + canvas.transform.position.y + ", " + canvas.transform.position.z);
 

@@ -2,66 +2,16 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-/*
 public static class SaveSystem
 {
-    public static void SaveDevice(Device device)
-    {
-        BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/" + device.GetType().Name + ".dv";
-        FileStream stream = new FileStream(path, FileMode.Create);
+    private static string fileName = "/deviceCollection.dc";
 
-        switch (device.GetType().Name)
-        {
-            case "Lamp":
-                LampData lampData = new LampData((Lamp) device);
-                formatter.Serialize(stream, lampData);
-                break;
-            default:
-                Debug.LogError("Device type not found.");
-                break;
-        }
-        stream.Close();
-    }
-
-    public static IDeviceData LoadDevice(string deviceType)                         //deviceType example: "Lamp"
-    {
-        string path = Application.persistentDataPath + "/" + deviceType + ".dv";
-        if (File.Exists(path))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-
-            IDeviceData deviceData;
-            switch (deviceType)
-            {
-                case "Lamp":
-                    deviceData = formatter.Deserialize(stream) as LampData;
-                    break;
-                default:
-                    Debug.Log("Device type not found.");
-                    deviceData = null;
-                    break;
-            }
-
-            stream.Close();
-            return deviceData;                                                      //for example: if LampData is wanted -> Cast: (LampData) deviceData;
-        }
-        else
-        {
-            Debug.LogError("Save file not found in " + path);
-            return null;
-        }
-    }
-}
-*/
-
-public static class SaveSystem
-{
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
+        Debug.Log("saving device collection");
+
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/deviceCollection.txt";
+        string path = Application.persistentDataPath + fileName;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         DeviceCollectionData deviceCollectionData = new DeviceCollectionData(deviceCollection);
@@ -71,7 +21,9 @@ public static class SaveSystem
 
     public static DeviceCollectionData LoadDeviceCollection()                         
     {
-        string path = Application.persistentDataPath + "/deviceCollection.txt";
+        Debug.Log("loading device collection");
+
+        string path = Application.persistentDataPath + fileName;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -82,7 +34,7 @@ public static class SaveSystem
         }
         else
         {
-            Debug.LogError("Save file not found in " + path);
+            Debug.Log("Save file not found in " + path);
             return null;
         }
     }

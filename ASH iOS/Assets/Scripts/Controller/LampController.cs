@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LampController : DeviceController
 {
-    [SerializeField]
-    public GameObject _light { get; set; }
+    public static GameObject _light { get; set; }
 
 }

@@ -35,4 +35,16 @@ public class Lamp : Device
         this.timerStop = lampData.timerStop;
         this.timerDaysOfWeek = lampData.timerDaysOfWeek;
     }
+
+    public override string ToString()
+    {
+        return base.ToString()
+            + ", Color: " + lightColor.ToString()
+            + ", Light Brightness: " + lightBrightness.ToString()
+            + ", Light Temperature: " + lightTemperature.ToString()
+            + ", is Timer Set: " + isTimerSet.ToString()
+            + ", Timer Start: " + timerStart.ToString()
+            + ", Timer Stop: " + timerStop.ToString()
+            + ", Timer Days: " + timerDaysOfWeek.ToString();
+    }
 }

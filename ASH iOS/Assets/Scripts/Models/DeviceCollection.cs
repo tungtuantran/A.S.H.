@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 /*
  * saveDeviceCollection() if device gets added, removed or updated
@@ -8,7 +9,7 @@ using UnityEngine;
  * 
  *
  */
-public class DeviceCollection : MonoBehaviour
+public class DeviceCollection
 {
     private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
 
@@ -21,6 +22,8 @@ public class DeviceCollection : MonoBehaviour
 
     private DeviceCollection()
     {
+        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
+        LoadDeviceCollection();
     }
 
     public static DeviceCollection DeviceCollectionInstance{
@@ -28,11 +31,6 @@ public class DeviceCollection : MonoBehaviour
         {
             return deviceCollectionInstance;
         }
-    }
-
-    private void Awake()
-    {
-        LoadDeviceCollection();
     }
 
     public Device GetRegisteredDeviceByDeviceId(int deviceId)
@@ -68,26 +66,29 @@ public class DeviceCollection : MonoBehaviour
         registeredDevices.Clear();                      //TODO: even neccesary if loadDeviceCollection gets only called when app starts?
 
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
-        for(int i=0; i < deviceCollectionData.deviceDatas.Length; i++)
+        if (deviceCollectionData != null)
         {
-            
-            IDeviceData deviceData = deviceCollectionData.deviceDatas[i];
-            Device device = null;
-
-            switch (deviceData.GetType().Name)
+            for (int i = 0; i < deviceCollectionData.deviceDatas.Length; i++)
             {
-                case "LampData":
-                    device = new Lamp(deviceData.deviceName, deviceData.id, deviceData._name);
-                    break;
-                default:
-                    Debug.LogError("Uknown Data Type");
-                    break;
-            }
 
-            if (device != null)
-            {
-                device.LoadDevice(deviceData);
-                registeredDevices.Add(device);
+                IDeviceData deviceData = deviceCollectionData.deviceDatas[i];
+                Device device = null;
+
+                switch (deviceData.GetType().Name)
+                {
+                    case "LampData":
+                        device = new Lamp(deviceData.deviceName, deviceData.id, deviceData._name);
+                        break;
+                    default:
+                        Debug.LogError("Uknown Data Type");
+                        break;
+                }
+
+                if (device != null)
+                {
+                    device.LoadDevice(deviceData);
+                    registeredDevices.Add(device);
+                }
             }
         }
     }

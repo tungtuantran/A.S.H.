@@ -9,18 +9,12 @@ using System;
 public class ImageTracking : MonoBehaviour
 {
     //Tracked Data of TrackedImage
-    public static int deviceId;
+    public static int deviceId;                         //001
 
-    private string codeString;                      //example: TL1_001      //string name = trackedImage.referenceImage.name;
-    private string[] splittedCode;
-    private string deviceShortName;                   //TL1 = table_lamp1; ...
-    private string deviceName;
-
-    [SerializeField]
-    private GameObject addDevicePopUp;                  //pop up: own name has to be set
-
-    [SerializeField]
-    private DeviceCollection deviceCollection;
+    private static string codeString;                          //TL1_001
+    private static string[] splittedCode;
+    private static string deviceShortName;                     //TL1 = table_lamp1
+    private static string deviceName;                          //table_lamp1
 
     [SerializeField]
     private GameObject[] placeableDevicePrefabs;
@@ -30,7 +24,8 @@ public class ImageTracking : MonoBehaviour
 
     private void Awake()
     {
-        addDevicePopUp.SetActive(false);              //default: not active
+        //addDevicePopUp.SetActive(false);              //default: not active
+        //removeDeviceButton.SetActive(false);
 
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
 
@@ -56,7 +51,7 @@ public class ImageTracking : MonoBehaviour
 
     private void ImageChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        foreach(ARTrackedImage trackedImage in eventArgs.added)
+        foreach (ARTrackedImage trackedImage in eventArgs.added)
         {
             UpdateImage(trackedImage);
         }
@@ -74,13 +69,15 @@ public class ImageTracking : MonoBehaviour
 
     private void UpdateImage(ARTrackedImage trackedImage)
     {
-        
-        codeString = trackedImage.referenceImage.name;       //example: TL1_001      //string name = trackedImage.referenceImage.name;
+        //addDevicePopUp.SetActive(false);                            //wenn neues bild gescannt wird, soll wieder inaktiv sein
+        //removeDeviceButton.SetActive(false);
+
+        codeString = trackedImage.referenceImage.name;
         splittedCode = codeString.Split('_');
-        deviceShortName = splittedCode[0];                   //TL1 = table_lamp1; ...
+        deviceShortName = splittedCode[0];                      
         try
         {
-            deviceId = Convert.ToInt32(splittedCode[1]);            //example: 001, 002
+            deviceId = Convert.ToInt32(splittedCode[1]);
         }catch(Exception e)                                         //example: if deviceId = null or not an integer
         {
             Debug.LogError("Invalid Device ID");
@@ -108,22 +105,25 @@ public class ImageTracking : MonoBehaviour
         bool deviceIsRegistered = checkIfDeviceIsRegistered(deviceId);
         if (!deviceIsRegistered)
         {
-            addDevicePopUp.SetActive(true);
+            //addDevicePopUp.SetActive(true);
         }
         else
         {
-            Device trackedDevice = deviceCollection.GetRegisteredDeviceByDeviceId(deviceId);
+            Device trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
             if(trackedDevice == null)                                        //TODO: neccessary? because it has to be != null
             {
                 Debug.LogError("Device ID not Found");
                 throw new InvalidMarkerException("Device ID not found");
             }
+            //TODO: ??? was muss mit trackedDevice gemacht werden
+
+            //removeDeviceButton.SetActive(true);
         }
     }
 
-    public void AddDevice()                 //TODO: ist testweise; eigentlich: AddLamp(string name)
+    public static void AddTrackedDevice(string name)                 //TODO: ist testweise; eigentlich: AddLamp(string name)
     {
-        addDevicePopUp.SetActive(false);
+        //addDevicePopUp.SetActive(false);
         switch (deviceShortName)
         {
             case "SL1":
@@ -131,17 +131,30 @@ public class ImageTracking : MonoBehaviour
             case "TL1":
             case "TL4":
             case "WL4":
-                DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(new Lamp(deviceName, deviceId, "RandomName"));  //TODO: aendern zu (deviceName, id, name)
+                Device deviceToAdd = new Lamp(deviceName, deviceId, name);              //TODO: aendern zu (deviceName, id, name)
+                DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);  
                 break;
             default:
                 Debug.LogError("Invalid Device Short Name");
                 throw new InvalidMarkerException("Invalid Device Short Name");
         }
+       
+
+        //just for testing:
+        //DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(new Lamp("standing_lamp1", 1, "RandomName"));
+    }
+
+    public static void RemoveTrackedDevice()
+    {
+        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId));
+
+        //just for testing:
+        //DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.registeredDevices[DeviceCollection.DeviceCollectionInstance.registeredDevices.Count-1]);      //TODO
     }
 
     private bool checkIfDeviceIsRegistered(int trackedDeviceId)
     {
-        if (deviceCollection.GetRegisteredDeviceByDeviceId(trackedDeviceId) != null)
+        if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(trackedDeviceId) != null)
         {
             return true;
         }
