@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class SaveSystem
+public class SaveSystem : MonoBehaviour
 {
     private static string fileName = "/deviceCollection.dc";
 
@@ -37,5 +37,22 @@ public static class SaveSystem
             Debug.Log("Save file not found in " + path);
             return null;
         }
+    }
+
+    private void Awake()
+    {
+        Debug.Log("Awake");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("OnEnable");
+    }
+
+
+    private void OnApplicationPause(bool pause)
+    {
+        Debug.Log("Application paused");
+        SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);
     }
 }

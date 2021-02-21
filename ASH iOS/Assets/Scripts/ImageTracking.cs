@@ -9,12 +9,12 @@ using System;
 public class ImageTracking : MonoBehaviour
 {
     //Tracked Data of TrackedImage
-    public static int deviceId;                         //001
-
-    private static string codeString;                          //TL1_001
+    private static string codeString;                       //TL1_001
     private static string[] splittedCode;
-    private static string deviceShortName;                     //TL1 = table_lamp1
-    private static string deviceName;                          //table_lamp1
+
+    public static int deviceId { get; set; }                //001
+    public static string deviceName { get; set; }           //table_lamp1
+    public static string deviceShortName { get; set; }      //TL1 = table_lamp1
 
     [SerializeField]
     private GameObject[] placeableDevicePrefabs;
@@ -119,37 +119,6 @@ public class ImageTracking : MonoBehaviour
 
             //removeDeviceButton.SetActive(true);
         }
-    }
-
-    public static void AddTrackedDevice(string name)                 //TODO: ist testweise; eigentlich: AddLamp(string name)
-    {
-        //addDevicePopUp.SetActive(false);
-        switch (deviceShortName)
-        {
-            case "SL1":
-            case "SL2":
-            case "TL1":
-            case "TL4":
-            case "WL4":
-                Device deviceToAdd = new Lamp(deviceName, deviceId, name);              //TODO: aendern zu (deviceName, id, name)
-                DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);  
-                break;
-            default:
-                Debug.LogError("Invalid Device Short Name");
-                throw new InvalidMarkerException("Invalid Device Short Name");
-        }
-       
-
-        //just for testing:
-        //DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(new Lamp("standing_lamp1", 1, "RandomName"));
-    }
-
-    public static void RemoveTrackedDevice()
-    {
-        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId));
-
-        //just for testing:
-        //DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.registeredDevices[DeviceCollection.DeviceCollectionInstance.registeredDevices.Count-1]);      //TODO
     }
 
     private bool checkIfDeviceIsRegistered(int trackedDeviceId)
