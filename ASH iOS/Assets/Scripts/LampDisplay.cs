@@ -9,9 +9,9 @@ public class LampDisplay : DeviceDisplay
 
     void Start()
     {
-        OnOffAndSelectDeviceButton.SetActive(false);
-        addDeviceButton.SetActive(false);
-        removeDeviceButton.SetActive(false);
+        OnOffAndSelectDeviceButton.gameObject.SetActive(false);
+        addDeviceButton.gameObject.SetActive(false);
+        removeDeviceButton.gameObject.SetActive(false);
         deviceControllerGameObject.SetActive(false);
         Setup();
     }
@@ -29,15 +29,17 @@ public class LampDisplay : DeviceDisplay
         {
             DisplayPropertiesOfTrackedAndRegisteredDevice();
 
-            addDeviceButton.SetActive(false);
-            removeDeviceButton.SetActive(true);
-            OnOffAndSelectDeviceButton.SetActive(true);
+            addDeviceButton.gameObject.SetActive(false);
+            removeDeviceButton.gameObject.SetActive(true);
+
+            OnOffAndSelectDeviceButton.gameObject.SetActive(true);
+            TextOfOnOffAndSelectDeviceButton.text = trackedAndRegisteredDevice._name;
         }
         else
         {
-            addDeviceButton.SetActive(true);
-            removeDeviceButton.SetActive(false);
-            OnOffAndSelectDeviceButton.SetActive(false);
+            addDeviceButton.gameObject.SetActive(true);
+            removeDeviceButton.gameObject.SetActive(false);
+            OnOffAndSelectDeviceButton.gameObject.SetActive(false);
             deviceControllerGameObject.SetActive(false);
 
         }
@@ -105,7 +107,7 @@ public class LampDisplay : DeviceDisplay
         }
 
         addDevicePopUp.SetActive(false);
-        addDeviceButton.SetActive(false);
+        addDeviceButton.gameObject.SetActive(false);
 
         addDeviceNameInputField.text = "";                                            //clears textInput if pop get canceled
     }

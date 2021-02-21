@@ -8,7 +8,10 @@ public abstract class DeviceDisplay : MonoBehaviour
     public static Device trackedAndRegisteredDevice { get; set; }
 
     [SerializeField]
-    public GameObject OnOffAndSelectDeviceButton;
+    public Button OnOffAndSelectDeviceButton;
+
+    [SerializeField]
+    public Text TextOfOnOffAndSelectDeviceButton;
 
     [SerializeField]
     public DeviceController deviceController;
@@ -17,7 +20,7 @@ public abstract class DeviceDisplay : MonoBehaviour
     public GameObject deviceControllerGameObject;
 
     [SerializeField]
-    public GameObject addDeviceButton;
+    public Button addDeviceButton;
 
     [SerializeField]
     public GameObject addDevicePopUp;
@@ -26,7 +29,7 @@ public abstract class DeviceDisplay : MonoBehaviour
     public InputField addDeviceNameInputField;
 
     [SerializeField]
-    public GameObject removeDeviceButton;
+    public Button removeDeviceButton;
 
     [SerializeField]
     public GameObject removeDevicePopUp;

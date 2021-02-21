@@ -32,6 +32,7 @@ public class LongClick : MonoBehaviour
             {
                 Debug.Log("Long click");
                 clicking = false;
+                Handheld.Vibrate();
                 OnLongClick.Invoke();
             }
         }
