@@ -8,7 +8,7 @@ public abstract class DeviceDisplay : MonoBehaviour
     public static Device trackedAndRegisteredDevice { get; set; }
 
     [SerializeField]
-    public Button OnOffAndSelectDeviceButton;
+    public GameObject OnOffAndSelectDeviceButton;
 
     [SerializeField]
     public Text TextOfOnOffAndSelectDeviceButton;

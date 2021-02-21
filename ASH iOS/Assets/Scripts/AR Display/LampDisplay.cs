@@ -9,7 +9,7 @@ public class LampDisplay : DeviceDisplay
 
     void Start()
     {
-        OnOffAndSelectDeviceButton.gameObject.SetActive(false);
+        OnOffAndSelectDeviceButton.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
         removeDeviceButton.gameObject.SetActive(false);
         deviceControllerGameObject.SetActive(false);
@@ -32,14 +32,14 @@ public class LampDisplay : DeviceDisplay
             addDeviceButton.gameObject.SetActive(false);
             removeDeviceButton.gameObject.SetActive(true);
 
-            OnOffAndSelectDeviceButton.gameObject.SetActive(true);
+            OnOffAndSelectDeviceButton.SetActive(true);
             TextOfOnOffAndSelectDeviceButton.text = trackedAndRegisteredDevice._name;
         }
         else
         {
             addDeviceButton.gameObject.SetActive(true);
             removeDeviceButton.gameObject.SetActive(false);
-            OnOffAndSelectDeviceButton.gameObject.SetActive(false);
+            OnOffAndSelectDeviceButton.SetActive(false);
             deviceControllerGameObject.SetActive(false);
 
         }
