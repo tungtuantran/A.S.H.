@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 6729404040233064847}
   - component: {fileID: 4800981030717593759}
   - component: {fileID: 2477937370271366269}
+  - component: {fileID: 860063716605578211}
   m_Layer: 5
   m_Name: OnOff Select Device Button
   m_TagString: Untagged
@@ -244,8 +245,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1f73fe383de414a8892e8bc0a2f561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHoldTime: 0
+  requiredHoldTime: 1
   onLongClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LampDisplay, Assembly-CSharp
+        m_MethodName: SelectDeviceAndSetDeviceOnOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   fillImage: {fileID: 4256165588112023725}
+--- !u!114 &860063716605578211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7764605764529490324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab43dc30389ea4599bdb83df8731588e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invalidHoldTime: 1
+  onShortClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LampDisplay, Assembly-CSharp
+        m_MethodName: SelectedAndShowHideDeviceController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

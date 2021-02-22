@@ -1885,7 +1885,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1789843946427842857}
         m_TargetAssemblyTypeName: LampDisplay, Assembly-CSharp
-        m_MethodName: SetDeviceOnOff
+        m_MethodName: SelectDeviceAndSetDeviceOnOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2143,34 +2143,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2565255089974023760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7035354804636487664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab43dc30389ea4599bdb83df8731588e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  invalidHoldTime: 1
-  onShortClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1789843946427842857}
-        m_TargetAssemblyTypeName: LampDisplay, Assembly-CSharp
-        m_MethodName: SetSelectedDevice
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7174633179433247059
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,16 +2761,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: requiredHoldTime
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 860063716605578211, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
+      propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1789843946427842857}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: OnLongClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
@@ -2806,7 +2774,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
@@ -2822,24 +2790,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetDeviceOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: OnLongClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: LampDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: LampDisplay, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2477937370271366269, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-      propertyPath: onLongClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7764605764529490324, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: m_Name
@@ -2847,6 +2807,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
+--- !u!224 &44492833806679837 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 792039632825088377, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
+  m_PrefabInstance: {fileID: 748708210789647972}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7035354804636487664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7764605764529490324, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
+  m_PrefabInstance: {fileID: 748708210789647972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3801495834468112254 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4513260449177817370, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
@@ -2858,16 +2828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &44492833806679837 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 792039632825088377, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-  m_PrefabInstance: {fileID: 748708210789647972}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7035354804636487664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7764605764529490324, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-  m_PrefabInstance: {fileID: 748708210789647972}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3570606563836444727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3034,14 +2994,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6497433753483654346, guid: 7ee49399e613e4bd7bc2dca99b5e6d3a, type: 3}
   m_PrefabInstance: {fileID: 3570606563836444727}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2576263143198266897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1318972420566406694, guid: 7ee49399e613e4bd7bc2dca99b5e6d3a, type: 3}
-  m_PrefabInstance: {fileID: 3570606563836444727}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3573298912478528441 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7810577287398286, guid: 7ee49399e613e4bd7bc2dca99b5e6d3a, type: 3}
+  m_PrefabInstance: {fileID: 3570606563836444727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2576263143198266897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1318972420566406694, guid: 7ee49399e613e4bd7bc2dca99b5e6d3a, type: 3}
   m_PrefabInstance: {fileID: 3570606563836444727}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3773051405693878733

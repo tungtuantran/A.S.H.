@@ -52,8 +52,10 @@ public class LampDisplay : DeviceDisplay
     }
 
 
-    public void ShowHideDeviceController()
+    public void SelectedAndShowHideDeviceController()
     {
+        SetSelectedDeviceIsTrackedDevice();
+
         if (deviceControllerGameObject.activeSelf)
         {
             deviceControllerGameObject.SetActive(false);
@@ -64,10 +66,9 @@ public class LampDisplay : DeviceDisplay
         }
     }
 
-    public void SetSelectedDevice()
+    private void SetSelectedDeviceIsTrackedDevice()                                     //set selectedDevice = currently Tracked Device
     {
         deviceController.selectedDevice = trackedAndRegisteredDevice;
-        ShowHideDeviceController();
     }
 
     private void SetTrackedAndRegisteredDevice()
@@ -75,8 +76,9 @@ public class LampDisplay : DeviceDisplay
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
-    public void SetDeviceOnOff()
+    public void SelectDeviceAndSetDeviceOnOff()
     {
+        SetSelectedDeviceIsTrackedDevice();
         deviceController.SetSelectedDeviceOnOff();
         _light.SetActive(trackedAndRegisteredDevice.isOn);
 
