@@ -5,10 +5,14 @@ using UnityEngine;
 public class LampDisplay : DeviceDisplay
 {
     [SerializeField]
-    public GameObject _light;
+    public GameObject lightGameObject;
+
+    private Light _light;
 
     void Start()
     {
+        _light = lightGameObject.GetComponent<Light>();
+
         OnOffAndSelectDeviceButton.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
         removeDeviceButton.gameObject.SetActive(false);
@@ -47,8 +51,15 @@ public class LampDisplay : DeviceDisplay
 
     private void DisplayPropertiesOfTrackedAndRegisteredDevice()     //hier werden alle eigeschaften von lamp object zum displayn gesetzt
     {
-        _light.SetActive(trackedAndRegisteredDevice.isOn);
-        //TODO: color, temprature, timer,...
+        Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
+        float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
+
+        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
+        _light.color = lightColor;
+        _light.intensity = lightBrightness;
+        _light.colorTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
+
+        //TODO: timer,...
     }
 
 
@@ -80,7 +91,7 @@ public class LampDisplay : DeviceDisplay
     {
         SetSelectedDeviceIsTrackedDevice();
         deviceController.SetSelectedDeviceOnOff();
-        _light.SetActive(trackedAndRegisteredDevice.isOn);
+        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
 
     }
 
