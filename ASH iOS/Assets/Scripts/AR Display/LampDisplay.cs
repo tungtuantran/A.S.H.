@@ -53,11 +53,12 @@ public class LampDisplay : DeviceDisplay
     {
         Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
         float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
+        float lightTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
 
         lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
         _light.color = lightColor;
         _light.intensity = lightBrightness;
-        _light.colorTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
+        _light.colorTemperature = lightTemperature;
 
         //TODO: timer,...
     }
