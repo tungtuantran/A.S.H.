@@ -7,7 +7,7 @@ public class Lamp : Device
 {
     public Color lightColor { get; set; } = Color.white;
     public float lightBrightness { get; set; } = 1.0f;           //1 out of 1
-    public float lightTemperature { get; set; } = 0.5f;           //0.5 out of 1
+    public float lightTemperature { get; set; } = 0.5f;           //min 2700k - max 6500k -> TODO ????
 
     public bool isTimerSet { get; set; } = false;
     public string timerStart { get; set; } = "";              //example: 09:01
