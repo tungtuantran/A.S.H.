@@ -9,10 +9,71 @@ public class Lamp : Device
     public float lightBrightness { get; set; } = 1.0f;              // 1 out of 1
     public float lightTemperature { get; set; } = 4000.0f;          // min 2700k - max 6500k -> TODO ????
 
-    public bool isTimerSet { get; set; } = false;
-    public string timerStart { get; set; } = "";                    // example: 09:01
-    public string timerStop { get; set; } = "";
+    private bool _isTimerSet = false;
+    private string _timerStart = "";                                // example: 09:01
+    private string _timerStop = "";
     public bool[] timerDaysOfWeek { get; set; } = new bool[7];      // default: all false; [0]= Monday, [1] = Tuesday, ...
+
+    private DateTime timerStartTime;
+    private DateTime timerStopTime;
+
+    public bool isTimerSet
+    {
+        get
+        {
+            return _isTimerSet;
+        }
+
+        set
+        {
+            _isTimerSet = value;
+
+            while (isTimerSet)
+            {
+                DateTime currentTime = DateTime.Now;
+
+                if (CheckTimerIfIsSetForDay((int)currentTime.DayOfWeek))
+                {
+                    if (currentTime.Equals(timerStartTime))
+                    {
+                        isOn = true;
+                    }
+
+                    if (currentTime.Equals(timerStopTime))
+                    {
+                        isOn = false;
+                    }
+                }
+            }
+        }
+    }
+
+    public string timerStart
+    {
+        get {
+            return _timerStart;
+        }
+
+        set
+        {
+            _timerStart = value;
+            timerStartTime = DateTime.Parse(timerStart + ":00", System.Globalization.CultureInfo.CurrentCulture);
+        }
+    }
+
+    public string timerStop
+    {
+        get
+        {
+            return _timerStop;
+        }
+
+        set
+        {
+            _timerStop = value;
+            timerStopTime = DateTime.Parse(timerStart + ":00", System.Globalization.CultureInfo.CurrentCulture);
+        }
+    }
 
     public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {
@@ -47,4 +108,15 @@ public class Lamp : Device
             + ", Timer Stop: " + timerStop.ToString()
             + ", Timer Days: " + timerDaysOfWeek.ToString();
     }
+
+    private bool CheckTimerIfIsSetForDay(int day)
+    {
+        if (timerDaysOfWeek[day - 1])
+        {
+            return true;
+        }
+
+        return false;
+    }
+
 }

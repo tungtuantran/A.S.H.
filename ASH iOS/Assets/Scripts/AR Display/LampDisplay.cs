@@ -143,7 +143,7 @@ public class LampDisplay : DeviceDisplay
         {                                           // Add Me Button
             addDevicePopUp.SetActive(true);
         }
-        addNameInputField.text = "";          // clears textInput
+        addNameInputField.text = "";                // clears textInput
     }
 
     public void ShowHideRemoveDevicePopUp() 

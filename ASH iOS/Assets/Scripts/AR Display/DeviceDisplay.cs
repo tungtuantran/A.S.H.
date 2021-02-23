@@ -10,12 +10,6 @@ public abstract class DeviceDisplay : MonoBehaviour
     [SerializeField]
     public Button selectOnOffDeviceButton;
 
-    //[SerializeField]
-    //public Text TextOfOnOffAndSelectDeviceButton;
-
-    //[SerializeField]
-    //public GameObject deviceControllerGameObject;
-
     [SerializeField]
     public DeviceController deviceController;
 
@@ -27,10 +21,6 @@ public abstract class DeviceDisplay : MonoBehaviour
 
     [SerializeField]
     public GameObject addDevicePopUp;
-
-    //[SerializeField]
-    //public InputField addDeviceNameInputField;
-
 
     [SerializeField]
     public GameObject removeDevicePopUp;
