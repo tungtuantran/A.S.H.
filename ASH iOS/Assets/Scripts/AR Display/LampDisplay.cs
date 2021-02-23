@@ -22,17 +22,16 @@ public class LampDisplay : DeviceDisplay
         Setup();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Setup();
     }
 
-    void Setup()
+    private void Setup()
     {
         SetTrackedAndRegisteredDevice();
 
-        if (trackedAndRegisteredDevice != null)          //if tracked Device is registered in DeviceCollection
+        if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
         {
             DisplayPropertiesOfTrackedAndRegisteredDevice();
 
@@ -52,13 +51,14 @@ public class LampDisplay : DeviceDisplay
         }
     }
 
-    private void DisplayPropertiesOfTrackedAndRegisteredDevice()     //hier werden alle eigeschaften von lamp object zum displayn gesetzt
+    private void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
+        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
+
         Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
         float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
         float lightTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
 
-        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
         _light.color = lightColor;
         _light.intensity = lightBrightness;
         _light.colorTemperature = lightTemperature;
@@ -67,7 +67,11 @@ public class LampDisplay : DeviceDisplay
     }
 
 
-    public void SelectedAndShowHideDeviceController()
+    /**
+     * Selects device & then shows/hides device controller
+     * 
+     */
+    public void SelectAndShowHideDeviceController()
     {
         SetSelectedDeviceIsTrackedDevice();
 
@@ -81,7 +85,16 @@ public class LampDisplay : DeviceDisplay
         }
     }
 
-    private void SetSelectedDeviceIsTrackedDevice()                                     //set selectedDevice = currently Tracked Device
+    public void SelectAndSetDeviceOnOff()
+    {
+        SetSelectedDeviceIsTrackedDevice();
+
+        deviceController.SetSelectedDeviceOnOff();
+        //lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);           -> wird von DisplayPropertiesOfTrackedAndRegisteredDevice() durch updaten automisch schon gehandeled?
+
+    }
+
+    private void SetSelectedDeviceIsTrackedDevice()                                     // set selectedDevice = currently Tracked Device
     {
         deviceController.selectedDevice = trackedAndRegisteredDevice;
     }
@@ -91,28 +104,10 @@ public class LampDisplay : DeviceDisplay
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
-    public void SelectDeviceAndSetDeviceOnOff()
-    {
-        SetSelectedDeviceIsTrackedDevice();
-        deviceController.SetSelectedDeviceOnOff();
-        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
-
-    }
-
-    public void ShowHideAddDevicePopUp()            //for add device and cancel button
-    {
-        if (addDevicePopUp.activeSelf)              //Cancel Button
-        {
-            addDevicePopUp.SetActive(false);
-            addDeviceNameInputField.text = "";      //clears textInput if pop get canceled
-        }
-        else
-        {                                           //Add Button
-            addDevicePopUp.SetActive(true);
-        }
-    }
-
-    public void SaveAddedDevice()
+    /**
+     * Adds currently TRACKED Device
+     */
+    public void AddTrackedDevice()
     {
         if (addDeviceNameInputField.text != "")
         {
@@ -120,32 +115,45 @@ public class LampDisplay : DeviceDisplay
         }
         else
         {
-            //TODO: fehlermeldung im UI 
+            //TODO: fehlermeldung im UI
         }
 
         addDevicePopUp.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
-
-        addDeviceNameInputField.text = "";                                            //clears textInput if pop get canceled
     }
 
-    public void ShowHideRemoveTrackedAndRegisteredDevicePopUp()             //for add device and cancel button
+    /**
+     * Removes SELECTED Device
+     */
+    public void RemoveSelectedDevice()
     {
-        if (removeDevicePopUp.activeSelf)                                   //Cancel Button
+        deviceController.RemoveSelectedDevice();
+        removeDevicePopUp.SetActive(false);
+    }
+
+    public void ShowHideAddDevicePopUp()            // for "add me" button and cancel button
+    {
+        if (addDevicePopUp.activeSelf)              // Cancel Button (in Pop-Up)
         {
-            removeDevicePopUp.SetActive(false);
+            addDevicePopUp.SetActive(false);
+        }
+        else
+        {                                           // Add Me Button
+            addDevicePopUp.SetActive(true);
+        }
+        addDeviceNameInputField.text = "";          // clears textInput
+    }
+
+    public void ShowHideRemoveDevicePopUp() 
+    {
+        if (removeDevicePopUp.activeSelf)
+        {
+            removeDevicePopUp.SetActive(false);     // Cancel Button (in Pop-Up)
         }
         else
         {
-            removeDevicePopUp.SetActive(true);
+            removeDevicePopUp.SetActive(true);      // Remove Button
         }
-    }
-
-    public void RemoveDevice()             //for menu controller
-    {
-        deviceController.RemoveSelectedDevice();              //remove a selected (specific) device
-
-        removeDevicePopUp.SetActive(false);
     }
 
 }
