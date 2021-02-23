@@ -204,16 +204,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f290053038f74224b6d102555606862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnOffAndSelectDeviceButton: {fileID: 7035354804636487664}
-  TextOfOnOffAndSelectDeviceButton: {fileID: 3801495834468112254}
+  selectOnOffDeviceButton: {fileID: 7838005045244305668}
   deviceController: {fileID: 5419411321512851373}
-  deviceControllerGameObject: {fileID: 2937075617441557266}
   addDeviceButton: {fileID: 3420483864856444245}
-  addDevicePopUp: {fileID: 7201846286555754385}
-  addDeviceNameInputField: {fileID: 5834624622553588472}
   removeDeviceButton: {fileID: 5685528402530193747}
+  addDevicePopUp: {fileID: 7201846286555754385}
   removeDevicePopUp: {fileID: 5673355460986224515}
-  lightGameObject: {fileID: 100000}
+  _light: {fileID: 10800000}
 --- !u!1 &164948961062720404
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,9 +1994,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789843946427842857}
-        m_TargetAssemblyTypeName: LampDisplay, Assembly-CSharp
-        m_MethodName: SelectDeviceAndSetDeviceOnOff
+      - m_Target: {fileID: 5419411321512851373}
+        m_TargetAssemblyTypeName: DeviceController, Assembly-CSharp
+        m_MethodName: SetSelectedDeviceOnOff
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2951,7 +2948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764605764529490324, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: m_Name
-      value: OnOff Select Device Button
+      value: Select OnOff Device Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
@@ -2960,20 +2957,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 792039632825088377, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
   m_PrefabInstance: {fileID: 748708210789647972}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7035354804636487664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7764605764529490324, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
-  m_PrefabInstance: {fileID: 748708210789647972}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3801495834468112254 stripped
+--- !u!114 &7838005045244305668 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4513260449177817370, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7396531444459808608, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
   m_PrefabInstance: {fileID: 748708210789647972}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3570606563836444727

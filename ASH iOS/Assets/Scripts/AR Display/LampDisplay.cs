@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LampDisplay : DeviceDisplay
 {
-    [SerializeField]
-    public GameObject lightGameObject;
+    private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
 
-    private Light _light;
+    [SerializeField]
+    public Light _light;
+
+    private InputField addNameInputField;
 
     void Start()
     {
-        _light = lightGameObject.GetComponent<Light>();
+        addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
 
-        OnOffAndSelectDeviceButton.SetActive(false);
+        selectOnOffDeviceButton.gameObject.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDeviceButton.gameObject.SetActive(false);
         removeDevicePopUp.SetActive(false);
-        deviceControllerGameObject.SetActive(false);
+        deviceController.gameObject.SetActive(false);
         Setup();
     }
 
@@ -38,22 +41,22 @@ public class LampDisplay : DeviceDisplay
             addDeviceButton.gameObject.SetActive(false);
             removeDeviceButton.gameObject.SetActive(true);
 
-            OnOffAndSelectDeviceButton.SetActive(true);
-            TextOfOnOffAndSelectDeviceButton.text = trackedAndRegisteredDevice._name;
+            selectOnOffDeviceButton.gameObject.SetActive(true);
+            selectOnOffDeviceButton.gameObject.GetComponentInChildren<Text>().text = trackedAndRegisteredDevice._name;
         }
         else
         {
             addDeviceButton.gameObject.SetActive(true);
             removeDeviceButton.gameObject.SetActive(false);
-            OnOffAndSelectDeviceButton.SetActive(false);
-            deviceControllerGameObject.SetActive(false);
+            selectOnOffDeviceButton.gameObject.SetActive(false);
+            deviceController.gameObject.SetActive(false);
 
         }
     }
 
     private void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
-        lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);
+        _light.gameObject.SetActive(trackedAndRegisteredDevice.isOn);
 
         Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
         float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
@@ -75,13 +78,13 @@ public class LampDisplay : DeviceDisplay
     {
         SetSelectedDeviceIsTrackedDevice();
 
-        if (deviceControllerGameObject.activeSelf)
+        if (deviceController.gameObject.activeSelf)
         {
-            deviceControllerGameObject.SetActive(false);
+            deviceController.gameObject.SetActive(false);
         }
         else
         {
-            deviceControllerGameObject.SetActive(true);
+            deviceController.gameObject.SetActive(true);
         }
     }
 
@@ -90,8 +93,6 @@ public class LampDisplay : DeviceDisplay
         SetSelectedDeviceIsTrackedDevice();
 
         deviceController.SetSelectedDeviceOnOff();
-        //lightGameObject.SetActive(trackedAndRegisteredDevice.isOn);           -> wird von DisplayPropertiesOfTrackedAndRegisteredDevice() durch updaten automisch schon gehandeled?
-
     }
 
     private void SetSelectedDeviceIsTrackedDevice()                                     // set selectedDevice = currently Tracked Device
@@ -109,9 +110,10 @@ public class LampDisplay : DeviceDisplay
      */
     public void AddTrackedDevice()
     {
-        if (addDeviceNameInputField.text != "")
+        string name = addNameInputField.text;
+        if (name != "")
         {
-            deviceController.AddCurrentlyTrackedDevice(addDeviceNameInputField.text);
+            deviceController.AddCurrentlyTrackedDevice(name);
         }
         else
         {
@@ -141,7 +143,7 @@ public class LampDisplay : DeviceDisplay
         {                                           // Add Me Button
             addDevicePopUp.SetActive(true);
         }
-        addDeviceNameInputField.text = "";          // clears textInput
+        addNameInputField.text = "";          // clears textInput
     }
 
     public void ShowHideRemoveDevicePopUp() 

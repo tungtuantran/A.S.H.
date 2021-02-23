@@ -8,28 +8,29 @@ public abstract class DeviceDisplay : MonoBehaviour
     public static Device trackedAndRegisteredDevice { get; set; }
 
     [SerializeField]
-    public GameObject OnOffAndSelectDeviceButton;
+    public Button selectOnOffDeviceButton;
 
-    [SerializeField]
-    public Text TextOfOnOffAndSelectDeviceButton;
+    //[SerializeField]
+    //public Text TextOfOnOffAndSelectDeviceButton;
+
+    //[SerializeField]
+    //public GameObject deviceControllerGameObject;
 
     [SerializeField]
     public DeviceController deviceController;
 
     [SerializeField]
-    public GameObject deviceControllerGameObject;
+    public Button addDeviceButton;
 
     [SerializeField]
-    public Button addDeviceButton;
+    public Button removeDeviceButton;
 
     [SerializeField]
     public GameObject addDevicePopUp;
 
-    [SerializeField]
-    public InputField addDeviceNameInputField;
+    //[SerializeField]
+    //public InputField addDeviceNameInputField;
 
-    [SerializeField]
-    public Button removeDeviceButton;
 
     [SerializeField]
     public GameObject removeDevicePopUp;
