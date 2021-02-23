@@ -8,13 +8,12 @@ public class RegisteredDeviceLog : MonoBehaviour
     [SerializeField]
     public Text txt;
 
-    // Update is called once per frame
     void Update()
     {
-        txt.text = DeviceCollection.DeviceCollectionInstance.registeredDevices.Count.ToString() + "\n ";
+        txt.text = "Device Counter: " + DeviceCollection.DeviceCollectionInstance.registeredDevices.Count.ToString() + "\n \n";
         foreach(Device device in DeviceCollection.DeviceCollectionInstance.registeredDevices)
         {
-            txt.text += device.ToString() + "\n";
+            txt.text += device.ToString() + "\n \n";
         }
     }
 }
