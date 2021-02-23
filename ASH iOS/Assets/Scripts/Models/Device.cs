@@ -6,15 +6,9 @@ public abstract class Device
 {
     private DeviceCollection deviceCollection = DeviceCollection.DeviceCollectionInstance;
 
-    //[SerializeField]
-    //public DeviceDisplay deviceDisplay { get; set; }
-
-    [SerializeField]
-    public GameObject devicePrefab { get; set; }           //??? useful???
-
     public string deviceName { get; set; }
     public int id { get; set; }
-    public string _name { get; set; }                       //name chosen by user
+    public string _name { get; set; }                       // name chosen by user
     public bool isOn { get; set; } = false;
 
     public Device(string deviceName, int id, string name)
@@ -22,23 +16,21 @@ public abstract class Device
         this.deviceName = deviceName;
         this.id = id;
         this._name = name;
-
-        //add device to deviceCollection
     }
 
-    public void addDevice()                                 //save Device
+    public void addDevice()                                 // add/save Device
     {
         deviceCollection.AddRegisteredDevice(this);
     }
 
     public void removeDevice()
     {
-        deviceCollection.RemoveRegisteredDevice(this);      //save-function is called in removeRegisteredDevice()
+        deviceCollection.RemoveRegisteredDevice(this);      // save-function is called in removeRegisteredDevice()
     }
 
-    public void UpdateDevice()                              //update/save new device settings
+    public void UpdateDevice()                              // update/save new device settings
     {
-        deviceCollection.SaveDeviceCollection();            //if device get updated -> actually deviceCollection gets updated
+        deviceCollection.SaveDeviceCollection();            // if device get updated -> actually deviceCollection gets updated
     }
 
     public abstract void LoadDevice(IDeviceData deviceData);

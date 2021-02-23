@@ -9,24 +9,16 @@ using System;
 public class ImageTracking : MonoBehaviour
 {
     //Tracked Data of TrackedImage
-    private static string codeString;                       //TL1_001
-    private static string[] splittedCode;
-
-    public static int deviceId { get; set; }                //001
-    public static string deviceName { get; set; }           //table_lamp1
-    public static string deviceShortName { get; set; }      //TL1 = table_lamp1
+    public static int deviceId { get; set; }                // example: 001
+    public static string deviceName { get; set; }           // example: table_lamp1
 
     [SerializeField]
     private GameObject[] placeableDevicePrefabs;
-
     private Dictionary<string, GameObject> spawnedDevicePrefabs = new Dictionary<string, GameObject>();
     private ARTrackedImageManager trackedImageManager;
 
     private void Awake()
     {
-        //addDevicePopUp.SetActive(false);              //default: not active
-        //removeDeviceButton.SetActive(false);
-
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
 
         foreach(GameObject devicePrefab in placeableDevicePrefabs)
@@ -69,65 +61,38 @@ public class ImageTracking : MonoBehaviour
 
     private void UpdateImage(ARTrackedImage trackedImage)
     {
-        //addDevicePopUp.SetActive(false);                            //wenn neues bild gescannt wird, soll wieder inaktiv sein
-        //removeDeviceButton.SetActive(false);
+        //Decode codeString to get device name and Id
+        string codeString = trackedImage.referenceImage.name;       // example: TL1_001
+        string[] splittedCode = codeString.Split('_');              // example: [TL1], [001]        
+        deviceName = DeviceShortNameToName(splittedCode[0]);
+        deviceId = ConvertIdStringToInteger(splittedCode[1]);
 
-        codeString = trackedImage.referenceImage.name;
-        splittedCode = codeString.Split('_');
-        deviceShortName = splittedCode[0];                      
-        try
-        {
-            deviceId = Convert.ToInt32(splittedCode[1]);
-        }catch(Exception e)                                         //example: if deviceId = null or not an integer
-        {
-            Debug.LogError("Invalid Device ID");
-            throw new InvalidMarkerException("Invalid Device ID");
-        }
-
-        deviceName = DeviceShortNameToName(deviceShortName);
-
+        //Spawn devicePrefab
         GameObject devicePrefab = spawnedDevicePrefabs[deviceName];
-
         Vector3 position = trackedImage.transform.position;
         devicePrefab.transform.position = position;
         devicePrefab.SetActive(true);
 
-        
-        foreach(GameObject gameObject in spawnedDevicePrefabs.Values)       //verhindert, dass mehrere prefabs gleichzeitig angezeigt werden, wenn mehrere marker zu sehen sind?
+        //Sets other devicePrefabs inactive
+        foreach(GameObject gameObject in spawnedDevicePrefabs.Values)
         {
             if(gameObject.name != deviceName)
             {
                 gameObject.SetActive(false);
             }
         }
-
-        //TODO: bool checken, ob hinzugefügt wurde oder nicht -> wenn ja, dann weiter (zeige an marker gehefteten AR-Controller), sonst nicht (return)
-        bool deviceIsRegistered = checkIfDeviceIsRegistered(deviceId);
-        if (!deviceIsRegistered)
-        {
-            //addDevicePopUp.SetActive(true);
-        }
-        else
-        {
-            Device trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
-            if(trackedDevice == null)                                        //TODO: neccessary? because it has to be != null
-            {
-                Debug.LogError("Device ID not Found");
-                throw new InvalidMarkerException("Device ID not found");
-            }
-            //TODO: ??? was muss mit trackedDevice gemacht werden
-
-            //removeDeviceButton.SetActive(true);
-        }
     }
 
-    private bool checkIfDeviceIsRegistered(int trackedDeviceId)
+    private int ConvertIdStringToInteger(string idInString)
     {
-        if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(trackedDeviceId) != null)
+        try
         {
-            return true;
+            return Convert.ToInt32(idInString);
         }
-        return false;
+        catch (Exception e)                                         // example: if deviceId = null or not an integer
+        {
+            throw new InvalidMarkerException("Invalid Device ID");
+        }
     }
 
     private string DeviceShortNameToName(string deviceShortName)
@@ -145,7 +110,6 @@ public class ImageTracking : MonoBehaviour
             case "WL4":
                 return Enum.GetName(typeof(DeviceName), DeviceName.wall_lamp4);
             default:
-                Debug.LogError("Invalid Device Name");
                 throw new InvalidMarkerException("Invalid Device Name");
         }
     }

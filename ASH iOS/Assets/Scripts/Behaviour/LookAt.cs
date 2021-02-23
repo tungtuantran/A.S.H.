@@ -21,6 +21,6 @@ public class LookAt : MonoBehaviour
 
     void Update()
     {
-        this.transform.LookAt(aRCamera.transform);
+        transform.LookAt(aRCamera.transform);
     }
 }

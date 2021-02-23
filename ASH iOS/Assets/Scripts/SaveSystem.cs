@@ -4,14 +4,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem : MonoBehaviour
 {
-    private static string fileName = "/deviceCollection.dc";
+    private const string FILE_NAME = "/deviceCollection.dc";
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
         Debug.Log("saving device collection");
 
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + fileName;
+        string path = Application.persistentDataPath + FILE_NAME;
         FileStream stream = new FileStream(path, FileMode.Create);
 
         DeviceCollectionData deviceCollectionData = new DeviceCollectionData(deviceCollection);
@@ -23,7 +23,7 @@ public class SaveSystem : MonoBehaviour
     {
         Debug.Log("loading device collection");
 
-        string path = Application.persistentDataPath + fileName;
+        string path = Application.persistentDataPath + FILE_NAME;
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -39,18 +39,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        Debug.Log("Awake");
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log("OnEnable");
-    }
-
-
-    private void OnApplicationPause(bool pause)
+    private void OnApplicationPause(bool pause)                         // save on pause & exit
     {
         Debug.Log("Application paused");
         SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);

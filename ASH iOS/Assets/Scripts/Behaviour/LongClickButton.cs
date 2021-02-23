@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
     private bool pointerDown;
     private float pointerDownTimer;
 
@@ -38,9 +37,7 @@ public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 if(onLongClick != null)
                 {
                     onLongClick.Invoke();
-                    Debug.Log("long click invoked");
                     Handheld.Vibrate();
-                    Debug.Log("handheld vibrated!");
 
                 }
 

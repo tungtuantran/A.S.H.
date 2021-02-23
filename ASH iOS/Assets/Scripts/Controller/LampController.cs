@@ -18,10 +18,7 @@ public class LampController : DeviceController
 
     void Start()
     {
-        colorPicker.SetNewColor(((Lamp) selectedDevice).lightColor);
-        temperatureSlider.value = ((Lamp) selectedDevice).lightTemperature;
-        brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
-
+        UpdateControllerValues();
     }
     void Update()
     {
@@ -29,8 +26,14 @@ public class LampController : DeviceController
         SetLightTemperature(temperatureSlider.value);
         SetLightBrightness(brightnessSlider.value);
 
-        colorPicker.SetNewColor(((Lamp) selectedDevice).lightColor);
-        temperatureSlider.value = ((Lamp) selectedDevice).lightTemperature;
+        UpdateControllerValues();
+    }
+
+    protected override void UpdateControllerValues()
+    {
+        //TODO: for ON/OFF switch toggle
+        colorPicker.SetNewColor(((Lamp)selectedDevice).lightColor);
+        temperatureSlider.value = ((Lamp)selectedDevice).lightTemperature;
         brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
     }
 
@@ -39,13 +42,19 @@ public class LampController : DeviceController
         ((Lamp) selectedDevice).lightColor = color;
     }
 
-    private void SetLightTemperature(float temperatureValue)
+    private void SetLightTemperature(float temperature)
     {
-        ((Lamp) selectedDevice).lightTemperature = temperatureValue;
+        ((Lamp) selectedDevice).lightTemperature = temperature;
     }
 
-    private void SetLightBrightness(float brightnessValue)
+    private void SetLightBrightness(float brightness)
     {
-        ((Lamp)selectedDevice).lightBrightness = brightnessValue;
+        ((Lamp)selectedDevice).lightBrightness = brightness;
+    }
+
+    public override void AddCurrentlyTrackedDevice(string name)
+    {
+        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
+        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
     }
 }

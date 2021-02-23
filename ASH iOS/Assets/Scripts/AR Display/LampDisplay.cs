@@ -15,7 +15,9 @@ public class LampDisplay : DeviceDisplay
 
         OnOffAndSelectDeviceButton.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
+        addDevicePopUp.SetActive(false);
         removeDeviceButton.gameObject.SetActive(false);
+        removeDevicePopUp.SetActive(false);
         deviceControllerGameObject.SetActive(false);
         Setup();
     }
@@ -29,7 +31,8 @@ public class LampDisplay : DeviceDisplay
     void Setup()
     {
         SetTrackedAndRegisteredDevice();
-        if (trackedAndRegisteredDevice != null)          //if registered in DeviceCollection
+
+        if (trackedAndRegisteredDevice != null)          //if tracked Device is registered in DeviceCollection
         {
             DisplayPropertiesOfTrackedAndRegisteredDevice();
 
@@ -113,7 +116,7 @@ public class LampDisplay : DeviceDisplay
     {
         if (addDeviceNameInputField.text != "")
         {
-            deviceController.AddCurrentTrackedDevice(addDeviceNameInputField.text);
+            deviceController.AddCurrentlyTrackedDevice(addDeviceNameInputField.text);
         }
         else
         {

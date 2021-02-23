@@ -11,12 +11,12 @@ public class ARViewPositioning : MonoBehaviour
     private void Awake()
     {
         aRCamera = Camera.main.transform;
-        this.transform.LookAt(aRCamera.transform);
+        transform.LookAt(aRCamera.transform);
     }
 
     public void Reposition()
     {
-        this.transform.position = aRCamera.position + aRCamera.forward * distance;
-        this.transform.LookAt(aRCamera.transform);
+        transform.position = aRCamera.position + aRCamera.forward * distance;
+        transform.LookAt(aRCamera.transform);
     }
 }
