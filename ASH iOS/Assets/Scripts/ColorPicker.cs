@@ -17,6 +17,9 @@ public class ColorPicker : MonoBehaviour
     public Camera arCamera;
 
     [SerializeField]
+    public GameObject PointerColor;
+
+    [SerializeField]
     public TextMeshProUGUI colorText;
 
     public ColorEvent OnColorPreview;

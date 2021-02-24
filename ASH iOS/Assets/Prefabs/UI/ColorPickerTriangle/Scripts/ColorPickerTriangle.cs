@@ -34,7 +34,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         RPoints = new Vector3[3];
         SetTrianglePoints();
         TMesh = Triangle.GetComponent<MeshFilter>().mesh;
-        SetNewColor(TheColor);
+        SetNewColor(TheColor);                                                                                                                  //SET NEW COLOR() ON AWAKE
     }
 	
 	// Update is called once per frame
@@ -49,7 +49,7 @@ public class ColorPickerTriangle : MonoBehaviour {
                 if (HasIntersection())
                 {
                     MousePressed = true;
-                    CheckTrianglePosition();
+                    CheckTrianglePosition();                                                                                                       //ON UPDATE IF MOUSE DOWN (?)
                     CheckCirclePosition();
                     return;
                 }
@@ -109,7 +109,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         CurBary.x = v * s;
         CurBary.z = 1f - CurBary.y - CurBary.x;
         CurLocalPos = RPoints[0] * CurBary.x + RPoints[1] * CurBary.y + RPoints[2] * CurBary.z;
-        PointerColor.transform.localPosition = CurLocalPos;
+        PointerColor.transform.localPosition = CurLocalPos;                                                                                         //HIER
     }
 
     private void CheckCirclePosition()
@@ -134,7 +134,7 @@ public class ColorPickerTriangle : MonoBehaviour {
         if (b.x >= 0f && b.y >= 0f && b.z >= 0f)
         {
             CurBary = b;
-            PointerColor.transform.localPosition = CurLocalPos;
+            PointerColor.transform.localPosition = CurLocalPos;                                                                                     //HIER
             DragTriangle = !DragCircle;
             SetColor();
         }
@@ -144,17 +144,23 @@ public class ColorPickerTriangle : MonoBehaviour {
     {
         float h, v, s;
         Color.RGBToHSV(CircleColor, out h, out v, out s);
-        Color c = (CurBary.y > .9999) ? Color.black : Color.HSVToRGB(h, CurBary.x / (1f - CurBary.y), 1f - CurBary.y);
-        TheColor = c;
+        Color c = (CurBary.y > .9999) ? Color.HSVToRGB(h, s, 1f + 0.5f) : Color.HSVToRGB(h, CurBary.x / (1f - CurBary.y), 1f - CurBary.y);
+        //TheColor = Color.HSVToRGB(h, s, v);
+
+        Color.RGBToHSV(c, out h, out s, out v);
+        TheColor = Color.HSVToRGB(h, s + 0.5f, v + 0.5f);
         TheColor.a = 1f;
     }
 
     private void ChangeTriangleColor(Color c)
     {
+        float h, v, s;
+        Color.RGBToHSV(c, out h, out v, out s);
+
         Color[] colors = new Color[TMesh.colors.Length];
-        colors[0] = Color.black;
+        colors[0] = Color.HSVToRGB(h, s, 1f - 0.5f);                    //c but darker
         colors[1] = c;
-        colors[2] = Color.white;
+        colors[2] = Color.HSVToRGB(h, 1f - 0.5f ,v);                    //c but lighter
         TMesh.colors = colors;
     }
 
