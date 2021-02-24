@@ -9,14 +9,25 @@ public class Lamp : Device
     public float lightBrightness { get; set; } = 1.0f;              // 1 out of 1
     public float lightTemperature { get; set; } = 4000.0f;          // min 2700k - max 6500k -> TODO ????
 
+    /*
     private bool _isTimerSet = false;
     private string _timerStart = "";                                // example: 09:01
     private string _timerStop = "";
+    */
+
+    public bool isTimerSet { get; set; } = false;
+    public string timerStart { get; set; } = "";                                // example: 09:01
+    public string timerStop { get; set; } = "";
     public bool[] timerDaysOfWeek { get; set; } = new bool[7];      // default: all false; [0]= Monday, [1] = Tuesday, ...
 
+    /*
+    [NonSerialized]
     private DateTime timerStartTime;
+
+    [NonSerialized]
     private DateTime timerStopTime;
 
+   
     public bool isTimerSet
     {
         get
@@ -74,6 +85,7 @@ public class Lamp : Device
             timerStopTime = DateTime.Parse(timerStart + ":00", System.Globalization.CultureInfo.CurrentCulture);
         }
     }
+    */
 
     public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {

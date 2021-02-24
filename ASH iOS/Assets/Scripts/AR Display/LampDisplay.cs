@@ -22,15 +22,9 @@ public class LampDisplay : DeviceDisplay
         removeDeviceButton.gameObject.SetActive(false);
         removeDevicePopUp.SetActive(false);
         deviceController.gameObject.SetActive(false);
-        Setup();
     }
 
     void Update()
-    {
-        Setup();
-    }
-
-    private void Setup()
     {
         SetTrackedAndRegisteredDevice();
 
@@ -48,6 +42,7 @@ public class LampDisplay : DeviceDisplay
         {
             addDeviceButton.gameObject.SetActive(true);
             removeDeviceButton.gameObject.SetActive(false);
+
             selectOnOffDeviceButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(false);
 
