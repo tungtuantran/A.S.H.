@@ -21,7 +21,7 @@ public class ImageTracking : MonoBehaviour
     {
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
 
-        foreach(GameObject devicePrefab in placeableDevicePrefabs)
+        foreach (GameObject devicePrefab in placeableDevicePrefabs)
         {
             GameObject newDevicePrefab = Instantiate(devicePrefab, Vector3.zero, Quaternion.identity);
             newDevicePrefab.name = devicePrefab.name;
@@ -74,9 +74,9 @@ public class ImageTracking : MonoBehaviour
         devicePrefab.SetActive(true);
 
         //Sets other devicePrefabs inactive
-        foreach(GameObject gameObject in spawnedDevicePrefabs.Values)
+        foreach (GameObject gameObject in spawnedDevicePrefabs.Values)
         {
-            if(gameObject.name != deviceName)
+            if (gameObject.name != deviceName)
             {
                 gameObject.SetActive(false);
             }

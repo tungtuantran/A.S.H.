@@ -27,5 +27,5 @@ public abstract class DeviceController : MonoBehaviour
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
     }
 
-    protected abstract void UpdateControllerValues();
+    protected abstract void LoadControllerValues();
 }

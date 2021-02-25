@@ -18,20 +18,22 @@ public class LampController : DeviceController
 
     void Start()
     {
-        UpdateControllerValues();
+        LoadControllerValues();
     }
+
     void Update()
     {
         SetLightColor(colorPicker.TheColor);
         SetLightTemperature(temperatureSlider.value);
         SetLightBrightness(brightnessSlider.value);
 
-        UpdateControllerValues();
+        //LoadControllerValues();                   -> TODO: wieder entkommentieren: problem mit colorPicker muss gefixt werden -> colorpicker.SetNewColor() with immer aufgeraufen und positioniert ständig pointer neu: pointer entfernen?
     }
 
-    protected override void UpdateControllerValues()
+    protected override void LoadControllerValues()
     {
         //TODO: for ON/OFF switch toggle
+
         colorPicker.SetNewColor(((Lamp)selectedDevice).lightColor);
         temperatureSlider.value = ((Lamp)selectedDevice).lightTemperature;
         brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
