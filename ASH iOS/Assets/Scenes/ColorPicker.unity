@@ -363,8 +363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17540618f58ee430b9b132c1d751bcc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textColorA: {fileID: 401951595}
-  textColorB: {fileID: 143988871}
+  textColorA: {fileID: 143988871}
+  textColorB: {fileID: 401951595}
   text: {fileID: 969957576}
 --- !u!114 &969957576
 MonoBehaviour:
@@ -734,6 +734,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8393489721066174667, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393489721066174667, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393489721066174667, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393489721542812576, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -820,7 +836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: m_Name
-      value: Temperature
+      value: ColorPicker
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
@@ -925,7 +945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: m_Name
-      value: ColorPicker
+      value: Temperature
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}

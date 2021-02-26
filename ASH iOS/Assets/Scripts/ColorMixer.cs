@@ -27,10 +27,11 @@ public class ColorMixer : MonoBehaviour
     {
         float temperatureColorPortion = saturationOfTemperatureColor;                       //the whiter the temperatureColor is, the smaller its portion
         float colorPortion = 1 - temperatureColorPortion;
+        Debug.Log("tempColor Portion: " + temperatureColorPortion + "; color portion: " + colorPortion);
         float redValue, greenValue, blueValue;
 
         redValue = color.r * colorPortion + temperatureColor.r * temperatureColorPortion;
-        greenValue = color.r * colorPortion + temperatureColor.g * temperatureColorPortion;
+        greenValue = color.g * colorPortion + temperatureColor.g * temperatureColorPortion;
         blueValue = color.b * colorPortion + temperatureColor.b * temperatureColorPortion;
 
         return new Color(redValue, greenValue, blueValue);

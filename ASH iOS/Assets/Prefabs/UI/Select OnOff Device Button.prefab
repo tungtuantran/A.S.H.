@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1f73fe383de414a8892e8bc0a2f561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredHoldTime: 1
+  requiredHoldTime: 0.4
   onLongClick:
     m_PersistentCalls:
       m_Calls:
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab43dc30389ea4599bdb83df8731588e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invalidHoldTime: 1
+  invalidHoldTime: 0.4
   onShortClick:
     m_PersistentCalls:
       m_Calls:

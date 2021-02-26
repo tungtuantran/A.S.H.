@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ARViewPositioning : MonoBehaviour
 {
-    public float distance = 1000;
+    //public float distance = 1000;
 
     private Transform aRCamera;
 
@@ -16,7 +16,7 @@ public class ARViewPositioning : MonoBehaviour
 
     public void Reposition()
     {
-        transform.position = aRCamera.position + aRCamera.forward * distance;
+        //transform.position = aRCamera.position + aRCamera.forward * distance;
         transform.LookAt(aRCamera.transform);
     }
 }

@@ -68,7 +68,7 @@ public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHand
             Vector2 delta;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, arCamera, out delta);
 
-            Debug.Log("mousePosition: " + Input.mousePosition + "; Delta: " + delta);
+            //Debug.Log("mousePosition: " + Input.mousePosition + "; Delta: " + delta);
 
             float width = Rect.rect.width;
             float height = Rect.rect.height;
@@ -78,16 +78,18 @@ public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHand
 
             float x = Mathf.Clamp(delta.x / width, 0f, 1f);
             float y = Mathf.Clamp(delta.y / height, 0f, 1f);
-            Debug.Log("x=" + x + " y=" + y);
+            //Debug.Log("x=" + x + " y=" + y);
 
             int texX = Mathf.RoundToInt(x * ColorTexture.width);
             int texY = Mathf.RoundToInt(y * ColorTexture.height);
 
             Color color = ColorTexture.GetPixel(texX, texY);
+            
             if(color.a == 0)                                        //if mouse/pointer is over an alpha=0 pixel or if it's is not inside the color picker image
             {
                 return;
             }
+            
             color.a = 1;                                            //so its not transparent if mouse/pointer is over an alpha=0 pixel
             colorText.color = color;
 
