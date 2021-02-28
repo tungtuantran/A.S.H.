@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public abstract class DeviceDisplay : MonoBehaviour
 {
     public static Device trackedAndRegisteredDevice { get; set; }
-    public static LongPressSubButton currentActiveSubButton { get; set; }
+    //public static LongPressSubButton currentActiveSubButton { get; set; }
 
     [SerializeField]
     public LongPressButton selectOnOffDeviceButton;
@@ -34,7 +34,7 @@ public abstract class DeviceDisplay : MonoBehaviour
         foreach (LongPressSubButton subButton in subButtons)
         {
             subButton.gameObject.SetActive(true);
-            currentActiveSubButton = null;
+            subButton.currentlyActive = false;
         }
     }
 
@@ -42,7 +42,7 @@ public abstract class DeviceDisplay : MonoBehaviour
     {
         foreach (LongPressSubButton subButton in subButtons)
         {
-            if (!subButton.Equals(currentActiveSubButton))
+            if (!subButton.currentlyActive)
             {
                 subButton.gameObject.SetActive(false);
             }

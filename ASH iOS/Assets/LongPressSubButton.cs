@@ -10,6 +10,8 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler
     private bool pointerEnter;
     private float pointerEnterTimer;
 
+    public bool currentlyActive { get; set; }
+
     public float requiredHoldTime = 0.4f;
 
     public UnityEvent onPointerEnter;
@@ -25,14 +27,15 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler
     private void Update()
     {
         
-        if (pointerEnter)
+        if (pointerEnter && !currentlyActive)
         {
             pointerEnterTimer += Time.deltaTime;
             if (pointerEnterTimer >= requiredHoldTime)
             {
                 if (onPointerEnter != null)
                 {
-                    DeviceDisplay.currentActiveSubButton = this;
+                    //DeviceDisplay.currentActiveSubButton = this;
+                    currentlyActive = true;
 
                     onPointerEnter.Invoke();
                     Handheld.Vibrate();
