@@ -38,7 +38,7 @@ public class VectorDistanceCalculator: MonoBehaviour
 
     private void CalculateDistancBetweenCameraAndPlane()
     {
-        float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;
+        float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;       //plane
         Vector3 p = aRCamera.position;                                                          // current camera position
 
         float realDistance = Mathf.Abs(normalVector.x * p.x + normalVector.y * p.y + normalVector.z * p.z - a) / Mathf.Sqrt(Mathf.Pow(normalVector.x, 2) + Mathf.Pow(normalVector.y, 2) + Mathf.Pow(normalVector.z, 2));

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,16 +11,11 @@ public class ColorEvent : UnityEvent<Color>
 {
 }
 
-public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHandler
+public class ColorPicker : MonoBehaviour
 {
-    [SerializeField]
-    public Camera arCamera;
+    public Color selectedColor { get; set; }
 
-    [SerializeField]
-    public GameObject PointerColor;
-
-    [SerializeField]
-    public TextMeshProUGUI colorText;
+    public bool worldSpaceMode;
 
     public ColorEvent OnColorPreview;
     public ColorEvent OnColorSelect;
@@ -29,25 +23,19 @@ public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHand
     RectTransform Rect;
     Texture2D ColorTexture;
 
+    private Camera aRCamera;
     private bool pointerDown = false;
-
-    /*
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        pointerDown = true;
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        pointerDown = false;
-    }
-    */
 
     // Start is called before the first frame update
     void Start()
     {
         Rect = GetComponent<RectTransform>();
         ColorTexture = GetComponent<Image>().mainTexture as Texture2D;
+
+        if (worldSpaceMode)
+        {
+            aRCamera = Camera.main;
+        }
     }
 
     // Update is called once per frame
@@ -66,7 +54,7 @@ public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHand
         if (pointerDown)
         {
             Vector2 delta;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, arCamera, out delta);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, aRCamera, out delta);
 
             //Debug.Log("mousePosition: " + Input.mousePosition + "; Delta: " + delta);
 
@@ -84,21 +72,25 @@ public class ColorPicker : MonoBehaviour //, IPointerDownHandler, IPointerUpHand
             int texY = Mathf.RoundToInt(y * ColorTexture.height);
 
             Color color = ColorTexture.GetPixel(texX, texY);
-            
+
+            /*
             if(color.a == 0)                                        //if mouse/pointer is over an alpha=0 pixel or if it's is not inside the color picker image
             {
                 return;
             }
+            */
             
             color.a = 1;                                            //so its not transparent if mouse/pointer is over an alpha=0 pixel
-            colorText.color = color;
-
             OnColorPreview?.Invoke(color);
 
+            selectedColor = color;
+
+            /*
             if (Input.GetMouseButtonDown(0))
             {
                 OnColorSelect?.Invoke(color);
             }
+            */
         }
     }
 }
