@@ -66,21 +66,22 @@ public class LampDisplay : DeviceDisplay
 
 
     /**
-     * Selects device & then shows/hides device controller
+     * Selects device & then shows device controller
      * 
      */
-    public void SelectAndShowHideDeviceController()
+    public void SelectAndShowDeviceController()
     {
-        SetSelectedDeviceIsTrackedDevice();
+        SetAllSubButtonsActive();
 
-        if (deviceController.gameObject.activeSelf)
-        {
-            deviceController.gameObject.SetActive(false);
-        }
-        else
-        {
-            deviceController.gameObject.SetActive(true);
-        }
+        SetSelectedDeviceIsTrackedDevice();
+        deviceController.gameObject.SetActive(true);
+    }
+
+    public void HideDeviceController()
+    {
+        deviceController.StopController();
+
+        deviceController.gameObject.SetActive(false);
     }
 
     public void SelectAndSetDeviceOnOff()
@@ -151,6 +152,13 @@ public class LampDisplay : DeviceDisplay
         {
             removeDevicePopUp.SetActive(true);      // Remove Button
         }
+    }
+
+
+    public void StartBrightnessSubController()
+    {
+        ((LampController)deviceController).StartBrightnessSubController();
+        SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
     }
 
 }

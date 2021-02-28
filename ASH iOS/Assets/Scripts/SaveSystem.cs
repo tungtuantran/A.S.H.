@@ -55,4 +55,14 @@ public class SaveSystem : MonoBehaviour
     {
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1));
     }
+
+    public void TestMethod()
+    {
+        Debug.Log("test");
+    }
+
+    public void TestMethodOnPointerUp()
+    {
+        Debug.Log("up");
+    }
 }

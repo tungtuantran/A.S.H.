@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class LampController : DeviceController
 {
 
+    /*
     [SerializeField]
     public ColorPickerTriangle colorPicker;
 
     [SerializeField]
     public Slider temperatureSlider;
 
-
     [SerializeField]
     public Slider brightnessSlider;
+    */
+
+    [SerializeField]
+    public VectorDistanceCalculator brightnessCalculator;
 
     void Start()
     {
@@ -23,20 +27,43 @@ public class LampController : DeviceController
 
     void Update()
     {
-        SetLightColor(colorPicker.TheColor);
-        SetLightTemperature(temperatureSlider.value);
-        SetLightBrightness(brightnessSlider.value);
+        //SetLightColor(colorPicker.TheColor);
+        //SetLightTemperature(temperatureSlider.value);
 
-        //LoadControllerValues();                   -> TODO: wieder entkommentieren: problem mit colorPicker muss gefixt werden -> colorpicker.SetNewColor() with immer aufgeraufen und positioniert ständig pointer neu: pointer entfernen?
+        SetLightBrightness(brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        //SetLightBrightness(brightnessSlider.value);
     }
 
     protected override void LoadControllerValues()
     {
         //TODO: for ON/OFF switch toggle
 
-        colorPicker.SetNewColor(((Lamp)selectedDevice).lightColor);
-        temperatureSlider.value = ((Lamp)selectedDevice).lightTemperature;
-        brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
+        //colorPicker.SetNewColor(((Lamp)selectedDevice).lightColor);
+        //temperatureSlider.value = ((Lamp)selectedDevice).lightTemperature;
+
+        //brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
+
+        //brightnessCalculator.distance = ((Lamp)selectedDevice).lightBrightness;
+        return;
+    }
+
+    /**
+     * Stops all SubControllers
+     */
+    public override void StopController()
+    {
+        StopBrightnessSubController();
+        //TODO: stop colorController, ...
+    }
+
+    public void StartBrightnessSubController()
+    {
+        brightnessCalculator.StartCalculatingDistance();
+    }
+
+    private void StopBrightnessSubController()
+    {
+        brightnessCalculator.StopCalculatingDistance();
     }
 
     private void SetLightColor(Color color)

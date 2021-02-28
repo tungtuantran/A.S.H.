@@ -28,4 +28,6 @@ public abstract class DeviceController : MonoBehaviour
     }
 
     protected abstract void LoadControllerValues();
+
+    public abstract void StopController();
 }

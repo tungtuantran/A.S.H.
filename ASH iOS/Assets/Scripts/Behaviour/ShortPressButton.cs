@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class ShortClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class ShortPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
     private bool pointerDown;
