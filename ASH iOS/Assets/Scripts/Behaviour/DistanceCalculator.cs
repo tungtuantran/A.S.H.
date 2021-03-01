@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VectorDistanceCalculator: MonoBehaviour
+public class DistanceCalculator: MonoBehaviour
 {
     private Transform aRCamera;
 
@@ -12,25 +12,26 @@ public class VectorDistanceCalculator: MonoBehaviour
     private Vector3 normalVector;
 
     public float distance { get; set; }
+    private bool _active;
 
-    private bool calculate;
-
-    public void StartCalculatingDistance()
+    public bool active
     {
-        aRCamera = Camera.main.transform;
-        supportVector = aRCamera.position;
-        normalVector = aRCamera.forward;
-        calculate = true;
-    }
+        get { return _active; }
 
-    public void StopCalculatingDistance()
-    {
-        calculate = false;
+        set {
+            if (value)
+            {
+                aRCamera = Camera.main.transform;
+                supportVector = aRCamera.position;
+                normalVector = aRCamera.forward;
+            }
+            _active = value;
+        }
     }
 
     private void Update()
     {
-        if (calculate)
+        if (active)
         {
             CalculateDistancBetweenCameraAndPlane();
         }

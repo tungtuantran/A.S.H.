@@ -16,9 +16,11 @@ public class LampController : DeviceController
     [SerializeField]
     public Slider brightnessSlider;
     */
+    [SerializeField]
+    public DistanceCalculator brightnessCalculator;
 
     [SerializeField]
-    public VectorDistanceCalculator brightnessCalculator;
+    public ColorPicker colorPicker;
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class LampController : DeviceController
         //SetLightTemperature(temperatureSlider.value);
 
         SetLightBrightness(brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        SetLightColor(colorPicker.selectedColor);
         //SetLightBrightness(brightnessSlider.value);
     }
 
@@ -52,18 +55,19 @@ public class LampController : DeviceController
      */
     public override void StopController()
     {
-        StopBrightnessSubController();
+        brightnessCalculator.active = false;
+        colorPicker.active = false;
         //TODO: stop colorController, ...
     }
 
     public void StartBrightnessSubController()
     {
-        brightnessCalculator.StartCalculatingDistance();
+        brightnessCalculator.active = true;
     }
 
-    private void StopBrightnessSubController()
+    public void StartColorSubController()
     {
-        brightnessCalculator.StopCalculatingDistance();
+        colorPicker.active = true;
     }
 
     private void SetLightColor(Color color)

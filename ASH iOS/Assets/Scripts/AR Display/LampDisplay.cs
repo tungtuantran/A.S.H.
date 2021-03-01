@@ -161,4 +161,10 @@ public class LampDisplay : DeviceDisplay
         SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
     }
 
+    public void StartColorSubController()
+    {
+        ((LampController)deviceController).StartColorSubController();
+        SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
+    }
+
 }

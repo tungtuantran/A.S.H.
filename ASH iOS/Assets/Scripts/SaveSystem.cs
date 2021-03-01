@@ -6,6 +6,25 @@ public class SaveSystem : MonoBehaviour
 {
     private const string FILE_NAME = "/deviceCollection.dc";
 
+    public string test = "testest";
+
+    private void Start()
+    {
+        Debug.Log("start");
+    }
+
+    private void Update()
+    {
+        test = "name";
+        Debug.Log("update");
+    }
+
+    public void testName()
+    {
+        Update();
+        Debug.Log(test);
+    }
+
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
         Debug.Log("saving device collection");
@@ -58,7 +77,7 @@ public class SaveSystem : MonoBehaviour
 
     public void TestMethod()
     {
-        Debug.Log("test");
+        Debug.Log("test1");
     }
 
     public void TestMethodOnPointerUp()

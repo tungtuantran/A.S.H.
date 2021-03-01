@@ -13,20 +13,36 @@ public class ColorEvent : UnityEvent<Color>
 
 public class ColorPicker : MonoBehaviour
 {
-    public Color selectedColor { get; set; }
+
+    public KeepDistanceInfront keepDistanceInfront;         //no serializeField -> no force
+
+    [SerializeField]
+    public Image colorPreview;
 
     public bool worldSpaceMode;
 
-    public ColorEvent OnColorPreview;
-    public ColorEvent OnColorSelect;
-
-    RectTransform Rect;
-    Texture2D ColorTexture;
-
+    private RectTransform Rect;
+    private Texture2D ColorTexture;
     private Camera aRCamera;
-    private bool pointerDown = false;
+    private bool pointerDown;
 
-    // Start is called before the first frame update
+    public Color selectedColor { get; set; }
+    private bool _active;                        //TODO: can it replace pointerDown bool?
+
+    public bool active
+    {
+        get { return _active; }
+
+        set
+        {
+            if (value && keepDistanceInfront != null)
+            {
+                keepDistanceInfront.SetDirection();
+            }
+            _active = value;
+        }
+    }
+
     void Start()
     {
         Rect = GetComponent<RectTransform>();
@@ -38,9 +54,10 @@ public class ColorPicker : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        colorPreview.gameObject.active = active;
+
         if (Input.GetMouseButtonDown(0))
         {
             pointerDown = true;
@@ -51,46 +68,31 @@ public class ColorPicker : MonoBehaviour
             pointerDown = false;
         }
 
-        if (pointerDown)
+        if (pointerDown && active)
         {
-            Vector2 delta;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, aRCamera, out delta);
-
-            //Debug.Log("mousePosition: " + Input.mousePosition + "; Delta: " + delta);
-
-            float width = Rect.rect.width;
-            float height = Rect.rect.height;
-            delta += new Vector2(width * .5f, height * .5f);
-
-            //Debug.Log("offset delta:" + delta);
-
-            float x = Mathf.Clamp(delta.x / width, 0f, 1f);
-            float y = Mathf.Clamp(delta.y / height, 0f, 1f);
-            //Debug.Log("x=" + x + " y=" + y);
-
-            int texX = Mathf.RoundToInt(x * ColorTexture.width);
-            int texY = Mathf.RoundToInt(y * ColorTexture.height);
-
-            Color color = ColorTexture.GetPixel(texX, texY);
-
-            /*
-            if(color.a == 0)                                        //if mouse/pointer is over an alpha=0 pixel or if it's is not inside the color picker image
-            {
-                return;
-            }
-            */
-            
-            color.a = 1;                                            //so its not transparent if mouse/pointer is over an alpha=0 pixel
-            OnColorPreview?.Invoke(color);
-
-            selectedColor = color;
-
-            /*
-            if (Input.GetMouseButtonDown(0))
-            {
-                OnColorSelect?.Invoke(color);
-            }
-            */
+            SelectColor();
         }
+    }
+
+    private void SelectColor()
+    {
+        Vector2 delta;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, aRCamera, out delta);
+
+        float width = Rect.rect.width;
+        float height = Rect.rect.height;
+        delta += new Vector2(width * .5f, height * .5f);
+
+        float x = Mathf.Clamp(delta.x / width, 0f, 1f);
+        float y = Mathf.Clamp(delta.y / height, 0f, 1f);
+
+        int texX = Mathf.RoundToInt(x * ColorTexture.width);
+        int texY = Mathf.RoundToInt(y * ColorTexture.height);
+
+        Color color = ColorTexture.GetPixel(texX, texY);
+        color.a = 1;                                            //so color is not transparent anymore
+        selectedColor = color;
+
+        colorPreview.color = color;
     }
 }
