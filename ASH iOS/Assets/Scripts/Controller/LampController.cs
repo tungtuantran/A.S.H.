@@ -6,16 +6,6 @@ using UnityEngine.UI;
 public class LampController : DeviceController
 {
 
-    /*
-    [SerializeField]
-    public ColorPickerTriangle colorPicker;
-
-    [SerializeField]
-    public Slider temperatureSlider;
-
-    [SerializeField]
-    public Slider brightnessSlider;
-    */
     [SerializeField]
     public DistanceCalculator brightnessCalculator;
 
@@ -24,30 +14,13 @@ public class LampController : DeviceController
 
     void Start()
     {
-        LoadControllerValues();
     }
 
     void Update()
     {
-        //SetLightColor(colorPicker.TheColor);
-        //SetLightTemperature(temperatureSlider.value);
-
-        SetLightBrightness(brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
         SetLightColor(colorPicker.selectedColor);
-        //SetLightBrightness(brightnessSlider.value);
-    }
-
-    protected override void LoadControllerValues()
-    {
-        //TODO: for ON/OFF switch toggle
-
-        //colorPicker.SetNewColor(((Lamp)selectedDevice).lightColor);
-        //temperatureSlider.value = ((Lamp)selectedDevice).lightTemperature;
-
-        //brightnessSlider.value = ((Lamp)selectedDevice).lightBrightness;
-
-        //brightnessCalculator.distance = ((Lamp)selectedDevice).lightBrightness;
-        return;
+        //TODO: set temperature
     }
 
     /**
@@ -57,7 +30,6 @@ public class LampController : DeviceController
     {
         brightnessCalculator.active = false;
         colorPicker.active = false;
-        //TODO: stop colorController, ...
     }
 
     public void StartBrightnessSubController()
@@ -65,9 +37,16 @@ public class LampController : DeviceController
         brightnessCalculator.active = true;
     }
 
-    public void StartColorSubController()
+    public void StartColorAndIntensitySubController()
     {
         colorPicker.active = true;
+        brightnessCalculator.active = true;
+    }
+
+    public override void AddCurrentlyTrackedDevice(string name)
+    {
+        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
+        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
     }
 
     private void SetLightColor(Color color)
@@ -82,12 +61,10 @@ public class LampController : DeviceController
 
     private void SetLightBrightness(float brightness)
     {
+        if(brightness < 0.15)
+        {
+            brightness = 0.15f;
+        }
         ((Lamp)selectedDevice).lightBrightness = brightness;
-    }
-
-    public override void AddCurrentlyTrackedDevice(string name)
-    {
-        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
-        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
     }
 }

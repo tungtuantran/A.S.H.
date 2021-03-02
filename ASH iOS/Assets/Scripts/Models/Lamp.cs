@@ -6,8 +6,8 @@ using UnityEngine;
 public class Lamp : Device
 {
     public Color lightColor { get; set; } = Color.white;
-    public float lightBrightness { get; set; } = 1.0f;              // 1 out of 1
-    public float lightTemperature { get; set; } = 4000.0f;          // min 2700k - max 6500k -> TODO ????
+    public float lightBrightness { get; set; } = 1.0f;              // 0.15 - 1.00
+    public float lightTemperature { get; set; } = 4000.0f;          // 2700k - 6500k -> TODO ????
 
     private bool _isTimerSet = false;
     private string _timerStart = "18:00";                           // example: 09:01

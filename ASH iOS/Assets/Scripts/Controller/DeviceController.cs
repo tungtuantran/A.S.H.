@@ -32,7 +32,5 @@ public abstract class DeviceController : MonoBehaviour
         selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
-    protected abstract void LoadControllerValues();
-
     public abstract void StopController();
 }
