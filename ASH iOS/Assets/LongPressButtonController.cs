@@ -17,14 +17,12 @@ public class LongPressButtonController : MonoBehaviour
 
     private LongPressSubButton[] subButtons;
 
-    // Start is called before the first frame update
     void Start()
     {
         subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional paramter includes inactive components
         subButtonCollection.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         foreach(LongPressSubButton subButton in subButtons){

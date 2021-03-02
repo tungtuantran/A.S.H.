@@ -5,29 +5,21 @@ using UnityEngine.UI;
 
 public abstract class DeviceDisplay : MonoBehaviour
 {
-    protected const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
-    protected InputField addNameInputField;
     protected Device trackedAndRegisteredDevice;
 
-    [SerializeField]
-    public DeviceController deviceController;
+    void Start()
+    {
+    }
 
-    [SerializeField]
-    public Button addDeviceButton;
-
-    [SerializeField]
-    public Button removeDeviceButton;
-
-    [SerializeField]
-    public GameObject addDevicePopUp;
-
-    [SerializeField]
-    public GameObject removeDevicePopUp;
-
-    protected abstract void DisplayPropertiesOfTrackedAndRegisteredDevice();
-
-    protected void SetTrackedAndRegisteredDevice()
+    void Update()
     {
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+
+        if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
+        {
+            DisplayPropertiesOfTrackedAndRegisteredDevice();
+        }
     }
+
+    protected abstract void DisplayPropertiesOfTrackedAndRegisteredDevice();
 }
