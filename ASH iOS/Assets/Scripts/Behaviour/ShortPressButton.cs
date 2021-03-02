@@ -14,6 +14,7 @@ public class ShortPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHa
 
     public float invalidHoldTime = 1;
 
+    public UnityEvent onPointerDown;
     public UnityEvent onShortClick;
 
     public void OnPointerDown(PointerEventData eventData)

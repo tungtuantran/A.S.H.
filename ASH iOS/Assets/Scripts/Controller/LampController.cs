@@ -12,6 +12,9 @@ public class LampController : DeviceController
     [SerializeField]
     public ColorPicker colorPicker;
 
+    public ColorPicker temperaturePicker;
+
+
     void Start()
     {
     }
@@ -20,6 +23,7 @@ public class LampController : DeviceController
     {
         SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
         SetLightColor(colorPicker.selectedColor);
+        SetLightTemperature(temperaturePicker.selectedColor);
         //TODO: set temperature
     }
 
@@ -35,6 +39,11 @@ public class LampController : DeviceController
     public void StartBrightnessSubController()
     {
         brightnessCalculator.active = true;
+    }
+
+    public void StartTemperatureSubController()
+    {
+        temperaturePicker.active = true;
     }
 
     public void StartColorAndIntensitySubController()
@@ -54,9 +63,10 @@ public class LampController : DeviceController
         ((Lamp) selectedDevice).lightColor = color;
     }
 
-    private void SetLightTemperature(float temperature)
+
+    private void SetLightTemperature(Color temperatureColor)
     {
-        ((Lamp) selectedDevice).lightTemperature = temperature;
+        //((Lamp) selectedDevice).lightTemperature = temperature;
     }
 
     private void SetLightBrightness(float brightness)

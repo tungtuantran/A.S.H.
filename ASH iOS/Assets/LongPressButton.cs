@@ -18,9 +18,6 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public UnityEvent onPointerUp;
 
     [SerializeField]
-    public LongPressSubButton[] otherSubButtons;
-
-    [SerializeField]
     private Image fillImage;
 
     /*
