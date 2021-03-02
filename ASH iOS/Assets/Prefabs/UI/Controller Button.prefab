@@ -43,6 +43,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5851728503846877076}
+  - component: {fileID: 259601976987158404}
   m_Layer: 0
   m_Name: Controller Button
   m_TagString: Untagged
@@ -66,6 +67,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &259601976987158404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851728503846876779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97f9af36285b426dad338dd2ec56f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DeviceController, Assembly-CSharp
+        m_MethodName: SelectDeviceByCurrentlyTrackedDevice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: LampController, Assembly-CSharp
+        m_MethodName: StopController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  mainButton: {fileID: 5868174673863555574}
+  subButtonCollection: {fileID: 5851728503782112972}
 --- !u!1001 &4621622350071196128
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -609,6 +654,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5851728503846877076}
     m_Modifications:
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 259601976987158404}
     - target: {fileID: 4287227985416451879, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -704,3 +753,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4287227985416451879, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
   m_PrefabInstance: {fileID: 6969088327314964681}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5868174673863555574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+  m_PrefabInstance: {fileID: 6969088327314964681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2752ecf4d21664edb9076b0c63e6c606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -11,6 +11,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: standing_lamp1
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.583
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -63,6 +83,22 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 1cb05678c0b19d7488421a0bdd9a2f64, type: 3}
+    - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_Range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_SpotAngle
+      value: 54.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5658112931991951778, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
