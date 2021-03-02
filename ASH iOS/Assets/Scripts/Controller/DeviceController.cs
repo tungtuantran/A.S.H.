@@ -8,6 +8,8 @@ public abstract class DeviceController : MonoBehaviour
 {
     public Device selectedDevice { get; set; }
 
+    public Device currentlyTrackedDevice { get; set; }
+
     public void SetSelectedDeviceOnOff()
     {
         if (selectedDevice.isOn)
@@ -25,6 +27,11 @@ public abstract class DeviceController : MonoBehaviour
     public void RemoveSelectedDevice()
     {
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
+    }
+
+    public void SelectDeviceByCurrentlyTrackedDevice()
+    {
+        selectedDevice = currentlyTrackedDevice;
     }
 
     protected abstract void LoadControllerValues();

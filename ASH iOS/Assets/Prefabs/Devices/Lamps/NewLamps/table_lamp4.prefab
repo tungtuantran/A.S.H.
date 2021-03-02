@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Name
-      value: table_lamp2
+      value: table_lamp4
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_RootOrder
@@ -58,10 +58,14 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2ddde012693f44f8899bf7edbbe4aab7, type: 2}
+      objectReference: {fileID: 2100000, guid: c442c7e28879f4debbae5410d7271efd, type: 2}
     - target: {fileID: 3300000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: 9e728f1f83b3bc94d9bd0158343f2bd2, type: 3}
+      objectReference: {fileID: 4300000, guid: 1785c974cb8d08b4ea34aba66752360b, type: 3}
+    - target: {fileID: 6330176699140914546, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.433
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}

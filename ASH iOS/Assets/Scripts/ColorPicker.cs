@@ -56,7 +56,7 @@ public class ColorPicker : MonoBehaviour
 
     void Update()
     {
-        colorPreview.gameObject.active = active;
+        colorPreview.gameObject.SetActive(active);
 
         if (Input.GetMouseButtonDown(0))
         {

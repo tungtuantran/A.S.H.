@@ -16,7 +16,6 @@ public class LampDisplay : DeviceDisplay
     {
         addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
 
-        selectOnOffDeviceButton.gameObject.SetActive(false);
         addDeviceButton.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDeviceButton.gameObject.SetActive(false);
@@ -34,16 +33,12 @@ public class LampDisplay : DeviceDisplay
 
             addDeviceButton.gameObject.SetActive(false);
             removeDeviceButton.gameObject.SetActive(true);
-
-            selectOnOffDeviceButton.gameObject.SetActive(true);
-            selectOnOffDeviceButton.gameObject.GetComponentInChildren<Text>().text = trackedAndRegisteredDevice._name;
+            deviceController.gameObject.SetActive(true);
         }
         else
         {
             addDeviceButton.gameObject.SetActive(true);
             removeDeviceButton.gameObject.SetActive(false);
-
-            selectOnOffDeviceButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(false);
 
         }
@@ -60,51 +55,22 @@ public class LampDisplay : DeviceDisplay
         _light.color = lightColor;
         _light.intensity = lightBrightness;
         _light.colorTemperature = lightTemperature;
-
-        //TODO: timer,...
-    }
-
-
-    /**
-     * Selects device & then shows device controller
-     * 
-     */
-    public void SelectAndShowDeviceController()
-    {
-        SetAllSubButtonsActive();
-
-        SetSelectedDeviceIsTrackedDevice();
-        deviceController.gameObject.SetActive(true);
-    }
-
-    public void HideDeviceController()
-    {
-        deviceController.StopController();
-
-        deviceController.gameObject.SetActive(false);
-    }
-
-    public void SelectAndSetDeviceOnOff()
-    {
-        SetSelectedDeviceIsTrackedDevice();
-
-        deviceController.SetSelectedDeviceOnOff();
-    }
-
-    private void SetSelectedDeviceIsTrackedDevice()                                     // set selectedDevice = currently Tracked Device
-    {
-        deviceController.selectedDevice = trackedAndRegisteredDevice;
     }
 
     private void SetTrackedAndRegisteredDevice()
     {
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+
+        if(trackedAndRegisteredDevice != null)
+        {
+            deviceController.currentlyTrackedDevice = trackedAndRegisteredDevice;
+        }
     }
 
     /**
      * Adds currently TRACKED Device
      */
-    public void AddTrackedDevice()
+    public void AddTrackedDevice()                      //TODO: auslagern in andere klasse oder controller-methode direct aufrufen statt über display klasse
     {
         string name = addNameInputField.text;
         if (name != "")
@@ -152,19 +118,6 @@ public class LampDisplay : DeviceDisplay
         {
             removeDevicePopUp.SetActive(true);      // Remove Button
         }
-    }
-
-
-    public void StartBrightnessSubController()
-    {
-        ((LampController)deviceController).StartBrightnessSubController();
-        SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
-    }
-
-    public void StartColorSubController()
-    {
-        ((LampController)deviceController).StartColorSubController();
-        SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
     }
 
 }

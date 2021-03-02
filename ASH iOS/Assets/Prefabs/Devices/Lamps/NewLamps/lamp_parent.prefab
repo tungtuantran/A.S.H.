@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5dc5266a1a18ff1488bfb85f931d86f9, type: 2}
+  - {fileID: 2100000, guid: 543f6a9cd870c4c3094159bb1207a0e1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -205,13 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f290053038f74224b6d102555606862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectOnOffDeviceButton: {fileID: 5261637036891765923}
-  subButtons:
-  - {fileID: 4605616150620877962}
-  - {fileID: 4605616151438610755}
-  - {fileID: 4605616150064450641}
-  - {fileID: 3385763970853388299}
-  deviceController: {fileID: 7816083810692940843}
+  deviceController: {fileID: 1104170079162957088}
   addDeviceButton: {fileID: 3420483864856444245}
   removeDeviceButton: {fileID: 8362630921441298906}
   addDevicePopUp: {fileID: 7201846286555754385}
@@ -986,13 +980,13 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &7816083810692940843
+--- !u!114 &1104170079162957088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5287053157184682905}
+  m_GameObject: {fileID: 5287053156985762622}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d7e4af0da06c472c8efa0feff246306, type: 3}
@@ -1000,6 +994,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   brightnessCalculator: {fileID: 6756835091828385073}
   colorPicker: {fileID: 8288114370703234877}
+--- !u!114 &1588332780382611281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5287053156985762622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97f9af36285b426dad338dd2ec56f83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1104170079162957088}
+        m_TargetAssemblyTypeName: DeviceController, Assembly-CSharp
+        m_MethodName: SelectDeviceByCurrentlyTrackedDevice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1104170079162957088}
+        m_TargetAssemblyTypeName: LampController, Assembly-CSharp
+        m_MethodName: StopController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  mainButton: {fileID: 5261637036891765923}
+  subButtonCollection: {fileID: 5287053157184682905}
 --- !u!1 &5534196663617634227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1813,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+--- !u!1 &8288114370703234879 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+  m_PrefabInstance: {fileID: 540122398836405404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8288114370703234877 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
@@ -1791,11 +1834,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
   m_PrefabInstance: {fileID: 540122398836405404}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8288114370703234879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-  m_PrefabInstance: {fileID: 540122398836405404}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1759472349422044501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1806,11 +1844,11 @@ PrefabInstance:
     - target: {fileID: 2661519212355067751, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7816083810692940843}
+      objectReference: {fileID: 0}
     - target: {fileID: 2661519212355067751, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7816083810692940843}
+      objectReference: {fileID: 0}
     - target: {fileID: 2661519212355067751, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StopBrightnessCalculator
@@ -1870,7 +1908,7 @@ PrefabInstance:
     - target: {fileID: 2846426401807567108, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1104170079162957088}
     - target: {fileID: 2846426401807567108, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1881,7 +1919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846426401807567108, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampDisplay, Assembly-CSharp
+      value: LampController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2846426401807567108, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1898,7 +1936,7 @@ PrefabInstance:
     - target: {fileID: 2846426402342007263, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1104170079162957088}
     - target: {fileID: 2846426402342007263, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1909,7 +1947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402342007263, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampDisplay, Assembly-CSharp
+      value: LampController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402342007263, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1926,7 +1964,7 @@ PrefabInstance:
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1104170079162957088}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -1937,7 +1975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampDisplay, Assembly-CSharp
+      value: LampController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -1958,18 +1996,18 @@ PrefabInstance:
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1104170079162957088}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartBrightnessSubController
+      value: SetSelectedDeviceOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampDisplay, Assembly-CSharp
+      value: DeviceController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2013,15 +2051,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5851728503782112972, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
-      value: Lamp Controller
+      value: SubButton Collection
       objectReference: {fileID: 0}
     - target: {fileID: 5851728503782112972, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5851728503846876779, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
-      value: Controller Buttons
+      value: Device Controller
       objectReference: {fileID: 0}
     - target: {fileID: 5851728503846876779, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_IsActive
@@ -2074,11 +2112,27 @@ PrefabInstance:
     - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1588332780382611281}
     - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1588332780382611281}
+    - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideSubButtonCollection
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowSubButtonCollection
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LongPressButtonController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868174673863555574, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LongPressButtonController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -2086,14 +2140,14 @@ PrefabInstance:
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1789843946427842857}
+      objectReference: {fileID: 1104170079162957088}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectAndSetDeviceOnOff
+      value: SelectDeviceByCurrentlyTrackedDevice
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampDisplay, Assembly-CSharp
+      value: DeviceController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6636144862084712690, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
@@ -2147,30 +2201,12 @@ PrefabInstance:
       propertyPath: m_Text
       value: Brightness
       objectReference: {fileID: 0}
+    - target: {fileID: 9115601743075326202, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: m_Text
+      value: On Off
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
---- !u!114 &4605616150620877962 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2846426402342007263, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-  m_PrefabInstance: {fileID: 1759472349422044501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d88e5becce24caf828e64e1d959d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4605616151438610755 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-  m_PrefabInstance: {fileID: 1759472349422044501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d88e5becce24caf828e64e1d959d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5287053157184682905 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5851728503782112972, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
@@ -2192,28 +2228,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5851728503846877076, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
   m_PrefabInstance: {fileID: 1759472349422044501}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4605616150064450641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2846426401807567108, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+--- !u!1 &5287053156985762622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5851728503846876779, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
   m_PrefabInstance: {fileID: 1759472349422044501}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d88e5becce24caf828e64e1d959d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3385763970853388299 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-  m_PrefabInstance: {fileID: 1759472349422044501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d88e5becce24caf828e64e1d959d55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5342208482565399995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2447,14 +2466,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
---- !u!224 &303378459976288621 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5626833586205748438, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
-  m_PrefabInstance: {fileID: 5342208482565399995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5673355460986224515 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 331182747155995192, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
+  m_PrefabInstance: {fileID: 5342208482565399995}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &303378459976288621 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5626833586205748438, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
   m_PrefabInstance: {fileID: 5342208482565399995}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &5387363064930508900 stripped
@@ -2700,13 +2719,13 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 63213558550070751, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
   m_PrefabInstance: {fileID: 7451911462616282537}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7201846286555754385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 331182747155995192, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
-  m_PrefabInstance: {fileID: 7451911462616282537}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2989271587781368191 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5626833586205748438, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
+  m_PrefabInstance: {fileID: 7451911462616282537}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7201846286555754385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 331182747155995192, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
   m_PrefabInstance: {fileID: 7451911462616282537}
   m_PrefabAsset: {fileID: 0}
