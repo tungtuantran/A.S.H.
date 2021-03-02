@@ -5,12 +5,8 @@ using UnityEngine.UI;
 
 public class LampDisplay : DeviceDisplay
 {
-    private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
-
     [SerializeField]
     public Light _light;
-
-    private InputField addNameInputField;
 
     void Start()
     {
@@ -44,7 +40,7 @@ public class LampDisplay : DeviceDisplay
         }
     }
 
-    private void DisplayPropertiesOfTrackedAndRegisteredDevice()
+    protected override void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
         _light.gameObject.SetActive(trackedAndRegisteredDevice.isOn);
 
@@ -55,16 +51,6 @@ public class LampDisplay : DeviceDisplay
         _light.color = lightColor;
         _light.intensity = lightBrightness;
         _light.colorTemperature = lightTemperature;
-    }
-
-    private void SetTrackedAndRegisteredDevice()
-    {
-        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
-
-        if(trackedAndRegisteredDevice != null)
-        {
-            deviceController.currentlyTrackedDevice = trackedAndRegisteredDevice;
-        }
     }
 
     /**

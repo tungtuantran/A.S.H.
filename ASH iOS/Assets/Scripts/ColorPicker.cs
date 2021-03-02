@@ -26,8 +26,8 @@ public class ColorPicker : MonoBehaviour
     private Camera aRCamera;
     private bool pointerDown;
 
-    public Color selectedColor { get; set; }
-    private bool _active;                        //TODO: can it replace pointerDown bool?
+    public Color selectedColor { get; set; } = Color.white;
+    private bool _active;                                   //TODO: can it replace pointerDown bool?
 
     public bool active
     {
