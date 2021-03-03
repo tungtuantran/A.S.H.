@@ -34,21 +34,4 @@ public abstract class DeviceController : MonoBehaviour
 
     public abstract void StopUpdating();
 
-    public void CopyDeviceValues()
-    {
-        CopyPasteSystem.copiedDevice = selectedDevice;
-        CopyPasteSystem.copying = true;
-    }
-
-    public void PasteDeviceValues()
-    {
-        if (CopyPasteSystem.copying)
-        {
-            InsertValuesOfDevice(CopyPasteSystem.copiedDevice);
-            Debug.Log("inserted");
-        }
-        Debug.Log("insertion failed");
-    }
-
-    protected abstract void InsertValuesOfDevice(Device device);
 }

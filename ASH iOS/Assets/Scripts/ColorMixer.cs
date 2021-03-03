@@ -51,6 +51,7 @@ public class ColorMixer : MonoBehaviour
         return new Color(redValue, greenValue, blueValue);
     }
 
+
     public float GetTemperature(Color temperatureColor)
     {
         float X = (-0.14282f) *temperatureColor.r + 1.54924f * temperatureColor.g + (- 0.95641f) * temperatureColor.b;

@@ -68,6 +68,8 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (!currentlyActive)
         {
+            CopyPasteSystem.swipeToCopyPaste = true;       // activates swipe function to copy/paste device values
+
             if (pointerDown || pointerEnter)
             {
                 pointerDownTimer += Time.deltaTime;
@@ -85,6 +87,10 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 }
                 fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
             }
+        }
+        else
+        {
+            CopyPasteSystem.swipeToCopyPaste = false;       // deactivates swipe function to copy/paste device values
         }
     }
 

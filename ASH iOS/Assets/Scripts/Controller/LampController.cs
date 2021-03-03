@@ -12,12 +12,12 @@ public class LampController : DeviceController
     [SerializeField]
     public ColorPicker colorPicker;
 
+    [SerializeField]
     public ColorPicker temperaturePicker;
 
     private bool updateColor;
     private bool updateBrightness;
     private bool updateTemperature;
-
 
     void Start()
     {
@@ -31,7 +31,6 @@ public class LampController : DeviceController
         }
         if(updateBrightness){
             SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
-
         }
         if (updateTemperature)
         {
@@ -40,9 +39,6 @@ public class LampController : DeviceController
         }
     }
 
-    /**
-     * Stops all SubControllers
-     */
     public override void StopUpdating()
     {
         updateColor = false;
@@ -77,21 +73,6 @@ public class LampController : DeviceController
         brightnessCalculator.active = true;
     }
 
-    public override void AddCurrentlyTrackedDevice(string name)
-    {
-        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
-        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
-    }
-
-    protected override void InsertValuesOfDevice(Device device)
-    {
-        Debug.Log("currently selected device: " + selectedDevice.ToString());
-
-        SetLightBrightness(((Lamp)device).lightBrightness);
-        SetLightColor(((Lamp)device).lightColor);
-        SetLightTemperature(((Lamp)device).lightTemperature);
-    }
-
     private void SetLightColor(Color color)
     {
         ((Lamp) selectedDevice).lightColor = color;
@@ -109,5 +90,11 @@ public class LampController : DeviceController
             brightness = 0.15f;
         }
         ((Lamp)selectedDevice).lightBrightness = brightness;
+    }
+
+    public override void AddCurrentlyTrackedDevice(string name)
+    {
+        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
+        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
     }
 }

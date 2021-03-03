@@ -25,14 +25,12 @@ public class LampDisplay : DeviceDisplay
     private Color MixColorWithTemperature(Color color, Color temperatureColor)
     {
         float h, s, v;
-
         Color.RGBToHSV(temperatureColor, out h, out s, out v);
 
         float temperatureColorPortion = s;                                          //the whiter the temperatureColor is, the smaller its portion
         float colorPortion = 1 - temperatureColorPortion;
 
         float r, g, b;
-
         r = color.r * colorPortion + temperatureColor.r * temperatureColorPortion;
         g = color.g * colorPortion + temperatureColor.g * temperatureColorPortion;
         b = color.b * colorPortion + temperatureColor.b * temperatureColorPortion;
