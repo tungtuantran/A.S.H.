@@ -13,7 +13,8 @@ public class LampData : IDeviceData
 
     public float[] lightColor { get; set; }
     public float lightBrightness { get; set; }               //10 out of 10
-    public float lightTemperature { get; set; }              //5 out of 10
+    public float[] lightTemperature { get; set; }
+    //public float lightTemperature { get; set; }              //5 out of 10
 
     public bool isTimerSet { get; set; }
     public string timerStart { get; set; }                 //example: 09:01
@@ -34,7 +35,13 @@ public class LampData : IDeviceData
         lightColor[3] = lamp.lightColor.a;
 
         lightBrightness = lamp.lightBrightness;
-        lightTemperature = lamp.lightTemperature;
+
+        lightTemperature = new float[4];
+        lightTemperature[0] = lamp.lightTemperature.r;
+        lightTemperature[1] = lamp.lightTemperature.g;
+        lightTemperature[2] = lamp.lightTemperature.b;
+        lightTemperature[3] = lamp.lightTemperature.a;
+        //lightTemperature = lamp.lightTemperature;
 
         isTimerSet = lamp.isTimerSet;
         timerStart = lamp.timerStart;

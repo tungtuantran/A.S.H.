@@ -24,7 +24,6 @@ public class LampController : DeviceController
         SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
         SetLightColor(colorPicker.selectedColor);
         SetLightTemperature(temperaturePicker.selectedColor);
-        //TODO: set temperature
     }
 
     /**
@@ -34,6 +33,7 @@ public class LampController : DeviceController
     {
         brightnessCalculator.active = false;
         colorPicker.active = false;
+        temperaturePicker.active = false;
     }
 
     public void StartBrightnessSubController()
@@ -66,7 +66,7 @@ public class LampController : DeviceController
 
     private void SetLightTemperature(Color temperatureColor)
     {
-        //((Lamp) selectedDevice).lightTemperature = temperature;
+        ((Lamp) selectedDevice).lightTemperature = temperatureColor;
     }
 
     private void SetLightBrightness(float brightness)
