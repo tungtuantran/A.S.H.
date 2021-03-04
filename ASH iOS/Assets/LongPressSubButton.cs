@@ -5,10 +5,11 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler
+public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private bool pointerEnter;
     private float pointerEnterTimer;
+    private bool pointerExit;
 
     public bool currentlyActive { get; set; }
 
@@ -21,12 +22,22 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Reset();
         pointerEnter = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Reset();
     }
 
     private void Update()
     {
-        
+        if(pointerExit)
+        {
+            Reset();
+        }
+
         if (pointerEnter && !currentlyActive)
         {
             pointerEnterTimer += Time.deltaTime;
@@ -49,6 +60,7 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler
 
     private void Reset()
     {
+        pointerExit = false;
         pointerEnter = false;
         pointerEnterTimer = 0;
         fillImage.fillAmount = pointerEnterTimer / requiredHoldTime;

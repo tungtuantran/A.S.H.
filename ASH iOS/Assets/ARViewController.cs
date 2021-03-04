@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class ARViewController : MonoBehaviour
 {
-    protected const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
-    protected InputField addNameInputField;
+    private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
+    private const string VALUE_DISPLAY_TEXT_PATH = "Scroll View/Viewport/Content/Value Display Text";
+
+    private InputField addNameInputField;
+    private Text valueDisplayText;
 
     private Device trackedAndRegisteredDevice;
 
@@ -22,14 +25,19 @@ public class ARViewController : MonoBehaviour
     [SerializeField]
     public GameObject removeDevicePopUp;
 
+    [SerializeField]
+    public GameObject valueDisplay;
+
     void Start()
     {
         addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
+        valueDisplayText = valueDisplay.transform.Find(VALUE_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
 
         addDeviceButton.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
         deviceController.gameObject.SetActive(false);
+        valueDisplay.SetActive(false);
     }
 
     void Update()
@@ -38,15 +46,26 @@ public class ARViewController : MonoBehaviour
 
         if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
         {
+            
             addDeviceButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(true);
+
+            UpdateValueDisplay();
+            valueDisplay.SetActive(true);
+            
         }
         else
         {
             addDeviceButton.gameObject.SetActive(true);
             deviceController.gameObject.SetActive(false);
+            valueDisplay.SetActive(false);
 
         }
+    }
+
+    private void UpdateValueDisplay()
+    {
+        valueDisplayText.text = trackedAndRegisteredDevice.DeviceValuesToString();
     }
 
     public void AddTrackedDevice()                     

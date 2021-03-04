@@ -114,6 +114,13 @@ public class Lamp : Device
             + ", Timer Days: " + timerDaysOfWeek.ToString();
     }
 
+    public override string DeviceValuesToString()
+    {
+        return "Color: " + lightColor.ToString()
+            + "\n Brightness: " + lightBrightness.ToString()
+            + "\n Temperature: " + lightTemperature.ToString();
+    }
+
     private bool CheckTimerIfIsSetForDay(int day)
     {
         if (timerDaysOfWeek[day - 1])

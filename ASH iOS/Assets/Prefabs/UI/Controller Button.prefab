@@ -787,9 +787,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 5851728503846877076}
     m_Modifications:
     - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 259601976987158404}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 259601976987158404}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideSubButtonCollection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowSubButtonCollection
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LongPressButtonController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LongPressButtonController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4287227985416451879, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

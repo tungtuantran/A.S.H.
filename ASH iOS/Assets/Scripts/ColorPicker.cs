@@ -39,6 +39,17 @@ public class ColorPicker : MonoBehaviour
             {
                 keepDistanceInfront.SetDirection();
             }
+
+            Image colorImage = GetComponent<Image>();
+
+            if (value)
+            {
+                colorImage.color = new Color(1f, 1f, 1f, 0.3f);
+            }
+            else
+            {
+                colorImage.color = new Color(1f, 1f, 1f, 0.0f);
+            }
             _active = value;
         }
     }

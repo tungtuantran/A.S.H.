@@ -39,6 +39,8 @@ public abstract class Device
     {
         return "DeviceName: " + deviceName + ", ID: " + id + " , Name: " + _name + ", isOn: " + isOn; 
     }
+
+    public abstract string DeviceValuesToString();
 }
 
 public enum DeviceName
