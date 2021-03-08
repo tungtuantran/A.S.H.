@@ -5,9 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler
+public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private bool pointerEnter;
     private bool pointerDown;
     private bool currentlyActive;
     private float pointerDownTimer;
@@ -19,14 +18,6 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     [SerializeField]
     private Image fillImage;
-
-    /*
-    public void OnMouseOver()
-    {
-        pointerDown = true;
-        Debug.Log("Mouse over");
-    }
-    */
 
     void OnMouseUp()
     {
@@ -40,17 +31,12 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         currentlyActive = false;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        pointerEnter = true;
-    }
 
-    
     public void OnPointerDown(PointerEventData eventData)
     {
         pointerDown = true;
+        CopyPasteSystem.swipeToCopyPaste = false;       // deactivates swipe function to copy/paste device values
     }
-    
 
     public void OnPointerUp(PointerEventData eventData)
     {
@@ -68,35 +54,26 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     {
         if (!currentlyActive)
         {
-            CopyPasteSystem.swipeToCopyPaste = true;       // activates swipe function to copy/paste device values
-
-            if (pointerDown || pointerEnter)
+            if (pointerDown)
             {
                 pointerDownTimer += Time.deltaTime;
                 if (pointerDownTimer >= requiredHoldTime)
                 {
                     if (onPointerDown != null)
                     {
-
-                        onPointerDown.Invoke();
-                        Handheld.Vibrate();
                         currentlyActive = true;
+                        Handheld.Vibrate();
+                        onPointerDown.Invoke();
                     }
-
                     Reset();
                 }
                 fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
             }
         }
-        else
-        {
-            CopyPasteSystem.swipeToCopyPaste = false;       // deactivates swipe function to copy/paste device values
-        }
     }
 
     private void Reset()
     {
-        pointerEnter = false;
         pointerDown = false;
         pointerDownTimer = 0;
         fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
