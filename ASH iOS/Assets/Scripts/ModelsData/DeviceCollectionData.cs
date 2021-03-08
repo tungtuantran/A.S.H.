@@ -6,6 +6,7 @@ using UnityEngine;
 public class DeviceCollectionData
 {
     public IDeviceData[] deviceDatas { get; set; }
+    public bool allDevicesOff { get; set; }
 
     public DeviceCollectionData(DeviceCollection deviceCollection)
     {
@@ -20,5 +21,7 @@ public class DeviceCollectionData
                     break;
             }
         }
+
+        allDevicesOff = deviceCollection.allDevicesOff;
     }
 }

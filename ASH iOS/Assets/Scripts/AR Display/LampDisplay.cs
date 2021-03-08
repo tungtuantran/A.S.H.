@@ -22,6 +22,11 @@ public class LampDisplay : DeviceDisplay
         
     }
 
+    protected override void DisplayOffState()
+    {
+        _light.gameObject.SetActive(false);
+    }
+
     private Color MixColorWithTemperature(Color color, Color temperatureColor)
     {
         float h, s, v;

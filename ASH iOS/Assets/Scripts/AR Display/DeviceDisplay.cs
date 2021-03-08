@@ -17,9 +17,18 @@ public abstract class DeviceDisplay : MonoBehaviour
 
         if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
         {
-            DisplayPropertiesOfTrackedAndRegisteredDevice();
+            if (!DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+            {
+                DisplayPropertiesOfTrackedAndRegisteredDevice();
+            }
+            else
+            {
+                DisplayOffState();
+            }
         }
     }
 
     protected abstract void DisplayPropertiesOfTrackedAndRegisteredDevice();
+
+    protected abstract void DisplayOffState();
 }

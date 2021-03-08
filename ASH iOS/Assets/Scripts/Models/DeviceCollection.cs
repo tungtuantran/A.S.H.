@@ -14,7 +14,7 @@ public class DeviceCollection
     private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
 
     public List<Device> registeredDevices { get; set; } = new List<Device>();
-
+    public bool allDevicesOff { get; set; }
 
     static DeviceCollection()
     {
@@ -90,6 +90,8 @@ public class DeviceCollection
                     registeredDevices.Add(device);
                 }
             }
+
+            allDevicesOff = deviceCollectionData.allDevicesOff;
         }
     }
 }
