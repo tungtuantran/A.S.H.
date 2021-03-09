@@ -84,7 +84,7 @@ public class CopyPasteSystem : MonoBehaviour
                 Handheld.Vibrate();
 
                 Debug.Log("copied device: " + copiedDevice.ToString());
-                copyPasteText.text = "Copied values from" + copiedDevice._name;
+                copyPasteText.text = "Copied values from " + copiedDevice._name;
             }
         }
         Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);

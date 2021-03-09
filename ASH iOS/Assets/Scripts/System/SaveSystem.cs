@@ -41,29 +41,6 @@ public class SaveSystem : MonoBehaviour
 
     private void OnApplicationPause(bool pause)                         // save on pause & exit
     {
-        Debug.Log("Application paused");
         SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);
-    }
-
-    //-------------------- DEBUG TESTING -------------------------
-
-    public void AddDeviceDebugTest()
-    {
-        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(new Lamp("as", 1, "das"));
-    }
-
-    public void RemoveDeviceDebugTest()
-    {
-        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1));
-    }
-
-    public void TestMethod()
-    {
-        Debug.Log("test1");
-    }
-
-    public void TestMethodOnPointerUp()
-    {
-        Debug.Log("up");
     }
 }
