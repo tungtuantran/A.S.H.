@@ -4,24 +4,52 @@ using UnityEngine;
 
 public class TurnAllOffOnSystem : MonoBehaviour
 {
-
+    [SerializeField]
     public DistanceCalculator distanceCalculator;
 
-    private bool doUpdate;
+    public DisableUIInteractions disableUIInteractions;
+
+    public float requiredHoldTime = 1.0f;
+
+    public static bool longpressToTurnAllOffOn = true;
+    private bool mouseDown;
+    private float mouseDownTimer = 0.0f;
 
     private void Update()
     {
-        if (doUpdate)
+    
+        if (Input.GetMouseButtonDown(0))
         {
-            float distance = distanceCalculator.distance * 100;
-            Debug.Log("distance: " + distance);
+            Debug.Log("mouseDown");
+            longpressToTurnAllOffOn = true;
+            mouseDown = true;
+            distanceCalculator.active = true;
+        }
 
-            if (distance > 0.3f)
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("mouseUp");
+            Reset();
+        }
+
+        if (mouseDown && longpressToTurnAllOffOn)                                     //TODO: if(active)?
+        {
+            Debug.Log("got in");
+
+            mouseDownTimer += Time.deltaTime;
+
+            if (mouseDownTimer >= requiredHoldTime)
             {
-                Debug.Log("is bigger than 0.3");
-                TurnAllOffOn();
-            }
+                disableUIInteractions.DisableInteractions();
 
+                float distance = distanceCalculator.distance * 100;
+                if (distance > 0.3f)
+                {
+                    TurnAllOffOn();
+                    Debug.Log("turned on/off");
+                }
+            }
+            //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
         }
     }
 
@@ -35,20 +63,16 @@ public class TurnAllOffOnSystem : MonoBehaviour
             DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
         }
 
-        StopCalculatingDistance();
-
+        Handheld.Vibrate();
+        Reset();
         Debug.Log("All Devices Off State: " + DeviceCollection.DeviceCollectionInstance.allDevicesOff);
     }
 
-    public void StartCalculatingDistance()
+    public void Reset()
     {
-        doUpdate = true;
-        distanceCalculator.active = true;
-    }
-
-    public void StopCalculatingDistance()
-    {
-        doUpdate = false;
+        longpressToTurnAllOffOn = false;
         distanceCalculator.active = false;
+        mouseDownTimer = 0.0f;
+        //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class HelpMenuController : MonoBehaviour
 {
+    [SerializeField]
+    public DisableUIInteractions disableUIInteractions;
 
     [SerializeField]
     public Button helpButton;
@@ -27,6 +29,8 @@ public class HelpMenuController : MonoBehaviour
 
     public void ShowHideHelpView()
     {
+        disableUIInteractions.DisableInteractions();
+
         if (helpView.activeSelf)
         {
             helpView.SetActive(false);
@@ -35,5 +39,6 @@ public class HelpMenuController : MonoBehaviour
         {
             helpView.SetActive(true);
         }
+
     }
 }
