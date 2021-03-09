@@ -14,6 +14,8 @@ public class DistanceCalculator: MonoBehaviour
     public float distance { get; set; }
     private bool _active;
 
+    public bool upwards;
+
     public bool active
     {
         get { return _active; }
@@ -21,9 +23,7 @@ public class DistanceCalculator: MonoBehaviour
         set {
             if (value)
             {
-                aRCamera = Camera.main.transform;
-                supportVector = aRCamera.position;
-                normalVector = aRCamera.forward;
+                Reset();
             }
             _active = value;
         }
@@ -44,5 +44,21 @@ public class DistanceCalculator: MonoBehaviour
 
         float realDistance = Mathf.Abs(normalVector.x * p.x + normalVector.y * p.y + normalVector.z * p.z - a) / Mathf.Sqrt(Mathf.Pow(normalVector.x, 2) + Mathf.Pow(normalVector.y, 2) + Mathf.Pow(normalVector.z, 2));
         distance = realDistance / 2;                                                            
+    }
+
+    private void Reset()
+    {
+        aRCamera = Camera.main.transform;
+        supportVector = aRCamera.position;
+        distance = 0;
+
+        if (!upwards)
+        {
+            normalVector = aRCamera.forward;
+        }
+        else
+        {
+            normalVector = aRCamera.up;
+        }
     }
 }
