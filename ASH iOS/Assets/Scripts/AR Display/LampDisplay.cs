@@ -15,7 +15,6 @@ public class LampDisplay : DeviceDisplay
         Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
         float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
         Color lightTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
-        //float lightTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
 
         _light.color = MixColorWithTemperature(lightColor, lightTemperature);
         _light.intensity = lightBrightness;
@@ -32,7 +31,7 @@ public class LampDisplay : DeviceDisplay
         float h, s, v;
         Color.RGBToHSV(temperatureColor, out h, out s, out v);
 
-        float temperatureColorPortion = s;                                          //the whiter the temperatureColor is, the smaller its portion
+        float temperatureColorPortion = s;                  //the whiter the temperatureColor is, the smaller its portion
         float colorPortion = 1 - temperatureColorPortion;
         
         float r, g, b;
