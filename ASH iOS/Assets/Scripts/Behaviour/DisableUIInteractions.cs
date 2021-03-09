@@ -12,11 +12,11 @@ public class DisableUIInteractions : MonoBehaviour
     {
         if (longpressToTurnAllOffOn)
         {
-            TurnAllOffOnSystem.longpressToTurnAllOffOn = false;
+            TurnAllOffOnSystem.active = false;
         }
         
         if(swipeToCopyPaste){
-            CopyPasteSystem.swipeToCopyPaste = false;
+            CopyPasteSystem.active = false;
         }
     }
 

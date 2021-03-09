@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class DistanceCalculator: MonoBehaviour
 {
-    private Transform aRCamera;
+    public bool upwards;
 
+    private Transform aRCamera;
     private Vector3 supportVector;
     private Vector3 normalVector;
 
     public float distance { get; set; }
     private bool _active;
-
-    public bool upwards;
 
     public bool active
     {
@@ -40,7 +39,7 @@ public class DistanceCalculator: MonoBehaviour
     private void CalculateDistancBetweenCameraAndPlane()
     {
         float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;       //plane
-        Vector3 p = aRCamera.position;                                                          // current camera position
+        Vector3 p = aRCamera.position;                                                                                          // current camera position
 
         float realDistance = Mathf.Abs(normalVector.x * p.x + normalVector.y * p.y + normalVector.z * p.z - a) / Mathf.Sqrt(Mathf.Pow(normalVector.x, 2) + Mathf.Pow(normalVector.y, 2) + Mathf.Pow(normalVector.z, 2));
         distance = realDistance / 2;                                                            

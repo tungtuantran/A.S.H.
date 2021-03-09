@@ -8,25 +8,24 @@ public class ARViewController : MonoBehaviour
     private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
     private const string VALUE_DISPLAY_TEXT_PATH = "Scroll View/Viewport/Content/Value Display Text";
 
+    [SerializeField]
+    private DeviceController deviceController;
+
+    [SerializeField]
+    private Button addDeviceButton;
+
+    [SerializeField]
+    private GameObject addDevicePopUp;
+
+    [SerializeField]
+    private GameObject removeDevicePopUp;
+
+    [SerializeField]
+    private GameObject valueDisplay;
+
     private InputField addNameInputField;
     private Text valueDisplayText;
-
     private Device trackedAndRegisteredDevice;
-
-    [SerializeField]
-    public DeviceController deviceController;
-
-    [SerializeField]
-    public Button addDeviceButton;
-
-    [SerializeField]
-    public GameObject addDevicePopUp;
-
-    [SerializeField]
-    public GameObject removeDevicePopUp;
-
-    [SerializeField]
-    public GameObject valueDisplay;
 
     void Start()
     {

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TurnAllOffOnSystem : MonoBehaviour
 {
-    [SerializeField]
-    public DistanceCalculator distanceCalculator;
+    public static bool active = true;
 
     public DisableUIInteractions disableUIInteractions;
-
     public float requiredHoldTime = 1.0f;
 
-    public static bool longpressToTurnAllOffOn = true;
+    [SerializeField]
+    private DistanceCalculator distanceCalculator;
+
     private bool mouseDown;
     private float mouseDownTimer = 0.0f;
 
@@ -31,8 +31,6 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
         if (mouseDown)
         {
-            Debug.Log("got in");
-
             mouseDownTimer += Time.deltaTime;
 
             if (mouseDownTimer >= requiredHoldTime)
@@ -43,7 +41,6 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 if (distance > 0.3f)
                 {
                     TurnAllOffOn();
-                    Debug.Log("turned on/off");
                 }
             }
             //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
@@ -52,7 +49,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void TurnAllOffOn()
     {
-        if (longpressToTurnAllOffOn)
+        if (active)
         {
             if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
             {
@@ -63,7 +60,6 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
             }
             Handheld.Vibrate();
-            Debug.Log("All Devices Off State: " + DeviceCollection.DeviceCollectionInstance.allDevicesOff);
         }
 
         Reset();
@@ -71,7 +67,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     public void Reset()
     {
-        longpressToTurnAllOffOn = true;
+        active = true;
         mouseDown = false;
         distanceCalculator.active = false;
         mouseDownTimer = 0.0f;

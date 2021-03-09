@@ -20,8 +20,6 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
-    public abstract void AddCurrentlyTrackedDevice(string name);
-
     public void RemoveSelectedDevice()
     {
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
@@ -31,6 +29,8 @@ public abstract class DeviceController : MonoBehaviour
     {
         selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
+
+    public abstract void AddCurrentlyTrackedDevice(string name);
 
     public abstract void StopUpdating();
 

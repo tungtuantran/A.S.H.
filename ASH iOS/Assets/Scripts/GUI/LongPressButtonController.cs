@@ -10,16 +10,16 @@ public class LongPressButtonController : MonoBehaviour
     public UnityEvent onRelease;
 
     [SerializeField]
-    public LongPressButton mainButton;
+    private LongPressButton mainButton;
 
     [SerializeField]
-    public GameObject subButtonCollection;
+    private GameObject subButtonCollection;
 
     private LongPressSubButton[] subButtons;
 
     void Start()
     {
-        subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional paramter includes inactive components
+        subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional parameter includes inactive components
         subButtonCollection.SetActive(false);
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LampDisplay : DeviceDisplay
 {
     [SerializeField]
-    public Light _light;
+    private Light _light;
 
     protected override void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
@@ -34,7 +34,7 @@ public class LampDisplay : DeviceDisplay
 
         float temperatureColorPortion = s;                                          //the whiter the temperatureColor is, the smaller its portion
         float colorPortion = 1 - temperatureColorPortion;
-
+        
         float r, g, b;
         r = color.r * colorPortion + temperatureColor.r * temperatureColorPortion;
         g = color.g * colorPortion + temperatureColor.g * temperatureColorPortion;

@@ -6,8 +6,6 @@ using System;
 /*
  * saveDeviceCollection() if device gets added, removed or updated
  * loadDeviceCollection() if app gets (re)started
- * 
- *
  */
 public class DeviceCollection
 {

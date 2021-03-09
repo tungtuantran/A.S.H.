@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class HelpMenuController : MonoBehaviour
 {
     [SerializeField]
-    public DisableUIInteractions disableUIInteractions;
+    private DisableUIInteractions disableUIInteractions;
 
     [SerializeField]
-    public Button helpButton;
+    private Button helpButton;
 
     [SerializeField]
-    public GameObject helpView;
+    private GameObject helpView;
 
     void Start()
     {

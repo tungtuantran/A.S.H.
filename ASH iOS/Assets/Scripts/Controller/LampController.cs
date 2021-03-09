@@ -7,13 +7,13 @@ public class LampController : DeviceController
 {
 
     [SerializeField]
-    public DistanceCalculator brightnessCalculator;
+    private DistanceCalculator brightnessCalculator;
 
     [SerializeField]
-    public ColorPicker colorPicker;
+    private ColorPicker colorPicker;
 
     [SerializeField]
-    public ColorPicker temperaturePicker;
+    private ColorPicker temperaturePicker;
 
     private bool updateColor;
     private bool updateBrightness;

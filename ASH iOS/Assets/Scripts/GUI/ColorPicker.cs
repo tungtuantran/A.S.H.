@@ -13,21 +13,18 @@ public class ColorEvent : UnityEvent<Color>
 
 public class ColorPicker : MonoBehaviour
 {
-
-    public KeepDistanceInfront keepDistanceInfront;         //no serializeField -> no force
-
-    [SerializeField]
-    public Image colorPreview;
-
+    public KeepDistanceInfront keepDistanceInfront;
     public bool worldSpaceMode;
 
+    [SerializeField]
+    private Image colorPreview;
+
+    public Color selectedColor { get; set; } = Color.white;
     private RectTransform Rect;
     private Texture2D ColorTexture;
     private Camera aRCamera;
     private bool pointerDown;
-
-    public Color selectedColor { get; set; } = Color.white;
-    private bool _active;                                   //TODO: can it replace pointerDown bool?
+    private bool _active;                                
 
     public bool active
     {
@@ -35,7 +32,7 @@ public class ColorPicker : MonoBehaviour
 
         set
         {
-            if (value && keepDistanceInfront != null)
+            if (keepDistanceInfront != null)
             {
                 keepDistanceInfront.SetDirection();
             }

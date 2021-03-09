@@ -7,15 +7,15 @@ using UnityEngine.UI;
 
 public class LongClickButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    private bool pointerDown;
-    private float pointerDownTimer;
 
-    public float requiredHoldTime = 1;
-
+    public float requiredHoldTime = 1.0f;
     public UnityEvent onLongClick;
 
     [SerializeField]
     private Image fillImage;
+
+    private bool pointerDown;
+    private float pointerDownTimer;
 
     public void OnPointerDown(PointerEventData eventData)
     {

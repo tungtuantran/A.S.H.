@@ -7,11 +7,17 @@ using UnityEngine.UI;
 
 public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    private Image fillImage;
+
+    public float requiredHoldTime = 0.4f;
+    public UnityEvent onPointerEnter;
+
     private bool pointerEnter;
     private float pointerEnterTimer;
     private bool pointerExit;
+    private bool _currentlyActive;
 
-    private bool _currentlyActive { get; set; }
     public bool currentlyActive
     {
         get { return _currentlyActive; }
@@ -21,13 +27,6 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             Reset();
         }
     }
-
-    public float requiredHoldTime = 0.4f;
-
-    public UnityEvent onPointerEnter;
-
-    [SerializeField]
-    private Image fillImage;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -54,7 +53,6 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             {
                 if (onPointerEnter != null)
                 {
-                    //DeviceDisplay.currentActiveSubButton = this;
                     currentlyActive = true;
                     Handheld.Vibrate();
                     onPointerEnter.Invoke();

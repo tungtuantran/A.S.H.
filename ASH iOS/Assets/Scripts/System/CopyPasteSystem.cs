@@ -5,16 +5,15 @@ using UnityEngine.UI;
 
 public class CopyPasteSystem : MonoBehaviour
 {
-    private float copyPasteTextDisplayTimer = 4f;
+    public static Device copiedDevice;
+    public static bool active = true;
+
     public Text copyPasteText;
 
-
-    public static Device copiedDevice;
-    public static bool swipeToCopyPaste = true;
-
-    Vector2 firstPressPos;
-    Vector2 secondPressPos;
-    Vector2 currentSwipe;
+    private Vector2 firstPressPos;
+    private Vector2 secondPressPos;
+    private Vector2 currentSwipe;
+    private float copyPasteTextDisplayTimer = 4f;
 
     private void Update()
     {
@@ -31,8 +30,6 @@ public class CopyPasteSystem : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("swipeToCopyPaste is " + swipeToCopyPaste);
-
             //save ended touch 2d point
             secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
@@ -46,7 +43,7 @@ public class CopyPasteSystem : MonoBehaviour
             if (currentSwipe.y > 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
                 Copy();
-                swipeToCopyPaste = true;
+                active = true;
                 Debug.Log("up swipe");
             }
 
@@ -54,10 +51,11 @@ public class CopyPasteSystem : MonoBehaviour
             if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
                 Paste();
-                swipeToCopyPaste = true;
+                active = true;
                 Debug.Log("down swipe");
             }
 
+            /*
             //swipe left
             if (currentSwipe.x < 0 && currentSwipe.y > -0.5f && currentSwipe.y < 0.5f)
             {
@@ -71,12 +69,13 @@ public class CopyPasteSystem : MonoBehaviour
                 swipeToCopyPaste = true;
                 Debug.Log("right swipe");
             }
+            */
         }
     }
 
     public void Copy()
     {
-        if(swipeToCopyPaste)
+        if(active)
         {
             if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId) != null)
             {
@@ -93,7 +92,7 @@ public class CopyPasteSystem : MonoBehaviour
 
     public void Paste()
     {
-        if (swipeToCopyPaste)
+        if (active)
         {
             if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId) != null)
             {

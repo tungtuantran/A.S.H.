@@ -9,6 +9,7 @@ public class Lamp : Device
     public float lightBrightness { get; set; } = 1.0f;              // 0.15 - 1.00
     public Color lightTemperature { get; set; } = Color.white;      //public float lightTemperature { get; set; } = 4000.0f;          // 2700k - 6500k -> TODO ????
 
+    /*
     private bool _isTimerSet = false;
     private string _timerStart = "18:00";                           // example: 09:01
     private string _timerStop = "00:00";
@@ -18,7 +19,6 @@ public class Lamp : Device
     private DateTime timerStartTime;
     private DateTime timerStopTime;
 
-   
     public bool isTimerSet
     {
         get
@@ -76,7 +76,17 @@ public class Lamp : Device
             timerStopTime = DateTime.Parse(timerStart + ":00", System.Globalization.CultureInfo.CurrentCulture);
         }
     }
-   
+
+    private bool CheckTimerIfIsSetForDay(int day)
+    {
+        if (timerDaysOfWeek[day - 1])
+        {
+            return true;
+        }
+
+        return false;
+    }
+    */
 
     public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {
@@ -93,42 +103,49 @@ public class Lamp : Device
         lightColor = new Color(lampData.lightColor[0], lampData.lightColor[1], lampData.lightColor[2], lampData.lightColor[3]);
         lightBrightness = lampData.lightBrightness;
         lightTemperature = new Color(lampData.lightTemperature[0], lampData.lightTemperature[1], lampData.lightTemperature[2], lampData.lightTemperature[3]);
-        //lightTemperature = lampData.lightTemperature;
 
-
+        /*
         isTimerSet = lampData.isTimerSet;
         timerStart = lampData.timerStart;
         timerStop = lampData.timerStop;
         timerDaysOfWeek = lampData.timerDaysOfWeek;
+        */
     }
 
     public override string ToString()
     {
         return base.ToString()
-            + ", Color: " + lightColor.ToString()
+            + ", Light Color: " + lightColor.ToString()
             + ", Light Brightness: " + lightBrightness.ToString()
-            + ", Light Temperature: " + lightTemperature.ToString()
+            + ", Light Temperature: " + lightTemperature.ToString();
+
+            /*
             + ", is Timer Set: " + isTimerSet.ToString()
             + ", Timer Start: " + timerStart.ToString()
             + ", Timer Stop: " + timerStop.ToString()
             + ", Timer Days: " + timerDaysOfWeek.ToString();
+            */
     }
 
     public override string DeviceValuesToString()
     {
-        return "Color: " + lightColor.ToString()
-            + "\n Brightness: " + lightBrightness.ToString()
-            + "\n Temperature: " + lightTemperature.ToString();
-    }
+        string mode;
 
-    private bool CheckTimerIfIsSetForDay(int day)
-    {
-        if (timerDaysOfWeek[day - 1])
+        if (isOn)
         {
-            return true;
+            mode = "ON";
+        }
+        else
+        {
+            mode = "OFF";
         }
 
-        return false;
+        return _name.ToString()
+            + "\n"
+            + "\nMode: " + mode
+            + "\nLight Color: " + lightColor.ToString()
+            + "\n Brightness: " + lightBrightness.ToString()
+            + "\n Temperature: " + lightTemperature.ToString();
     }
 
 }

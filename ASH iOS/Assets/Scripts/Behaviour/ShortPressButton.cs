@@ -9,13 +9,12 @@ using UnityEngine.UI;
 public class ShortPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
-    private bool pointerDown;
-    private float pointerDownTimer;
-
     public float invalidHoldTime = 1;
-
     public UnityEvent onPointerDown;
     public UnityEvent onShortClick;
+
+    private bool pointerDown;
+    private float pointerDownTimer;
 
     public void OnPointerDown(PointerEventData eventData)
     {
