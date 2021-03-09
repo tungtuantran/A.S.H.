@@ -30,6 +30,11 @@ public abstract class DeviceController : MonoBehaviour
         selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
+    public void EditNameOfSelectedDevice(string name)
+    {
+        selectedDevice._name = name;
+    }
+
     public abstract void AddCurrentlyTrackedDevice(string name);
 
     public abstract void StopUpdating();
