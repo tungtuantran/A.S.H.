@@ -20,19 +20,16 @@ public class TurnAllOffOnSystem : MonoBehaviour
     
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("mouseDown");
-            longpressToTurnAllOffOn = true;
             mouseDown = true;
             distanceCalculator.active = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            Debug.Log("mouseUp");
             Reset();
         }
 
-        if (mouseDown && longpressToTurnAllOffOn)                                     //TODO: if(active)?
+        if (mouseDown)
         {
             Debug.Log("got in");
 
@@ -55,22 +52,27 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void TurnAllOffOn()
     {
-        if (DeviceCollection.DeviceCollectionInstance.allDevicesOff) {
-            DeviceCollection.DeviceCollectionInstance.allDevicesOff = false;
-        }
-        else
+        if (longpressToTurnAllOffOn)
         {
-            DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
+            if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+            {
+                DeviceCollection.DeviceCollectionInstance.allDevicesOff = false;
+            }
+            else
+            {
+                DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
+            }
+            Handheld.Vibrate();
+            Debug.Log("All Devices Off State: " + DeviceCollection.DeviceCollectionInstance.allDevicesOff);
         }
 
-        Handheld.Vibrate();
         Reset();
-        Debug.Log("All Devices Off State: " + DeviceCollection.DeviceCollectionInstance.allDevicesOff);
     }
 
     public void Reset()
     {
-        longpressToTurnAllOffOn = false;
+        longpressToTurnAllOffOn = true;
+        mouseDown = false;
         distanceCalculator.active = false;
         mouseDownTimer = 0.0f;
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;

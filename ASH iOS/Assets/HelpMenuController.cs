@@ -23,7 +23,7 @@ public class HelpMenuController : MonoBehaviour
     {
         if (helpView.activeSelf)
         {
-            CopyPasteSystem.swipeToCopyPaste = false;
+            disableUIInteractions.DisableInteractions();
         }
     }
 
