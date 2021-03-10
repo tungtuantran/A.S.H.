@@ -7,7 +7,6 @@ public class ARViewController : MonoBehaviour
 {
     private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
     private const string VALUE_DISPLAY_TEXT_PATH = "Scroll View/Viewport/Content/Value Display Text";
-    private const string NAME_DISPLAY_TEXT_PATH = "Text";
 
 
     [SerializeField]
@@ -30,27 +29,21 @@ public class ARViewController : MonoBehaviour
 
     private InputField addNameInputField;
     private Text valueDisplayText;
-    private Text nameDisplayText;
     private Device trackedAndRegisteredDevice;
+    private bool setNameOnFirstTrack;
 
     void Start()
     {
-        Debug.Log("start called");
-
         addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
         valueDisplayText = valueDisplay.transform.Find(VALUE_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
-        nameDisplayText = editNameInputField.transform.Find(NAME_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
 
         //nameDisplayText.text = trackedAndRegisteredDevice._name;            //set name display on start
-
         addDeviceButton.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
         deviceController.gameObject.SetActive(false);
         valueDisplay.SetActive(false);
         editNameInputField.gameObject.SetActive(false);
-
-        Debug.Log("pop ups set false");
     }
 
     void Update()
@@ -64,7 +57,7 @@ public class ARViewController : MonoBehaviour
             deviceController.gameObject.SetActive(true);
 
             UpdateValueDisplay();
-            UpdateName();
+            UpdateName();            
 
             valueDisplay.SetActive(true);
             editNameInputField.gameObject.SetActive(true);
@@ -85,16 +78,21 @@ public class ARViewController : MonoBehaviour
         valueDisplayText.text = trackedAndRegisteredDevice.DeviceValuesToString();
     }
 
-    public void UpdateName()
+    private void UpdateName()
     {
-        if (nameDisplayText.text.Equals(""))
+        if (!setNameOnFirstTrack)
         {
-            nameDisplayText.text = trackedAndRegisteredDevice._name;
+            setNameOnFirstTrack = true;
+            editNameInputField.text = trackedAndRegisteredDevice._name;
         }
-        else
+    }
+
+    public void EditName()
+    {
+        if (!editNameInputField.text.Equals(""))
         {
             deviceController.SelectDeviceByCurrentlyTrackedDevice();
-            deviceController.EditNameOfSelectedDevice(nameDisplayText.text);
+            deviceController.EditNameOfSelectedDevice(editNameInputField.text);
         }
     }
 
@@ -104,6 +102,7 @@ public class ARViewController : MonoBehaviour
         if (name != "")
         {
             deviceController.AddCurrentlyTrackedDevice(name);
+            editNameInputField.text = name;
         }
         else
         {

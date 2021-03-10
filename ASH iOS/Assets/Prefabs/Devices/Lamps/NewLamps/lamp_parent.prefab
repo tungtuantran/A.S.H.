@@ -699,7 +699,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 255.08011, y: 156.05}
+  m_AnchoredPosition: {x: -256, y: 156.05}
   m_SizeDelta: {x: 45.360184, y: 40.19023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4135454528621127675
@@ -1593,7 +1593,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -33.789978, y: 155}
+  m_AnchoredPosition: {x: 33, y: 158}
   m_SizeDelta: {x: 490.78552, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7347095834099915707
@@ -1689,7 +1689,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 524627612882324884}
         m_TargetAssemblyTypeName: ARViewController, Assembly-CSharp
-        m_MethodName: UpdateName
+        m_MethodName: EditName
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
