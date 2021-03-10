@@ -6,14 +6,19 @@ using UnityEngine.UI;
 public class ARViewController : MonoBehaviour
 {
     private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
-    private const string VALUE_DISPLAY_TEXT_PATH = "Scroll View/Viewport/Content/Value Display Text";
+    private const string VALUES_SCROLLVIEW_PATH = "Values Scroll View";
+    private const string VALUE_TEXT_PATH = "Viewport/Content/Values Text";
     private const string EDIT_NAME_INPUTFIELD_PATH = "Edit Name InputField";
+    private const string ADD_BUTTON_PATH = "Add Button";
+    private const string DELETE_BUTTON_PATH = "Delete Button";
 
     [SerializeField]
     private DeviceController deviceController;
 
+    /*
     [SerializeField]
-    private Button addDeviceButton;
+    private GameObject aRView;
+    */
 
     [SerializeField]
     private GameObject addDevicePopUp;
@@ -22,26 +27,42 @@ public class ARViewController : MonoBehaviour
     private GameObject removeDevicePopUp;
 
     [SerializeField]
-    private GameObject aRView;
+    private GameObject valuesScrollViewGO;
 
-    private Text valueDisplayText;
+    private Text valuesText;
+
+    [SerializeField]
     private InputField editNameInputField;
+
     private InputField addNameInputField;
+
+    [SerializeField]
+    private Button addButton;
+
+    [SerializeField]
+    private Button deleteButton;
 
     private Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
     void Start()
     {
+        
+        //valuesScrollViewGO = aRView.transform.Find(VALUES_SCROLLVIEW_PATH).gameObject;
+        valuesText = valuesScrollViewGO.transform.Find(VALUE_TEXT_PATH).gameObject.GetComponent<Text>();
         addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
-        valueDisplayText = aRView.transform.Find(VALUE_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
-        editNameInputField = aRView.transform.Find(EDIT_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
+        //editNameInputField = aRView.transform.Find(EDIT_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
+        //addButton = aRView.transform.Find(ADD_BUTTON_PATH).gameObject.GetComponent<Button>();
+        //deleteButton = aRView.transform.Find(DELETE_BUTTON_PATH).gameObject.GetComponent<Button>();
 
-        addDeviceButton.gameObject.SetActive(false);
+        deviceController.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
-        deviceController.gameObject.SetActive(false);
-        aRView.SetActive(false);
+
+        addButton.gameObject.SetActive(false);
+        editNameInputField.gameObject.SetActive(false);
+        deleteButton.gameObject.SetActive(false);
+        valuesScrollViewGO.SetActive(false);
     }
 
     void Update()
@@ -50,32 +71,37 @@ public class ARViewController : MonoBehaviour
 
         if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
         {      
-            addDeviceButton.gameObject.SetActive(false);
+            addButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(true);
 
             UpdateValueDisplay();
 
-            if (!setNameOnFirstTrack)
+            if (!setNameOnFirstTrack)                                   //execute update name only on first track
             {
                 setNameOnFirstTrack = true;
                 UpdateName();
             }
 
-            aRView.SetActive(true);
             editNameInputField.gameObject.SetActive(true);
+            deleteButton.gameObject.SetActive(true);
+            valuesScrollViewGO.SetActive(true);
 
         }
         else
         {
-            addDeviceButton.gameObject.SetActive(true);
+            addButton.gameObject.SetActive(true);
+            Debug.Log("add button state: " + addButton.gameObject.activeSelf);
             deviceController.gameObject.SetActive(false);
-            aRView.SetActive(false);
+
+            editNameInputField.gameObject.SetActive(false);
+            deleteButton.gameObject.SetActive(false);
+            valuesScrollViewGO.SetActive(false);
         }
     }
 
     private void UpdateValueDisplay()
     {
-        valueDisplayText.text = trackedAndRegisteredDevice.DeviceValuesToString();
+        valuesText.text = trackedAndRegisteredDevice.DeviceValuesToString();
     }
 
     private void UpdateName()
@@ -109,7 +135,7 @@ public class ARViewController : MonoBehaviour
         }
 
         addDevicePopUp.SetActive(false);
-        addDeviceButton.gameObject.SetActive(false);
+        addButton.gameObject.SetActive(false);
     }
 
     public void RemoveDevice()
