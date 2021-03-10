@@ -21,7 +21,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mouseDown = true;
-            distanceCalculator.active = true;
+            distanceCalculator.Active = true;
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -37,7 +37,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
             {
                 disableUIInteractions.DisableInteractions();
 
-                float distance = distanceCalculator.distance * 100;
+                float distance = distanceCalculator.Distance * 100;
                 if (distance > 0.3f)
                 {
                     TurnAllOffOn();
@@ -69,7 +69,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
     {
         active = true;
         mouseDown = false;
-        distanceCalculator.active = false;
+        distanceCalculator.Active = false;
         mouseDownTimer = 0.0f;
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }

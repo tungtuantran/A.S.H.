@@ -26,9 +26,7 @@ public class LongPressButtonController : MonoBehaviour
     void Update()
     {
         foreach(LongPressSubButton subButton in subButtons){
-            Debug.Log(subButton.gameObject.name + " " + subButton.currentlyActive);
-
-            if (subButton.currentlyActive)
+            if (subButton.CurrentlyActive)
             {
                 SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
             }
@@ -61,7 +59,7 @@ public class LongPressButtonController : MonoBehaviour
     {
         foreach (LongPressSubButton subButton in subButtons)
         {
-            subButton.currentlyActive = false;
+            subButton.CurrentlyActive = false;
         }
     }
 
@@ -77,7 +75,7 @@ public class LongPressButtonController : MonoBehaviour
     {
         foreach (LongPressSubButton subButton in subButtons)
         {
-            if (!subButton.currentlyActive)
+            if (!subButton.CurrentlyActive)
             {
                 subButton.gameObject.SetActive(false);
             }

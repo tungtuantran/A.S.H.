@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ARViewController : MonoBehaviour
 {
-    private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
-    private const string VALUE_TEXT_PATH = "Viewport/Content/Values Text";
+    private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
+    private const string ValueTextPath = "Viewport/Content/Values Text";
 
     [SerializeField]
     private DeviceController deviceController;
@@ -23,22 +23,21 @@ public class ARViewController : MonoBehaviour
     [SerializeField]
     private InputField editNameInputField;
 
-    private InputField addNameInputField;
-
     [SerializeField]
     private Button addButton;
 
     [SerializeField]
     private Button deleteButton;
 
+    private InputField addNameInputField;
     private Text valuesText;
     private Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
     void Start()
     {     
-        valuesText = valuesScrollViewGO.transform.Find(VALUE_TEXT_PATH).gameObject.GetComponent<Text>();
-        addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
+        valuesText = valuesScrollViewGO.transform.Find(ValueTextPath).gameObject.GetComponent<Text>();
+        addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
 

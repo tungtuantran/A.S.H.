@@ -15,24 +15,20 @@ public class LampController : DeviceController
     [SerializeField]
     private ColorPicker temperaturePicker;
 
-    private bool updateColor;
-    private bool updateBrightness;
-    private bool updateTemperature;
-
-    void Start()
-    {
-    }
+    private bool updateLightColor;
+    private bool updateLightBrightness;
+    private bool updateLightTemperature;
 
     void Update()
     {
-        if (updateColor)
+        if (updateLightColor)
         {
             SetLightColor(colorPicker.selectedColor);
         }
-        if(updateBrightness){
-            SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        if(updateLightBrightness){
+            SetLightBrightness(1 - brightnessCalculator.Distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
         }
-        if (updateTemperature)
+        if (updateLightTemperature)
         {
             SetLightTemperature(temperaturePicker.selectedColor);
 
@@ -41,46 +37,43 @@ public class LampController : DeviceController
 
     public override void StopUpdating()
     {
-        updateColor = false;
-        updateBrightness = false;
-        updateTemperature = false;
+        updateLightColor = false;
+        updateLightBrightness = false;
+        updateLightTemperature = false;
 
-        brightnessCalculator.active = false;
-        colorPicker.active = false;
-        temperaturePicker.active = false;
+        brightnessCalculator.Active = false;
+        colorPicker.Active = false;
+        temperaturePicker.Active = false;
     }
 
-    public void UpdateBrightness()
+    public void UpdateLigthBrightness()
     {
-        updateBrightness = true;
-
-        brightnessCalculator.active = true;
+        updateLightBrightness = true;
+        brightnessCalculator.Active = true;
     }
 
-    public void UpdateTemperature()
+    public void UpdateLightTemperature()
     {
-        updateTemperature = true;
-
-        temperaturePicker.active = true;
+        updateLightTemperature = true;
+        temperaturePicker.Active = true;
     }
 
-    public void UpdateColorAndBrightness()
+    public void UpdateLightColorAndBrightness()
     {
-        updateColor = true;
-        updateBrightness = true;
+        updateLightColor = true;
+        colorPicker.Active = true;
 
-        colorPicker.active = true;
-        brightnessCalculator.active = true;
+        UpdateLigthBrightness();
     }
 
     private void SetLightColor(Color color)
     {
-        ((Lamp) selectedDevice).lightColor = color;
+        ((Lamp) SelectedDevice).lightColor = color;
     }
 
     private void SetLightTemperature(Color temperatureColor)
     {
-        ((Lamp) selectedDevice).lightTemperature = temperatureColor;
+        ((Lamp) SelectedDevice).lightTemperature = temperatureColor;
     }
 
     private void SetLightBrightness(float brightness)
@@ -89,7 +82,7 @@ public class LampController : DeviceController
         {
             brightness = 0.15f;
         }
-        ((Lamp)selectedDevice).lightBrightness = brightness;
+        ((Lamp) SelectedDevice).lightBrightness = brightness;
     }
 
     public override void AddCurrentlyTrackedDevice(string name)

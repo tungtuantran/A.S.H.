@@ -165,6 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keepDistanceInfront: {fileID: 0}
-  colorPreview: {fileID: 8393489721066174667}
   worldSpaceMode: 1
-  _active: 0
+  colorPreview: {fileID: 8393489721066174667}

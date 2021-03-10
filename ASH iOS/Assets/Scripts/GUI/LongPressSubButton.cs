@@ -16,14 +16,14 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     private bool pointerEnter;
     private float pointerEnterTimer;
     private bool pointerExit;
-    private bool _currentlyActive;
+    private bool currentlyActive;
 
-    public bool currentlyActive
+    public bool CurrentlyActive
     {
-        get { return _currentlyActive; }
+        get { return currentlyActive; }
         set
         {
-            _currentlyActive = value;
+            currentlyActive = value;
             Reset();
         }
     }
@@ -46,14 +46,14 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             Reset();
         }
 
-        if (pointerEnter && !currentlyActive)
+        if (pointerEnter && ! CurrentlyActive)
         {
             pointerEnterTimer += Time.deltaTime;
             if (pointerEnterTimer >= requiredHoldTime)
             {
                 if (onPointerEnter != null)
                 {
-                    currentlyActive = true;
+                    CurrentlyActive = true;
                     Handheld.Vibrate();
                     onPointerEnter.Invoke();
                 }

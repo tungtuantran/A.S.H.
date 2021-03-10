@@ -24,11 +24,11 @@ public class ColorPicker : MonoBehaviour
     private Texture2D ColorTexture;
     private Camera aRCamera;
     private bool pointerDown;
-    private bool _active;                                
+    private bool active;                                
 
-    public bool active
+    public bool Active
     {
-        get { return _active; }
+        get { return active; }
 
         set
         {
@@ -47,7 +47,7 @@ public class ColorPicker : MonoBehaviour
             {
                 colorImage.color = new Color(1f, 1f, 1f, 0.0f);
             }
-            _active = value;
+            active = value;
         }
     }
 

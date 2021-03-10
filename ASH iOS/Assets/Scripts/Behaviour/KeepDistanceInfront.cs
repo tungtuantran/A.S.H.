@@ -7,7 +7,7 @@ using UnityEngine;
  **/
 public class KeepDistanceInfront : MonoBehaviour
 {
-    public float distance = 1f;
+    public float distance = 0.02f;
 
     private Transform aRCamera;
     private Vector3 supportVector;
