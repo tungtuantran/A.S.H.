@@ -64,7 +64,7 @@ public class LampController : DeviceController
         temperaturePicker.active = true;
     }
 
-    public void UpdateColorAndIntensity()
+    public void UpdateColorAndBrightness()
     {
         updateColor = true;
         updateBrightness = true;

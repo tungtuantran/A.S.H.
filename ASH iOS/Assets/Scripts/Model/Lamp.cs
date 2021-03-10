@@ -118,13 +118,6 @@ public class Lamp : Device
             + ", Light Color: " + lightColor.ToString()
             + ", Light Brightness: " + lightBrightness.ToString()
             + ", Light Temperature: " + lightTemperature.ToString();
-
-            /*
-            + ", is Timer Set: " + isTimerSet.ToString()
-            + ", Timer Start: " + timerStart.ToString()
-            + ", Timer Stop: " + timerStop.ToString()
-            + ", Timer Days: " + timerDaysOfWeek.ToString();
-            */
     }
 
     public override string DeviceValuesToString()
@@ -140,9 +133,7 @@ public class Lamp : Device
             mode = "OFF";
         }
 
-        return _name.ToString()
-            + "\n"
-            + "\nMode: " + mode
+        return "Mode: " + mode
             + "\nLight Color: " + lightColor.ToString()
             + "\n Brightness: " + lightBrightness.ToString()
             + "\n Temperature: " + lightTemperature.ToString();
