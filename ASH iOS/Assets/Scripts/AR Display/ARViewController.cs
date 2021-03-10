@@ -7,7 +7,7 @@ public class ARViewController : MonoBehaviour
 {
     private const string ADD_NAME_INPUTFIELD_PATH = "Pop Up/Content/Name InputField";
     private const string VALUE_DISPLAY_TEXT_PATH = "Scroll View/Viewport/Content/Value Display Text";
-
+    private const string EDIT_NAME_INPUTFIELD_PATH = "Edit Name InputField";
 
     [SerializeField]
     private DeviceController deviceController;
@@ -22,28 +22,26 @@ public class ARViewController : MonoBehaviour
     private GameObject removeDevicePopUp;
 
     [SerializeField]
-    private GameObject valueDisplay;
+    private GameObject aRView;
 
-    [SerializeField]
-    private InputField editNameInputField;
-
-    private InputField addNameInputField;
     private Text valueDisplayText;
+    private InputField editNameInputField;
+    private InputField addNameInputField;
+
     private Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
     void Start()
     {
         addNameInputField = addDevicePopUp.transform.Find(ADD_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
-        valueDisplayText = valueDisplay.transform.Find(VALUE_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
+        valueDisplayText = aRView.transform.Find(VALUE_DISPLAY_TEXT_PATH).gameObject.GetComponent<Text>();
+        editNameInputField = aRView.transform.Find(EDIT_NAME_INPUTFIELD_PATH).gameObject.GetComponent<InputField>();
 
-        //nameDisplayText.text = trackedAndRegisteredDevice._name;            //set name display on start
         addDeviceButton.gameObject.SetActive(false);
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
         deviceController.gameObject.SetActive(false);
-        valueDisplay.SetActive(false);
-        editNameInputField.gameObject.SetActive(false);
+        aRView.SetActive(false);
     }
 
     void Update()
@@ -51,15 +49,19 @@ public class ARViewController : MonoBehaviour
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
 
         if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
-        {
-            
+        {      
             addDeviceButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(true);
 
             UpdateValueDisplay();
-            UpdateName();            
 
-            valueDisplay.SetActive(true);
+            if (!setNameOnFirstTrack)
+            {
+                setNameOnFirstTrack = true;
+                UpdateName();
+            }
+
+            aRView.SetActive(true);
             editNameInputField.gameObject.SetActive(true);
 
         }
@@ -67,9 +69,7 @@ public class ARViewController : MonoBehaviour
         {
             addDeviceButton.gameObject.SetActive(true);
             deviceController.gameObject.SetActive(false);
-            valueDisplay.SetActive(false);
-            editNameInputField.gameObject.SetActive(false);
-
+            aRView.SetActive(false);
         }
     }
 
@@ -80,11 +80,8 @@ public class ARViewController : MonoBehaviour
 
     private void UpdateName()
     {
-        if (!setNameOnFirstTrack)
-        {
-            setNameOnFirstTrack = true;
-            editNameInputField.text = trackedAndRegisteredDevice._name;
-        }
+
+        editNameInputField.text = trackedAndRegisteredDevice._name;
     }
 
     public void EditName()
@@ -94,6 +91,8 @@ public class ARViewController : MonoBehaviour
             deviceController.SelectDeviceByCurrentlyTrackedDevice();
             deviceController.EditNameOfSelectedDevice(editNameInputField.text);
         }
+
+        UpdateName();
     }
 
     public void AddTrackedDevice()                     
@@ -119,17 +118,17 @@ public class ARViewController : MonoBehaviour
         removeDevicePopUp.SetActive(false);
     }
 
-    public void ShowHideAddDevicePopUp()            // for "add me" button and cancel button
+    public void ShowHideAddDevicePopUp()                                // for "add me" button and cancel button
     {
-        if (addDevicePopUp.activeSelf)              // Cancel Button (in Pop-Up)
+        if (addDevicePopUp.activeSelf)                                  // Cancel Button (in Pop-Up)
         {
             addDevicePopUp.SetActive(false);
         }
         else
-        {                                           // Add Me Button
+        {                                                               // Add Me Button
             addDevicePopUp.SetActive(true);
         }
-        addNameInputField.text = "";                // clears textInput
+        addNameInputField.text = "";                                    // clears textInput
     }
 
     public void ShowHideRemoveDevicePopUp()
@@ -138,11 +137,11 @@ public class ARViewController : MonoBehaviour
 
         if (removeDevicePopUp.activeSelf)
         {
-            removeDevicePopUp.SetActive(false);     // Cancel Button (in Pop-Up)
+            removeDevicePopUp.SetActive(false);                         // Cancel Button (in Pop-Up)
         }
         else
         {
-            removeDevicePopUp.SetActive(true);      // Remove Button
+            removeDevicePopUp.SetActive(true);                          // Remove Button
         }
     }
 
