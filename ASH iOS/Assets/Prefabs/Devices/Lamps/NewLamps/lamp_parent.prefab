@@ -2081,22 +2081,6 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: ee8809c21224748668f362a8d676294b, type: 3}
-    - target: {fileID: 8393489721542812576, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393489721542812576, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393489721542812576, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8393489721542812576, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: keepDistanceInfront
       value: 
@@ -2139,7 +2123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0.03
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2543,6 +2527,42 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2452670135193445376, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452670135193445376, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452670135193445376, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452670135193445376, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 2452670135193445376, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587615064648221249, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587615064648221249, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587615064648221249, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 2587615064648221249, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3206596339190617274, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2583,6 +2603,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHideRemoveDevicePopUp
       objectReference: {fileID: 0}
+    - target: {fileID: 5280424680391145158, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.b
+      value: 0.009498596
+      objectReference: {fileID: 0}
+    - target: {fileID: 5280424680391145158, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5974784103121638618, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
@@ -2613,6 +2641,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721461782725931236, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6805163682076232541, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7112402505745091207, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
