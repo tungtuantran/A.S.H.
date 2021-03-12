@@ -6,6 +6,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 {
     public static bool active = true;
 
+    public GameObject turnAllOffOnImage;
     public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 1.0f;
 
@@ -15,6 +16,12 @@ public class TurnAllOffOnSystem : MonoBehaviour
     private bool mouseDown;
     private float mouseDownTimer = 0.0f;
 
+
+    private void Start()
+    {
+        turnAllOffOnImage.SetActive(false);
+    }
+
     private void Update()
     {
     
@@ -22,6 +29,10 @@ public class TurnAllOffOnSystem : MonoBehaviour
         {
             mouseDown = true;
             distanceCalculator.Active = true;
+
+            turnAllOffOnImage.SetActive(true);
+            KeepDistanceInfront keepDistanceInfront = turnAllOffOnImage.GetComponent<KeepDistanceInfront>();
+            keepDistanceInfront.SetDirection();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -71,6 +82,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
         mouseDown = false;
         distanceCalculator.Active = false;
         mouseDownTimer = 0.0f;
+        turnAllOffOnImage.SetActive(false);
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 }

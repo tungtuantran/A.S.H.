@@ -52,7 +52,7 @@ public class ARViewController : MonoBehaviour
         {
             UpdateValueDisplay();
 
-            if (!setNameOnFirstTrack)                                   //execute update name only on first track
+            if (!setNameOnFirstTrack)                                   // execute update name only on first track
             {
                 setNameOnFirstTrack = true;
                 UpdateName();
