@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnAllOffOnSystem : MonoBehaviour
 {
     public static bool active = true;
 
-    public GameObject turnAllOffOnImage;
+    [SerializeField]
+    private DisplayToggle aRDisplay;
+
+    [SerializeField]
+    private DisplayToggle uIDisplay;
+
     public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 1.0f;
 
@@ -19,20 +25,22 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void Start()
     {
-        turnAllOffOnImage.SetActive(false);
+        SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.allDevicesOff);
+        aRDisplay.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-    
         if (Input.GetMouseButtonDown(0))
         {
             mouseDown = true;
             distanceCalculator.Active = true;
 
-            turnAllOffOnImage.SetActive(true);
-            KeepDistanceInfront keepDistanceInfront = turnAllOffOnImage.GetComponent<KeepDistanceInfront>();
-            keepDistanceInfront.SetDirection();
+            KeepDistanceInfront keepDistanceInfront = aRDisplay.gameObject.GetComponent<KeepDistanceInfront>();
+            if (keepDistanceInfront != null)
+            {
+                keepDistanceInfront.SetDirection();
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -46,6 +54,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
             if (mouseDownTimer >= requiredHoldTime)
             {
+                aRDisplay.gameObject.SetActive(true);
                 disableUIInteractions.DisableInteractions();
 
                 float distance = distanceCalculator.Distance * 100;
@@ -70,6 +79,8 @@ public class TurnAllOffOnSystem : MonoBehaviour
             {
                 DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
             }
+
+            SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.allDevicesOff);
             Handheld.Vibrate();
         }
 
@@ -82,7 +93,21 @@ public class TurnAllOffOnSystem : MonoBehaviour
         mouseDown = false;
         distanceCalculator.Active = false;
         mouseDownTimer = 0.0f;
-        turnAllOffOnImage.SetActive(false);
+        aRDisplay.gameObject.SetActive(false);
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
+    }
+
+    private void SetActiveOfDisplayToggles(bool active)
+    {
+        if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+        {
+            aRDisplay.active = false;
+            uIDisplay.active = false;
+        }
+        else
+        {
+            aRDisplay.active = true;
+            uIDisplay.active = true;
+        }
     }
 }
