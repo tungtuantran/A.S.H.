@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ARViewController : MonoBehaviour
+public abstract class ARViewController : MonoBehaviour
 {
     private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
-    private const string ValueTextPath = "Viewport/Content/Values Text";
+
+    //private const string ValueTextPath = "Viewport/Content/Values Text";
 
     [SerializeField]
     private DeviceController deviceController;
@@ -17,8 +18,10 @@ public class ARViewController : MonoBehaviour
     [SerializeField]
     private GameObject removeDevicePopUp;
 
+    /*
     [SerializeField]
     private GameObject valuesScrollViewGO;
+    */
 
     [SerializeField]
     private InputField editNameInputField;
@@ -30,13 +33,13 @@ public class ARViewController : MonoBehaviour
     private Button deleteButton;
 
     private InputField addNameInputField;
-    private Text valuesText;
-    private Device trackedAndRegisteredDevice;
+    //private Text valuesText;
+    protected Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
     void Start()
     {     
-        valuesText = valuesScrollViewGO.transform.Find(ValueTextPath).gameObject.GetComponent<Text>();
+        //valuesText = valuesScrollViewGO.transform.Find(ValueTextPath).gameObject.GetComponent<Text>();
         addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
@@ -66,10 +69,14 @@ public class ARViewController : MonoBehaviour
         }
     }
 
+    /*
     private void UpdateValueDisplay()
     {
         valuesText.text = trackedAndRegisteredDevice.DeviceValuesToString();
     }
+    */
+
+    protected abstract void UpdateValueDisplay();
 
     private void UpdateName()
     {
@@ -86,7 +93,7 @@ public class ARViewController : MonoBehaviour
 
             editNameInputField.gameObject.SetActive(true);
             deleteButton.gameObject.SetActive(true);
-            valuesScrollViewGO.SetActive(true);
+            //valuesScrollViewGO.SetActive(true);
         }
         else
         {
@@ -95,7 +102,7 @@ public class ARViewController : MonoBehaviour
 
             editNameInputField.gameObject.SetActive(false);
             deleteButton.gameObject.SetActive(false);
-            valuesScrollViewGO.SetActive(false);
+            //valuesScrollViewGO.SetActive(false);
         }
     }
 
