@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
-    public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 0.4f;
     public UnityEvent onPointerDown;
     public UnityEvent onPointerUp;
@@ -36,7 +34,6 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     public void OnPointerDown(PointerEventData eventData)
     {
         pointerDown = true;
-        disableUIInteractions.DisableInteractions();
     }
 
     public void OnPointerUp(PointerEventData eventData)

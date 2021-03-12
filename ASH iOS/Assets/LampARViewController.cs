@@ -20,6 +20,8 @@ public class LampARViewController : ARViewController
     {
         lightColor.color = ((Lamp)trackedAndRegisteredDevice).lightColor;
         lightTemperatureColor.color = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
-        brightness.text = (Convert.ToInt32(((Lamp)trackedAndRegisteredDevice).lightBrightness) * 100).ToString();
+        float brightnessInPercent = ((Lamp)trackedAndRegisteredDevice).lightBrightness * 100;
+        brightness.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
+
     }
 }

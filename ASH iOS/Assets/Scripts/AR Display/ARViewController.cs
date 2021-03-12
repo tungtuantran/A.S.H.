@@ -7,10 +7,11 @@ public abstract class ARViewController : MonoBehaviour
 {
     private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
 
-    //private const string ValueTextPath = "Viewport/Content/Values Text";
-
     [SerializeField]
     private DeviceController deviceController;
+
+    [SerializeField]
+    private GameObject aRDisplay;
 
     [SerializeField]
     private GameObject addDevicePopUp;
@@ -18,28 +19,18 @@ public abstract class ARViewController : MonoBehaviour
     [SerializeField]
     private GameObject removeDevicePopUp;
 
-    /*
-    [SerializeField]
-    private GameObject valuesScrollViewGO;
-    */
-
     [SerializeField]
     private InputField editNameInputField;
 
     [SerializeField]
     private Button addButton;
 
-    [SerializeField]
-    private Button deleteButton;
-
     private InputField addNameInputField;
-    //private Text valuesText;
     protected Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
     void Start()
     {     
-        //valuesText = valuesScrollViewGO.transform.Find(ValueTextPath).gameObject.GetComponent<Text>();
         addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
@@ -69,13 +60,6 @@ public abstract class ARViewController : MonoBehaviour
         }
     }
 
-    /*
-    private void UpdateValueDisplay()
-    {
-        valuesText.text = trackedAndRegisteredDevice.DeviceValuesToString();
-    }
-    */
-
     protected abstract void UpdateValueDisplay();
 
     private void UpdateName()
@@ -90,19 +74,14 @@ public abstract class ARViewController : MonoBehaviour
         {
             addButton.gameObject.SetActive(false);
             deviceController.gameObject.SetActive(true);
-
-            editNameInputField.gameObject.SetActive(true);
-            deleteButton.gameObject.SetActive(true);
-            //valuesScrollViewGO.SetActive(true);
+            aRDisplay.SetActive(true);
         }
         else
         {
             addButton.gameObject.SetActive(true);
             deviceController.gameObject.SetActive(false);
+            aRDisplay.SetActive(false);
 
-            editNameInputField.gameObject.SetActive(false);
-            deleteButton.gameObject.SetActive(false);
-            //valuesScrollViewGO.SetActive(false);
         }
     }
 
