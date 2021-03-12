@@ -12,26 +12,33 @@ public class DisplayToggle : MonoBehaviour
 
     public bool activeOnDefault;
 
-    public bool active { get; set; }
+    private bool active;
+    public bool Active
+    {
+        get{
+            return active;
+        }
 
-    // Start is called before the first frame update
+        set{
+            active = value;
+
+            if (active)
+            {
+                activeDisplay.SetActive(true);
+                inactiveDisplay.SetActive(false);
+            }
+            else
+            {
+                activeDisplay.SetActive(false);
+                inactiveDisplay.SetActive(true);
+            }
+        }
+    }
+    
+
     void Start()
     {
         active = activeOnDefault;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (active)
-        {
-            activeDisplay.SetActive(true);
-            inactiveDisplay.SetActive(false);
-        }
-        else
-        {
-            activeDisplay.SetActive(false);
-            inactiveDisplay.SetActive(true);
-        }
-    }
 }

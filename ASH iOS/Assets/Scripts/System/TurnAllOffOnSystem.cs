@@ -101,13 +101,13 @@ public class TurnAllOffOnSystem : MonoBehaviour
     {
         if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
         {
-            aRDisplay.active = false;
-            uIDisplay.active = false;
+            aRDisplay.Active = false;
+            uIDisplay.Active = false;
         }
         else
         {
-            aRDisplay.active = true;
-            uIDisplay.active = true;
+            aRDisplay.Active = true;
+            uIDisplay.Active = true;
         }
     }
 }
