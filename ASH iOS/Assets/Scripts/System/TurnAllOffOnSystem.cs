@@ -54,7 +54,11 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
             if (mouseDownTimer >= requiredHoldTime)
             {
-                aRDisplay.gameObject.SetActive(true);
+                if (active)                                             // show ar display if it is not disabled
+                {
+                    aRDisplay.gameObject.SetActive(true);
+                }
+
                 disableUIInteractions.DisableInteractions();
 
                 float distance = distanceCalculator.Distance * 100;
