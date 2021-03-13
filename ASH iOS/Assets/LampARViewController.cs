@@ -8,20 +8,22 @@ public class LampARViewController : ARViewController
 {
 
     [SerializeField]
-    private Image lightColor;
+    private Image lightColorImage;
 
     [SerializeField]
-    private Image lightTemperatureColor;
+    private Image lightTemperatureColorImage;
 
     [SerializeField]
-    private Text brightness;
+    private Text brightnessText;
 
     protected override void UpdateValueDisplay()
     {
-        lightColor.color = ((Lamp)trackedAndRegisteredDevice).lightColor;
-        lightTemperatureColor.color = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
+        base.UpdateValueDisplay();
+
+        lightColorImage.color = ((Lamp)trackedAndRegisteredDevice).lightColor;
+        lightTemperatureColorImage.color = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
         float brightnessInPercent = ((Lamp)trackedAndRegisteredDevice).lightBrightness * 100;
-        brightness.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
+        brightnessText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
 
     }
 }

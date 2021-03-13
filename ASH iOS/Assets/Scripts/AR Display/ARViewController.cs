@@ -29,6 +29,9 @@ public abstract class ARViewController : MonoBehaviour
     protected Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
+    [SerializeField]
+    private Text onOffText;
+
     void Start()
     {     
         addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
@@ -60,7 +63,20 @@ public abstract class ARViewController : MonoBehaviour
         }
     }
 
-    protected abstract void UpdateValueDisplay();
+    protected virtual void UpdateValueDisplay()
+    {
+        if (trackedAndRegisteredDevice.isOn)
+        {
+            onOffText.text = "ON";
+            onOffText.color = Color.green;
+
+        }
+        else
+        {
+            onOffText.text = "OFF";
+            onOffText.color = Color.red;
+        }
+    }
 
     private void UpdateName()
     {
