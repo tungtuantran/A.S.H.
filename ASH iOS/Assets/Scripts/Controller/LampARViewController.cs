@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class LampARViewController : ARViewController
+public class LampARViewController : DeviceARViewController
 {
 
     [SerializeField]

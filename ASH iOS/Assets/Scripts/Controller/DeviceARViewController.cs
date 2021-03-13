@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ARViewController : MonoBehaviour
+public abstract class DeviceARViewController : MonoBehaviour
 {
     private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
 
