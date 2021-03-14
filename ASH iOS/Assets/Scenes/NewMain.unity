@@ -1187,6 +1187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 100
+  lookAtARCamera: 0
 --- !u!114 &451497277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8395,9 +8396,9 @@ RectTransform:
   m_Father: {fileID: 1561164705}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.5, y: -45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 491.5, y: 0}
   m_SizeDelta: {x: 763.97656, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1528673284
@@ -9388,7 +9389,6 @@ GameObject:
   - component: {fileID: 8557925126174319583}
   - component: {fileID: 8557925126174319586}
   - component: {fileID: 8557925126174319585}
-  - component: {fileID: 8557925126174319526}
   m_Layer: 5
   m_Name: AR View
   m_TagString: Untagged
@@ -9396,18 +9396,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &8557925126174319526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8557925126174319524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b64c16472ee84fdb9f911cd46b67ded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8557925126174319579
 RectTransform:
   m_ObjectHideFlags: 0

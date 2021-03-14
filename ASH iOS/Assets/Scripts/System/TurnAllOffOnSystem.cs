@@ -56,7 +56,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
             {
                 if (active)                                             // show ar display if it is not disabled
                 {
-                    aRDisplay.gameObject.SetActive(true);
+                    ShowARDisplay();
                 }
 
                 disableUIInteractions.DisableInteractions();
@@ -105,13 +105,26 @@ public class TurnAllOffOnSystem : MonoBehaviour
     {
         if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
         {
-            aRDisplay.Active = false;
             uIDisplay.Active = false;
+            aRDisplay.Active = false;
+
         }
         else
         {
-            aRDisplay.Active = true;
             uIDisplay.Active = true;
+            aRDisplay.Active = true;
         }
+    }
+
+    private void ShowARDisplay()
+    {
+        //if arDisplay not already activated
+        if (!aRDisplay.gameObject.activeSelf)
+        {
+            //aRDisplay imitating rotation of camera
+            aRDisplay.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
+        }
+
+        aRDisplay.gameObject.SetActive(true);
     }
 }

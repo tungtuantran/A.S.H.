@@ -8,6 +8,7 @@ using UnityEngine;
 public class KeepDistanceInfront : MonoBehaviour
 {
     public float distance = 0.02f;
+    public bool lookAtARCamera;
 
     private Transform aRCamera;
     private Vector3 supportVector;
@@ -26,7 +27,11 @@ public class KeepDistanceInfront : MonoBehaviour
         Vector3 intersection = IntersectPoint(directionVector, supportVector, normalVector, p);
         supportVector = intersection;
         transform.position = supportVector + directionVector * distance;
-        transform.LookAt(supportVector);
+
+        if(lookAtARCamera)                                          
+        {
+            transform.LookAt(supportVector);
+        }
     }
 
     private Vector3 IntersectPoint(Vector3 rayVector, Vector3 rayPoint, Vector3 planeNormal, Vector3 planePoint)

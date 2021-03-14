@@ -1135,19 +1135,6 @@ Transform:
   m_Father: {fileID: 400002}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1554316065267169925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931830484591496777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2ef103e4d4e484eae604e2c78e7591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.02
 --- !u!1 &3988805765934085990
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,19 +2106,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &6891239763292701698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8288114370703234879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e2ef103e4d4e484eae604e2c78e7591, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  distance: 0.02
 --- !u!1 &8391519371121449062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,10 +2641,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9200648854634075096}
     - target: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: keepDistanceInfront
-      value: 
-      objectReference: {fileID: 6891239763292701698}
-    - target: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: followCameraDirection
       value: 
       objectReference: {fileID: 0}
@@ -2773,7 +2743,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
   m_PrefabInstance: {fileID: 540122398836405404}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8288114370703234879}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0995f1051ba4427961a4fe72513a59, type: 3}
@@ -2782,11 +2752,6 @@ MonoBehaviour:
 --- !u!224 &8288114370703234878 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-  m_PrefabInstance: {fileID: 540122398836405404}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8288114370703234879 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
   m_PrefabInstance: {fileID: 540122398836405404}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1759472349422044501
@@ -3547,10 +3512,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4695820300669072129}
     - target: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-      propertyPath: keepDistanceInfront
-      value: 
-      objectReference: {fileID: 1554316065267169925}
-    - target: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
       propertyPath: followCameraDirection
       value: 
       objectReference: {fileID: 0}
@@ -3653,7 +3614,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
   m_PrefabInstance: {fileID: 4821948445198872042}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3931830484591496777}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a0995f1051ba4427961a4fe72513a59, type: 3}
@@ -3662,11 +3623,6 @@ MonoBehaviour:
 --- !u!224 &3931830484591496776 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-  m_PrefabInstance: {fileID: 4821948445198872042}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3931830484591496777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8393489721542812579, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
   m_PrefabInstance: {fileID: 4821948445198872042}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5342208482565399995
