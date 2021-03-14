@@ -8,16 +8,17 @@ public class CopyPasteSystem : MonoBehaviour
     public static Device copiedDevice;
     public static bool active = true;
 
-    public Text copyPasteText;
+    [SerializeField]
+    private Text uIDisplayCopyText;
 
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
-    //private float copyPasteTextDisplayTimer = 4f;
 
     void Update()
     {
         Swipe();
+        UpdateCopyText();
     }
 
     public void Swipe()
@@ -81,12 +82,8 @@ public class CopyPasteSystem : MonoBehaviour
             {
                 copiedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
                 Handheld.Vibrate();
-
-                Debug.Log("copied device: " + copiedDevice.ToString());
-                copyPasteText.text = "Copied values from " + copiedDevice._name;
             }
         }
-        //Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
     }
 
     public void Paste()
@@ -96,34 +93,33 @@ public class CopyPasteSystem : MonoBehaviour
             if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId) != null)
             {
                 Device trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+
+                //same type name
                 if (copiedDevice.GetType().Name.Equals(trackedDevice.GetType().Name))
                 {
-                    Debug.Log("same type name: " + copiedDevice.GetType().Name);
                     switch (copiedDevice.GetType().Name)
                     {
+                        //is lamp
                         case "Lamp":
                             ((Lamp)trackedDevice).lightBrightness = ((Lamp)copiedDevice).lightBrightness;
                             ((Lamp)trackedDevice).lightColor = ((Lamp)copiedDevice).lightColor;
                             ((Lamp)trackedDevice).lightTemperature = ((Lamp)copiedDevice).lightTemperature;
                             Handheld.Vibrate();
-
-                            Debug.Log("is lamp");
-                            copyPasteText.text = "Pasted values from " + copiedDevice._name + " to " + ((Lamp)trackedDevice)._name;
                             break;
+                        //is unknown
                         default:
-                            Debug.Log("unknown");
                             break;
                     }
                 }
             }
         }
-        //Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
     }
 
-    /*
-    void ClearCopyPasteText()
+    private void UpdateCopyText()
     {
-        copyPasteText.text = "";
+        if (copiedDevice != null)
+        {
+            uIDisplayCopyText.text = copiedDevice._name;
+        }
     }
-    */
 }

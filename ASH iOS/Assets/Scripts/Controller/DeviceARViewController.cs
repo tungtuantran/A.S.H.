@@ -103,7 +103,7 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     public void EditName()
     {
-        if (!editNameInputField.text.Equals(""))
+        if (!string.IsNullOrWhiteSpace(editNameInputField.text))
         {
             deviceController.SelectDeviceByCurrentlyTrackedDevice();
             deviceController.EditNameOfSelectedDevice(editNameInputField.text);
@@ -115,7 +115,7 @@ public abstract class DeviceARViewController : MonoBehaviour
     public void AddTrackedDevice()                     
     {
         string name = addNameInputField.text;
-        if (name != "")
+        if (!string.IsNullOrWhiteSpace(name))
         {
             deviceController.AddCurrentlyTrackedDevice(name);
             editNameInputField.text = name;

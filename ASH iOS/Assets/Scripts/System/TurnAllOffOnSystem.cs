@@ -8,10 +8,10 @@ public class TurnAllOffOnSystem : MonoBehaviour
     public static bool active = true;
 
     [SerializeField]
-    private DisplayToggle aRDisplay;
+    private DisplayToggle aRDisplayToggle;
 
     [SerializeField]
-    private DisplayToggle uIDisplay;
+    private DisplayToggle uIDisplayToggle;
 
     public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 1.0f;
@@ -26,7 +26,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
     private void Start()
     {
         SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.allDevicesOff);
-        aRDisplay.gameObject.SetActive(false);
+        aRDisplayToggle.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
             mouseDown = true;
             distanceCalculator.Active = true;
 
-            KeepDistanceInfront keepDistanceInfront = aRDisplay.gameObject.GetComponent<KeepDistanceInfront>();
+            KeepDistanceInfront keepDistanceInfront = aRDisplayToggle.gameObject.GetComponent<KeepDistanceInfront>();
             if (keepDistanceInfront != null)
             {
                 keepDistanceInfront.SetDirection();
@@ -56,7 +56,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
             {
                 if (active)                                             // show ar display if it is not disabled
                 {
-                    ShowARDisplay();
+                    ShowARDisplayToggle();
                 }
 
                 disableUIInteractions.DisableInteractions();
@@ -97,7 +97,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
         mouseDown = false;
         distanceCalculator.Active = false;
         mouseDownTimer = 0.0f;
-        aRDisplay.gameObject.SetActive(false);
+        aRDisplayToggle.gameObject.SetActive(false);
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 
@@ -105,26 +105,26 @@ public class TurnAllOffOnSystem : MonoBehaviour
     {
         if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
         {
-            uIDisplay.Active = false;
-            aRDisplay.Active = false;
+            uIDisplayToggle.Active = false;
+            aRDisplayToggle.Active = false;
 
         }
         else
         {
-            uIDisplay.Active = true;
-            aRDisplay.Active = true;
+            uIDisplayToggle.Active = true;
+            aRDisplayToggle.Active = true;
         }
     }
 
-    private void ShowARDisplay()
+    private void ShowARDisplayToggle()
     {
-        //if arDisplay not already activated
-        if (!aRDisplay.gameObject.activeSelf)
+        //if aRDisplayToggle not already activated
+        if (!aRDisplayToggle.gameObject.activeSelf)
         {
-            //aRDisplay imitating rotation of camera
-            aRDisplay.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
+            //aRDisplayToggle imitating rotation of camera
+            aRDisplayToggle.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
         }
 
-        aRDisplay.gameObject.SetActive(true);
+        aRDisplayToggle.gameObject.SetActive(true);
     }
 }

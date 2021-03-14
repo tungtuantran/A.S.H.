@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class DisplayToggle : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject activeDisplay;
-
-    [SerializeField]
-    private GameObject inactiveDisplay;
+    public GameObject activeDisplay;
+    public GameObject inactiveDisplay;
 
     public bool activeOnDefault;
 
