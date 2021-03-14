@@ -15,7 +15,8 @@ public class FollowMousePosition : MonoBehaviour
 
     void Start()
     {
-        SetPivotOfChildUp();
+        //default pivot
+        SetPivotOfChildUp();                                                
 
         width = ((RectTransform)transform).rect.width;
         height = ((RectTransform)transform).rect.height;
@@ -53,6 +54,7 @@ public class FollowMousePosition : MonoBehaviour
         else
         {
             y = Input.mousePosition.y;
+            SetPivotOfChildUp();                                            // back to default pivot
         }
 
         //set position
