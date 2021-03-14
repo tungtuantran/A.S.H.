@@ -6,33 +6,33 @@ using UnityEngine.UI;
 
 public abstract class DeviceController : MonoBehaviour
 {
-    public Device SelectedDevice { get; set; }
+    public Device selectedDevice { get; set; }
 
     public void SetSelectedDeviceOnOff()
     {
-        if (SelectedDevice.isOn)
+        if (selectedDevice.isOn)
         {
-            SelectedDevice.isOn = false;
+            selectedDevice.isOn = false;
         }
         else
         {
-            SelectedDevice.isOn = true;
+            selectedDevice.isOn = true;
         }
     }
 
     public void RemoveSelectedDevice()
     {
-        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(SelectedDevice);
+        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
     }
 
     public void SelectDeviceByCurrentlyTrackedDevice()
     {
-        SelectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+        selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
     }
 
     public void EditNameOfSelectedDevice(string name)
     {
-        SelectedDevice._name = name;
+        selectedDevice._name = name;
     }
 
     public abstract void AddCurrentlyTrackedDevice(string name);

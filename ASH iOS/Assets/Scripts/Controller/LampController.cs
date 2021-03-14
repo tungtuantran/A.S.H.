@@ -26,7 +26,7 @@ public class LampController : DeviceController
             SetLightColor(colorPicker.selectedColor);
         }
         if(updateLightBrightness){
-            SetLightBrightness(1 - brightnessCalculator.Distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+            SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
         }
         if (updateLightTemperature)
         {
@@ -68,12 +68,12 @@ public class LampController : DeviceController
 
     private void SetLightColor(Color color)
     {
-        ((Lamp) SelectedDevice).lightColor = color;
+        ((Lamp) selectedDevice).lightColor = color;
     }
 
     private void SetLightTemperature(Color temperatureColor)
     {
-        ((Lamp) SelectedDevice).lightTemperature = temperatureColor;
+        ((Lamp) selectedDevice).lightTemperature = temperatureColor;
     }
 
     private void SetLightBrightness(float brightness)
@@ -82,7 +82,7 @@ public class LampController : DeviceController
         {
             brightness = 0.15f;
         }
-        ((Lamp) SelectedDevice).lightBrightness = brightness;
+        ((Lamp) selectedDevice).lightBrightness = brightness;
     }
 
     public override void AddCurrentlyTrackedDevice(string name)

@@ -16,8 +16,7 @@ public class ColorPicker : MonoBehaviour
     public KeepDistanceInfront keepDistanceInfront;
     public bool worldSpaceMode;
 
-    [SerializeField]
-    private Image colorPreview;
+    public ColorPreview colorPreview;
 
     public Color selectedColor { get; set; } = Color.white;
     private RectTransform Rect;
@@ -64,7 +63,10 @@ public class ColorPicker : MonoBehaviour
 
     void Update()
     {
-        colorPreview.gameObject.SetActive(active);
+        if (colorPreview != null)
+        {
+            colorPreview.SetActive(active);
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -101,6 +103,9 @@ public class ColorPicker : MonoBehaviour
         color.a = 1;                                            //so color is not transparent anymore
         selectedColor = color;
 
-        colorPreview.color = color;
+        if (colorPreview != null)
+        {
+            colorPreview.SetColor(color);
+        }
     }
 }

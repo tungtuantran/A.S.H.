@@ -13,9 +13,9 @@ public class CopyPasteSystem : MonoBehaviour
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
-    private float copyPasteTextDisplayTimer = 4f;
+    //private float copyPasteTextDisplayTimer = 4f;
 
-    private void Update()
+    void Update()
     {
         Swipe();
     }
@@ -86,8 +86,7 @@ public class CopyPasteSystem : MonoBehaviour
                 copyPasteText.text = "Copied values from " + copiedDevice._name;
             }
         }
-        Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
-
+        //Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
     }
 
     public void Paste()
@@ -118,11 +117,13 @@ public class CopyPasteSystem : MonoBehaviour
                 }
             }
         }
-        Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
+        //Invoke("ClearCopyPasteText", copyPasteTextDisplayTimer);
     }
 
+    /*
     void ClearCopyPasteText()
     {
         copyPasteText.text = "";
     }
+    */
 }
