@@ -62,7 +62,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 disableUIInteractions.DisableInteractions();
 
                 float distance = distanceCalculator.Distance * 100;
-                if (distance > 0.3f)
+                if (distance > 0.6f)                                    //old max distance: 0.3f
                 {
                     TurnAllOffOn();
                 }
