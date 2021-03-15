@@ -121,5 +121,9 @@ public class CopyPasteSystem : MonoBehaviour
         {
             uIDisplayCopyText.text = copiedDevice._name;
         }
+        else
+        {
+            uIDisplayCopyText.text = "Empty";
+        }
     }
 }
