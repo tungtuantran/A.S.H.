@@ -120,10 +120,6 @@ public abstract class DeviceARViewController : MonoBehaviour
             deviceController.AddCurrentlyTrackedDevice(name);
             editNameInputField.text = name;
         }
-        else
-        {
-            //TODO: fehlermeldung im UI
-        }
 
         addDevicePopUp.SetActive(false);
         addButton.gameObject.SetActive(false);
