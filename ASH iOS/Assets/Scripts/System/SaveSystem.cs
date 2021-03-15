@@ -8,8 +8,6 @@ public class SaveSystem : MonoBehaviour
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
-        Debug.Log("saving device collection");
-
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + FILE_NAME;
         FileStream stream = new FileStream(path, FileMode.Create);
@@ -21,8 +19,6 @@ public class SaveSystem : MonoBehaviour
 
     public static DeviceCollectionData LoadDeviceCollection()                         
     {
-        Debug.Log("loading device collection");
-
         string path = Application.persistentDataPath + FILE_NAME;
         if (File.Exists(path))
         {

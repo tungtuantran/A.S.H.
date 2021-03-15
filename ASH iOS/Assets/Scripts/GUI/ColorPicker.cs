@@ -84,25 +84,40 @@ public class ColorPicker : MonoBehaviour
         }
     }
 
-    private void SelectColor()
+    private void SelectColor()                                  // get color by mousePosition in Rect
     {
+        //delta is the distance from the Rect center
         Vector2 delta;
+
+        //width and height of Rect
+        float width, height;
+
+        // Unity's Library function that grabs a point in the screen and converts it into a point in the Rect
+        //in this case we convert the mpuse position
         RectTransformUtility.ScreenPointToLocalPointInRectangle(Rect, Input.mousePosition, aRCamera, out delta);
 
-        float width = Rect.rect.width;
-        float height = Rect.rect.height;
+        width = Rect.rect.width;
+        height = Rect.rect.height;
         delta += new Vector2(width * .5f, height * .5f);
 
+        //if mouse is in image 
         float x = Mathf.Clamp(delta.x / width, 0f, 1f);
         float y = Mathf.Clamp(delta.y / height, 0f, 1f);
 
+        //convert rect x,y values into texture x,y values
         int texX = Mathf.RoundToInt(x * ColorTexture.width);
         int texY = Mathf.RoundToInt(y * ColorTexture.height);
 
+        // get color from textures pixel in position x,y
         Color color = ColorTexture.GetPixel(texX, texY);
-        color.a = 1;                                            //so color is not transparent anymore
+
+        // makes color not transparent anymore
+        color.a = 1;
+
+        // set color
         selectedColor = color;
 
+        //s how preview
         if (colorPreview != null)
         {
             colorPreview.SetColor(color);
