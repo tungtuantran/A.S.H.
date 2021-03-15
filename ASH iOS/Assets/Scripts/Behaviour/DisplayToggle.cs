@@ -6,7 +6,6 @@ public class DisplayToggle : MonoBehaviour
 {
     public GameObject activeDisplay;
     public GameObject inactiveDisplay;
-
     public bool activeOnDefault;
 
     private bool active;

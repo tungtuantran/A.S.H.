@@ -32,19 +32,16 @@ public class LightEstimation : MonoBehaviour
         if (args.lightEstimation.averageBrightness.HasValue)
         {
             _light.intensity = args.lightEstimation.averageBrightness.Value;
-            //Debug.Log("Average Brightness: " + args.lightEstimation.averageBrightness.Value);
         }
 
         if (args.lightEstimation.averageColorTemperature.HasValue)
         {
             _light.colorTemperature = args.lightEstimation.averageColorTemperature.Value;
-            //Debug.Log("Average Color Temperature: " + args.lightEstimation.averageColorTemperature.Value);
         }
 
         if (args.lightEstimation.colorCorrection.HasValue)
         {
             _light.color = args.lightEstimation.colorCorrection.Value;
-            //Debug.Log("Color Correction: " + args.lightEstimation.colorCorrection.Value);
         }
     }
 

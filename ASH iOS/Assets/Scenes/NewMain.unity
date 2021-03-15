@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 100
-  lookAtARCamera: 0
+  lookAtlineSupportVectorOfLine: 0
 --- !u!114 &451497277
 MonoBehaviour:
   m_ObjectHideFlags: 0

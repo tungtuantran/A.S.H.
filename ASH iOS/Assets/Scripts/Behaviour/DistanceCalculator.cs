@@ -31,7 +31,7 @@ public class DistanceCalculator: MonoBehaviour
 
     private void Update()
     {
-        //set preview
+        //show preview
         if (distancePreview != null)
         {
             distancePreview.SetActive(active);
@@ -46,19 +46,29 @@ public class DistanceCalculator: MonoBehaviour
 
     private void CalculateDistancBetweenCameraAndPlane()
     {
-        float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;       //plane
-        Vector3 p = aRCamera.position;                                                                                          // current camera position
+        // calculate a with plane equation
+        float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;
 
+        // calculate vector p -> urrent camera position
+        Vector3 p = aRCamera.position;                                                                                          
+
+        // calculate distance between plane and point vector p
         float realDistance = Mathf.Abs(normalVector.x * p.x + normalVector.y * p.y + normalVector.z * p.z - a) / Mathf.Sqrt(Mathf.Pow(normalVector.x, 2) + Mathf.Pow(normalVector.y, 2) + Mathf.Pow(normalVector.z, 2));
+
+        // distance is real distance devided by 4
         distance = realDistance / 4;                                                            
     }
 
     private void Reset()
     {
+        //set new support vector of plane
         aRCamera = Camera.main.transform;
         supportVector = aRCamera.position;
+
+        //reset distance to 0
         distance = 0;
 
+        //set normal vector of plane
         if (!upwards)
         {
             normalVector = aRCamera.forward;

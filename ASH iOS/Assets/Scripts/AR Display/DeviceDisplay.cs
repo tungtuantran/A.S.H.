@@ -15,7 +15,8 @@ public abstract class DeviceDisplay : MonoBehaviour
     {
         trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
 
-        if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
+        // if tracked Device is also registered in DeviceCollection
+        if (trackedAndRegisteredDevice != null)                         
         {
             if (!DeviceCollection.DeviceCollectionInstance.allDevicesOff)
             {

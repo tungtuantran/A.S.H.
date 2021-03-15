@@ -33,7 +33,7 @@ public class ColorPicker : MonoBehaviour
         {
             if (keepDistanceInfront != null)
             {
-                keepDistanceInfront.SetDirection();
+                keepDistanceInfront.SetLine();
             }
 
             Image colorImage = GetComponent<Image>();

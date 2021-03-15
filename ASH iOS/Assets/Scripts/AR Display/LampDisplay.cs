@@ -31,7 +31,8 @@ public class LampDisplay : DeviceDisplay
         float h, s, v;
         Color.RGBToHSV(temperatureColor, out h, out s, out v);
 
-        float temperatureColorPortion = s;                  //the whiter the temperatureColor is, the smaller its portion
+        //the whiter the temperatureColor, the smaller its portion
+        float temperatureColorPortion = s;                  
         float colorPortion = 1 - temperatureColorPortion;
         
         float r, g, b;

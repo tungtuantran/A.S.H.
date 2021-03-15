@@ -105,4 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 0.02
-  lookAtARCamera: 1
+  lookAtSupportVectorOfLine: 1

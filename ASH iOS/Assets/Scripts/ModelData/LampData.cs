@@ -14,14 +14,6 @@ public class LampData : IDeviceData
     public float[] lightColor { get; set; }
     public float lightBrightness { get; set; }               //10 out of 10
     public float[] lightTemperature { get; set; }
-    //public float lightTemperature { get; set; }              //5 out of 10
-
-    /*
-    public bool isTimerSet { get; set; }
-    public string timerStart { get; set; }                 //example: 09:01
-    public string timerStop { get; set; }
-    public bool[] timerDaysOfWeek { get; set; }
-    */
 
     public LampData(Lamp lamp)
     {
@@ -43,13 +35,5 @@ public class LampData : IDeviceData
         lightTemperature[1] = lamp.lightTemperature.g;
         lightTemperature[2] = lamp.lightTemperature.b;
         lightTemperature[3] = lamp.lightTemperature.a;
-        //lightTemperature = lamp.lightTemperature;
-
-        /*
-        isTimerSet = lamp.isTimerSet;
-        timerStart = lamp.timerStart;
-        timerStop = lamp.timerStop;
-        timerDaysOfWeek = lamp.timerDaysOfWeek;
-        */
     }
 }

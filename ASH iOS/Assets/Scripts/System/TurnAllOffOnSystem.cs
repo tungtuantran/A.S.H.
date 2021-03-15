@@ -39,7 +39,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
             KeepDistanceInfront keepDistanceInfront = aRDisplayToggle.gameObject.GetComponent<KeepDistanceInfront>();
             if (keepDistanceInfront != null)
             {
-                keepDistanceInfront.SetDirection();
+                keepDistanceInfront.SetLine();
             }
         }
 

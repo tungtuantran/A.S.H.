@@ -8,30 +8,28 @@ using UnityEngine;
 public class KeepDistanceInfront : MonoBehaviour
 {
     public float distance = 0.02f;
-    public bool lookAtARCamera;
+    public bool lookAtlineSupportVectorOfLine;
 
     private Transform aRCamera;
-    private Vector3 supportVector;
-    private Vector3 directionVector;
+    private Vector3 lineSupportVector;
+    private Vector3 lineDirectionVector;
+
+    private Vector3 planePoint;
+    private Vector3 planeNormalVector;
 
     private void Awake()
     {
         aRCamera = Camera.main.transform;
-        SetDirection();
+        SetLine();
     }
 
     private void Update()
     {
-        Vector3 p = aRCamera.position;                              // current camera position
-        Vector3 normalVector = directionVector;
-        Vector3 intersection = IntersectPoint(directionVector, supportVector, normalVector, p);
-        supportVector = intersection;
-        transform.position = supportVector + directionVector * distance;
+        SetPlane();
 
-        if(lookAtARCamera)                                          
-        {
-            transform.LookAt(supportVector);
-        }
+        // calculate intersection of line and plane
+        Vector3 intersection = IntersectPoint(lineDirectionVector, lineSupportVector, planeNormalVector, planePoint);
+        CalculatePosition(intersection);
     }
 
     private Vector3 IntersectPoint(Vector3 rayVector, Vector3 rayPoint, Vector3 planeNormal, Vector3 planePoint)
@@ -43,9 +41,34 @@ public class KeepDistanceInfront : MonoBehaviour
         return rayPoint - rayVector * prod3;
     }
 
-    public void SetDirection()
+    public void SetLine()
     {
-        supportVector = aRCamera.position;
-        directionVector = aRCamera.forward;
+        //set support and direction vector of line by camera position and alignment
+        lineSupportVector = aRCamera.position;
+        lineDirectionVector = aRCamera.forward;
+    }
+
+    private void SetPlane()
+    {
+        // point of plane is current camera position
+        planePoint = aRCamera.position;
+
+        // normal vector of plane is direction vector of line
+        planeNormalVector = lineDirectionVector;
+    }
+
+    private void CalculatePosition(Vector3 linePlaneIntersection)
+    {
+        // calculated intersection is new lineSupportVector
+        lineSupportVector = linePlaneIntersection;
+
+        // set new position of object with line equation
+        transform.position = lineSupportVector + lineDirectionVector * distance;
+
+        //set alignment
+        if (lookAtlineSupportVectorOfLine)
+        {
+            transform.LookAt(lineSupportVector);
+        }
     }
 }
