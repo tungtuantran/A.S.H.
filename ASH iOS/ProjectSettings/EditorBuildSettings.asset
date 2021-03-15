@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Main.unity
+    path: 
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/Scenes/ColorPicker.unity
+    path: 
     guid: ecc033b3a4d714b1cbac023a06a53965
   - enabled: 1
     path: Assets/Scenes/NewMain.unity
