@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class TurnAllOffOnSystem : MonoBehaviour
 {
+    private const float RequiredDistance = 0.6f;
+
     public static bool active = true;
 
     [SerializeField]
@@ -62,12 +64,11 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 disableUIInteractions.DisableInteractions();
 
                 float distance = distanceCalculator.distance * 100;
-                if (distance > 0.6f)                                    //old max distance: 0.3f
+                if (distance > RequiredDistance)
                 {
                     TurnAllOffOn();
                 }
             }
-            //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
         }
     }
 
@@ -101,9 +102,9 @@ public class TurnAllOffOnSystem : MonoBehaviour
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 
-    private void SetActiveOfDisplayToggles(bool active)
+    private void SetActiveOfDisplayToggles(bool isActive)
     {
-        if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+        if (isActive)
         {
             uIDisplayToggle.Active = false;
             aRDisplayToggle.Active = false;

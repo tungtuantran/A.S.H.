@@ -35,7 +35,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void OnApplicationPause(bool pause)                         // save on pause & exit
+    private void OnApplicationPause(bool pause)                         // saves on pause & exit
     {
         SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);
     }
