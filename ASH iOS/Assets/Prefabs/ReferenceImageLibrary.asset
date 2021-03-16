@@ -65,3 +65,13 @@ MonoBehaviour:
     m_SpecifySize: 1
     m_Name: WL4_005
     m_Texture: {fileID: 2800000, guid: d49e4ec9f555349708de7921403c1d99, type: 3}
+  - m_SerializedGuid:
+      m_GuidLow: 5253685460524240071
+      m_GuidHigh: 2368528902844275584
+    m_SerializedTextureGuid:
+      m_GuidLow: 14147412993015411277
+      m_GuidHigh: 4335617547753177624
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: WL4_006
+    m_Texture: {fileID: 2800000, guid: 336df24db529c4551842c74730352b3c, type: 3}
