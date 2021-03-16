@@ -9,31 +9,29 @@ namespace Tests
     public class TestSuite
     {
         private LampController lampController;
-        Device lamp;
-
+        private Device lamp1;
+        
         [SetUp]
         public void SetUp()
         {
-            /*
+            DeviceCollection.DeviceCollectionInstance.registeredDevices.Clear();
+
             GameObject root = new GameObject();
             root.AddComponent<LampController>();
+
+            lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
+
             lampController = root.GetComponent<LampController>();
-
-            lamp = new Lamp("standing_lamp1", 1, "Lamp 1");
-            lampController.selectedDevice = lamp;
-            */
+            lampController.selectedDevice = lamp1;   
         }
-
-
 
         [TearDown]
         public void Teardown()
         {
-            //Object.Destroy(lampController.gameObject);
-            
+            Object.Destroy(lampController.gameObject);
         }
 
-        /*
+        
         [Test]
         public void SetSelectedDeviceOn()
         {
@@ -41,7 +39,7 @@ namespace Tests
 
             Assert.IsTrue(lampController.selectedDevice.isOn);
         }
-
+        
         [Test]
         public void SetSelectedDeviceOff()
         {
@@ -49,16 +47,13 @@ namespace Tests
             lampController.SetSelectedDeviceOnOff();
 
             Assert.IsFalse(lampController.selectedDevice.isOn);
-        }
-        */
+        }   
 
         [Test]
-        public void RemoveSelectedDevice()
+        public void RemoveSelectedDeviceGood()
         {
-
             //setup device collection
-            /*
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp);
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp1);
 
             bool removed = false;
 
@@ -68,23 +63,43 @@ namespace Tests
                 removed = true;
             }
             
-            Debug.Log("anzahl: " + DeviceCollection.DeviceCollectionInstance.registeredDevices.Count);
-            Assert.IsTrue(removed);
-            */
-            //DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1));
-            Debug.Log("anzahl: " + DeviceCollection.DeviceCollectionInstance.registeredDevices.Count);
+            Assert.IsTrue(removed);            
         }
+        
+        [Test]
+        public void RemoveSelectedDeviceEmptyDeviceCollection()
+        {
+            bool removed = false;
 
+            lampController.RemoveSelectedDevice();
 
+            if (DeviceCollection.DeviceCollectionInstance.registeredDevices.Count == 0)
+            {
+                removed = true;
+            }
+
+            Assert.IsTrue(removed);
+        }
+        
+        [Test]
+        public void RemoveSelectedDeviceSelectedDeviceIsNull()
+        {
+            //set selected device null
+            lampController.selectedDevice = null;
+
+            Assert.Throws<NoDeviceException>(() => lampController.RemoveSelectedDevice());
+        }
+        
 
         /*
-        // A Test behaves as an ordinary method
         [Test]
-        public void TestSuiteSimplePasses()
+        public void ClearDeviceCollection()
         {
-            // Use the Assert class to test conditions
+            DeviceCollection.DeviceCollectionInstance.registeredDevices.Clear();
         }
+        */
 
+        /*
         // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
         // `yield return null;` to skip a frame.
         [UnityTest]

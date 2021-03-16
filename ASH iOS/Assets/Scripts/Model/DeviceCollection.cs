@@ -44,14 +44,28 @@ public class DeviceCollection
 
     public void AddRegisteredDevice(Device device)
     {
-        this.registeredDevices.Add(device);
-        this.SaveDeviceCollection();
+        if (device != null)
+        {
+            registeredDevices.Add(device);
+            SaveDeviceCollection();
+        }
+        else
+        {
+            throw new NoDeviceException();
+        }
     }
 
     public void RemoveRegisteredDevice(Device device)
     {
-        this.registeredDevices.Remove(device);
-        this.SaveDeviceCollection();
+        if (device != null)
+        {
+            registeredDevices.Remove(device);
+            SaveDeviceCollection();
+        }
+        else
+        {
+            throw new NoDeviceException();
+        }
     }
 
     public void SaveDeviceCollection()                 //has to be called if sth needs to be updated
@@ -91,5 +105,17 @@ public class DeviceCollection
 
             allDevicesOff = deviceCollectionData.allDevicesOff;
         }
+    }
+}
+
+[Serializable]
+public class NoDeviceException : Exception
+{
+    public NoDeviceException()
+    {
+    }
+
+    public NoDeviceException(string message) : base(message)
+    {
     }
 }

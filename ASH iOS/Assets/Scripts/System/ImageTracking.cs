@@ -117,7 +117,7 @@ public class ImageTracking : MonoBehaviour
 }
 
 [Serializable]
-class InvalidMarkerException : Exception
+public class InvalidMarkerException : Exception
 {
     public InvalidMarkerException()
     {
