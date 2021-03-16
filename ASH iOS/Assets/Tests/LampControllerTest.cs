@@ -7,7 +7,7 @@ using UnityEngine.XR.ARFoundation;
 
 namespace Tests
 {
-    public class TestSuite
+    public class LampControllerTest
     {
         private LampController lampController;
         private Device lamp1;
