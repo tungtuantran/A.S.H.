@@ -73,5 +73,5 @@ MonoBehaviour:
       m_GuidHigh: 4335617547753177624
     m_Size: {x: 0.1, y: 0.1}
     m_SpecifySize: 1
-    m_Name: WL4_006
+    m_Name: WL4_b
     m_Texture: {fileID: 2800000, guid: 336df24db529c4551842c74730352b3c, type: 3}

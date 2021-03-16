@@ -64,7 +64,8 @@ public class ImageTracking : MonoBehaviour
     {
         //Decode codeString to get device name and Id
         string codeString = trackedImage.referenceImage.name;       // example: TL1_001
-        string[] splittedCode = codeString.Split('_');              // example: [TL1], [001]        
+        string[] splittedCode = codeString.Split('_');              // example: [TL1], [001]
+
         deviceName = DeviceShortNameToName(splittedCode[0]);
         deviceId = ConvertIdStringToInteger(splittedCode[1]);
 
@@ -86,14 +87,24 @@ public class ImageTracking : MonoBehaviour
 
     private int ConvertIdStringToInteger(string idInString)
     {
+        int idInInteger;
         try
         {
-            return Convert.ToInt32(idInString);
+            idInInteger = Convert.ToInt32(idInString);
         }
-        catch (Exception e)                                         // example: if deviceId = null or not an integer
+        catch (FormatException e)
         {
+            //if idInString is not convertable to an integer
+            throw new InvalidMarkerException("Invalid Device ID", e);       
+        }
+
+        if(idInInteger == 0)
+        {
+            //if id = 0
             throw new InvalidMarkerException("Invalid Device ID");
         }
+
+        return idInInteger;
     }
 
     private string DeviceShortNameToName(string deviceShortName)
@@ -125,5 +136,10 @@ public class InvalidMarkerException : Exception
 
     public InvalidMarkerException(string message) : base(message)
     {
+    }
+
+    public InvalidMarkerException(string message, Exception e): base(message, e)
+    {
+
     }
 }
