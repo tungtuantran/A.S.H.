@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class LampController : DeviceController
 {
@@ -87,7 +88,26 @@ public class LampController : DeviceController
 
     public override void AddCurrentlyTrackedDevice(string name)
     {
-        Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
-        DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
+        }
+        else
+        {
+            throw new NoInputException();
+        }
+    }
+}
+
+[Serializable]
+public class NoInputException : Exception
+{
+    public NoInputException()
+    {
+    }
+
+    public NoInputException(string message) : base(message)
+    {
     }
 }
