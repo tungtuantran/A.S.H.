@@ -2540,7 +2540,7 @@ PrefabInstance:
     - target: {fileID: 680179015763423239, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 630d726afcc754dfeaf6a2374617e686, type: 3}
+      objectReference: {fileID: 21300000, guid: 1e0c281902f634920b678d6e537d3b06, type: 3}
     - target: {fileID: 680179016556287438, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2557,6 +2557,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e8f7cb4e274dd4a66bde615ad327ba25, type: 3}
+    - target: {fileID: 2046668696112420353, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: m_Text
+      value: Color & Brightness
+      objectReference: {fileID: 0}
     - target: {fileID: 2301905646061594562, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
       value: Copy Text
@@ -2691,11 +2695,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateLightColorAndBrightness
+      value: UpdateLightColor
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: LampController, Assembly-CSharp
+      value: LampController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 2846426402580894742, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2708,6 +2712,10 @@ PrefabInstance:
     - target: {fileID: 3205865912247296843, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Text
       value: Copy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452218739893621384, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: m_Name
+      value: Color and Brightness Text
       objectReference: {fileID: 0}
     - target: {fileID: 3840555407483625491, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Sprite
@@ -2751,7 +2759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4248284092996546876, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
-      value: Color And Brightness Subbutton
+      value: Color Subbutton
       objectReference: {fileID: 0}
     - target: {fileID: 4248284093417555715, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
@@ -2784,6 +2792,10 @@ PrefabInstance:
     - target: {fileID: 4572945599761354687, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261334591303192207, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: m_Name
+      value: Color And Brightness Subbutton
       objectReference: {fileID: 0}
     - target: {fileID: 5552546432349682803, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
@@ -2849,6 +2861,34 @@ PrefabInstance:
       propertyPath: onPointerDown.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1104170079162957088}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpdateLightColorAndBrightness
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LampController, GameAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084474748517673893, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -2897,29 +2937,13 @@ PrefabInstance:
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 6613650177102799896, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613650177102799896, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613650177641323715, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -120
-      objectReference: {fileID: 0}
-    - target: {fileID: 6613650177641323715, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 6636144862084712690, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
       value: Brightness Text
       objectReference: {fileID: 0}
     - target: {fileID: 6636144862331940155, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
-      value: Color And Intensity Text
+      value: Color Text
       objectReference: {fileID: 0}
     - target: {fileID: 6636144863710294057, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Name
@@ -2995,7 +3019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8041131390309968306, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Text
-      value: Color/Brightness
+      value: Color
       objectReference: {fileID: 0}
     - target: {fileID: 8041131390696415117, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Enabled
@@ -3069,6 +3093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Copy Subbutton
       objectReference: {fileID: 0}
+    - target: {fileID: 8827221324244619188, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 630d726afcc754dfeaf6a2374617e686, type: 3}
     - target: {fileID: 9115601743075326202, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: m_Text
       value: On/Off

@@ -217,13 +217,13 @@ MonoBehaviour:
   m_Text: '1. Scan the marker of your device.
 
     2. Or press and hold the controller
-    button and select "Color" Sub Button by moving your finger over.
+    button and select "Temperature" Sub Button by moving your finger over.
 
-    3. Keep
-    holding pressed and move your device up (warm) or down (cold) to set the temperature.
+    3.
+    Keep holding pressed and move your device up (warm) or down (cold) to set the
+    temperature.
 
-    4.
-    You can also move your finger for a more precise selection.'
+    4. You can also move your finger for a more precise selection.'
 --- !u!222 &7364807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.023376703, a: 0.5019608}
+  m_Color: {r: 0, g: 1, b: 0.023376703, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4384,7 +4384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.023376703, a: 0.5019608}
+  m_Color: {r: 0, g: 1, b: 0.023376703, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11829,7 +11829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11989,7 +11989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.5019608}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

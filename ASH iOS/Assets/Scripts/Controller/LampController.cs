@@ -47,6 +47,12 @@ public class LampController : DeviceController
         temperaturePicker.Active = false;
     }
 
+    public void UpdateLightColor()
+    {
+        updateLightColor = true;
+        colorPicker.Active = true;
+    }
+
     public void UpdateLigthBrightness()
     {
         updateLightBrightness = true;
@@ -61,9 +67,7 @@ public class LampController : DeviceController
 
     public void UpdateLightColorAndBrightness()
     {
-        updateLightColor = true;
-        colorPicker.Active = true;
-
+        UpdateLightColor();
         UpdateLigthBrightness();
     }
 
