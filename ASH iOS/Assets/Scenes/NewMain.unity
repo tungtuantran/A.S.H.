@@ -220,7 +220,7 @@ MonoBehaviour:
     button and select "Temperature" Sub Button by moving your finger over.
 
     3.
-    Keep holding pressed and move your device up (warm) or down (cold) to set the
+    Keep holding pressed and move your phone up (warm) or down (cold) to set the
     temperature.
 
     4. You can also move your finger for a more precise selection.'
@@ -1533,8 +1533,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "1. Scan the marker of your device.\n2. Or press and hold the controller
     button and select \"Color\" Sub Button by moving your finger over.\n3. Keep holding
-    pressed and move your device up, down, left or right to to select the color.
-    \n4. You can also move your finger for a more precise selection."
+    pressed and move your phone up, down, left or right to to select the color. \n4.
+    You can also move your finger for a more precise selection."
 --- !u!222 &254995192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2618,7 +2618,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '1.  Press and hold on the screen.
 
-    2. Move your device up or down.'
+    2. Move your phone up or down.'
 --- !u!222 &449257778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2898,7 +2898,7 @@ MonoBehaviour:
     button and select "Brightness" Sub Button by moving your finger over.
 
     3.
-    Keep holding pressed and move your device forwards or backwards to dim the light.
+    Keep holding pressed and move your phone forwards or backwards to dim the light.
 
 
     Info:
