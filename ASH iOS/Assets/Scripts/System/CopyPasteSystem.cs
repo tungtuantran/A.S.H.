@@ -101,9 +101,9 @@ public class CopyPasteSystem : MonoBehaviour
                     {
                         //is lamp
                         case "Lamp":
-                            ((Lamp)trackedDevice).lightBrightness = ((Lamp)copiedDevice).lightBrightness;
-                            ((Lamp)trackedDevice).lightColor = ((Lamp)copiedDevice).lightColor;
-                            ((Lamp)trackedDevice).lightTemperature = ((Lamp)copiedDevice).lightTemperature;
+                            ((Lamp)trackedDevice).LightBrightness = ((Lamp)copiedDevice).LightBrightness;
+                            ((Lamp)trackedDevice).LightColor = ((Lamp)copiedDevice).LightColor;
+                            ((Lamp)trackedDevice).LightTemperature = ((Lamp)copiedDevice).LightTemperature;
                             Handheld.Vibrate();
                             break;
                         //is unknown
@@ -119,7 +119,7 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if (copiedDevice != null)
         {
-            uIDisplayCopyText.text = copiedDevice._name;
+            uIDisplayCopyText.text = copiedDevice.Name;
         }
         else
         {

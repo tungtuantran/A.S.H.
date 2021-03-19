@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Lamp : Device
 {
-    public Color lightColor { get; set; } = Color.white;
-    public float lightBrightness { get; set; } = 1.0f;              // 0.15 - 1.00
-    public Color lightTemperature { get; set; } = Color.white;      //public float lightTemperature { get; set; } = 4000.0f;          // 2700k - 6500k -> TODO ????
+    public Color LightColor { get; set; } = Color.white;
+    public float LightBrightness { get; set; } = 1.0f;              // 0.15 - 1.00
+    public Color LightTemperature { get; set; } = Color.white;      //public float LightTemperature { get; set; } = 4000.0f;          // 2700k - 6500k -> TODO ????
 
     public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {
@@ -20,29 +20,29 @@ public class Lamp : Device
     public override void LoadDevice(IDeviceData deviceData)
     {
         LampData lampData = (LampData) deviceData;
-        deviceName = lampData.deviceName;
-        id = lampData.id;
-        _name = lampData._name;
-        isOn = lampData.isOn;
+        DeviceName = lampData.DeviceName;
+        Id = lampData.Id;
+        Name = lampData.Name;
+        IsOn = lampData.IsOn;
 
-        lightColor = new Color(lampData.lightColor[0], lampData.lightColor[1], lampData.lightColor[2], lampData.lightColor[3]);
-        lightBrightness = lampData.lightBrightness;
-        lightTemperature = new Color(lampData.lightTemperature[0], lampData.lightTemperature[1], lampData.lightTemperature[2], lampData.lightTemperature[3]);
+        LightColor = new Color(lampData.LightColor[0], lampData.LightColor[1], lampData.LightColor[2], lampData.LightColor[3]);
+        LightBrightness = lampData.LightBrightness;
+        LightTemperature = new Color(lampData.LightTemperature[0], lampData.LightTemperature[1], lampData.LightTemperature[2], lampData.LightTemperature[3]);
     }
 
     public override string ToString()
     {
         return base.ToString()
-            + ", Light Color: " + lightColor.ToString()
-            + ", Light Brightness: " + lightBrightness.ToString()
-            + ", Light Temperature: " + lightTemperature.ToString();
+            + ", Light Color: " + LightColor.ToString()
+            + ", Light Brightness: " + LightBrightness.ToString()
+            + ", Light Temperature: " + LightTemperature.ToString();
     }
 
     public override string DeviceValuesToString()
     {
         string mode;
 
-        if (isOn)
+        if (IsOn)
         {
             mode = "ON";
         }
@@ -52,9 +52,9 @@ public class Lamp : Device
         }
 
         return "Mode: " + mode
-            + "\nLight Color: " + lightColor.ToString()
-            + "\n Brightness: " + lightBrightness.ToString()
-            + "\n Temperature: " + lightTemperature.ToString();
+            + "\nLight Color: " + LightColor.ToString()
+            + "\n Brightness: " + LightBrightness.ToString()
+            + "\n Temperature: " + LightTemperature.ToString();
     }
 
 }

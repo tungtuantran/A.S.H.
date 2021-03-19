@@ -5,21 +5,23 @@ using UnityEngine;
 
 public abstract class DeviceController : MonoBehaviour
 {
-    protected Device selectedDevice;
-    public Device SelectedDevice
+    protected Device device;
+    protected int deviceId;
+    protected string deviceName;
+
+    public Device Device
     {
         get
         {
-            return selectedDevice;
+            return device;
         }
 
         set
         {
-            selectedDevice = value;
+            device = value;
         }
     }
 
-    protected int deviceId;
     public int DeviceId {
         get
         {
@@ -32,7 +34,6 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
-    protected string deviceName;
     public string DeviceName
     {
         get
@@ -51,36 +52,36 @@ public abstract class DeviceController : MonoBehaviour
         deviceId = ImageTracking.deviceId;
         deviceName = ImageTracking.deviceName;
 
-        selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+        device = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
-        if(selectedDevice == null)
+        if(device == null)
         {
-            SetSelectedDevice();
+            SetDevice();
         }
     }
 
-    public void SetSelectedDeviceOnOff()
+    public void SetDeviceOnOff()
     {
-        if (selectedDevice.isOn)
+        if (device.IsOn)
         {
-            selectedDevice.isOn = false;
+            device.IsOn = false;
         }
         else
         {
-            selectedDevice.isOn = true;
+            device.IsOn = true;
         }
     }
 
-    public void RemoveSelectedDevice()
+    public void RemoveDevice()
     {
-        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
+        DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(device);
     }
 
-    public void EditNameOfSelectedDevice(string name)
+    public void EditNameOfDevice(string name)
     {
         if (!string.IsNullOrWhiteSpace(name))
         {
-            selectedDevice._name = name;
+            device.Name = name;
         }
 
         // else keep old name
@@ -90,6 +91,6 @@ public abstract class DeviceController : MonoBehaviour
 
     public abstract void StopUpdating();
 
-    protected abstract void SetSelectedDevice();
+    protected abstract void SetDevice();
 
 }

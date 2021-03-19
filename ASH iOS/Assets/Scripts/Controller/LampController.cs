@@ -73,12 +73,12 @@ public class LampController : DeviceController
 
     private void SetLightColor(Color color)
     {
-        ((Lamp) SelectedDevice).lightColor = color;
+        ((Lamp) device).LightColor = color;
     }
 
     private void SetLightTemperature(Color temperatureColor)
     {
-        ((Lamp) SelectedDevice).lightTemperature = temperatureColor;
+        ((Lamp) device).LightTemperature = temperatureColor;
     }
 
     private void SetLightBrightness(float brightness)
@@ -87,15 +87,15 @@ public class LampController : DeviceController
         {
             brightness = 0.15f;
         }
-        ((Lamp) SelectedDevice).lightBrightness = brightness;
+        ((Lamp) device).LightBrightness = brightness;
     }
 
     public override void AddDevice(string name)
     {
         if (!string.IsNullOrWhiteSpace(name))
         {
-            selectedDevice._name = name;
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(selectedDevice);
+            device.Name = name;
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
         }
         else
         {
@@ -103,9 +103,9 @@ public class LampController : DeviceController
         }
     }
 
-    protected override void SetSelectedDevice()
+    protected override void SetDevice()
     {
-        selectedDevice = new Lamp(deviceName, deviceId);
+        device = new Lamp(deviceName, deviceId);
     }
 }
 

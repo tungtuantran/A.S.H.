@@ -65,7 +65,7 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     protected virtual void UpdateValueDisplay()
     {
-        if (trackedAndRegisteredDevice.isOn)
+        if (trackedAndRegisteredDevice.IsOn)
         {
             onOffText.text = "ON";
             onOffText.color = Color.green;
@@ -81,7 +81,7 @@ public abstract class DeviceARViewController : MonoBehaviour
     private void UpdateName()
     {
 
-        editNameInputField.text = trackedAndRegisteredDevice._name;
+        editNameInputField.text = trackedAndRegisteredDevice.Name;
     }
 
     private void DisplayARView(bool active)
@@ -103,12 +103,12 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     public void EditName()
     {
-        deviceController.EditNameOfSelectedDevice(editNameInputField.text);
+        deviceController.EditNameOfDevice(editNameInputField.text);
 
         UpdateName();
     }
 
-    public void AddTrackedDevice()                     
+    public void AddDevice()                     
     {
         string name = addNameInputField.text;
 
@@ -121,7 +121,7 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     public void RemoveDevice()
     {
-        deviceController.RemoveSelectedDevice();
+        deviceController.RemoveDevice();
         removeDevicePopUp.SetActive(false);
     }
 

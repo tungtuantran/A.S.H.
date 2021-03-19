@@ -6,34 +6,34 @@ using UnityEngine;
 [System.Serializable]
 public class LampData : IDeviceData
 {
-    public string deviceName { get; set; }
-    public int id { get; set; }
-    public string _name { get; set; }
-    public bool isOn { get; set; } = false;
+    public string DeviceName { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public bool IsOn { get; set; } = false;
 
-    public float[] lightColor { get; set; }
-    public float lightBrightness { get; set; }               //10 out of 10
-    public float[] lightTemperature { get; set; }
+    public float[] LightColor { get; set; }
+    public float LightBrightness { get; set; }               //10 out of 10
+    public float[] LightTemperature { get; set; }
 
     public LampData(Lamp lamp)
     {
-        deviceName = lamp.deviceName;
-        id = lamp.id;
-        _name = lamp._name;
-        isOn = lamp.isOn;
+        DeviceName = lamp.DeviceName;
+        Id = lamp.Id;
+        Name = lamp.Name;
+        IsOn = lamp.IsOn;
 
-        lightColor = new float[4];
-        lightColor[0] = lamp.lightColor.r;
-        lightColor[1] = lamp.lightColor.g;
-        lightColor[2] = lamp.lightColor.b;
-        lightColor[3] = lamp.lightColor.a;
+        LightColor = new float[4];
+        LightColor[0] = lamp.LightColor.r;
+        LightColor[1] = lamp.LightColor.g;
+        LightColor[2] = lamp.LightColor.b;
+        LightColor[3] = lamp.LightColor.a;
 
-        lightBrightness = lamp.lightBrightness;
+        LightBrightness = lamp.LightBrightness;
 
-        lightTemperature = new float[4];
-        lightTemperature[0] = lamp.lightTemperature.r;
-        lightTemperature[1] = lamp.lightTemperature.g;
-        lightTemperature[2] = lamp.lightTemperature.b;
-        lightTemperature[3] = lamp.lightTemperature.a;
+        LightTemperature = new float[4];
+        LightTemperature[0] = lamp.LightTemperature.r;
+        LightTemperature[1] = lamp.LightTemperature.g;
+        LightTemperature[2] = lamp.LightTemperature.b;
+        LightTemperature[3] = lamp.LightTemperature.a;
     }
 }

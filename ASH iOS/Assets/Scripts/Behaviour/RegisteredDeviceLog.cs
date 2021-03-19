@@ -10,9 +10,9 @@ public class RegisteredDeviceLog : MonoBehaviour
 
     void Update()
     {
-        txt.text = "Device Counter: " + DeviceCollection.DeviceCollectionInstance.registeredDevices.Count.ToString() + "\n \n";
+        txt.text = "Device Counter: " + DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Count.ToString() + "\n \n";
 
-        foreach(Device device in DeviceCollection.DeviceCollectionInstance.registeredDevices)
+        foreach(Device device in DeviceCollection.DeviceCollectionInstance.RegisteredDevices)
         {
             txt.text += device.ToString() + "\n \n";
         }

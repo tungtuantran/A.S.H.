@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class DeviceDisplay : MonoBehaviour
 {
-    protected Device trackedAndRegisteredDevice;
+    protected Device registeredDevice;
 
     private int deviceId;
 
@@ -16,12 +16,12 @@ public abstract class DeviceDisplay : MonoBehaviour
 
     void Update()
     {
-        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+        registeredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
         // if tracked Device is also registered in DeviceCollection
-        if (trackedAndRegisteredDevice != null)                         
+        if (registeredDevice != null)                         
         {
-            if (!DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+            if (!DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
             {
                 DisplayPropertiesOfTrackedAndRegisteredDevice();
             }

@@ -27,7 +27,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void Start()
     {
-        SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.allDevicesOff);
+        SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
         aRDisplayToggle.gameObject.SetActive(false);
     }
 
@@ -76,16 +76,16 @@ public class TurnAllOffOnSystem : MonoBehaviour
     {
         if (active)
         {
-            if (DeviceCollection.DeviceCollectionInstance.allDevicesOff)
+            if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
             {
-                DeviceCollection.DeviceCollectionInstance.allDevicesOff = false;
+                DeviceCollection.DeviceCollectionInstance.AllDevicesOff = false;
             }
             else
             {
-                DeviceCollection.DeviceCollectionInstance.allDevicesOff = true;
+                DeviceCollection.DeviceCollectionInstance.AllDevicesOff = true;
             }
 
-            SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.allDevicesOff);
+            SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
             Handheld.Vibrate();
         }
 

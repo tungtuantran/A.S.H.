@@ -2739,11 +2739,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSelectedDeviceOnOff
+      value: SetDeviceOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceController, Assembly-CSharp
+      value: DeviceController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3933402393435440478, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onPointerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2915,7 +2915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSelectedDeviceOnOff
+      value: SetDeviceOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2923,7 +2923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceController, Assembly-CSharp
+      value: DeviceController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -3393,6 +3393,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3613273591804818220}
+    - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddDevice
+      objectReference: {fileID: 0}
+    - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DeviceARViewController, GameAssembly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
 --- !u!1 &7201846286555754385 stripped

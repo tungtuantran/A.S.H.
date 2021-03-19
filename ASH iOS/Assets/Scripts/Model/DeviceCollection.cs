@@ -11,8 +11,8 @@ public class DeviceCollection
 {
     private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
 
-    public List<Device> registeredDevices { get; set; } = new List<Device>();
-    public bool allDevicesOff { get; set; }
+    public List<Device> RegisteredDevices { get; set; } = new List<Device>();
+    public bool AllDevicesOff { get; set; }
 
     static DeviceCollection()
     {
@@ -33,8 +33,8 @@ public class DeviceCollection
 
     public Device GetRegisteredDeviceByDeviceId(int deviceId)
     {
-        foreach(Device device in registeredDevices){
-            if(device.id == deviceId)
+        foreach(Device device in RegisteredDevices){
+            if(device.Id == deviceId)
             {
                 return device;
             }
@@ -46,7 +46,7 @@ public class DeviceCollection
     {
         if (device != null)
         {
-            registeredDevices.Add(device);
+            RegisteredDevices.Add(device);
             SaveDeviceCollection();
         }
         else
@@ -59,7 +59,7 @@ public class DeviceCollection
     {
         if (device != null)
         {
-            registeredDevices.Remove(device);
+            RegisteredDevices.Remove(device);
             SaveDeviceCollection();
         }
         else
@@ -75,21 +75,21 @@ public class DeviceCollection
 
     public void LoadDeviceCollection()                                                 
     {
-        registeredDevices.Clear();                      //TODO: even neccesary if loadDeviceCollection gets only called when app starts?
+        RegisteredDevices.Clear();                      //TODO: even neccesary if loadDeviceCollection gets only called when app starts?
 
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
         if (deviceCollectionData != null)
         {
-            for (int i = 0; i < deviceCollectionData.deviceDatas.Length; i++)
+            for (int i = 0; i < deviceCollectionData.DeviceDataList.Length; i++)
             {
 
-                IDeviceData deviceData = deviceCollectionData.deviceDatas[i];
+                IDeviceData deviceData = deviceCollectionData.DeviceDataList[i];
                 Device device = null;
 
                 switch (deviceData.GetType().Name)
                 {
                     case "LampData":
-                        device = new Lamp(deviceData.deviceName, deviceData.id, deviceData._name);
+                        device = new Lamp(deviceData.DeviceName, deviceData.Id, deviceData.Name);
                         break;
                     default:
                         Debug.LogError("Uknown Data Type");
@@ -99,11 +99,11 @@ public class DeviceCollection
                 if (device != null)
                 {
                     device.LoadDevice(deviceData);
-                    registeredDevices.Add(device);
+                    RegisteredDevices.Add(device);
                 }
             }
 
-            allDevicesOff = deviceCollectionData.allDevicesOff;
+            AllDevicesOff = deviceCollectionData.AllDevicesOff;
         }
     }
 }

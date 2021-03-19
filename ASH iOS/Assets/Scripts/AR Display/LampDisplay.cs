@@ -10,11 +10,11 @@ public class LampDisplay : DeviceDisplay
 
     protected override void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
-        _light.gameObject.SetActive(trackedAndRegisteredDevice.isOn);
+        _light.gameObject.SetActive(registeredDevice.IsOn);
 
-        Color lightColor = ((Lamp)trackedAndRegisteredDevice).lightColor;
-        float lightBrightness = ((Lamp)trackedAndRegisteredDevice).lightBrightness;
-        Color lightTemperature = ((Lamp)trackedAndRegisteredDevice).lightTemperature;
+        Color lightColor = ((Lamp)registeredDevice).LightColor;
+        float lightBrightness = ((Lamp)registeredDevice).LightBrightness;
+        Color lightTemperature = ((Lamp)registeredDevice).LightTemperature;
 
         _light.color = MixColorWithTemperature(lightColor, lightTemperature);
         _light.intensity = lightBrightness;

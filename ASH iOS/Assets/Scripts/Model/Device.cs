@@ -6,22 +6,22 @@ public abstract class Device
 {
     private DeviceCollection deviceCollection = DeviceCollection.DeviceCollectionInstance;
 
-    public string deviceName { get; set; }
-    public int id { get; set; }
-    public string _name { get; set; }                       // name chosen by user
-    public bool isOn { get; set; } = false;
+    public string DeviceName { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }                       // name chosen by user
+    public bool IsOn { get; set; } = false;
 
     public Device(string deviceName, int id, string name)
     {
-        this.deviceName = deviceName;
-        this.id = id;
-        this._name = name;
+        DeviceName = deviceName;
+        Id = id;
+        Name = name;
     }
 
     public Device(string deviceName, int id)
     {
-        this.deviceName = deviceName;
-        this.id = id;
+        DeviceName = deviceName;
+        Id = id;
     }
 
     public void addDevice()                                 // add/save Device
@@ -43,7 +43,7 @@ public abstract class Device
 
     public override string ToString()
     {
-        return "DeviceName: " + deviceName + ", ID: " + id + " , Name: " + _name + ", isOn: " + isOn; 
+        return "DeviceName: " + DeviceName + ", ID: " + Id + " , Name: " + Name + ", isOn: " + IsOn; 
     }
 
     public abstract string DeviceValuesToString();
