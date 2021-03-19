@@ -73,12 +73,12 @@ public class LampController : DeviceController
 
     private void SetLightColor(Color color)
     {
-        ((Lamp) selectedDevice).lightColor = color;
+        ((Lamp) SelectedDevice).lightColor = color;
     }
 
     private void SetLightTemperature(Color temperatureColor)
     {
-        ((Lamp) selectedDevice).lightTemperature = temperatureColor;
+        ((Lamp) SelectedDevice).lightTemperature = temperatureColor;
     }
 
     private void SetLightBrightness(float brightness)
@@ -87,20 +87,25 @@ public class LampController : DeviceController
         {
             brightness = 0.15f;
         }
-        ((Lamp) selectedDevice).lightBrightness = brightness;
+        ((Lamp) SelectedDevice).lightBrightness = brightness;
     }
 
-    public override void AddCurrentlyTrackedDevice(string name)
+    public override void AddDevice(string name)
     {
         if (!string.IsNullOrWhiteSpace(name))
         {
-            Device deviceToAdd = new Lamp(ImageTracking.deviceName, ImageTracking.deviceId, name);
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(deviceToAdd);
+            selectedDevice._name = name;
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(selectedDevice);
         }
         else
         {
             throw new NoInputException();
         }
+    }
+
+    protected override void SetSelectedDevice()
+    {
+        selectedDevice = new Lamp(deviceName, deviceId);
     }
 }
 

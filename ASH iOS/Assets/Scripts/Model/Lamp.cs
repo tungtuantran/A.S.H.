@@ -13,6 +13,10 @@ public class Lamp : Device
     {
     }
 
+    public Lamp(string deviceName, int id) : base(deviceName, id)
+    {
+    }
+
     public override void LoadDevice(IDeviceData deviceData)
     {
         LampData lampData = (LampData) deviceData;

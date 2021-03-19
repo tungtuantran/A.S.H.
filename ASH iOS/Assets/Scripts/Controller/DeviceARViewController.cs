@@ -43,7 +43,7 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     void Update()
     {
-        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceController.DeviceId);
 
         if (trackedAndRegisteredDevice != null)                         // if tracked Device is also registered in DeviceCollection
         {
@@ -103,7 +103,6 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     public void EditName()
     {
-        deviceController.SelectDeviceByCurrentlyTrackedDevice();
         deviceController.EditNameOfSelectedDevice(editNameInputField.text);
 
         UpdateName();
@@ -113,7 +112,7 @@ public abstract class DeviceARViewController : MonoBehaviour
     {
         string name = addNameInputField.text;
 
-        deviceController.AddCurrentlyTrackedDevice(name);
+        deviceController.AddDevice(name);
         editNameInputField.text = name;
 
         addDevicePopUp.SetActive(false);
@@ -141,8 +140,6 @@ public abstract class DeviceARViewController : MonoBehaviour
 
     public void ShowHideRemoveDevicePopUp()
     {
-        deviceController.SelectDeviceByCurrentlyTrackedDevice();        //selects device by current track
-
         if (removeDevicePopUp.activeSelf)
         {
             removeDevicePopUp.SetActive(false);                         // Cancel Button (in Pop-Up)

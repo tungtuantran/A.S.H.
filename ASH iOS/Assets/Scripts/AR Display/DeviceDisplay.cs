@@ -7,13 +7,16 @@ public abstract class DeviceDisplay : MonoBehaviour
 {
     protected Device trackedAndRegisteredDevice;
 
-    void Start()
+    private int deviceId;
+
+    void Awake()
     {
+        deviceId = ImageTracking.deviceId;
     }
 
     void Update()
     {
-        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+        trackedAndRegisteredDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
         // if tracked Device is also registered in DeviceCollection
         if (trackedAndRegisteredDevice != null)                         

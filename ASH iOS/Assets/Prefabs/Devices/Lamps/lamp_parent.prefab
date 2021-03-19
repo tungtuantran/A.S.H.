@@ -2891,7 +2891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2915,7 +2915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SelectDeviceByCurrentlyTrackedDevice
+      value: SetSelectedDeviceOnOff
       objectReference: {fileID: 0}
     - target: {fileID: 6546557611965793652, guid: 437dd3204a7bb4d54890f58eb0021f54, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName

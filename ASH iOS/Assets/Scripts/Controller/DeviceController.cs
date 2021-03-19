@@ -5,7 +5,59 @@ using UnityEngine;
 
 public abstract class DeviceController : MonoBehaviour
 {
-    public Device selectedDevice { get; set; }
+    protected Device selectedDevice;
+    public Device SelectedDevice
+    {
+        get
+        {
+            return selectedDevice;
+        }
+
+        set
+        {
+            selectedDevice = value;
+        }
+    }
+
+    protected int deviceId;
+    public int DeviceId {
+        get
+        {
+            return deviceId;
+        }
+
+        set
+        {
+            deviceId = value;
+        }
+    }
+
+    protected string deviceName;
+    public string DeviceName
+    {
+        get
+        {
+            return deviceName;
+        }
+
+        set
+        {
+            deviceName = value;
+        }
+    }
+
+    private void Awake()
+    {
+        deviceId = ImageTracking.deviceId;
+        deviceName = ImageTracking.deviceName;
+
+        selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+
+        if(selectedDevice == null)
+        {
+            SetSelectedDevice();
+        }
+    }
 
     public void SetSelectedDeviceOnOff()
     {
@@ -24,18 +76,6 @@ public abstract class DeviceController : MonoBehaviour
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(selectedDevice);
     }
 
-    public void SelectDeviceByCurrentlyTrackedDevice()
-    {
-        if (ImageTracking.deviceId != 0)
-        {
-            selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
-        }
-        else
-        {
-            throw new NoDeviceException();
-        }
-    }
-
     public void EditNameOfSelectedDevice(string name)
     {
         if (!string.IsNullOrWhiteSpace(name))
@@ -46,8 +86,10 @@ public abstract class DeviceController : MonoBehaviour
         // else keep old name
     }
 
-    public abstract void AddCurrentlyTrackedDevice(string name);
+    public abstract void AddDevice(string name);
 
     public abstract void StopUpdating();
+
+    protected abstract void SetSelectedDevice();
 
 }

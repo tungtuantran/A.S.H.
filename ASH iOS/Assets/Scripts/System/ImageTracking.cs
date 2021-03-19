@@ -15,20 +15,12 @@ public class ImageTracking : MonoBehaviour
     [SerializeField]
     private GameObject[] placeableDevicePrefabs;
 
-    private Dictionary<string, GameObject> spawnedDevicePrefabs = new Dictionary<string, GameObject>();
+    public static Dictionary<int, GameObject> spawnedDevicePrefabs = new Dictionary<int, GameObject>();
     private ARTrackedImageManager trackedImageManager;
 
     private void Awake()
     {
         trackedImageManager = FindObjectOfType<ARTrackedImageManager>();
-
-        foreach (GameObject devicePrefab in placeableDevicePrefabs)
-        {
-            GameObject newDevicePrefab = Instantiate(devicePrefab, Vector3.zero, Quaternion.identity);
-            newDevicePrefab.name = devicePrefab.name;
-            newDevicePrefab.SetActive(false);
-            spawnedDevicePrefabs.Add(devicePrefab.name, newDevicePrefab);
-        }
     }
 
     private void OnEnable()
@@ -56,7 +48,11 @@ public class ImageTracking : MonoBehaviour
 
         foreach (ARTrackedImage trackedImage in eventArgs.removed)
         {
-            spawnedDevicePrefabs[trackedImage.name].SetActive(false);
+            string codeString = trackedImage.referenceImage.name;
+            string[] splittedCode = codeString.Split('_');
+            deviceId = ConvertIdStringToInteger(splittedCode[1]);
+
+            spawnedDevicePrefabs[deviceId].SetActive(false);
         }
     }
 
@@ -70,18 +66,31 @@ public class ImageTracking : MonoBehaviour
         deviceId = ConvertIdStringToInteger(splittedCode[1]);
 
         //Spawn devicePrefab
-        GameObject devicePrefab = spawnedDevicePrefabs[deviceName];
-        Vector3 position = trackedImage.transform.position;
-        devicePrefab.transform.position = position;
-        devicePrefab.SetActive(true);
+        GameObject devicePrefab = null;
 
-        //Sets other devicePrefabs inactive
-        foreach (GameObject gameObject in spawnedDevicePrefabs.Values)
+        try
         {
-            if (gameObject.name != deviceName)
+            devicePrefab = spawnedDevicePrefabs[deviceId];
+        }
+        catch (KeyNotFoundException e)
+        {
+            foreach (GameObject placeableDevicePrefab in placeableDevicePrefabs)
             {
-                gameObject.SetActive(false);
+                if (placeableDevicePrefab.name.Equals(deviceName))
+                {
+                    GameObject newDevicePrefab = Instantiate(placeableDevicePrefab, Vector3.zero, Quaternion.identity);
+                    newDevicePrefab.name = placeableDevicePrefab.name;
+                    spawnedDevicePrefabs.Add(deviceId, newDevicePrefab);
+                    devicePrefab = spawnedDevicePrefabs[deviceId];
+                }
             }
+        }
+
+        if (devicePrefab != null)
+        {
+            Vector3 position = trackedImage.transform.position;
+            devicePrefab.transform.position = position;
+            devicePrefab.SetActive(true);
         }
     }
 

@@ -18,6 +18,12 @@ public abstract class Device
         this._name = name;
     }
 
+    public Device(string deviceName, int id)
+    {
+        this.deviceName = deviceName;
+        this.id = id;
+    }
+
     public void addDevice()                                 // add/save Device
     {
         deviceCollection.AddRegisteredDevice(this);
