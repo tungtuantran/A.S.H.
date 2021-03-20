@@ -85,15 +85,15 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 1cb05678c0b19d7488421a0bdd9a2f64, type: 3}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Type
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Range
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_SpotAngle
-      value: 54.9
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Lightmapping

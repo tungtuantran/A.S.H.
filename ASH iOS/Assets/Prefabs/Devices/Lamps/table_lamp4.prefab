@@ -85,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 4300000, guid: 1785c974cb8d08b4ea34aba66752360b, type: 3}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Type
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 10800000, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_Range
-      value: 0.3
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 92861739135777587, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_AnchorMax.y
