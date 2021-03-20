@@ -105,6 +105,8 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 1789843946427842857}
   - component: {fileID: 3613273591804818220}
+  - component: {fileID: 7133492942860404040}
+  - component: {fileID: 351928291796030468}
   m_Layer: 0
   m_Name: lamp_parent
   m_TagString: Untagged
@@ -217,6 +219,31 @@ MonoBehaviour:
   lightColorImage: {fileID: 3144200596182149508}
   lightTemperatureColorImage: {fileID: 8449202739160204263}
   brightnessText: {fileID: 7114409541001008831}
+--- !u!65 &7133492942860404040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.112279, y: 0.507265, z: 0.39819}
+  m_Center: {x: -0.0000014994293, y: -0.1039735, z: -0.05698}
+--- !u!114 &351928291796030468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356018b0585034fabba01f609815f7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &310888729588499664
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,11 +3593,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
---- !u!224 &3931830484591496776 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
-  m_PrefabInstance: {fileID: 4821948445198872042}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3931830484591496779 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8393489721542812577, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
@@ -3582,6 +3604,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a0995f1051ba4427961a4fe72513a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3931830484591496776 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8393489721542812578, guid: d488b64f3347c4c78bac47ab5ab50d05, type: 3}
+  m_PrefabInstance: {fileID: 4821948445198872042}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5824113594575471139
 PrefabInstance:
   m_ObjectHideFlags: 0

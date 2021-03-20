@@ -7,6 +7,7 @@ public class CopyPasteSystem : MonoBehaviour
 {
     public static Device copiedDevice;
     public static bool active = true;
+    //public static Device selectedDevice;
 
     [SerializeField]
     private Text uIDisplayCopyText;
@@ -78,9 +79,9 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if(active)
         {
-            if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId) != null)
+            if (SelectDevice.selectedDevice != null)
             {
-                copiedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+                copiedDevice = SelectDevice.selectedDevice;
                 Handheld.Vibrate();
             }
         }
@@ -90,20 +91,20 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if (active)
         {
-            if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId) != null)
+            if (SelectDevice.selectedDevice != null)
             {
-                Device trackedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(ImageTracking.deviceId);
+                Device deviceToPasteIn = SelectDevice.selectedDevice;
 
                 //same type name
-                if (copiedDevice.GetType().Name.Equals(trackedDevice.GetType().Name))
+                if (copiedDevice.GetType().Name.Equals(deviceToPasteIn.GetType().Name))
                 {
                     switch (copiedDevice.GetType().Name)
                     {
                         //is lamp
                         case "Lamp":
-                            ((Lamp)trackedDevice).LightBrightness = ((Lamp)copiedDevice).LightBrightness;
-                            ((Lamp)trackedDevice).LightColor = ((Lamp)copiedDevice).LightColor;
-                            ((Lamp)trackedDevice).LightTemperature = ((Lamp)copiedDevice).LightTemperature;
+                            ((Lamp)deviceToPasteIn).LightBrightness = ((Lamp)copiedDevice).LightBrightness;
+                            ((Lamp)deviceToPasteIn).LightColor = ((Lamp)copiedDevice).LightColor;
+                            ((Lamp)deviceToPasteIn).LightTemperature = ((Lamp)copiedDevice).LightTemperature;
                             Handheld.Vibrate();
                             break;
                         //is unknown
