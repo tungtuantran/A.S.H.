@@ -7,17 +7,12 @@ using System;
 public class LampController : DeviceController
 {
 
+    
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
 
     [SerializeField]
-    private DistanceCalculator colorHueCalculator;
-
-    [SerializeField]
-    private DistanceCalculator colorSaturationCalculator;
-    
-    [SerializeField]
-    private ColorPicker colorPicker;
+    private DistanceCalculator colorCalculator;
 
     [SerializeField]
     private ColorPicker temperaturePicker;
@@ -30,12 +25,11 @@ public class LampController : DeviceController
     {
         if (updateLightColor)
         {
-            Color color = ConvertDistanceToColorValue(colorHueCalculator.distance, colorSaturationCalculator.distance);
+            Color color = ConvertDistanceToColorValue(colorCalculator.sidewardDistance, colorCalculator.upwardDistance);
             SetLightColor(color);
-            //SetLightColor(colorPicker.selectedColor);
         }
         if(updateLightBrightness){
-            float brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.distance);
+            float brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
         }
         if (updateLightTemperature)
@@ -79,21 +73,14 @@ public class LampController : DeviceController
         updateLightTemperature = false;
 
         brightnessCalculator.Active = false;
-
-        colorHueCalculator.Active = false;
-        colorSaturationCalculator.Active = false;
-        //colorPicker.Active = false;
-        
+        colorCalculator.Active = false;        
         temperaturePicker.Active = false;
     }
 
     public void UpdateLightColor()
     {
         updateLightColor = true;
-
-        colorHueCalculator.Active = true;
-        colorSaturationCalculator.Active = true;
-        //colorPicker.Active = true;
+        colorCalculator.Active = true;
     }
 
     public void UpdateLigthBrightness()

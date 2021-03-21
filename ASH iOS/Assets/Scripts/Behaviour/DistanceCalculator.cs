@@ -6,16 +6,18 @@ using UnityEngine.UI;
 
 public class DistanceCalculator: MonoBehaviour
 {
-    public bool upward;
-    public bool forward;
-    public bool sideward;
     public DistancePreview distancePreview;
 
     private Transform aRCamera;
     private Vector3 supportVector;
-    private Vector3 normalVector;
+    private Vector3 upwardVector;
+    private Vector3 forwardVector;
+    private Vector3 sidewardVector;
 
-    public float distance { get; set; }
+    public float upwardDistance { get; set; }
+    public float forwardDistance { get; set; }
+    public float sidewardDistance { get; set; }
+
     private bool active;
 
     public bool Active
@@ -34,19 +36,23 @@ public class DistanceCalculator: MonoBehaviour
     private void Update()
     {
         //show preview
+        /*
         if (distancePreview != null)
         {
             distancePreview.SetActive(active);
             distancePreview.SetDistance(distance);
         }
+        */
 
         if (Active)
         {
-            CalculateDistancBetweenCameraAndPlane();
+            upwardDistance = CalculateDistancBetweenCameraAndPlane(upwardVector);
+            forwardDistance = CalculateDistancBetweenCameraAndPlane(forwardVector);
+            sidewardDistance = CalculateDistancBetweenCameraAndPlane(sidewardVector);
         }
     }
 
-    private void CalculateDistancBetweenCameraAndPlane()
+    private float CalculateDistancBetweenCameraAndPlane(Vector3 normalVector)
     {
         // calculate a with plane equation
         float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;
@@ -58,7 +64,7 @@ public class DistanceCalculator: MonoBehaviour
         float realDistance = Mathf.Abs(normalVector.x * p.x + normalVector.y * p.y + normalVector.z * p.z - a) / Mathf.Sqrt(Mathf.Pow(normalVector.x, 2) + Mathf.Pow(normalVector.y, 2) + Mathf.Pow(normalVector.z, 2));
 
         // distance is real distance devided by 4
-        distance = realDistance / 4;                                                            
+        return realDistance / 4;                                                            
     }
 
     private void Reset()
@@ -68,25 +74,13 @@ public class DistanceCalculator: MonoBehaviour
         supportVector = aRCamera.position;
 
         //reset distance to 0
-        distance = 0;
+        upwardDistance = 0;
+        forwardDistance = 0;
+        sidewardDistance = 0;
 
-        //set normal vector of plane
-        if (upward && !forward && !sideward)
-        {
-            normalVector = aRCamera.up;
-        }
-        else if (!upward && forward && !sideward)
-        {
-            normalVector = aRCamera.forward;
-        }
-        else if(!upward && !forward && sideward)
-        {
-            normalVector = aRCamera.right;
-        }
-        else
-        {
-            throw new NoDirectionException("No direction set, because to many direction selected or no direction selected.");
-        }
+        upwardVector = aRCamera.up;
+        forwardVector = aRCamera.forward;
+        sidewardVector = aRCamera.right;
     }
 
 }

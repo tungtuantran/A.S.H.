@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class LongPressButtonController : MonoBehaviour
 {
-    public UnityEvent onSelect;
+    //public UnityEvent onSelect;
     public UnityEvent onRelease;
 
     [SerializeField]
@@ -38,10 +38,12 @@ public class LongPressButtonController : MonoBehaviour
         SetAllSubButtonsActive();
         subButtonCollection.SetActive(true);
 
+        /*
         if (onSelect != null)
         {
             onSelect.Invoke();
         }
+        */
     }
 
     public void HideSubButtonCollection()

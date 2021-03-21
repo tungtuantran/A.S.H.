@@ -65,7 +65,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
                 disableUIInteractions.DisableInteractions();
 
-                float distance = distanceCalculator.distance * 100;
+                float distance = distanceCalculator.forwardDistance * 100;
                 if (distance > RequiredDistance)
                 {
                     TurnAllOffOn();
