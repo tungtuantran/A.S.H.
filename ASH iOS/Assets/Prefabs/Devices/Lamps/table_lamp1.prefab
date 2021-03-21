@@ -104,7 +104,23 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 107973821428726197, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 107973821428726197, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 107973821428726197, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 107973821428726197, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 107973821428726197, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 220930609801394739, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
@@ -136,6 +152,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 230787048088161450, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609024980611434, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609024980611434, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609024980611434, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609024980611434, guid: 8da5987fcb92247dca4d190e0dd4f15d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}

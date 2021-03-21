@@ -47,7 +47,7 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected virtual void Awake()
     {
         deviceId = ImageTracking.deviceId;
         deviceName = ImageTracking.deviceName;

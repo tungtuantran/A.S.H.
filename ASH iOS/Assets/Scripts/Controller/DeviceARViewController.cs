@@ -29,8 +29,14 @@ public abstract class DeviceARViewController : MonoBehaviour
     protected Device trackedAndRegisteredDevice;
     private bool setNameOnFirstTrack;
 
+
+    [SerializeField]
+    private Image onOffImage;
+
+    /*
     [SerializeField]
     private Text onOffText;
+    */
 
     void Start()
     {     
@@ -67,14 +73,20 @@ public abstract class DeviceARViewController : MonoBehaviour
     {
         if (trackedAndRegisteredDevice.IsOn)
         {
+            onOffImage.color = Color.green;
+            /*
             onOffText.text = "ON";
             onOffText.color = Color.green;
+            */
 
         }
         else
         {
+            onOffImage.color = Color.red;
+            /*
             onOffText.text = "OFF";
             onOffText.color = Color.red;
+            */
         }
     }
 

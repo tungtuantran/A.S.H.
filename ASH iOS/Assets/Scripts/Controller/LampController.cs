@@ -22,8 +22,10 @@ public class LampController : DeviceController
     private bool updateLightColor;
     private bool updateLightTemperature;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         // preview hidden on default
         HideLightPreview();
     }
