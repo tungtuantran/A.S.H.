@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DistanceCalculator: MonoBehaviour
 {
-    public bool upwards;
+    public bool upward;
     public bool forward;
     public bool sideward;
     public DistancePreview distancePreview;
@@ -71,15 +71,15 @@ public class DistanceCalculator: MonoBehaviour
         distance = 0;
 
         //set normal vector of plane
-        if (upwards && !forward && !sideward)
+        if (upward && !forward && !sideward)
         {
             normalVector = aRCamera.up;
         }
-        else if (!upwards && forward && !sideward)
+        else if (!upward && forward && !sideward)
         {
             normalVector = aRCamera.forward;
         }
-        else if(!upwards && !forward && sideward)
+        else if(!upward && !forward && sideward)
         {
             normalVector = aRCamera.right;
         }

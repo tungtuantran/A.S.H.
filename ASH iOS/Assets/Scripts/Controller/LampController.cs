@@ -11,6 +11,12 @@ public class LampController : DeviceController
     private DistanceCalculator brightnessCalculator;
 
     [SerializeField]
+    private DistanceCalculator colorHueCalculator;
+
+    [SerializeField]
+    private DistanceCalculator colorSaturationCalculator;
+    
+    [SerializeField]
     private ColorPicker colorPicker;
 
     [SerializeField]
@@ -24,16 +30,46 @@ public class LampController : DeviceController
     {
         if (updateLightColor)
         {
-            SetLightColor(colorPicker.selectedColor);
+            Color color = ConvertDistanceToColorValue(colorHueCalculator.distance, colorSaturationCalculator.distance);
+            SetLightColor(color);
+            //SetLightColor(colorPicker.selectedColor);
         }
         if(updateLightBrightness){
-            SetLightBrightness(1 - brightnessCalculator.distance * 100);        // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+            float brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.distance);
+            SetLightBrightness(brightness);
         }
         if (updateLightTemperature)
         {
             SetLightTemperature(temperaturePicker.selectedColor);
 
         }
+    }
+
+    private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
+    {
+        float brightness = 1 - distanceForBrightness * 100;                         // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+
+        if (brightness < 0.15)
+        {
+            brightness = 0.15f;
+        }
+
+        return brightness;
+    }
+
+    private Color ConvertDistanceToColorValue(float distanceForHue, float distanceForSaturation)
+    {
+        // hue h and saturation s from hsv
+        float h = distanceForHue * 100;
+        float s = 1 - distanceForSaturation * 100;
+
+        if (s < 0f)
+        {
+            s = 0f;
+        }
+
+        // set color
+        return Color.HSVToRGB(h, s, 1f);
     }
 
     public override void StopUpdating()
@@ -43,14 +79,21 @@ public class LampController : DeviceController
         updateLightTemperature = false;
 
         brightnessCalculator.Active = false;
-        colorPicker.Active = false;
+
+        colorHueCalculator.Active = false;
+        colorSaturationCalculator.Active = false;
+        //colorPicker.Active = false;
+        
         temperaturePicker.Active = false;
     }
 
     public void UpdateLightColor()
     {
         updateLightColor = true;
-        colorPicker.Active = true;
+
+        colorHueCalculator.Active = true;
+        colorSaturationCalculator.Active = true;
+        //colorPicker.Active = true;
     }
 
     public void UpdateLigthBrightness()
@@ -83,10 +126,6 @@ public class LampController : DeviceController
 
     private void SetLightBrightness(float brightness)
     {
-        if(brightness < 0.15)
-        {
-            brightness = 0.15f;
-        }
         ((Lamp) device).LightBrightness = brightness;
     }
 

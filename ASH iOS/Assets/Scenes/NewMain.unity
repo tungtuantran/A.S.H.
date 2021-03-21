@@ -3159,7 +3159,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee516b91a6f74b1cb7faf86a820fc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwards: 1
+  upward: 1
+  forward: 0
+  sideward: 0
   distancePreview: {fileID: 0}
 --- !u!114 &629529138
 MonoBehaviour:
