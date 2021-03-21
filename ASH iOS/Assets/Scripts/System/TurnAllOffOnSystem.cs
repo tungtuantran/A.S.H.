@@ -13,7 +13,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
     private DisplayToggle aRDisplayToggle;
 
     [SerializeField]
-    private DisplayToggle uIDisplayToggle;
+    private GameObject uIDisplay;
 
     public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 1.0f;
@@ -27,12 +27,14 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void Start()
     {
-        SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+        SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
         aRDisplayToggle.gameObject.SetActive(false);
+        uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
     }
 
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             mouseDown = true;
@@ -85,7 +87,8 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 DeviceCollection.DeviceCollectionInstance.AllDevicesOff = true;
             }
 
-            SetActiveOfDisplayToggles(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+            SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+            uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
             Handheld.Vibrate();
         }
 
@@ -102,17 +105,15 @@ public class TurnAllOffOnSystem : MonoBehaviour
         //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 
-    private void SetActiveOfDisplayToggles(bool isActive)
+    private void SetActiveOfARDisplayToggle(bool isActive)
     {
         if (isActive)
         {
-            uIDisplayToggle.Active = false;
             aRDisplayToggle.Active = false;
 
         }
         else
         {
-            uIDisplayToggle.Active = true;
             aRDisplayToggle.Active = true;
         }
     }
