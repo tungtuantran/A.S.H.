@@ -1740,6 +1740,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upwards: 0
+  forward: 1
+  sideward: 0
   distancePreview: {fileID: 8371857182021074445}
 --- !u!1 &7294355181261813865
 GameObject:

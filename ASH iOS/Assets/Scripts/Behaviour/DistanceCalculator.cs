@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class DistanceCalculator: MonoBehaviour
 {
     public bool upwards;
+    public bool forward;
+    public bool sideward;
     public DistancePreview distancePreview;
 
     private Transform aRCamera;
@@ -69,14 +71,39 @@ public class DistanceCalculator: MonoBehaviour
         distance = 0;
 
         //set normal vector of plane
-        if (!upwards)
-        {
-            normalVector = aRCamera.forward;
-        }
-        else
+        if (upwards && !forward && !sideward)
         {
             normalVector = aRCamera.up;
         }
+        else if (!upwards && forward && !sideward)
+        {
+            normalVector = aRCamera.forward;
+        }
+        else if(!upwards && !forward && sideward)
+        {
+            normalVector = aRCamera.right;
+        }
+        else
+        {
+            throw new NoDirectionException("No direction set, because to many direction selected or no direction selected.");
+        }
     }
 
+}
+
+[Serializable]
+public class NoDirectionException : Exception
+{
+    public NoDirectionException()
+    {
+    }
+
+    public NoDirectionException(string message) : base(message)
+    {
+    }
+
+    public NoDirectionException(string message, Exception e) : base(message, e)
+    {
+
+    }
 }
