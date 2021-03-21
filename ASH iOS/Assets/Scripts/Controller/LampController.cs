@@ -6,7 +6,8 @@ using System;
 
 public class LampController : DeviceController
 {
-
+    public Text lightTextPreview;
+    public Image lightImagePreview;
     
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
@@ -17,26 +18,40 @@ public class LampController : DeviceController
     [SerializeField]
     private ColorPicker temperaturePicker;
 
-    private bool updateLightColor;
     private bool updateLightBrightness;
+    private bool updateLightColor;
     private bool updateLightTemperature;
+
+    private void Start()
+    {
+        // preview hidden on default
+        HideLightPreview();
+    }
 
     void Update()
     {
-        if (updateLightColor)
-        {
-            Color color = ConvertDistanceToColorValue(colorCalculator.sidewardDistance, colorCalculator.upwardDistance);
-            SetLightColor(color);
-        }
+        float brightness = 0f;
+        Color color = Color.white;
+        Color temperatureColor = Color.white;
+
         if(updateLightBrightness){
-            float brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
+            brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
         }
+
+        if (updateLightColor)
+        {
+            color = ConvertDistanceToColorValue(colorCalculator.sidewardDistance, colorCalculator.upwardDistance);
+            SetLightColor(color);
+        }
+
         if (updateLightTemperature)
         {
-            SetLightTemperature(temperaturePicker.selectedColor);
-
+            temperatureColor = temperaturePicker.selectedColor;
+            SetLightTemperature(temperatureColor);
         }
+
+        ShowLightPreview(brightness, color, temperatureColor);
     }
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
@@ -66,6 +81,49 @@ public class LampController : DeviceController
         return Color.HSVToRGB(h, s, 1f);
     }
 
+    private void ShowLightPreview(float brightness, Color color, Color temperatureColor)
+    {
+
+        if (updateLightBrightness && updateLightColor)
+        {
+            lightTextPreview.text = Convert.ToInt32(brightness * 100).ToString() + "%";
+            lightImagePreview.color = new Color(color.r, color.g, color.b, brightness);
+
+            lightTextPreview.gameObject.SetActive(true);
+            lightImagePreview.gameObject.SetActive(true);
+        }
+        else
+        {
+            if (updateLightBrightness)
+            {
+                lightTextPreview.text = Convert.ToInt32(brightness * 100).ToString() + "%";
+                lightImagePreview.color = new Color(1f, 1f, 1f, brightness);
+
+                lightTextPreview.gameObject.SetActive(true);
+                lightImagePreview.gameObject.SetActive(true);
+            }
+            if (updateLightColor)
+            {
+                lightImagePreview.color = new Color(color.r, color.g, color.b, 1f);
+
+                lightImagePreview.gameObject.SetActive(true);
+            }
+
+            if (updateLightTemperature)
+            {
+                lightImagePreview.color = new Color(temperatureColor.r, temperatureColor.g, temperatureColor.b, 1f);
+
+                lightImagePreview.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    private void HideLightPreview()
+    {
+        lightTextPreview.gameObject.SetActive(false);
+        lightImagePreview.gameObject.SetActive(false);
+    }
+
     public override void StopUpdating()
     {
         updateLightColor = false;
@@ -75,12 +133,16 @@ public class LampController : DeviceController
         brightnessCalculator.Active = false;
         colorCalculator.Active = false;        
         temperaturePicker.Active = false;
+
+        HideLightPreview();
     }
 
     public void UpdateLightColor()
     {
         updateLightColor = true;
         colorCalculator.Active = true;
+
+        lightImagePreview.gameObject.SetActive(true);
     }
 
     public void UpdateLigthBrightness()

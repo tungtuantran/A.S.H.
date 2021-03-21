@@ -7,18 +7,20 @@ using System;
 
 public class BrightnessPreview : DistancePreview
 {
+    [SerializeField]
+    private Text previewText;
 
-    public override void SetDistance(float distance)
+    public override void ShowPreview(float upwardDistane, float forwardDistance, float sidewardDistance)
     {
-        float brightnessInPercent = 100 - distance * 10000;           //170.121212%
+        float brightnessInPercent = 100 - forwardDistance * 10000;
 
         if (brightnessInPercent < 15f)
         {
-            distancePreview.text = "15%";
+            previewText.text = "15%";
         }
         else
         {
-            distancePreview.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
+            previewText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
         }
     }
 }

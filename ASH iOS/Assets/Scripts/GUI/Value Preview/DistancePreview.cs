@@ -3,15 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DistancePreview : MonoBehaviour
+public abstract class DistancePreview : MonoBehaviour
 {
-    [SerializeField]
-    protected Text distancePreview;
-
-    public virtual void SetDistance(float distance)
-    {
-        distancePreview.text = distance.ToString();
-    }
+    public abstract void ShowPreview(float upwardDistane, float forwardDistance, float sidewardDistance);
 
     public void SetActive(bool active)
     {

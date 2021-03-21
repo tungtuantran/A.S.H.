@@ -8,9 +8,9 @@ public class ColorPreview : MonoBehaviour
     [SerializeField]
     private Image colorPreview;
 
-    public void SetColor(Color color)
+    public void ShowPreview(float upwardDistane, float forwardDistance, float sidewardDistance)
     {
-        colorPreview.color = color;
+        //colorPreview.color = color;
     }
 
     public void SetActive(bool active)

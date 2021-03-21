@@ -63,10 +63,12 @@ public class ColorPicker : MonoBehaviour
 
     void Update()
     {
+        /*
         if (colorPreview != null)
         {
             colorPreview.SetActive(active);
         }
+        */
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -118,9 +120,11 @@ public class ColorPicker : MonoBehaviour
         selectedColor = color;
 
         //s how preview
+        /*
         if (colorPreview != null)
         {
             colorPreview.SetColor(color);
         }
+        */
     }
 }
