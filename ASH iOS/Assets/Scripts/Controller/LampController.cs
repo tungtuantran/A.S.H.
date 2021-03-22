@@ -16,7 +16,15 @@ public class LampController : DeviceController
     private DistanceCalculator colorCalculator;
 
     [SerializeField]
+    private DistanceCalculator temperatureCalculator;
+
+    [SerializeField]
+    private Texture2D temperatureTexture;
+
+    /*
+    [SerializeField]
     private ColorPicker temperaturePicker;
+    */
 
     private bool updateLightBrightness;
     private bool updateLightColor;
@@ -49,7 +57,8 @@ public class LampController : DeviceController
 
         if (updateLightTemperature)
         {
-            temperatureColor = temperaturePicker.selectedColor;
+            //temperatureColor = temperaturePicker.selectedColor;
+            temperatureColor = ConvertDistanceToTemperatureColorValue(temperatureCalculator.upwardDistance);
             SetLightTemperature(temperatureColor);
         }
 
@@ -81,6 +90,24 @@ public class LampController : DeviceController
 
         // set color
         return Color.HSVToRGB(h, s, 1f);
+    }
+
+    private Color ConvertDistanceToTemperatureColorValue(float distanceForTemperature)
+    {
+        int texY = Mathf.RoundToInt(distanceForTemperature * 100000);
+
+        Debug.Log("pixel y position: " + texY + " ; texture height: " + temperatureTexture.height + "; texture width: " + temperatureTexture.width);
+
+        // get color from textures pixel
+
+        if(texY > temperatureTexture.height)
+        {
+            texY = temperatureTexture.height;
+        }
+
+        return temperatureTexture.GetPixel(10, texY);
+
+
     }
 
     private void ShowLightPreview(float brightness, Color color, Color temperatureColor)
@@ -133,8 +160,9 @@ public class LampController : DeviceController
         updateLightTemperature = false;
 
         brightnessCalculator.Active = false;
-        colorCalculator.Active = false;        
-        temperaturePicker.Active = false;
+        colorCalculator.Active = false;
+        temperatureCalculator.Active = false;
+        //temperaturePicker.Active = false;
 
         HideLightPreview();
     }
@@ -156,7 +184,8 @@ public class LampController : DeviceController
     public void UpdateLightTemperature()
     {
         updateLightTemperature = true;
-        temperaturePicker.Active = true;
+        temperatureCalculator.Active = true;
+        //temperaturePicker.Active = true;
     }
 
     public void UpdateLightColorAndBrightness()
