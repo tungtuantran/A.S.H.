@@ -69,9 +69,14 @@ public class LampController : DeviceController
     {
         float brightness = 1 - distanceForBrightness * 100;                         // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
 
-        if (brightness < 0.15)
+        if (brightness < 0.15f)
         {
             brightness = 0.15f;
+        }
+
+        if(brightness > 1f)
+        {
+            brightness = 1f;
         }
 
         return brightness;
@@ -80,8 +85,14 @@ public class LampController : DeviceController
     private Color ConvertDistanceToColorValue(float distanceForHue, float distanceForSaturation)
     {
         // hue h and saturation s from hsv
-        float h = distanceForHue * 100;
+        // Mathf.Abs() to keep hue value positive
+        float h = Mathf.Abs(distanceForHue * 100);
         float s = 1 - distanceForSaturation * 100;
+
+        if(h > 1f)
+        {
+            h = 1f;
+        }
 
         if (s < 0f)
         {
@@ -94,17 +105,22 @@ public class LampController : DeviceController
 
     private Color ConvertDistanceToTemperatureColorValue(float distanceForTemperature)
     {
-        int texY = Mathf.RoundToInt(distanceForTemperature * 100000);
+        int delta = Mathf.RoundToInt(distanceForTemperature * 100000);
 
-        Debug.Log("pixel y position: " + texY + " ; texture height: " + temperatureTexture.height + "; texture width: " + temperatureTexture.width);
-
-        // get color from textures pixel
+        // starts from the middle height of the Texture
+        int texY = temperatureTexture.height/2 + delta;
 
         if(texY > temperatureTexture.height)
         {
             texY = temperatureTexture.height;
         }
 
+        if(texY < 0)
+        {
+            texY = 0;
+        }
+
+        // get color from textures pixel
         return temperatureTexture.GetPixel(0, texY);
 
 
