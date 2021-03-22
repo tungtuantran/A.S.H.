@@ -21,11 +21,6 @@ public class LampController : DeviceController
     [SerializeField]
     private Texture2D temperatureTexture;
 
-    /*
-    [SerializeField]
-    private ColorPicker temperaturePicker;
-    */
-
     private bool updateLightBrightness;
     private bool updateLightColor;
     private bool updateLightTemperature;
@@ -57,7 +52,6 @@ public class LampController : DeviceController
 
         if (updateLightTemperature)
         {
-            //temperatureColor = temperaturePicker.selectedColor;
             temperatureColor = ConvertDistanceToTemperatureColorValue(temperatureCalculator.upwardDistance);
             SetLightTemperature(temperatureColor);
         }
@@ -87,7 +81,9 @@ public class LampController : DeviceController
         // hue h and saturation s from hsv
         // Mathf.Abs() to keep hue value positive
         float h = Mathf.Abs(distanceForHue * 100);
-        float s = 1 - distanceForSaturation * 100;
+
+        // distance multiplied by 2 for a smaller max distance
+        float s = 1 - distanceForSaturation * 2 * 100;
 
         if(h > 1f)
         {
@@ -178,7 +174,6 @@ public class LampController : DeviceController
         brightnessCalculator.Active = false;
         colorCalculator.Active = false;
         temperatureCalculator.Active = false;
-        //temperaturePicker.Active = false;
 
         HideLightPreview();
     }
@@ -201,7 +196,6 @@ public class LampController : DeviceController
     {
         updateLightTemperature = true;
         temperatureCalculator.Active = true;
-        //temperaturePicker.Active = true;
     }
 
     public void UpdateLightColorAndBrightness()
