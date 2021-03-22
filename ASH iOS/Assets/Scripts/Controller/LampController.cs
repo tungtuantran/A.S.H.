@@ -105,7 +105,7 @@ public class LampController : DeviceController
             texY = temperatureTexture.height;
         }
 
-        return temperatureTexture.GetPixel(10, texY);
+        return temperatureTexture.GetPixel(0, texY);
 
 
     }
