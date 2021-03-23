@@ -159,7 +159,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 380}
+  m_SizeDelta: {x: 800, y: 286.38672}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7364805
 MonoBehaviour:
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -214,16 +214,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Press and hold the controller button and select "Temperature" Sub Button
+    by moving your finger over.
 
-    2. Or press and hold the controller
-    button and select "Temperature" Sub Button by moving your finger over.
-
-    3.
-    Keep holding pressed and move your phone up (warm) or down (cold) to set the
-    temperature.
-
-    4. You can also move your finger for a more precise selection.'
+    2. Keep holding pressed and move your phone
+    up to make he light temperature warm and down to make it cold.'
 --- !u!222 &7364807
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -409,7 +404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Turn Device On/Off
+      value: 6. Turn Device On/Off
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -636,7 +631,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Turn All Devices On/Off
+      value: 1. Turn All Devices On/Off
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
+      propertyPath: m_RaycastPadding.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
+      propertyPath: m_RaycastPadding.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -863,7 +866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Copy Paste Device Values
+      value: 5. Copy Paste Device Values
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -913,6 +916,70 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1699633226003182544, guid: fe157835b5b9844b292e79784152d03d, type: 3}
   m_PrefabInstance: {fileID: 31941969}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &42183564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 42183565}
+  - component: {fileID: 42183566}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &42183565
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42183564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1679252485}
+  - {fileID: 1299271961}
+  m_Father: {fileID: 1561164705}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &42183566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42183564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 3
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &60599228
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +993,7 @@ GameObject:
   - component: {fileID: 60599231}
   - component: {fileID: 60599232}
   m_Layer: 0
-  m_Name: Help Menu
+  m_Name: Instruction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -960,8 +1027,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc32ecfed4e5481bb97fa7d4e70f5cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  helpButton: {fileID: 667022091}
-  helpView: {fileID: 1034610618}
+  instructionButton: {fileID: 667022091}
+  buttonIconImage: {fileID: 1588221486}
+  instructionIcon: {fileID: 21300000, guid: 28a5ca943c1c748f788621adc98f9121, type: 3}
+  closeIcon: {fileID: 21300000, guid: a72ca3c0b29484c9e82e71b1d6c9eba7, type: 3}
+  instructionView: {fileID: 1034610618}
 --- !u!114 &60599231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,7 +1498,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 460}
+  m_SizeDelta: {x: 800, y: 336.0464}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &254995190
 MonoBehaviour:
@@ -1473,7 +1543,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -1483,10 +1553,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1. Scan the marker of your device.\n2. Or press and hold the controller
-    button and select \"Color\" Sub Button by moving your finger over.\n3. Keep holding
-    pressed and move your phone up, down, left or right to to select the color. \n4.
-    You can also move your finger for a more precise selection."
+  m_Text: '1. Press and hold the controller button and select "Color" Sub Button
+    by moving your finger over.
+
+    2. Keep holding pressed and move your phone
+    to the left or right to select the Hue.
+
+    3. And move it up or down to select
+    the Color Brightness (Saturation).'
 --- !u!222 &254995192
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1606,7 +1680,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 186.34778}
+  m_SizeDelta: {x: 800, y: 237.90222}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &288759978
 MonoBehaviour:
@@ -1651,7 +1725,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -1663,12 +1737,13 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '1. Scan the marker of your device.
 
-    2. Select the "+" button.
+    2. Select the "+" Button.
 
     3.
     Enter a name for your device.
 
-    4. Select the "Save" button.'
+    4. Select the "Save" Button in the Pop Up
+    Window.'
 --- !u!222 &288759980
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1713,7 +1788,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 140}
+  m_SizeDelta: {x: 800, y: 238.71875}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &335533229
 MonoBehaviour:
@@ -1758,7 +1833,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -1768,12 +1843,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Swipe up to copy values of device.
 
-    2. Swipe up to copy values of
-    device.
+    2. Swipe down to paste.
 
-    3. Swipe down to paste.'
+
+    Note:
+    The swipe gesture has to collide with the device.'
 --- !u!222 &335533231
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2034,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Register Device
+      value: 2. Register Device
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2378,7 +2454,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2388,12 +2464,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Select the red "Trash" Icon.
 
-    2. Select the Trash-Icon.
-
-    3.
-    Select the "Delete" button.'
+    2. Select the "Delete" Button in
+    the Pop Up Window.'
 --- !u!222 &385747357
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2513,7 +2587,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 100}
+  m_SizeDelta: {x: 800, y: 139.37134}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449257776
 MonoBehaviour:
@@ -2558,7 +2632,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2570,7 +2644,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: '1.  Press and hold on the screen.
 
-    2. Move your phone up or down.'
+    2. Move your phone up or down until
+    your phone vibrates.'
 --- !u!222 &449257778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2683,7 +2758,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 230}
+  m_SizeDelta: {x: 800, y: 200.07397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &510314137
 MonoBehaviour:
@@ -2728,7 +2803,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2738,13 +2813,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Quick tap the Controller Button.
 
-    2. Quick tap the controller button.
-
-    3.
-    Or press and hold the controller button and select "On/Off" Sub Button by moving
-    your finger over.'
+    2. Or press and hold the Controller
+    Button and select "On/Off" Sub Button by moving your finger over.'
 --- !u!222 &510314139
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2789,7 +2861,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 460}
+  m_SizeDelta: {x: 800, y: 287.99994}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &575727380
 MonoBehaviour:
@@ -2834,7 +2906,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2844,17 +2916,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Press and hold the Controller Button and select "Brightness" Sub Button
+    by moving your finger over.
 
-    2. Or press and hold the controller
-    button and select "Brightness" Sub Button by moving your finger over.
-
-    3.
-    Keep holding pressed and move your phone forwards or backwards to dim the light.
-
-
-    Info:
-    Brghtness is set to 100% by default, if "Brightness" Sub Button is selected.'
+    2. Keep holding pressed and move your phone
+    forwards to make it darker or backwards to make it brighter.'
 --- !u!222 &575727382
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3307,7 +3373,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 680542959005230583, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_Name
-      value: Help Button
+      value: Instruction Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 803690491067676351, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 803690491067676351, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 803690491067676351, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 803690491067676351, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1411247574686782759, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3315,16 +3397,16 @@ PrefabInstance:
       objectReference: {fileID: 60599230}
     - target: {fileID: 1411247574686782759, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowHideHelpView
+      value: ShowHideInstructionView
       objectReference: {fileID: 0}
     - target: {fileID: 1411247574686782759, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: HelpMenuController, Assembly-CSharp
+      value: InstructionController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 2486624811489810870, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7a04e67444efd4862b21fe1349592c66, type: 3}
+      objectReference: {fileID: 21300000, guid: 28a5ca943c1c748f788621adc98f9121, type: 3}
     - target: {fileID: 2486624811489810870, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -3339,7 +3421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2647116225362154944, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6033304159315138346, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_Text
@@ -3439,7 +3521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6289951393315675452, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 440
+      value: 439
       objectReference: {fileID: 0}
     - target: {fileID: 6289951393315675452, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3471,7 +3553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8759812364830272570, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
@@ -3743,7 +3825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Set Light Color
+      value: 8. Set Light Color
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4359,7 +4441,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 200}
+  m_SizeDelta: {x: 800, y: 144.37756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998303409
 MonoBehaviour:
@@ -4404,7 +4486,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 40
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -4414,12 +4496,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1. Scan the marker of your device.
+  m_Text: '1. Select the Input Field with the device name in it.
 
-    2. Select the Input Field with
-    the device name in it.
-
-    3. Enter the new device name.'
+    2. Enter the
+    new device name.'
 --- !u!222 &998303411
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4549,7 +4629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034610619}
   m_Layer: 0
-  m_Name: Help View
+  m_Name: Instruction View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4801,6 +4881,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060004954}
   m_CullTransparentMesh: 0
+--- !u!1 &1097031685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8102496019580664668, guid: f4bb4a82327bb4be28c1c6966b989f4f, type: 3}
+  m_PrefabInstance: {fileID: 2090809253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1097031688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097031685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 60599230}
+          m_TargetAssemblyTypeName: InstructionController, GameAssembly
+          m_MethodName: ShowHideInstructionView
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1130882657
 GameObject:
   m_ObjectHideFlags: 0
@@ -4883,7 +4997,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 785221864}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.43887725
+  m_Size: 0.46594393
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5153,6 +5267,102 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254040856}
   m_CullTransparentMesh: 0
+--- !u!1 &1299271960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1299271961}
+  - component: {fileID: 1299271963}
+  - component: {fileID: 1299271962}
+  - component: {fileID: 1299271964}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1299271961
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299271960}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 42183565}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 90, y: 90}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1299271962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299271960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 28a5ca943c1c748f788621adc98f9121, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1299271963
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299271960}
+  m_CullTransparentMesh: 0
+--- !u!114 &1299271964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299271960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &1312874895
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,7 +10689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Edit Device Name
+      value: 4. Edit Device Name
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10696,7 +10906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Set Light Brightness
+      value: 7. Set Light Brightness
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -10908,7 +11118,7 @@ RectTransform:
   m_Children:
   - {fileID: 1528673283}
   - {fileID: 1810807140}
-  - {fileID: 1679252485}
+  - {fileID: 42183565}
   - {fileID: 842873364}
   m_Father: {fileID: 66328785}
   m_RootOrder: 0
@@ -10958,6 +11168,17 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1588221486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2486624811489810870, guid: 8167e3642c4e646a894ff0148df61888, type: 3}
+  m_PrefabInstance: {fileID: 667022089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1609766883
 GameObject:
   m_ObjectHideFlags: 0
@@ -11045,7 +11266,6 @@ GameObject:
   - component: {fileID: 1679252489}
   - component: {fileID: 1679252488}
   - component: {fileID: 1679252487}
-  - component: {fileID: 1679252486}
   m_Layer: 5
   m_Name: Header
   m_TagString: Untagged
@@ -11064,28 +11284,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1561164705}
-  m_RootOrder: 2
+  m_Father: {fileID: 42183565}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 491.5, y: 0}
-  m_SizeDelta: {x: 883, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 455.63214, y: 67}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1679252486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679252484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 2
 --- !u!114 &1679252487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11139,7 +11345,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: INFORMATION
+  m_Text: INSTRUCTION
 --- !u!222 &1679252489
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12328,7 +12534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Set Light Temperature
+      value: 9. Set Light Temperature
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12689,7 +12895,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: Remove Device
+      value: 3. Remove Device
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
