@@ -54,8 +54,6 @@ public class DistanceCalculator: MonoBehaviour
             upwardDistance = CalculateDistancBetweenCameraAndPlane(upwardVector);
             forwardDistance = CalculateDistancBetweenCameraAndPlane(forwardVector);
             sidewardDistance = CalculateDistancBetweenCameraAndPlane(sidewardVector);
-
-            Debug.Log(upwardDistance);
         }
     }
 
@@ -87,8 +85,6 @@ public class DistanceCalculator: MonoBehaviour
 
         Vector3 positiveDistanceVector = supportVector + realDistance * normalVector;
         float distanceToPositiveDistanceVector = Mathf.Sqrt(Mathf.Pow(p.x - positiveDistanceVector.x, 2) + Mathf.Pow(p.y - positiveDistanceVector.y, 2) + Mathf.Pow(p.z - positiveDistanceVector.z, 2));
-
-        Debug.Log("distance to negative vector: " + distanceToNegativeDistanceVector + "; distance to positive vector: " + distanceToPositiveDistanceVector);
 
         if (distanceToNegativeDistanceVector < distanceToPositiveDistanceVector)
         {

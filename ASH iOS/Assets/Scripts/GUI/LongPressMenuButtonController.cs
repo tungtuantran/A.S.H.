@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class LongPressButtonController : MonoBehaviour
+public class LongPressMenuButtonController : MonoBehaviour
 {
     //public UnityEvent onSelect;
     public UnityEvent onRelease;
@@ -15,12 +15,16 @@ public class LongPressButtonController : MonoBehaviour
     [SerializeField]
     private GameObject subButtonCollection;
 
+    [SerializeField]
+    private LongPressSubButton cancelButton;
+
     private LongPressSubButton[] subButtons;
 
     void Start()
     {
         subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional parameter includes inactive components
         subButtonCollection.SetActive(false);
+        cancelButton.gameObject.SetActive(false);
     }
 
     void Update()
@@ -37,19 +41,20 @@ public class LongPressButtonController : MonoBehaviour
     {
         SetAllSubButtonsActive();
         subButtonCollection.SetActive(true);
+    }
 
-        /*
-        if (onSelect != null)
-        {
-            onSelect.Invoke();
-        }
-        */
+    public void ShowCancelButton()
+    {
+        cancelButton.gameObject.SetActive(true);
     }
 
     public void HideSubButtonCollection()
     {
         SetAllSubButtonsCurrentlyInactive();
         subButtonCollection.SetActive(false);
+
+        cancelButton.CurrentlyActive = false;
+        cancelButton.gameObject.SetActive(false);
 
         if (onRelease != null)
         {

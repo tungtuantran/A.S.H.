@@ -25,6 +25,12 @@ public class LampController : DeviceController
     private bool updateLightColor;
     private bool updateLightTemperature;
 
+    private bool isUpdating;
+    private float lightBrightnessCache;
+    private Color lightColorCache;
+    private Color lightTemperatureCache;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -39,7 +45,19 @@ public class LampController : DeviceController
         Color color = Color.white;
         Color temperatureColor = Color.white;
 
-        if(updateLightBrightness){
+        if((updateLightBrightness || updateLightColor || updateLightTemperature) && !isUpdating)
+        {
+            CacheLightValues();
+
+            isUpdating = true;
+        }
+
+        if ((!updateLightBrightness && !updateLightColor && !updateLightTemperature) && isUpdating)
+        {
+            isUpdating = false;
+        }
+
+        if (updateLightBrightness){
             brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
         }
@@ -57,6 +75,20 @@ public class LampController : DeviceController
         }
 
         ShowLightPreview(brightness, color, temperatureColor);
+    }
+
+    public void InsertCachedLightValues()
+    {
+        SetLightBrightness(lightBrightnessCache);
+        SetLightColor(lightColorCache);
+        SetLightTemperature(lightTemperatureCache);
+    }
+
+    private void CacheLightValues()
+    {
+        lightBrightnessCache = ((Lamp)device).LightBrightness;
+        lightColorCache = ((Lamp)device).LightColor;
+        lightTemperatureCache = ((Lamp)device).LightTemperature;
     }
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
@@ -186,7 +218,7 @@ public class LampController : DeviceController
         lightImagePreview.gameObject.SetActive(true);
     }
 
-    public void UpdateLigthBrightness()
+    public void UpdateLightBrightness()
     {
         updateLightBrightness = true;
         brightnessCalculator.Active = true;
@@ -201,7 +233,7 @@ public class LampController : DeviceController
     public void UpdateLightColorAndBrightness()
     {
         UpdateLightColor();
-        UpdateLigthBrightness();
+        UpdateLightBrightness();
     }
 
     private void SetLightColor(Color color)

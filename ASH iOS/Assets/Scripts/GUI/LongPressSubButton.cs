@@ -11,7 +11,7 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     private Image fillImage;
 
     public float requiredHoldTime = 0.4f;
-    public UnityEvent onPointerEnter;
+    public UnityEvent onHold;
 
     private bool pointerEnter;
     private float pointerEnterTimer;
@@ -51,11 +51,11 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             pointerEnterTimer += Time.deltaTime;
             if (pointerEnterTimer >= requiredHoldTime)
             {
-                if (onPointerEnter != null)
+                if (onHold != null)
                 {
                     CurrentlyActive = true;
                     Handheld.Vibrate();
-                    onPointerEnter.Invoke();
+                    onHold.Invoke();
                 }
 
                 Reset();

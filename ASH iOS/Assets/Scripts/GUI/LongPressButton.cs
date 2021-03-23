@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public float requiredHoldTime = 0.4f;
-    public UnityEvent onPointerDown;
+    public UnityEvent onHold;
     public UnityEvent onPointerUp;
 
     [SerializeField]
@@ -29,7 +29,6 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
         currentlyActive = false;
     }
-
 
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -57,11 +56,11 @@ public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 pointerDownTimer += Time.deltaTime;
                 if (pointerDownTimer >= requiredHoldTime)
                 {
-                    if (onPointerDown != null)
+                    if (onHold != null)
                     {
                         currentlyActive = true;
                         Handheld.Vibrate();
-                        onPointerDown.Invoke();
+                        onHold.Invoke();
                     }
                     Reset();
                 }
