@@ -20,7 +20,7 @@ public class LongPressMenuButtonController : MonoBehaviour
 
     private LongPressSubButton[] subButtons;
 
-    void Start()
+    void Awake()
     {
         subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional parameter includes inactive components
         subButtonCollection.SetActive(false);
