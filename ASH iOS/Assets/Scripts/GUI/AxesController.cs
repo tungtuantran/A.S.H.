@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AxesController : MonoBehaviour
 {
-    /*
     private Vector3 CameraRotation;
     private Transform _camera;
     private bool rotate;
@@ -94,8 +93,8 @@ public class AxesController : MonoBehaviour
         yAxis.SetActive(false);
         zAxis.SetActive(false);
     }
-    */
 
+    /*
     private static Vector3 CameraRotation;
     private static Transform _camera;
     private static bool show;
@@ -188,5 +187,6 @@ public class AxesController : MonoBehaviour
         yAxis.SetActive(false);
         zAxis.SetActive(false);
     }
+    */
 
 }
