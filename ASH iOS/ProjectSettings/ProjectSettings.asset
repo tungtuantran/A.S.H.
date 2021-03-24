@@ -707,6 +707,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
+    1: UNITY_XR_ARKIT_LOADER_ENABLED
     4: UNITY_XR_ARKIT_LOADER_ENABLED
   platformArchitecture: {}
   scriptingBackend: {}
