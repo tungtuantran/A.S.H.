@@ -229,6 +229,21 @@ public class LampController : DeviceController
         HideLightPreview();
     }
 
+    public void PauseUpdatingLightBrightness(bool pause)
+    {
+        updateLightBrightness = !pause;
+    }
+
+    public void PauseUpdatingLightColor(bool pause)
+    {
+        updateLightColor = !pause;
+    }
+
+    public void PauseUpdatingLightTemperature(bool pause)
+    {
+        updateLightTemperature = !pause;
+    }
+
     public void UpdateLightColor()
     {
         updateLightColor = true;

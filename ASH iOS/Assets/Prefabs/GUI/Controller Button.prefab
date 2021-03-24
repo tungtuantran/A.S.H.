@@ -98,6 +98,8 @@ MonoBehaviour:
   mainButton: {fileID: 5868174673863555574}
   subButtonCollection: {fileID: 5851728503782112972}
   cancelButton: {fileID: 0}
+  lightBrightnessOnlyButton: {fileID: 0}
+  lightColorOnlyButton: {fileID: 0}
 --- !u!1001 &2505523265097762587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -733,8 +735,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 5851728503846877076}
     m_Modifications:
     - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: backgroundImage
+      value: 
+      objectReference: {fileID: 2444052482544771118}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: disableUIInteractions
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: backgroundColorCurrentlyActive.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: backgroundColorCurrentlyActive.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+      propertyPath: backgroundColorCurrentlyActive.g
+      value: 0.47843137
       objectReference: {fileID: 0}
     - target: {fileID: 3591863894856612159, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.size
@@ -884,5 +902,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2752ecf4d21664edb9076b0c63e6c606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2444052482544771118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4709683429561606375, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
+  m_PrefabInstance: {fileID: 6969088327314964681}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

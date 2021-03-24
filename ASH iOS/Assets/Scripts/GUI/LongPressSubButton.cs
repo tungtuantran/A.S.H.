@@ -10,9 +10,16 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField]
     private Image fillImage;
 
-    public float requiredHoldTime = 0.4f;
-    public UnityEvent onHold;
+    [SerializeField]
+    private Image backgroundImage;
 
+    public float requiredHoldTime = 0.4f;
+    public Color backgroundColorCurrentlyActive;
+
+    public UnityEvent onHold;
+    public UnityEvent onExit;
+
+    private Color backgroundColorOnDefault;
     private bool pointerEnter;
     private float pointerEnterTimer;
     private bool pointerExit;
@@ -26,6 +33,11 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             currentlyActive = value;
             Reset();
         }
+    }
+
+    void Awake()
+    {
+        backgroundColorOnDefault = backgroundImage.color;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -44,6 +56,11 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
         if(pointerExit)
         {
             Reset();
+            if(onExit != null)
+            {
+                Debug.Log("on exit executed");
+                onExit.Invoke();
+            }
         }
 
         if (pointerEnter && ! CurrentlyActive)
@@ -62,6 +79,8 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
             }
             fillImage.fillAmount = pointerEnterTimer / requiredHoldTime;
         }
+
+        SetBackgroundColor();
     }
 
     private void Reset()
@@ -70,6 +89,18 @@ public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerE
         pointerEnter = false;
         pointerEnterTimer = 0;
         fillImage.fillAmount = pointerEnterTimer / requiredHoldTime;
+    }
+
+    private void SetBackgroundColor()
+    {
+        if (currentlyActive)
+        {
+            backgroundImage.color = backgroundColorCurrentlyActive;
+        }
+        else
+        {
+            backgroundImage.color = backgroundColorOnDefault;
+        }
     }
 
 }
