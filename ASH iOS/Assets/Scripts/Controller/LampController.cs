@@ -93,14 +93,15 @@ public class LampController : DeviceController
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
-        float brightness = 1 - distanceForBrightness * 100;                         // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        float brightnessDelta = distanceForBrightness * 100;                         // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        float brightness = 1 - (1 - lightBrightnessCache) - brightnessDelta;
 
         if (brightness < 0.15f)
         {
             brightness = 0.15f;
         }
 
-        if(brightness > 1f)
+        if (brightness > 1f)
         {
             brightness = 1f;
         }
@@ -110,12 +111,17 @@ public class LampController : DeviceController
 
     private Color ConvertDistanceToColorValue(float distanceForHue, float distanceForSaturation)
     {
+        float hDelta = distanceForHue * 100;
+        float sDelta = distanceForSaturation * 2 * 100;             // distance multiplied by 2 for a smaller max distance
+
+        // get hue and saturation from cached color
+        float hCache, sCache, vCache;
+        Color.RGBToHSV(lightColorCache, out hCache, out sCache, out vCache);
+
         // hue h and saturation s from hsv
         // Mathf.Abs() to keep hue value positive
-        float h = Mathf.Abs(distanceForHue * 100);
-
-        // distance multiplied by 2 for a smaller max distance
-        float s = 1 - distanceForSaturation * 2 * 100;
+        float h = Mathf.Abs(hCache + hDelta);
+        float s = 1 - (1 - sCache) - sDelta;
 
         if(h > 1f)
         {
@@ -133,12 +139,14 @@ public class LampController : DeviceController
 
     private Color ConvertDistanceToTemperatureColorValue(float distanceForTemperature)
     {
-        int delta = Mathf.RoundToInt(distanceForTemperature * 100000);
+        int texYDelta = Mathf.RoundToInt(distanceForTemperature * 100000);
 
-        // starts from the middle height of the Texture
-        int texY = temperatureTexture.height/2 + delta;
+        // get texY from temperatureCache
+        int texYCache = GetYOfPixelByColor(temperatureTexture, lightTemperatureCache);
 
-        if(texY > temperatureTexture.height)
+        int texY = texYCache + texYDelta;
+
+        if (texY > temperatureTexture.height)
         {
             texY = temperatureTexture.height;
         }
@@ -150,8 +158,19 @@ public class LampController : DeviceController
 
         // get color from textures pixel
         return temperatureTexture.GetPixel(0, texY);
+    }
 
+    private int GetYOfPixelByColor(Texture2D texture, Color color)
+    {
+        for (int y = 0; y <= texture.height; y++) {
+            if(color == texture.GetPixel(0,y))
+            {
+                return y;
+            }
+        }
 
+        Debug.Log("pixel not found");
+        return 0;
     }
 
     private void ShowLightPreview(float brightness, Color color, Color temperatureColor)
