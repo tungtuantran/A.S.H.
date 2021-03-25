@@ -15,6 +15,9 @@ public class TurnAllOffOnSystem : MonoBehaviour
     [SerializeField]
     private GameObject uIDisplay;
 
+    [SerializeField]
+    private GameObject allOffPopUp;
+
     public DisableUIInteractions disableUIInteractions;
     public float requiredHoldTime = 1.0f;
 
@@ -30,6 +33,7 @@ public class TurnAllOffOnSystem : MonoBehaviour
         SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
         aRDisplayToggle.gameObject.SetActive(false);
         uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+        allOffPopUp.SetActive(false);
     }
 
     private void Update()
@@ -68,28 +72,48 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 float distance = distanceCalculator.forwardDistance * 100;
                 if (distance > RequiredDistance)
                 {
-                    TurnAllOffOn();
+                    if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
+                    {
+                        TurnAllOff(false);
+                        Handheld.Vibrate();                                 // turn all on
+                    }
+                    else
+                    {
+                        if (!allOffPopUp.activeSelf)                        // prevents it from always show and hide per frame
+                        {
+                            ShowHideAllOffPopUp();
+                            Handheld.Vibrate();
+                        }
+                    }
                 }
             }
         }
     }
 
-    private void TurnAllOffOn()
+    public void ShowHideAllOffPopUp()
     {
+        if (allOffPopUp.activeSelf)
+        {
+            allOffPopUp.SetActive(false);
+
+        }
+        else
+        {
+            allOffPopUp.SetActive(true);
+        }
+    }
+
+    public void TurnAllOff(bool off)
+    {
+        Debug.Log("turn all off func called");
         if (active)
         {
-            if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
-            {
-                DeviceCollection.DeviceCollectionInstance.AllDevicesOff = false;
-            }
-            else
-            {
-                DeviceCollection.DeviceCollectionInstance.AllDevicesOff = true;
-            }
+            DeviceCollection.DeviceCollectionInstance.AllDevicesOff = off;
 
             SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
             uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
-            Handheld.Vibrate();
+
+            Debug.Log("turned all off: " + DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
         }
 
         Reset();

@@ -68,6 +68,7 @@ public class LongPressButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
             if (onPointerExit != null)
             {
                 onPointerExit.Invoke();
+                Handheld.Vibrate();
             }
 
             currentlyActive = false;
@@ -83,9 +84,8 @@ public class LongPressButton : MonoBehaviour, IPointerEnterHandler, IPointerExit
                     if (onHold != null)
                     {
                         currentlyActive = true;
-                        Handheld.Vibrate();
                         onHold.Invoke();
-                        Debug.Log("invoke sth");
+                        Handheld.Vibrate();
                     }
                     Reset();
                 }
