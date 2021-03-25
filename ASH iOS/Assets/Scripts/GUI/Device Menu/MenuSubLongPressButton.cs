@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongPressSubButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class MenuSubLongPressButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private Image fillImage;

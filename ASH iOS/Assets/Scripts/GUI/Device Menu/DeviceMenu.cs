@@ -4,40 +4,47 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class LongPressMenuButtonController : MonoBehaviour
+public class DeviceMenu : MonoBehaviour
 {
     //public UnityEvent onSelect;
     public UnityEvent onRelease;
 
+    /*
     [SerializeField]
-    private LongPressButton mainButton;
+    private MenuMainLongPressButton mainButton;
+    */
 
     [SerializeField]
     private GameObject subButtonCollection;
 
+    /*
     [SerializeField]
-    private LongPressSubButton cancelButton;
+    private MenuSubLongPressButton cancelButton;
 
     [SerializeField]
-    private LongPressedButton2 lightBrightnessOnlyButton;
+    private LongPressButton lightBrightnessOnlyButton;
 
     [SerializeField]
-    private LongPressedButton2 lightColorOnlyButton;
+    private LongPressButton lightColorOnlyButton;
+    */
 
-    private LongPressSubButton[] subButtons;
+    private MenuSubLongPressButton[] subButtons;
 
     void Awake()
     {
-        subButtons = subButtonCollection.GetComponentsInChildren<LongPressSubButton>(true);     // optional parameter includes inactive components
+        subButtons = subButtonCollection.GetComponentsInChildren<MenuSubLongPressButton>(true);     // optional parameter includes inactive components
         subButtonCollection.SetActive(false);
+
+        /*
         cancelButton.gameObject.SetActive(false);
         lightBrightnessOnlyButton.gameObject.SetActive(false);
         lightColorOnlyButton.gameObject.SetActive(false);
+        */
     }
 
     void Update()
     {
-        foreach(LongPressSubButton subButton in subButtons){
+        foreach(MenuSubLongPressButton subButton in subButtons){
             if (subButton.CurrentlyActive)
             {
                 SetAllSubButtonsInactiveBesidesCurrentActiveSubButton();
@@ -51,6 +58,7 @@ public class LongPressMenuButtonController : MonoBehaviour
         subButtonCollection.SetActive(true);
     }
 
+    /*
     public void ShowCancelButton()
     {
         cancelButton.gameObject.SetActive(true);
@@ -61,12 +69,14 @@ public class LongPressMenuButtonController : MonoBehaviour
         lightBrightnessOnlyButton.gameObject.SetActive(true);
         lightColorOnlyButton.gameObject.SetActive(true);
     }
+    */
 
     public void HideSubButtonCollection()
     {
         SetAllSubButtonsCurrentlyInactive();
         subButtonCollection.SetActive(false);
 
+        /*
         cancelButton.CurrentlyActive = false;
         cancelButton.gameObject.SetActive(false);
 
@@ -75,6 +85,7 @@ public class LongPressMenuButtonController : MonoBehaviour
 
         //lightColorOnlyButton.CurrentlyActive = false;
         lightColorOnlyButton.gameObject.SetActive(false);
+        */
 
         if (onRelease != null)
         {
@@ -84,7 +95,7 @@ public class LongPressMenuButtonController : MonoBehaviour
 
     private void SetAllSubButtonsCurrentlyInactive()
     {
-        foreach (LongPressSubButton subButton in subButtons)
+        foreach (MenuSubLongPressButton subButton in subButtons)
         {
             subButton.CurrentlyActive = false;
         }
@@ -92,7 +103,7 @@ public class LongPressMenuButtonController : MonoBehaviour
 
     private void SetAllSubButtonsActive()
     {
-        foreach (LongPressSubButton subButton in subButtons)
+        foreach (MenuSubLongPressButton subButton in subButtons)
         {
             subButton.gameObject.SetActive(true);
         }
@@ -100,7 +111,7 @@ public class LongPressMenuButtonController : MonoBehaviour
 
     private void SetAllSubButtonsInactiveBesidesCurrentActiveSubButton()
     {
-        foreach (LongPressSubButton subButton in subButtons)
+        foreach (MenuSubLongPressButton subButton in subButtons)
         {
             if (!subButton.CurrentlyActive)
             {

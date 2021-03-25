@@ -5,75 +5,113 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class LongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class LongPressButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
     public float requiredHoldTime = 0.4f;
+    public Color backgroundColorCurrentlyActive;
+
     public UnityEvent onHold;
-    public UnityEvent onPointerUp;
+    public UnityEvent onPointerExit;
+
+    [SerializeField]
+    private Image backgroundImage;
 
     [SerializeField]
     private Image fillImage;
 
-    private bool pointerDown;
+    private Color backgroundColorOnDefault;
+    private bool pointerExit;
+    private bool pointerEnter;
     private bool currentlyActive;
-    private float pointerDownTimer;
-
-    void OnMouseUp()
+    public bool CurrentlyActive
     {
-        Reset();
-
-        if (onPointerUp != null)
+        get
         {
-            onPointerUp.Invoke();
+            return currentlyActive;
         }
 
-        currentlyActive = false;
+        set
+        {
+            currentlyActive = value;
+        }
     }
+    private float pointerEnterTimer;
 
-    public void OnPointerDown(PointerEventData eventData)
+    void Awake()
     {
-        pointerDown = true;
+        backgroundColorOnDefault = backgroundImage.color;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Reset();
+        pointerExit = true;
+    }
 
-        if (onPointerUp != null)
-        {
-            onPointerUp.Invoke();
-        }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        pointerExit = true;
+    }
 
-        currentlyActive = false;
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        pointerEnter = true;
     }
 
     private void Update()
     {
+        if (pointerExit)
+        {
+            Debug.Log("pointer exit");
+
+            Reset();
+
+            if (onPointerExit != null)
+            {
+                onPointerExit.Invoke();
+            }
+
+            currentlyActive = false;
+        }
+
         if (!currentlyActive)
         {
-            if (pointerDown)
+            if (pointerEnter)
             {
-                pointerDownTimer += Time.deltaTime;
-                if (pointerDownTimer >= requiredHoldTime)
+                pointerEnterTimer += Time.deltaTime;
+                if (pointerEnterTimer >= requiredHoldTime)
                 {
                     if (onHold != null)
                     {
                         currentlyActive = true;
                         Handheld.Vibrate();
                         onHold.Invoke();
+                        Debug.Log("invoke sth");
                     }
                     Reset();
                 }
-                fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
+                fillImage.fillAmount = pointerEnterTimer / requiredHoldTime;
             }
         }
+        UpdateBackgroundColor();
     }
 
     private void Reset()
     {
-        pointerDown = false;
-        pointerDownTimer = 0;
-        fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
+        pointerExit = false;
+        pointerEnter = false;
+        pointerEnterTimer = 0;
+        fillImage.fillAmount = pointerEnterTimer / requiredHoldTime;
     }
 
+    private void UpdateBackgroundColor()
+    {
+        if (currentlyActive)
+        {
+            backgroundImage.color = backgroundColorCurrentlyActive;
+        }
+        else
+        {
+            backgroundImage.color = backgroundColorOnDefault;
+        }
+    }
 }
