@@ -8,15 +8,26 @@ using UnityEngine.UI;
 public class MenuMainLongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public float requiredHoldTime = 0.4f;
+    public Color backgroundColorCurrentlyActive;
+
     public UnityEvent onHold;
     public UnityEvent onPointerUp;
 
     [SerializeField]
     private Image fillImage;
 
+    [SerializeField]
+    private Image backgroundImage;
+
+    private Color backgroundColorOnDefault;
     private bool pointerDown;
     private bool currentlyActive;
     private float pointerDownTimer;
+
+    void Awake()
+    {
+        backgroundColorOnDefault = backgroundImage.color;
+    }
 
     void OnMouseUp()
     {
@@ -67,6 +78,8 @@ public class MenuMainLongPressButton : MonoBehaviour, IPointerDownHandler, IPoin
                 fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
             }
         }
+
+        SetBackgroundColor();
     }
 
     private void Reset()
@@ -76,4 +89,15 @@ public class MenuMainLongPressButton : MonoBehaviour, IPointerDownHandler, IPoin
         fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 
-}
+    private void SetBackgroundColor()
+    {
+        if (currentlyActive)
+        {
+            backgroundImage.color = backgroundColorCurrentlyActive;
+        }
+        else
+        {
+            backgroundImage.color = backgroundColorOnDefault;
+        }
+    }
+}   

@@ -10,7 +10,7 @@ public class CopyPasteSystem : MonoBehaviour
     //public static Device selectedDevice;
 
     [SerializeField]
-    private Text uIDisplayCopyText;
+    private Text copiedDeviceInformationText;
 
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
@@ -120,11 +120,11 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if (copiedDevice != null)
         {
-            uIDisplayCopyText.text = copiedDevice.Name;
+            copiedDeviceInformationText.text = copiedDevice.Name;
         }
         else
         {
-            uIDisplayCopyText.text = "Empty";
+            copiedDeviceInformationText.text = "Empty";
         }
     }
 }

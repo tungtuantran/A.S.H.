@@ -27,13 +27,12 @@ public class TurnAllOffOnSystem : MonoBehaviour
     private bool mouseDown;
     private float mouseDownTimer = 0.0f;
 
-
     private void Start()
     {
-        SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+        allOffPopUp.SetActive(false);
         aRDisplayToggle.gameObject.SetActive(false);
         uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
-        allOffPopUp.SetActive(false);
+        SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
     }
 
     private void Update()
@@ -72,24 +71,27 @@ public class TurnAllOffOnSystem : MonoBehaviour
                 float distance = distanceCalculator.forwardDistance * 100;
                 if (distance > RequiredDistance)
                 {
-                    if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
+                    if (active)
                     {
-                        TurnAllOff(false);
-                        Handheld.Vibrate();                                 // turn all on
-                    }
-                    else
-                    {
-                        if (!allOffPopUp.activeSelf)                        // prevents it from always show and hide per frame
+                        if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
                         {
-                            ShowHideAllOffPopUp();
-                            Handheld.Vibrate();
+                            TurnAllOff(false);
+                            Handheld.Vibrate();                                 // turn all on
+                        }
+                        else
+                        {
+                            if (!allOffPopUp.activeSelf)                        // prevents it from always show and hide per frame
+                            {
+                                ShowHideAllOffPopUp();
+                                Handheld.Vibrate();
+                            }
                         }
                     }
                 }
             }
         }
     }
-
+    
     public void ShowHideAllOffPopUp()
     {
         if (allOffPopUp.activeSelf)
@@ -105,17 +107,9 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     public void TurnAllOff(bool off)
     {
-        Debug.Log("turn all off func called");
-        if (active)
-        {
-            DeviceCollection.DeviceCollectionInstance.AllDevicesOff = off;
-
-            SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
-            uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
-
-            Debug.Log("turned all off: " + DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
-        }
-
+        DeviceCollection.DeviceCollectionInstance.AllDevicesOff = off;
+        SetActiveOfARDisplayToggle(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
+        uIDisplay.SetActive(DeviceCollection.DeviceCollectionInstance.AllDevicesOff);
         Reset();
     }
 
