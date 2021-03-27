@@ -3677,7 +3677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: InsertCachedLightValues
+      value: InsertCachedLightValuesForCanceling
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName

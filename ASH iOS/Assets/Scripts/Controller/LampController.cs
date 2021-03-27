@@ -6,6 +6,10 @@ using System;
 
 public class LampController : DeviceController
 {
+    private const float lockOnDelta = 0.0005f;
+    private const float minBrightness = 0.15f;
+    private const float maxBrightness = 1f;
+
     public Text lightTextPreview;
     public Image lightImagePreview;
     public AxesController axesController;
@@ -56,8 +60,6 @@ public class LampController : DeviceController
         }
     }
     private Vector3 lockedPosition;
-    private const float lockOnDelta = 0.0010f;
-
     // cached values for locking
     private float lightBrightnessLockCache;    
     private Color lightColorLockCache;
@@ -94,14 +96,16 @@ public class LampController : DeviceController
         {
             if (!IsLocked)
             {
+                // light color value is locked
                 if (Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) + lockOnDelta && Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) + lockOnDelta)
                 {
                     color = lightColorLockCache;
                     SetLightColor(color);
                     IsLocked = true;
                     updateLightColor = false;
-
                 }
+
+                //  light brightness value is locked
                 else if (Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) > Mathf.Abs(lockedPosition.z + brightnessCalculator.forwardDistance) + lockOnDelta || Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) > Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) + lockOnDelta)
                 {
                     brightness = lightBrightnessLockCache;
@@ -165,7 +169,7 @@ public class LampController : DeviceController
         }
     }
 
-    public void InsertCachedLightValues()
+    public void InsertCachedLightValuesForCanceling()
     {
         SetLightBrightness(lightBrightnessCancelCache);
         SetLightColor(lightColorCancelCache);
@@ -208,17 +212,17 @@ public class LampController : DeviceController
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
-        float brightnessDelta = distanceForBrightness * 100;                         // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
-        float brightness = 1 - (1 - lightBrightnessCancelCache) - brightnessDelta;
+        float brightnessDelta = distanceForBrightness * 100;                                                    // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
+        float brightness = maxBrightness - (maxBrightness - lightBrightnessCancelCache) - brightnessDelta;      // brightness = 1 - (1 - lightBrightnessCancelCache) - brightnessDelta;
 
-        if (brightness < 0.15f)
+        if (brightness < minBrightness)
         {
-            brightness = 0.15f;
+            brightness = minBrightness;
         }
 
-        if (brightness > 1f)
+        if (brightness > maxBrightness)
         {
-            brightness = 1f;
+            brightness = maxBrightness;
         }
 
         return brightness;
@@ -235,13 +239,17 @@ public class LampController : DeviceController
 
         // hue h and saturation s from hsv
         // Mathf.Abs() to keep hue value positive
-        float h = Mathf.Abs(hCache + hDelta);
+
+        // mod 1 because h turns black if value is over 1f
+        float h = Mathf.Abs(hCache + hDelta) % 1;
         float s = 1 - (1 - sCache) - sDelta;
 
+        /*
         if(h > 1f)
         {
             h = 1f;
         }
+        */
 
         if (s < 0f)
         {
@@ -284,7 +292,7 @@ public class LampController : DeviceController
             }
         }
 
-        Debug.Log("pixel not found");
+        // pixel with given color not found
         return 0;
     }
 
