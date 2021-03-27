@@ -60,6 +60,7 @@ public class LampController : DeviceController
         }
     }
     private Vector3 lockedPosition;
+
     // cached values for locking
     private float lightBrightnessLockCache;    
     private Color lightColorLockCache;
@@ -139,6 +140,116 @@ public class LampController : DeviceController
         UpdateAxis();
     }
 
+    public override void AddDevice(string name)
+    {
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            device.Name = name;
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
+        }
+        else
+        {
+            throw new NoInputException();
+        }
+    }
+
+    protected override void SetDevice()
+    {
+        device = new Lamp(deviceName, deviceId);
+    }
+
+    public void InsertCachedLightValuesForCanceling()
+    {
+        SetLightBrightness(lightBrightnessCancelCache);
+        SetLightColor(lightColorCancelCache);
+        SetLightTemperature(lightTemperatureCancelCache);
+    }
+
+    // locking for brightness and color only
+    public void SetLockingSelected(bool lockingSelected)
+    {
+        if (lockingSelected)
+        {
+            CacheLightValuesForLocking();
+            lockedPosition = new Vector3(colorCalculator.sidewardDistance, colorCalculator.upwardDistance, brightnessCalculator.forwardDistance);
+        }
+        else
+        {
+            // reset
+            updateLightColor = true;
+            updateLightBrightness = true;
+            IsLocked = false;
+            Handheld.Vibrate();
+        }
+
+        this.lockingSelected = lockingSelected;
+    }
+
+    public override void StopUpdating()
+    {
+        updateLightColor = false;
+        updateLightBrightness = false;
+        updateLightTemperature = false;
+
+        brightnessCalculator.Active = false;
+        colorCalculator.Active = false;
+        temperatureCalculator.Active = false;
+    }
+
+    public void PauseUpdatingLightBrightness(bool pause)
+    {
+        updateLightBrightness = !pause;
+    }
+
+    public void PauseUpdatingLightColor(bool pause)
+    {
+        updateLightColor = !pause;
+    }
+
+    public void PauseUpdatingLightTemperature(bool pause)
+    {
+        updateLightTemperature = !pause;
+    }
+
+    public void UpdateLightColor()
+    {
+        updateLightColor = true;
+        colorCalculator.Active = true;
+
+        lightImagePreview.gameObject.SetActive(true);
+    }
+
+    public void UpdateLightBrightness()
+    {
+        updateLightBrightness = true;
+        brightnessCalculator.Active = true;
+    }
+
+    public void UpdateLightTemperature()
+    {
+        updateLightTemperature = true;
+        temperatureCalculator.Active = true;
+    }
+
+    public void UpdateLightColorAndBrightness()
+    {
+        UpdateLightColor();
+        UpdateLightBrightness();
+    }
+
+    private void CacheLightValuesForCanceling()
+    {
+        lightBrightnessCancelCache = ((Lamp)device).LightBrightness;
+        lightColorCancelCache = ((Lamp)device).LightColor;
+        lightTemperatureCancelCache = ((Lamp)device).LightTemperature;
+    }
+
+    private void CacheLightValuesForLocking()
+    {
+        lightBrightnessLockCache = ((Lamp)device).LightBrightness;
+        lightColorLockCache = ((Lamp)device).LightColor;
+    }
+
     private void UpdateAxis()
     {
         if (updateLightBrightness)
@@ -169,47 +280,6 @@ public class LampController : DeviceController
         }
     }
 
-    public void InsertCachedLightValuesForCanceling()
-    {
-        SetLightBrightness(lightBrightnessCancelCache);
-        SetLightColor(lightColorCancelCache);
-        SetLightTemperature(lightTemperatureCancelCache);
-    }
-
-    private void CacheLightValuesForCanceling()
-    {
-        lightBrightnessCancelCache = ((Lamp)device).LightBrightness;
-        lightColorCancelCache = ((Lamp)device).LightColor;
-        lightTemperatureCancelCache = ((Lamp)device).LightTemperature;
-    }
-
-    // locking for brightness and color only
-    public void SetLockingSelected(bool lockingSelected)
-    {
-        if (lockingSelected)
-        {
-            CacheLightValuesForLocking();
-            lockedPosition = new Vector3(colorCalculator.sidewardDistance, colorCalculator.upwardDistance, brightnessCalculator.forwardDistance);
-        }
-        else
-        {
-            // reset
-            updateLightColor = true;
-            updateLightBrightness = true;
-            IsLocked = false;
-            Handheld.Vibrate();
-        }
-
-        this.lockingSelected = lockingSelected;
-    }
-
-
-    private void CacheLightValuesForLocking()
-    {
-        lightBrightnessLockCache = ((Lamp)device).LightBrightness;
-        lightColorLockCache = ((Lamp)device).LightColor;
-    }
-
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
         float brightnessDelta = distanceForBrightness * 100;                                                    // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
@@ -231,7 +301,7 @@ public class LampController : DeviceController
     private Color ConvertDistanceToColorValue(float distanceForHue, float distanceForSaturation)
     {
         float hDelta = distanceForHue * 100;
-        float sDelta = distanceForSaturation * 2 * 100;             // distance multiplied by 2 for a smaller max distance
+        float sDelta = distanceForSaturation * 2 * 100;                                                         // distance multiplied by 2 for a smaller max distance
 
         // get hue and saturation from cached color
         float hCache, sCache, vCache;
@@ -239,17 +309,8 @@ public class LampController : DeviceController
 
         // hue h and saturation s from hsv
         // Mathf.Abs() to keep hue value positive
-
-        // mod 1 because h turns black if value is over 1f
-        float h = Mathf.Abs(hCache + hDelta) % 1;
+        float h = Mathf.Abs(hCache + hDelta) % 1;                                                               // mod 1 to keep it smaller than 1f because h turns black if value is over 1f
         float s = 1 - (1 - sCache) - sDelta;
-
-        /*
-        if(h > 1f)
-        {
-            h = 1f;
-        }
-        */
 
         if (s < 0f)
         {
@@ -350,58 +411,6 @@ public class LampController : DeviceController
         lightImagePreview.gameObject.SetActive(false);
     }
 
-    public override void StopUpdating()
-    {
-        updateLightColor = false;
-        updateLightBrightness = false;
-        updateLightTemperature = false;
-
-        brightnessCalculator.Active = false;
-        colorCalculator.Active = false;
-        temperatureCalculator.Active = false;
-    }
-
-    public void PauseUpdatingLightBrightness(bool pause)
-    {
-        updateLightBrightness = !pause;
-    }
-
-    public void PauseUpdatingLightColor(bool pause)
-    {
-        updateLightColor = !pause;
-    }
-
-    public void PauseUpdatingLightTemperature(bool pause)
-    {
-        updateLightTemperature = !pause;
-    }
-
-    public void UpdateLightColor()
-    {
-        updateLightColor = true;
-        colorCalculator.Active = true;
-
-        lightImagePreview.gameObject.SetActive(true);
-    }
-
-    public void UpdateLightBrightness()
-    {
-        updateLightBrightness = true;
-        brightnessCalculator.Active = true;
-    }
-
-    public void UpdateLightTemperature()
-    {
-        updateLightTemperature = true;
-        temperatureCalculator.Active = true;
-    }
-
-    public void UpdateLightColorAndBrightness()
-    {
-        UpdateLightColor();
-        UpdateLightBrightness();
-    }
-
     private void SetLightColor(Color color)
     {
         ((Lamp) device).LightColor = color;
@@ -415,24 +424,6 @@ public class LampController : DeviceController
     private void SetLightBrightness(float brightness)
     {
         ((Lamp) device).LightBrightness = brightness;
-    }
-
-    public override void AddDevice(string name)
-    {
-        if (!string.IsNullOrWhiteSpace(name))
-        {
-            device.Name = name;
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
-        }
-        else
-        {
-            throw new NoInputException();
-        }
-    }
-
-    protected override void SetDevice()
-    {
-        device = new Lamp(deviceName, deviceId);
     }
 }
 
