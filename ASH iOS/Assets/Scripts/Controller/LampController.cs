@@ -8,6 +8,7 @@ public class LampController : DeviceController
 {
     public Text lightTextPreview;
     public Image lightImagePreview;
+    public AxesController axesController;
     
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
@@ -26,10 +27,15 @@ public class LampController : DeviceController
     private bool updateLightTemperature;
 
     private bool isUpdating;
-    private float lightBrightnessCache;
+    private float lightBrightnessCache;         // backup values for canceling
     private Color lightColorCache;
     private Color lightTemperatureCache;
 
+    private bool isLocked;
+    private bool switched;
+    private float lightBrightnessLockCache;     // backup values for canceling     
+    private Color lightColorLockCache;
+    private Vector3 lockedPosition;
 
     protected override void Awake()
     {
@@ -57,9 +63,78 @@ public class LampController : DeviceController
             isUpdating = false;
         }
 
-        if (updateLightBrightness){
+        if (isLocked)
+        {
+            float switchOnDelta = 0.0010f;
+
+            if (!switched)
+            {
+                /*
+                Debug.Log("not switched");
+                if (Mathf.Abs(brightnessCalculator.forwardDistance) > Mathf.Abs(colorCalculator.sidewardDistance) + switchOnDelta && Mathf.Abs(brightnessCalculator.forwardDistance) > Mathf.Abs(colorCalculator.upwardDistance) + switchOnDelta)
+                {
+                    updateLightColor = false;
+                    color = lightColorLockCache;
+                    switched = true;
+                    Handheld.Vibrate();
+                    axesController.xAxis.SetActive(false);
+                    axesController.yAxis.SetActive(false);
+                    axesController.zAxis.SetActive(true);
+                    Debug.Log("switched to brightness");
+                }else if (Mathf.Abs(colorCalculator.sidewardDistance) > Mathf.Abs(brightnessCalculator.forwardDistance) + switchOnDelta || Mathf.Abs(colorCalculator.upwardDistance) > Mathf.Abs(brightnessCalculator.forwardDistance) + switchOnDelta)
+                {
+                    updateLightBrightness = false;
+                    brightness = lightBrightnessLockCache;
+                    switched = true;
+                    Handheld.Vibrate();
+                    axesController.xAxis.SetActive(true);
+                    axesController.yAxis.SetActive(true);
+                    axesController.zAxis.SetActive(false);
+                    Debug.Log("switched to color");
+                }
+                */
+
+                Debug.Log("not switched");
+                if (Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) + switchOnDelta && Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) + switchOnDelta)
+                {
+                    color = lightColorLockCache;
+                    SetLightColor(color);
+                    ShowLightPreview();
+
+                    updateLightColor = false;
+
+                    switched = true;
+                    Handheld.Vibrate();
+                    axesController.xAxis.SetActive(false);
+                    axesController.yAxis.SetActive(false);
+                    axesController.zAxis.SetActive(true);
+                    Debug.Log("switched to brightness");
+                }
+                else if (Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) > Mathf.Abs(lockedPosition.z + brightnessCalculator.forwardDistance) + switchOnDelta || Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) > Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) + switchOnDelta)
+                {
+                    brightness = lightBrightnessLockCache;
+                    SetLightBrightness(brightness);
+                    ShowLightPreview();
+
+                    updateLightBrightness = false;
+
+                    switched = true;
+                    Handheld.Vibrate();
+                    axesController.xAxis.SetActive(true);
+                    axesController.yAxis.SetActive(true);
+                    axesController.zAxis.SetActive(false);
+                    Debug.Log("switched to color");
+                }
+            }
+
+            Debug.Log("currentlySwitched:" + switched);
+        }
+
+        if (updateLightBrightness)
+        {
             brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
+
         }
 
         if (updateLightColor)
@@ -74,8 +149,42 @@ public class LampController : DeviceController
             SetLightTemperature(temperatureColor);
         }
 
-        ShowLightPreview(brightness, color, temperatureColor);
+        ShowLightPreview();
+        //ShowAxis();
     }
+
+    /*
+    private void ShowAxis()
+    {
+        if (updateLightBrightness)
+        {
+            axesController.zAxis.SetActive(true);
+        }
+        else
+        {
+            axesController.zAxis.SetActive(false);
+        }
+
+        if (updateLightColor)
+        {
+            axesController.xAxis.SetActive(true);
+            axesController.yAxis.SetActive(true);
+        }
+        else
+        {
+            if (updateLightTemperature) {
+                axesController.xAxis.SetActive(false);
+                axesController.yAxis.SetActive(true);
+
+            }
+            else
+            {
+                axesController.xAxis.SetActive(false);
+                axesController.yAxis.SetActive(false);
+            }
+        }
+    }
+    */
 
     public void InsertCachedLightValues()
     {
@@ -89,6 +198,35 @@ public class LampController : DeviceController
         lightBrightnessCache = ((Lamp)device).LightBrightness;
         lightColorCache = ((Lamp)device).LightColor;
         lightTemperatureCache = ((Lamp)device).LightTemperature;
+    }
+
+    // locking for brightness and color only
+    public void SetLocked(bool locked)
+    {
+        if (locked)
+        {
+            CacheLightValuesForLock();
+            lockedPosition = new Vector3(colorCalculator.sidewardDistance, colorCalculator.upwardDistance, brightnessCalculator.forwardDistance);
+            Debug.Log(lockedPosition);
+        }
+        else
+        {
+            // reset
+            updateLightColor = true;
+            updateLightBrightness = true;
+            switched = false;
+            Handheld.Vibrate();
+        }
+
+        isLocked = locked;
+    }
+
+
+    private void CacheLightValuesForLock()
+    {
+        lightBrightnessLockCache = ((Lamp)device).LightBrightness;
+        lightColorLockCache = ((Lamp)device).LightColor;
+        Debug.Log("locked brightness: " + lightBrightnessCache + "; locked color: " + lightColorCache);
     }
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
@@ -173,8 +311,11 @@ public class LampController : DeviceController
         return 0;
     }
 
-    private void ShowLightPreview(float brightness, Color color, Color temperatureColor)
+    private void ShowLightPreview()
     {
+        float brightness = ((Lamp)device).LightBrightness;
+        Color color = ((Lamp)device).LightColor;
+        Color temperatureColor = ((Lamp)device).LightTemperature;
 
         if (updateLightBrightness && updateLightColor)
         {

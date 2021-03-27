@@ -9,17 +9,16 @@ public class AxesController : MonoBehaviour
     private bool rotate;
 
     [SerializeField]
-    private GameObject axes;
+    public GameObject axes;
 
     [SerializeField]
-    private GameObject xAxis;
+    public GameObject xAxis;
 
     [SerializeField]
-    private GameObject yAxis;
+    public GameObject yAxis;
 
     [SerializeField]
-    private GameObject zAxis;
-
+    public GameObject zAxis;
 
     private void Awake()
     {
