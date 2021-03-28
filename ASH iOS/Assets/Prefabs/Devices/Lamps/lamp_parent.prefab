@@ -2706,6 +2706,42 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 861501200223169034}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 3367990574835169266}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 7090439656334809218}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[4].m_Target
+      value: 
+      objectReference: {fileID: 810762135533291220}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[5].m_Target
+      value: 
+      objectReference: {fileID: 5159905833882528164}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 6728708007771755466}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[7].m_Target
+      value: 
+      objectReference: {fileID: 1277580361081814202}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[8].m_Target
+      value: 
+      objectReference: {fileID: 154543354005311123}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[9].m_Target
+      value: 
+      objectReference: {fileID: 5692198657431331299}
+    - target: {fileID: 6562292544951811382, guid: 5aa59bbe225334d59818559a5f5d0c23, type: 3}
       propertyPath: onPointerUp.m_PersistentCalls.m_Calls.Array.data[10].m_Mode
       value: 6
       objectReference: {fileID: 0}
@@ -2943,7 +2979,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1e0c281902f634920b678d6e537d3b06, type: 3}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_Name
-      value: Light Color Only Long Press Button
+      value: Light Color Only Enter Long Press Button
       objectReference: {fileID: 0}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_IsActive
@@ -3082,6 +3118,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3102,6 +3142,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1160670215479609751}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -3109,6 +3153,10 @@ PrefabInstance:
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3851521993401587522}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PauseUpdatingLightBrightness
@@ -3126,6 +3174,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3851521993401587522}
@@ -3133,6 +3185,10 @@ PrefabInstance:
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1160670215479609751}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseUpdatingLightBrightness
+      objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -3166,6 +3222,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LampController, GameAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LampController, GameAssembly
       objectReference: {fileID: 0}
@@ -3183,6 +3243,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
@@ -4154,7 +4218,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4a0da378b04a14727a50a02993cb6fc7, type: 3}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_Name
-      value: Lock Direction Long Press Button
+      value: Lock Enter Long Press Button
       objectReference: {fileID: 0}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_IsActive
@@ -4293,6 +4357,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4313,6 +4381,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1160670215479609751}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -4320,6 +4392,10 @@ PrefabInstance:
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3851521993401587522}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetLockingSelected
@@ -4345,6 +4421,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3851521993401587522}
@@ -4360,6 +4440,10 @@ PrefabInstance:
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 1160670215479609751}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetLockingSelected
+      objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -4409,6 +4493,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LampController, GameAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LampController, GameAssembly
       objectReference: {fileID: 0}
@@ -4442,6 +4530,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
@@ -4817,7 +4909,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 0207afdca324d4f249989a1dcba95773, type: 3}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_Name
-      value: Light Brightness Only Long Press Button
+      value: Light Brightness Only Enter Long Press Button
       objectReference: {fileID: 0}
     - target: {fileID: 3000733753394632997, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: m_IsActive
@@ -4968,6 +5060,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -4996,6 +5092,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7356190261949559797}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -5007,6 +5107,10 @@ PrefabInstance:
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3851521993401587522}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: PauseUpdatingLightColor
@@ -5032,6 +5136,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3851521993401587522}
@@ -5043,6 +5151,10 @@ PrefabInstance:
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 7356190261949559797}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseUpdatingLightColor
+      objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -5092,6 +5204,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LampController, GameAssembly
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onPointerExit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LampController, GameAssembly
       objectReference: {fileID: 0}
@@ -5121,6 +5237,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}
+      propertyPath: onRelease.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7313691496511223381, guid: e9b346a0f89b2456fba256d5f7680b7c, type: 3}

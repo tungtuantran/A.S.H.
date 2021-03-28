@@ -5,37 +5,19 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MenuMainLongPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+/**
+ * selects long press button just if if pointer is down
+ */
+public class MenuMainLongPressButton : LongPressButton, IPointerDownHandler, IPointerUpHandler
 {
-    public float requiredHoldTime = 0.4f;
-    public Color backgroundColorCurrentlyActive;
-
-    public UnityEvent onHold;
-    public UnityEvent onPointerUp;
-
-    [SerializeField]
-    private Image fillImage;
-
-    [SerializeField]
-    private Image backgroundImage;
-
-    private Color backgroundColorOnDefault;
-    private bool pointerDown;
-    private bool currentlyActive;
-    private float pointerDownTimer;
-
-    void Awake()
-    {
-        backgroundColorOnDefault = backgroundImage.color;
-    }
 
     void OnMouseUp()
     {
         Reset();
 
-        if (onPointerUp != null)
+        if (onRelease != null)
         {
-            onPointerUp.Invoke();
+            onRelease.Invoke();
         }
 
         currentlyActive = false;
@@ -43,61 +25,22 @@ public class MenuMainLongPressButton : MonoBehaviour, IPointerDownHandler, IPoin
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        pointerDown = true;
+        hold = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Reset();
-
-        if (onPointerUp != null)
-        {
-            onPointerUp.Invoke();
-        }
-
-        currentlyActive = false;
+        release = true;
     }
 
-    private void Update()
+    protected override void Update()
     {
-        if (!currentlyActive)
+        if (release)
         {
-            if (pointerDown)
-            {
-                pointerDownTimer += Time.deltaTime;
-                if (pointerDownTimer >= requiredHoldTime)
-                {
-                    if (onHold != null)
-                    {
-                        currentlyActive = true;
-                        Handheld.Vibrate();
-                        onHold.Invoke();
-                    }
-                    Reset();
-                }
-                fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
-            }
+            OnRelease();
+            currentlyActive = false;
         }
 
-        SetBackgroundColor();
-    }
-
-    private void Reset()
-    {
-        pointerDown = false;
-        pointerDownTimer = 0;
-        fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
-    }
-
-    private void SetBackgroundColor()
-    {
-        if (currentlyActive)
-        {
-            backgroundImage.color = backgroundColorCurrentlyActive;
-        }
-        else
-        {
-            backgroundImage.color = backgroundColorOnDefault;
-        }
+        base.Update();
     }
 }   

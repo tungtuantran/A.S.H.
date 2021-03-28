@@ -6,19 +6,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /**
- * selecting long press button by just entering
+ * selecting long press button by just entering and holding
  */
-public class MenuSubLongPressButton : LongPressButton, IPointerEnterHandler, IPointerExitHandler
+public class EnterLongPressButton : LongPressButton, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {
     public bool CurrentlyActive
     {
-        get {
+        get
+        {
             return currentlyActive;
         }
+
         set
         {
             currentlyActive = value;
-            Reset();
         }
     }
 
@@ -27,22 +28,28 @@ public class MenuSubLongPressButton : LongPressButton, IPointerEnterHandler, IPo
         backgroundColorOnDefault = backgroundImage.color;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData eventData)
     {
-        Reset();
-        hold = true;
+        release = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Reset();
+        release = true;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        hold = true;
     }
 
     protected override void Update()
     {
-        if(release)
+        if (release)
         {
             OnRelease();
+            currentlyActive = false;
+            Handheld.Vibrate();
         }
 
         base.Update();
