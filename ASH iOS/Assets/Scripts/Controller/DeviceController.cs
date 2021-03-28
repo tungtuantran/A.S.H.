@@ -5,9 +5,12 @@ using UnityEngine;
 
 public abstract class DeviceController : MonoBehaviour
 {
+    // Model
     protected Device device;
-    protected int deviceId;
-    protected string deviceName;
+
+    // View
+    [SerializeField]
+    protected DeviceView view;
 
     public Device Device
     {
@@ -22,41 +25,16 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
-    public int DeviceId {
-        get
-        {
-            return deviceId;
-        }
-
-        set
-        {
-            deviceId = value;
-        }
-    }
-
-    public string DeviceName
-    {
-        get
-        {
-            return deviceName;
-        }
-
-        set
-        {
-            deviceName = value;
-        }
-    }
-
     protected virtual void Awake()
     {
-        deviceId = ImageTracking.deviceId;
-        deviceName = ImageTracking.deviceName;
+        int deviceId = ImageTracking.deviceId;
+        string deviceName = ImageTracking.deviceName;
 
         device = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
         if(device == null)
         {
-            SetDevice();
+            SetDevice(deviceName, deviceId);
         }
     }
 
@@ -91,6 +69,6 @@ public abstract class DeviceController : MonoBehaviour
 
     public abstract void StopUpdating();
 
-    protected abstract void SetDevice();
+    protected abstract void SetDevice(string deviceName, int deviceId);
 
 }

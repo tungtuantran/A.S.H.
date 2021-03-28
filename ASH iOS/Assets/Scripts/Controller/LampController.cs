@@ -10,9 +10,11 @@ public class LampController : DeviceController
     private const float minBrightness = 0.15f;
     private const float maxBrightness = 1f;
 
+    /*
     public Text lightTextPreview;
     public Image lightImagePreview;
     public AxesController axesController;
+    */
     
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
@@ -54,11 +56,13 @@ public class LampController : DeviceController
 
             if (isLocked)
             {
-                UpdateLightPreview();
+                //UpdateLightPreview();
+                ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
                 Handheld.Vibrate();
             }
         }
     }
+
     private Vector3 lockedPosition;
 
     // cached values for locking
@@ -70,7 +74,7 @@ public class LampController : DeviceController
         base.Awake();
 
         // preview hidden on default
-        HideLightPreview();
+        //HideLightPreview();
     }
 
     void Update()
@@ -136,8 +140,10 @@ public class LampController : DeviceController
             SetLightTemperature(temperatureColor);
         }
 
-        UpdateLightPreview();
-        UpdateAxis();
+        //UpdateLightPreview();
+        //UpdateAxis();
+        ((LampView)view).UpdateLightPreview((Lamp) device, updateLightBrightness, updateLightColor, updateLightTemperature);
+        ((LampView)view).UpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
     }
 
     public override void AddDevice(string name)
@@ -153,7 +159,7 @@ public class LampController : DeviceController
         }
     }
 
-    protected override void SetDevice()
+    protected override void SetDevice(string deviceName, int deviceId)
     {
         device = new Lamp(deviceName, deviceId);
     }
@@ -216,7 +222,8 @@ public class LampController : DeviceController
         updateLightColor = true;
         colorCalculator.Active = true;
 
-        lightImagePreview.gameObject.SetActive(true);
+        ((LampView)view).ShowLightImagePreview();
+        //lightImagePreview.gameObject.SetActive(true);
     }
 
     public void UpdateLightBrightness()
@@ -250,6 +257,7 @@ public class LampController : DeviceController
         lightColorLockCache = ((Lamp)device).LightColor;
     }
 
+    /*
     private void UpdateAxis()
     {
         if (updateLightBrightness)
@@ -279,6 +287,7 @@ public class LampController : DeviceController
 
         }
     }
+    */
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
@@ -357,6 +366,7 @@ public class LampController : DeviceController
         return 0;
     }
 
+    /*
     private void UpdateLightPreview()
     {
 
@@ -410,6 +420,7 @@ public class LampController : DeviceController
         lightTextPreview.gameObject.SetActive(false);
         lightImagePreview.gameObject.SetActive(false);
     }
+    */
 
     private void SetLightColor(Color color)
     {

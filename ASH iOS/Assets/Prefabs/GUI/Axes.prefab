@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 3066414768661973049}
   - component: {fileID: 3702953471696169182}
   m_Layer: 0
-  m_Name: Axes Controller
+  m_Name: Axes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721b03e7dea954515a5d8766440aa2c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axes: {fileID: 6523972214935636387}
+  axesCenter: {fileID: 6523972214935636387}
   xAxis: {fileID: 5470951387217676899}
   yAxis: {fileID: 6809814577787760929}
   zAxis: {fileID: 2921891950941031235}
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 9062972896987833493}
   - component: {fileID: 7890694683834865776}
   m_Layer: 0
-  m_Name: Axes
+  m_Name: Axes Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
