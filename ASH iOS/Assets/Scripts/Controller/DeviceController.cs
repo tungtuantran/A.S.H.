@@ -8,10 +8,6 @@ public abstract class DeviceController : MonoBehaviour
     // Model
     protected Device device;
 
-    // View
-    [SerializeField]
-    protected DeviceView view;
-
     public Device Device
     {
         get
@@ -25,6 +21,25 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
+    protected IDeviceView view;
+
+    public IDeviceView View
+    {
+        get
+        {
+            return view;
+        }
+
+        set
+        {
+            view = value;
+        }
+    }
+
+    // View
+    [SerializeField]
+    protected DeviceView deviceView;
+
     protected virtual void Awake()
     {
         int deviceId = ImageTracking.deviceId;
@@ -37,7 +52,15 @@ public abstract class DeviceController : MonoBehaviour
             SetDevice(deviceName, deviceId);
         }
 
-        view.TrackedDevice = device;
+        if (deviceView != null)
+        {
+            view = deviceView;
+        }
+
+        if (view != null)
+        {
+            ((DeviceView)view).TrackedDevice = device;
+        }
     }
 
     public void SetDeviceOnOff()
@@ -60,7 +83,7 @@ public abstract class DeviceController : MonoBehaviour
 
     public void EditNameOfDevice()
     {
-        string name = view.editNameInputField.text;
+        string name = ((DeviceView)view).editNameInputField.text;
 
         if (!string.IsNullOrWhiteSpace(name))
         {
@@ -71,11 +94,22 @@ public abstract class DeviceController : MonoBehaviour
         view.OnEditDeviceName();
     }
 
-    /*
-    public abstract void AddDevice(string name);
-    */
+    public void AddDevice()
+    {
+        string name = ((DeviceView)view).addNameInputField.text;
 
-    public abstract void AddDevice();
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            device.Name = name;
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
+
+            view.OnDeviceAdded(name);
+        }
+        else
+        {
+            throw new NoInputException();
+        }
+    }
 
     public abstract void StopUpdating();
 

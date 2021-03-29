@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class SaveSystem : MonoBehaviour
 {
-    private const string FILE_NAME = "/registeredDevices.dc";
+    private const string FILE_NAME = "/registeredDevices3.dc";
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {

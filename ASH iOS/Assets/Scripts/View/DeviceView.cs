@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DeviceView : MonoBehaviour
+public class DeviceView : MonoBehaviour, IDeviceView
 {
     private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
 

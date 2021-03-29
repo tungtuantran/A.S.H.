@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR.ARFoundation;
+using UnityEditor;
 
 namespace Tests
 {
@@ -13,19 +14,20 @@ namespace Tests
         private LampController lampController;
         private Device lamp1;
 
-        /*
         [SetUp]
         public void SetUp()
         {
-            DeviceCollection.DeviceCollectionInstance.registeredDevices.Clear();
+            DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
 
-            GameObject root = new GameObject();
-            root.AddComponent<LampController>();
+            GameObject controllerGO = new GameObject();
+            controllerGO.AddComponent<LampController>();
 
             lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
 
-            lampController = root.GetComponent<LampController>();
-            lampController.SelectedDevice = lamp1;
+            lampController = controllerGO.GetComponent<LampController>();
+            //lampController.view = controller.GetComponent<LampViewTest>();
+            lampController.Device = lamp1;
+            lampController.View = new LampViewTest();
         }
 
         [TearDown]
@@ -33,42 +35,26 @@ namespace Tests
         {
             Object.Destroy(lampController.gameObject);
         }
-        */
 
         // SetSelectedDeviceOnOff
         [Test]
         public void SetSelectedDeviceOn()
         {
-            Debug.Log(DeviceCollection.DeviceCollectionInstance.RegisteredDevices.ToString());
 
-            DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
-            
-            GameObject root = new GameObject();
-            root.AddComponent<LampController>();
-            
-            /*
-            lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
-
-            lampController = root.GetComponent<LampController>();
-            lampController.Device = lamp1;
             lampController.SetDeviceOnOff();
-
             Assert.IsTrue(lampController.Device.IsOn);
-            */
-            Assert.IsTrue(true);
-
         }
-
-        /*
         
         [Test]
         public void SetSelectedDeviceOff()
         {
-            lampController.SetSelectedDeviceOnOff();
-            lampController.SetSelectedDeviceOnOff();
+            lampController.SetDeviceOnOff();
+            lampController.SetDeviceOnOff();
 
-            Assert.IsFalse(lampController.SelectedDevice.isOn);
+            Assert.IsFalse(lampController.Device.IsOn);
         }
+
+        /*
 
         // RemoveSelectedDevice
         [Test]
@@ -79,7 +65,7 @@ namespace Tests
 
             bool removed = false;
 
-            lampController.RemoveSelectedDevice();
+            lampController.RemoveDevice();
             if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1) == null)
             {
                 removed = true;
@@ -93,9 +79,9 @@ namespace Tests
         {
             bool removed = false;
 
-            lampController.RemoveSelectedDevice();
+            lampController.RemoveDevice();
 
-            if (DeviceCollection.DeviceCollectionInstance.registeredDevices.Count == 0)
+            if (DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Count == 0)
             {
                 removed = true;
             }
@@ -107,10 +93,11 @@ namespace Tests
         public void RemoveSelectedDeviceSelectedDeviceIsNull()
         {
             //set selected device null
-            lampController.SelectedDevice = null;
+            lampController.Device = null;
 
-            Assert.Throws<NoDeviceException>(() => lampController.RemoveSelectedDevice());
+            Assert.Throws<NoDeviceException>(() => lampController.RemoveDevice());
         }
+        
 
         // SelectDeviceByCurrentlyTrackedDevice
         [Test]
@@ -120,9 +107,9 @@ namespace Tests
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp1);
 
             ImageTracking.deviceId = 1;
-            lampController.SelectDeviceByCurrentlyTrackedDevice();
+            //lampController.SelectDeviceByCurrentlyTrackedDevice();
 
-            Assert.True(lampController.SelectedDevice.Equals(lamp1));
+            Assert.True(lampController.Device.Equals(lamp1));
         }
         
         [Test]
@@ -131,8 +118,9 @@ namespace Tests
             ImageTracking.deviceId = 0;
             Assert.Throws<NoDeviceException>(() => lampController.SelectDeviceByCurrentlyTrackedDevice());
         }
+        */
 
-
+        /*
         // AddCurrentlyTrackedDevice
         [Test]
         public void AddCurrentlyTrackedDeviceGood()
@@ -150,23 +138,23 @@ namespace Tests
         [Test]
         public void AddCurrentlyTrackedDeviceNoInput()
         {
-            ImageTracking.deviceId = lamp1.id;
-            ImageTracking.deviceName = lamp1.deviceName;
+            ImageTracking.deviceId = lamp1.Id;
+            ImageTracking.deviceName = lamp1.DeviceName;
 
             string nameInput = "";
 
-            Assert.Throws<NoInputException>(() => lampController.AddCurrentlyTrackedDevice(nameInput));
+            Assert.Throws<NoInputException>(() => lampController.AddDevice());
         }
 
         [Test]
         public void AddCurrentlyTrackedDeviceWhiteSpaceInput()
         {
-            ImageTracking.deviceId = lamp1.id;
-            ImageTracking.deviceName = lamp1.deviceName;
+            ImageTracking.deviceId = lamp1.Id;
+            ImageTracking.deviceName = lamp1.DeviceName;
 
             string nameInput = " ";
 
-            Assert.Throws<NoInputException>(() => lampController.AddCurrentlyTrackedDevice(nameInput));
+            Assert.Throws<NoInputException>(() => lampController.AddDevice());
         }
         
 
@@ -201,5 +189,23 @@ namespace Tests
             Assert.True(lamp1._name.Equals("Lamp 1"));
         }
         */
+    }
+
+    public class LampViewTest : IDeviceView
+    {
+        public void OnDeviceAdded(string deviceName)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnDeviceRemoved()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnEditDeviceName()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

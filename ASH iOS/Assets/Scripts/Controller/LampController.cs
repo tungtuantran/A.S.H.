@@ -50,8 +50,10 @@ public class LampController : DeviceController
 
             if (isLocked)
             {
-                //UpdateLightPreview();
-                ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
+                if (view != null)
+                {
+                    ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
+                }
                 Handheld.Vibrate();
             }
         }
@@ -126,40 +128,9 @@ public class LampController : DeviceController
             SetLightTemperature(temperatureColor);
         }
 
-        ((LampView)view).UpdateLightPreview((Lamp) device, updateLightBrightness, updateLightColor, updateLightTemperature);
+
+        ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
         ((LampView)view).UpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
-    }
-
-    /*
-    public override void AddDevice(string name)
-    {
-        if (!string.IsNullOrWhiteSpace(name))
-        {
-            device.Name = name;
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
-        }
-        else
-        {
-            throw new NoInputException();
-        }
-    }
-    */
-
-    public override void AddDevice()
-    {
-        string name = view.addNameInputField.text;
-
-        if (!string.IsNullOrWhiteSpace(name))
-        {
-            device.Name = name;
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
-            view.OnDeviceAdded(name);
-        }
-        else
-        {
-            throw new NoInputException();
-        }
-
     }
 
     protected override void SetDevice(string deviceName, int deviceId)
