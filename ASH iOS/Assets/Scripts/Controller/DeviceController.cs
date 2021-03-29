@@ -83,7 +83,7 @@ public abstract class DeviceController : MonoBehaviour
 
     public void EditNameOfDevice()
     {
-        string name = ((DeviceView)view).editNameInputField.text;
+        string name = view.editNameInputField.text;
 
         if (!string.IsNullOrWhiteSpace(name))
         {
@@ -96,7 +96,7 @@ public abstract class DeviceController : MonoBehaviour
 
     public void AddDevice()
     {
-        string name = ((DeviceView)view).addNameInputField.text;
+        string name = view.addNameInputField.text;
 
         if (!string.IsNullOrWhiteSpace(name))
         {

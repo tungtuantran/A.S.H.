@@ -460,10 +460,10 @@ MonoBehaviour:
   aRDisplay: {fileID: 1633745159818184379}
   addDevicePopUp: {fileID: 6472674339426534899}
   removeDevicePopUp: {fileID: 8402125590597604833}
-  editNameInputField: {fileID: 5076366139234630907}
+  EditNameInputField: {fileID: 5076366139234630907}
   addButton: {fileID: 2092673876504537985}
   onOffImage: {fileID: 3883131424546174239}
-  addNameInputField: {fileID: 0}
+  AddNameInputField: {fileID: 6049058453072035830}
   axes: {fileID: 861501200223169034}
   lightTextPreview: {fileID: 1695523237579878567}
   lightImagePreview: {fileID: 1652697998473464379}
@@ -2515,6 +2515,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9054826853049571634, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
+      propertyPath: m_Name
+      value: Add Name InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2539,6 +2543,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 279675264823944487, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
   m_PrefabInstance: {fileID: 1205851508029658682}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6049058453072035830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4849982159417813452, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
+  m_PrefabInstance: {fileID: 1205851508029658682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2897348662984322039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4783,7 +4798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5885344803201039254, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 5885344803201039254, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_AnchoredPosition.y

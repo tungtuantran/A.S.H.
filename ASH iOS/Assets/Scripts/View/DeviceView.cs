@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class DeviceView : MonoBehaviour, IDeviceView
 {
-    private const string AddNameInputFieldPath = "Pop Up/Content/Name InputField";
+    public InputField editNameInputField { get; set; }
+    public InputField addNameInputField { get; set; }
 
     [SerializeField]
     private DeviceMenu deviceMenu;
@@ -20,7 +21,7 @@ public class DeviceView : MonoBehaviour, IDeviceView
     private GameObject removeDevicePopUp;
 
     [SerializeField]
-    public InputField editNameInputField;
+    private InputField EditNameInputField;
 
     [SerializeField]
     private Button addButton;
@@ -29,7 +30,7 @@ public class DeviceView : MonoBehaviour, IDeviceView
     private Image onOffImage;
 
     [SerializeField]
-    public InputField addNameInputField;
+    private InputField AddNameInputField;
 
     protected Device trackedDevice;
 
@@ -63,7 +64,8 @@ public class DeviceView : MonoBehaviour, IDeviceView
 
     void Start()
     {
-        addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
+        addNameInputField = AddNameInputField;
+        editNameInputField = EditNameInputField;
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
 

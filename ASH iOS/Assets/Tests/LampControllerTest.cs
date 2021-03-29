@@ -5,13 +5,15 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR.ARFoundation;
 using UnityEditor;
+using UnityEngine.UI;
 
 namespace Tests
 {
     public class LampControllerTest
     {
-        
+
         private LampController lampController;
+        private LampViewTest view;
         private Device lamp1;
 
         [SetUp]
@@ -23,18 +25,21 @@ namespace Tests
             controllerGO.AddComponent<LampController>();
 
             lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
+            view = new LampViewTest();
 
             lampController = controllerGO.GetComponent<LampController>();
             //lampController.view = controller.GetComponent<LampViewTest>();
             lampController.Device = lamp1;
-            lampController.View = new LampViewTest();
+            lampController.View = view;
         }
 
         [TearDown]
         public void Teardown()
         {
             Object.Destroy(lampController.gameObject);
+            //DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
         }
+
 
         // SetSelectedDeviceOnOff
         [Test]
@@ -44,7 +49,7 @@ namespace Tests
             lampController.SetDeviceOnOff();
             Assert.IsTrue(lampController.Device.IsOn);
         }
-        
+
         [Test]
         public void SetSelectedDeviceOff()
         {
@@ -54,14 +59,15 @@ namespace Tests
             Assert.IsFalse(lampController.Device.IsOn);
         }
 
-        /*
-
         // RemoveSelectedDevice
         [Test]
         public void RemoveSelectedDeviceGood()
         {
+            Debug.Log("device id: " + lampController.Device.Id);
             // setup device collection
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp1);
+
+            Debug.Log("registered: " + DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1).ToString());
 
             bool removed = false;
 
@@ -70,10 +76,10 @@ namespace Tests
             {
                 removed = true;
             }
-            
-            Assert.IsTrue(removed);            
+
+            Assert.IsTrue(removed);
         }
-        
+
         [Test]
         public void RemoveSelectedDeviceEmptyDeviceCollection()
         {
@@ -88,7 +94,7 @@ namespace Tests
 
             Assert.IsTrue(removed);
         }
-        
+
         [Test]
         public void RemoveSelectedDeviceSelectedDeviceIsNull()
         {
@@ -97,8 +103,9 @@ namespace Tests
 
             Assert.Throws<NoDeviceException>(() => lampController.RemoveDevice());
         }
-        
 
+        /*
+         
         // SelectDeviceByCurrentlyTrackedDevice
         [Test]
         public void SelectDeviceByCurrentlyTrackedDeviceGood()
@@ -120,23 +127,20 @@ namespace Tests
         }
         */
 
-        /*
-        // AddCurrentlyTrackedDevice
+
+        // AddDevice
         [Test]
-        public void AddCurrentlyTrackedDeviceGood()
+        public void AddDeviceGood()
         {
-            ImageTracking.deviceId = lamp1.id;
-            ImageTracking.deviceName = lamp1.deviceName;
-
-            string nameInput = lamp1._name;
-
-            lampController.AddCurrentlyTrackedDevice(nameInput);
+            view.SetAddNameInputFieldText("Lamp 1");
+            lampController.AddDevice();
 
             Assert.True(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1) != null);
         }
 
+        /*
         [Test]
-        public void AddCurrentlyTrackedDeviceNoInput()
+        public void AddDeviceNoInput()
         {
             ImageTracking.deviceId = lamp1.Id;
             ImageTracking.deviceName = lamp1.DeviceName;
@@ -147,7 +151,7 @@ namespace Tests
         }
 
         [Test]
-        public void AddCurrentlyTrackedDeviceWhiteSpaceInput()
+        public void AddDeviceWhiteSpaceInput()
         {
             ImageTracking.deviceId = lamp1.Id;
             ImageTracking.deviceName = lamp1.DeviceName;
@@ -160,7 +164,7 @@ namespace Tests
 
         // EditNameOfSelectedDevice
         [Test]
-        public void EditNameOfSelectedDeviceGood()
+        public void EditNameOfDeviceGood()
         {
             string nameInput = "New Lamp";
 
@@ -170,7 +174,7 @@ namespace Tests
         }
 
         [Test]
-        public void EditNameOfSelectedDeviceNoInput()
+        public void EditNameOfDeviceNoInput()
         {
             string nameInput = "";
 
@@ -180,7 +184,7 @@ namespace Tests
         }
 
         [Test]
-        public void EditNameOfSelectedDeviceWhiteSpaceInput()
+        public void EditNameOfDeviceWhiteSpaceInput()
         {
             string nameInput = " ";
 
@@ -188,24 +192,42 @@ namespace Tests
 
             Assert.True(lamp1._name.Equals("Lamp 1"));
         }
-        */
+    */
     }
 
     public class LampViewTest : IDeviceView
     {
+        public InputField editNameInputField { get; set; }
+        public InputField addNameInputField { get; set; }
+
+        public LampViewTest()
+        {
+            GameObject editNameInputFieldGO = new GameObject();
+            editNameInputFieldGO.AddComponent<InputField>();
+
+            GameObject addNameInputFieldGO = new GameObject();
+            addNameInputFieldGO.AddComponent<InputField>();
+
+            editNameInputField = editNameInputFieldGO.GetComponent<InputField>();
+            addNameInputField = addNameInputFieldGO.GetComponent<InputField>();
+        }
+
         public void OnDeviceAdded(string deviceName)
         {
-            throw new System.NotImplementedException();
+            Debug.Log(deviceName);
         }
 
         public void OnDeviceRemoved()
         {
-            throw new System.NotImplementedException();
         }
 
         public void OnEditDeviceName()
         {
-            throw new System.NotImplementedException();
+        }
+
+        public void SetAddNameInputFieldText(string text)
+        {
+            addNameInputField.text = text;
         }
     }
 }
