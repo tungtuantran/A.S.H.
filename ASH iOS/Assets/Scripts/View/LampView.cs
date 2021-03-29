@@ -11,6 +11,15 @@ public class LampView : DeviceView
     public Text lightTextPreview;
     public Image lightImagePreview;
 
+    [SerializeField]
+    private Image lightColorImage;
+
+    [SerializeField]
+    private Image lightTemperatureColorImage;
+
+    [SerializeField]
+    private Text brightnessText;
+
     void Awake()
     {
         // preview hidden on default
@@ -99,6 +108,17 @@ public class LampView : DeviceView
                 }
             }
         }
+    }
+
+    protected override void UpdateValueDisplay()
+    {
+        base.UpdateValueDisplay();
+
+        lightColorImage.color = ((Lamp)trackedDevice).LightColor;
+        lightTemperatureColorImage.color = ((Lamp)trackedDevice).LightTemperature;
+        float brightnessInPercent = ((Lamp)trackedDevice).LightBrightness * 100;
+        brightnessText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
+
     }
 
     private void HideLightPreview()

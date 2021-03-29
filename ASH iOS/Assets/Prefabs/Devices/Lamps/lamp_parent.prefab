@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 1199219549514303997}
   - component: {fileID: 8692132974202953812}
   - component: {fileID: 3943570258105245634}
+  - component: {fileID: 5566196800614348822}
   m_Layer: 0
   m_Name: Device
   m_TagString: Untagged
@@ -463,6 +464,32 @@ MonoBehaviour:
   editNameInputField: {fileID: 5076366139234630907}
   addButton: {fileID: 2092673876504537985}
   onOffImage: {fileID: 3883131424546174239}
+  lightColorImage: {fileID: 1262107160051123174}
+  lightTemperatureColorImage: {fileID: 5719588220891031941}
+  brightnessText: {fileID: 6384665862893403357}
+--- !u!114 &5566196800614348822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621817759572500609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e2f82db369443c3a537d00bebb80c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deviceMenu: {fileID: 2436793014550685875}
+  aRDisplay: {fileID: 1633745159818184379}
+  addDevicePopUp: {fileID: 6472674339426534899}
+  removeDevicePopUp: {fileID: 8402125590597604833}
+  editNameInputField: {fileID: 5076366139234630907}
+  addButton: {fileID: 2092673876504537985}
+  onOffImage: {fileID: 3883131424546174239}
+  addNameInputField: {fileID: 0}
+  axes: {fileID: 861501200223169034}
+  lightTextPreview: {fileID: 1695523237579878567}
+  lightImagePreview: {fileID: 1652697998473464379}
   lightColorImage: {fileID: 1262107160051123174}
   lightTemperatureColorImage: {fileID: 5719588220891031941}
   brightnessText: {fileID: 6384665862893403357}
@@ -1533,7 +1560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -175}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433753012795432340
@@ -1890,21 +1917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee516b91a6f74b1cb7faf86a820fc43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4767557400321956289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8322358384673118556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e2f82db369443c3a537d00bebb80c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: {fileID: 861501200223169034}
-  lightTextPreview: {fileID: 1695523237579878567}
-  lightImagePreview: {fileID: 1652697998473464379}
 --- !u!114 &8545963289420267992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1917,7 +1929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d7e4af0da06c472c8efa0feff246306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  view: {fileID: 4767557400321956289}
+  view: {fileID: 5566196800614348822}
   brightnessCalculator: {fileID: 7486266507593387859}
   colorCalculator: {fileID: 6726636938118317208}
   temperatureCalculator: {fileID: 141425915005263821}
@@ -2405,14 +2417,14 @@ PrefabInstance:
     - target: {fileID: 4878585869063679465, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 5566196800614348822}
     - target: {fileID: 4878585869063679465, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHideAddDevicePopUp
       objectReference: {fileID: 0}
     - target: {fileID: 4878585869063679465, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceView, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 5107712189237101208, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2529,14 +2541,14 @@ PrefabInstance:
     - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 8545963289420267992}
     - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: AddDevice
       objectReference: {fileID: 0}
     - target: {fileID: 9135637732001395546, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: LampController, GameAssembly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e6f51f4ca6fd41a7ba37f817279b714, type: 3}
@@ -3982,14 +3994,14 @@ PrefabInstance:
     - target: {fileID: 2985824834811562024, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 5566196800614348822}
     - target: {fileID: 2985824834811562024, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHideRemoveDevicePopUp
       objectReference: {fileID: 0}
     - target: {fileID: 2985824834811562024, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceView, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3037557735749464138, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4178,14 +4190,14 @@ PrefabInstance:
     - target: {fileID: 8784430004978013102, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 8545963289420267992}
     - target: {fileID: 8784430004978013102, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RemoveDevice
       objectReference: {fileID: 0}
     - target: {fileID: 8784430004978013102, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8836280141342763980, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4683,14 +4695,14 @@ PrefabInstance:
     - target: {fileID: 3206596339190617274, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 8545963289420267992}
     - target: {fileID: 3206596339190617274, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: EditName
+      value: EditNameOfDevice
       objectReference: {fileID: 0}
     - target: {fileID: 3206596339190617274, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceController, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 3282580689973126234, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_Name
@@ -4835,26 +4847,26 @@ PrefabInstance:
     - target: {fileID: 8644753731732767680, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 5566196800614348822}
     - target: {fileID: 8644753731732767680, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHideAddDevicePopUp
       objectReference: {fileID: 0}
     - target: {fileID: 8644753731732767680, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceView, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8669517670166100567, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3943570258105245634}
+      objectReference: {fileID: 5566196800614348822}
     - target: {fileID: 8669517670166100567, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowHideRemoveDevicePopUp
       objectReference: {fileID: 0}
     - target: {fileID: 8669517670166100567, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DeviceARViewController, GameAssembly
+      value: DeviceView, GameAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8976648253505924464, guid: c9b7e80c7cd524711aaae13376b92b95, type: 3}
       propertyPath: m_AnchorMax.y

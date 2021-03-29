@@ -36,6 +36,8 @@ public abstract class DeviceController : MonoBehaviour
         {
             SetDevice(deviceName, deviceId);
         }
+
+        view.TrackedDevice = device;
     }
 
     public void SetDeviceOnOff()
@@ -53,19 +55,27 @@ public abstract class DeviceController : MonoBehaviour
     public void RemoveDevice()
     {
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(device);
+        view.OnDeviceRemoved();
     }
 
-    public void EditNameOfDevice(string name)
+    public void EditNameOfDevice()
     {
+        string name = view.editNameInputField.text;
+
         if (!string.IsNullOrWhiteSpace(name))
         {
             device.Name = name;
         }
-
         // else keep old name
+
+        view.OnEditDeviceName();
     }
 
+    /*
     public abstract void AddDevice(string name);
+    */
+
+    public abstract void AddDevice();
 
     public abstract void StopUpdating();
 

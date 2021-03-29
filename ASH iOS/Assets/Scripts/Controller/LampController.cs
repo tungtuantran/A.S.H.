@@ -130,6 +130,7 @@ public class LampController : DeviceController
         ((LampView)view).UpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
     }
 
+    /*
     public override void AddDevice(string name)
     {
         if (!string.IsNullOrWhiteSpace(name))
@@ -141,6 +142,24 @@ public class LampController : DeviceController
         {
             throw new NoInputException();
         }
+    }
+    */
+
+    public override void AddDevice()
+    {
+        string name = view.addNameInputField.text;
+
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            device.Name = name;
+            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
+            view.OnDeviceAdded(name);
+        }
+        else
+        {
+            throw new NoInputException();
+        }
+
     }
 
     protected override void SetDevice(string deviceName, int deviceId)

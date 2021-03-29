@@ -16,6 +16,7 @@ public class LampARViewController : DeviceARViewController
     [SerializeField]
     private Text brightnessText;
 
+    /*
     protected override void UpdateValueDisplay()
     {
         base.UpdateValueDisplay();
@@ -26,4 +27,5 @@ public class LampARViewController : DeviceARViewController
         brightnessText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
 
     }
+    */
 }

@@ -32,6 +32,7 @@ public abstract class DeviceARViewController : MonoBehaviour
     [SerializeField]
     private Image onOffImage;
 
+    /*
     void Start()
     {     
         addNameInputField = addDevicePopUp.transform.Find(AddNameInputFieldPath).gameObject.GetComponent<InputField>();
@@ -105,6 +106,7 @@ public abstract class DeviceARViewController : MonoBehaviour
         UpdateName();
     }
 
+
     public void AddDevice()                     
     {
         string name = addNameInputField.text;
@@ -134,6 +136,7 @@ public abstract class DeviceARViewController : MonoBehaviour
         }
         addNameInputField.text = "";                                    // clears textInput
     }
+    
 
     public void ShowHideRemoveDevicePopUp()
     {
@@ -146,5 +149,6 @@ public abstract class DeviceARViewController : MonoBehaviour
             removeDevicePopUp.SetActive(true);                          // Remove Button
         }
     }
+    */
 
 }
