@@ -18,6 +18,13 @@ public interface IDeviceView
         set;
     }
 
+    Device trackedDevice
+    {
+        get;
+        set;
+    }
+
+
     void OnDeviceAdded(string deviceName);
     void OnEditDeviceName();
     void OnDeviceRemoved();

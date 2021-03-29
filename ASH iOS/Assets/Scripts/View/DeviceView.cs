@@ -7,6 +7,7 @@ public class DeviceView : MonoBehaviour, IDeviceView
 {
     public InputField editNameInputField { get; set; }
     public InputField addNameInputField { get; set; }
+    public Device trackedDevice { get; set; }
 
     [SerializeField]
     private DeviceMenu deviceMenu;
@@ -31,21 +32,6 @@ public class DeviceView : MonoBehaviour, IDeviceView
 
     [SerializeField]
     private InputField AddNameInputField;
-
-    protected Device trackedDevice;
-
-    public Device TrackedDevice
-    {
-        get
-        {
-            return trackedDevice;
-        }
-
-        set
-        {
-            trackedDevice = value;
-        }
-    }
 
     protected bool setNameOnFirstTrack;
 

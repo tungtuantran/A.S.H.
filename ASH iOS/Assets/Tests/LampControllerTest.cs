@@ -28,7 +28,6 @@ namespace Tests
             view = new LampViewTest();
 
             lampController = controllerGO.GetComponent<LampController>();
-            //lampController.view = controller.GetComponent<LampViewTest>();
             lampController.Device = lamp1;
             lampController.View = view;
         }
@@ -55,7 +54,6 @@ namespace Tests
         {
             lampController.SetDeviceOnOff();
             lampController.SetDeviceOnOff();
-
             Assert.IsFalse(lampController.Device.IsOn);
         }
 
@@ -63,11 +61,8 @@ namespace Tests
         [Test]
         public void RemoveSelectedDeviceGood()
         {
-            Debug.Log("device id: " + lampController.Device.Id);
             // setup device collection
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp1);
-
-            Debug.Log("registered: " + DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1).ToString());
 
             bool removed = false;
 
@@ -100,33 +95,8 @@ namespace Tests
         {
             //set selected device null
             lampController.Device = null;
-
             Assert.Throws<NoDeviceException>(() => lampController.RemoveDevice());
         }
-
-        /*
-         
-        // SelectDeviceByCurrentlyTrackedDevice
-        [Test]
-        public void SelectDeviceByCurrentlyTrackedDeviceGood()
-        {
-            //setup device collection
-            DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(lamp1);
-
-            ImageTracking.deviceId = 1;
-            //lampController.SelectDeviceByCurrentlyTrackedDevice();
-
-            Assert.True(lampController.Device.Equals(lamp1));
-        }
-        
-        [Test]
-        public void SelectDeviceByCurrentlyTrackedDeviceNoDeviceTracked()
-        {
-            ImageTracking.deviceId = 0;
-            Assert.Throws<NoDeviceException>(() => lampController.SelectDeviceByCurrentlyTrackedDevice());
-        }
-        */
-
 
         // AddDevice
         [Test]
@@ -134,30 +104,21 @@ namespace Tests
         {
             view.SetAddNameInputFieldText("Lamp 1");
             lampController.AddDevice();
-
             Assert.True(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1) != null);
         }
 
-        /*
+        
         [Test]
         public void AddDeviceNoInput()
         {
-            ImageTracking.deviceId = lamp1.Id;
-            ImageTracking.deviceName = lamp1.DeviceName;
-
-            string nameInput = "";
-
+            view.SetAddNameInputFieldText("");
             Assert.Throws<NoInputException>(() => lampController.AddDevice());
         }
 
         [Test]
         public void AddDeviceWhiteSpaceInput()
         {
-            ImageTracking.deviceId = lamp1.Id;
-            ImageTracking.deviceName = lamp1.DeviceName;
-
-            string nameInput = " ";
-
+            view.SetAddNameInputFieldText("  ");
             Assert.Throws<NoInputException>(() => lampController.AddDevice());
         }
         
@@ -167,20 +128,18 @@ namespace Tests
         public void EditNameOfDeviceGood()
         {
             string nameInput = "New Lamp";
-
-            lampController.EditNameOfSelectedDevice(nameInput);
-
-            Assert.True(lamp1._name.Equals(nameInput));
+            view.SetEditNameInputFieldText(nameInput);
+            lampController.EditNameOfDevice();
+            Assert.True(lamp1.Name.Equals(nameInput));
         }
 
         [Test]
         public void EditNameOfDeviceNoInput()
         {
             string nameInput = "";
-
-            lampController.EditNameOfSelectedDevice(nameInput);
-
-            Assert.True(lamp1._name.Equals("Lamp 1"));
+            view.SetEditNameInputFieldText(nameInput);
+            lampController.EditNameOfDevice();
+            Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
 
         [Test]
@@ -188,17 +147,18 @@ namespace Tests
         {
             string nameInput = " ";
 
-            lampController.EditNameOfSelectedDevice(nameInput);
-
-            Assert.True(lamp1._name.Equals("Lamp 1"));
+            view.SetEditNameInputFieldText(nameInput);
+            lampController.EditNameOfDevice();
+            Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
-    */
+    
     }
 
     public class LampViewTest : IDeviceView
     {
         public InputField editNameInputField { get; set; }
         public InputField addNameInputField { get; set; }
+        public Device trackedDevice { get; set; }
 
         public LampViewTest()
         {
@@ -228,6 +188,11 @@ namespace Tests
         public void SetAddNameInputFieldText(string text)
         {
             addNameInputField.text = text;
+        }
+
+        public void SetEditNameInputFieldText(string text)
+        {
+            editNameInputField.text = text;
         }
     }
 }

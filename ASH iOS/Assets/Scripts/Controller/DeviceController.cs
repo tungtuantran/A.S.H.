@@ -21,6 +21,7 @@ public abstract class DeviceController : MonoBehaviour
         }
     }
 
+    // View
     protected IDeviceView view;
 
     public IDeviceView View
@@ -33,18 +34,23 @@ public abstract class DeviceController : MonoBehaviour
         set
         {
             view = value;
+
+            if(view != null)
+            {
+                view.trackedDevice = device;
+            }
         }
     }
 
-    // View
     [SerializeField]
-    protected DeviceView deviceView;
+    private DeviceView deviceView;
 
     protected virtual void Awake()
     {
         int deviceId = ImageTracking.deviceId;
         string deviceName = ImageTracking.deviceName;
 
+        // set device model
         device = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
         if(device == null)
@@ -52,15 +58,8 @@ public abstract class DeviceController : MonoBehaviour
             SetDevice(deviceName, deviceId);
         }
 
-        if (deviceView != null)
-        {
-            view = deviceView;
-        }
-
-        if (view != null)
-        {
-            ((DeviceView)view).TrackedDevice = device;
-        }
+        // set device view
+        View = deviceView;
     }
 
     public void SetDeviceOnOff()
