@@ -397,7 +397,6 @@ GameObject:
   - component: {fileID: 4316195748844640127}
   - component: {fileID: 1199219549514303997}
   - component: {fileID: 8692132974202953812}
-  - component: {fileID: 3943570258105245634}
   - component: {fileID: 5566196800614348822}
   m_Layer: 0
   m_Name: Device
@@ -445,28 +444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 356018b0585034fabba01f609815f7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3943570258105245634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621817759572500609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aa2440f4a4754a598473c7349545f93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deviceController: {fileID: 8545963289420267992}
-  aRDisplay: {fileID: 1633745159818184379}
-  addDevicePopUp: {fileID: 6472674339426534899}
-  removeDevicePopUp: {fileID: 8402125590597604833}
-  editNameInputField: {fileID: 5076366139234630907}
-  addButton: {fileID: 2092673876504537985}
-  onOffImage: {fileID: 3883131424546174239}
-  lightColorImage: {fileID: 1262107160051123174}
-  lightTemperatureColorImage: {fileID: 5719588220891031941}
-  brightnessText: {fileID: 6384665862893403357}
 --- !u!114 &5566196800614348822
 MonoBehaviour:
   m_ObjectHideFlags: 0
