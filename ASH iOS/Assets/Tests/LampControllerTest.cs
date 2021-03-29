@@ -174,7 +174,6 @@ namespace Tests
 
         public void OnDeviceAdded(string deviceName)
         {
-            Debug.Log(deviceName);
         }
 
         public void OnDeviceRemoved()
