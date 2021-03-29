@@ -86,7 +86,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6578500773989938004}
   - component: {fileID: 712774991561638724}
-  - component: {fileID: 2109419220410072245}
   m_Layer: 0
   m_Name: Device Menu
   m_TagString: Untagged
@@ -125,7 +124,7 @@ MonoBehaviour:
   onRelease:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109419220410072245}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LampController, Assembly-CSharp
         m_MethodName: StopUpdating
         m_Mode: 1
@@ -138,25 +137,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   subButtonCollection: {fileID: 6578500773790530060}
---- !u!114 &2109419220410072245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6578500773989937835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d7e4af0da06c472c8efa0feff246306, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightTextPreview: {fileID: 0}
-  lightImagePreview: {fileID: 0}
-  axesController: {fileID: 0}
-  brightnessCalculator: {fileID: 0}
-  colorCalculator: {fileID: 0}
-  temperatureCalculator: {fileID: 0}
-  temperatureTexture: {fileID: 2800000, guid: 6fd252a5302ae4957ad5e234c4f92f85, type: 3}
 --- !u!1001 &2935057959870153691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -323,7 +303,7 @@ PrefabInstance:
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109419220410072245}
+      objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -462,11 +442,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_BoolArgument
@@ -653,7 +633,7 @@ PrefabInstance:
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109419220410072245}
+      objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -867,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109419220410072245}
+      objectReference: {fileID: 0}
     - target: {fileID: 8553758088884907198, guid: 9c65a907ce6494f489025501d812f5b2, type: 3}
       propertyPath: onHold.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1593,7 +1573,7 @@ PrefabInstance:
     - target: {fileID: 4210064788085523901, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2109419220410072245}
+      objectReference: {fileID: 0}
     - target: {fileID: 4210064788085523901, guid: f83ea1d8f32174616ba6729957ae2b08, type: 3}
       propertyPath: onShortClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

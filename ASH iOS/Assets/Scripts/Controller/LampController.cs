@@ -9,12 +9,6 @@ public class LampController : DeviceController
     private const float lockOnDelta = 0.0005f;
     private const float minBrightness = 0.15f;
     private const float maxBrightness = 1f;
-
-    /*
-    public Text lightTextPreview;
-    public Image lightImagePreview;
-    public AxesController axesController;
-    */
     
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
@@ -68,14 +62,6 @@ public class LampController : DeviceController
     // cached values for locking
     private float lightBrightnessLockCache;    
     private Color lightColorLockCache;
-
-    protected override void Awake()
-    {
-        base.Awake();
-
-        // preview hidden on default
-        //HideLightPreview();
-    }
 
     void Update()
     {
@@ -140,8 +126,6 @@ public class LampController : DeviceController
             SetLightTemperature(temperatureColor);
         }
 
-        //UpdateLightPreview();
-        //UpdateAxis();
         ((LampView)view).UpdateLightPreview((Lamp) device, updateLightBrightness, updateLightColor, updateLightTemperature);
         ((LampView)view).UpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
     }
@@ -223,7 +207,6 @@ public class LampController : DeviceController
         colorCalculator.Active = true;
 
         ((LampView)view).ShowLightImagePreview();
-        //lightImagePreview.gameObject.SetActive(true);
     }
 
     public void UpdateLightBrightness()
@@ -256,38 +239,6 @@ public class LampController : DeviceController
         lightBrightnessLockCache = ((Lamp)device).LightBrightness;
         lightColorLockCache = ((Lamp)device).LightColor;
     }
-
-    /*
-    private void UpdateAxis()
-    {
-        if (updateLightBrightness)
-        {
-            axesController.zAxis.SetActive(true);
-        }
-        else
-        {
-            axesController.zAxis.SetActive(false);
-        }
-
-        if (updateLightColor)
-        {
-            axesController.xAxis.SetActive(true);
-            axesController.yAxis.SetActive(true);
-        }
-        else
-        {
-            axesController.xAxis.SetActive(false);
-            axesController.yAxis.SetActive(false);
-        }
-
-        if (updateLightTemperature) {
-            axesController.xAxis.SetActive(false);
-            axesController.yAxis.SetActive(true);
-            axesController.zAxis.SetActive(false);
-
-        }
-    }
-    */
 
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
@@ -365,62 +316,6 @@ public class LampController : DeviceController
         // pixel with given color not found
         return 0;
     }
-
-    /*
-    private void UpdateLightPreview()
-    {
-
-        if (!updateLightBrightness && !updateLightColor && !updateLightTemperature)
-        {
-            HideLightPreview();
-        }
-        else
-        {
-            float brightness = ((Lamp)device).LightBrightness;
-            Color color = ((Lamp)device).LightColor;
-            Color temperatureColor = ((Lamp)device).LightTemperature;
-
-            if (updateLightBrightness && updateLightColor)
-            {
-                lightTextPreview.text = Convert.ToInt32(brightness * 100).ToString() + "%";
-                lightImagePreview.color = new Color(color.r, color.g, color.b, brightness);
-
-                lightTextPreview.gameObject.SetActive(true);
-                lightImagePreview.gameObject.SetActive(true);
-            }
-            else
-            {
-                if (updateLightBrightness)
-                {
-                    lightTextPreview.text = Convert.ToInt32(brightness * 100).ToString() + "%";
-                    lightImagePreview.color = new Color(1f, 1f, 1f, brightness);
-
-                    lightTextPreview.gameObject.SetActive(true);
-                    lightImagePreview.gameObject.SetActive(true);
-                }
-                if (updateLightColor)
-                {
-                    lightImagePreview.color = new Color(color.r, color.g, color.b, 1f);
-
-                    lightImagePreview.gameObject.SetActive(true);
-                }
-
-                if (updateLightTemperature)
-                {
-                    lightImagePreview.color = new Color(temperatureColor.r, temperatureColor.g, temperatureColor.b, 1f);
-
-                    lightImagePreview.gameObject.SetActive(true);
-                }
-            }
-        }
-    }
-
-    private void HideLightPreview()
-    {
-        lightTextPreview.gameObject.SetActive(false);
-        lightImagePreview.gameObject.SetActive(false);
-    }
-    */
 
     private void SetLightColor(Color color)
     {
