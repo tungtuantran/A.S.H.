@@ -4,17 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DistanceCalculator: MonoBehaviour
+public class DistanceCalculator: MonoBehaviour, IDistanceCalculator
 {
-
-    /*
-    public GameObject upwardDistancePreview;
-    public GameObject forwardDistancePreview;
-    public DistancePreview sidewardDistancePreview;
-    */
-
-    //public DistancePreview preview;
-
     private Transform aRCamera;
     private Vector3 supportVector;
     private Vector3 upwardVector;
@@ -25,13 +16,18 @@ public class DistanceCalculator: MonoBehaviour
     public float forwardDistance { get; set; }
     public float sidewardDistance { get; set; }
 
+    //private bool active;
+
     private bool active;
 
-    public bool Active
-    {
-        get { return active; }
+    public bool Active {
 
-        set {
+        get {
+            return active;
+        }
+
+        set
+        {
             if (value)
             {
                 Reset();
@@ -42,13 +38,6 @@ public class DistanceCalculator: MonoBehaviour
 
     private void Update()
     {
-        // show preview
-        /*
-        ShowPreview(upwardDistancePreview, upwardDistance);
-        ShowPreview(forwardDistancePreview, forwardDistance);
-        ShowPreview(sidewardDistancePreview, sidewardDistance);
-        */
-
         if (Active)
         {
             upwardDistance = CalculateDistancBetweenCameraAndPlane(upwardVector);
@@ -56,17 +45,6 @@ public class DistanceCalculator: MonoBehaviour
             sidewardDistance = CalculateDistancBetweenCameraAndPlane(sidewardVector);
         }
     }
-
-    /*
-    private void ShowPreview()
-    {
-        if(preview != null)
-        {
-            preview.SetActive(active);
-            preview.ShowPreview(upwardDistance, forwardDistance, sidewardDistance);
-        }
-    }
-    */
 
     private float CalculateDistancBetweenCameraAndPlane(Vector3 normalVector)
     {

@@ -61,18 +61,15 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
             if (mouseDownTimer >= requiredHoldTime)
             {
-                if (active)                                             // show ar display if it is not disabled
+                if (active)                                                     
                 {
-                    ShowARDisplayToggle();
-                }
+                    ShowARDisplayToggle();                                      // show ar display if it is not disabled
+                    disableUIInteractions.DisableInteractions();                // disable swipe gesture to copy paste
 
-                disableUIInteractions.DisableInteractions();
-
-                float distance = distanceCalculator.forwardDistance * 100;
-                if (distance > RequiredDistance)
-                {
-                    if (active)
+                    float distance = distanceCalculator.forwardDistance * 100;
+                    if (distance > RequiredDistance)
                     {
+
                         if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
                         {
                             TurnAllOff(false);

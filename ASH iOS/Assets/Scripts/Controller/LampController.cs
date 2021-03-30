@@ -9,7 +9,11 @@ public class LampController : DeviceController
     private const float lockOnDelta = 0.0005f;
     private const float minBrightness = 0.15f;
     private const float maxBrightness = 1f;
-    
+
+    public IDistanceCalculator BrightnessCalculator { get; set; }
+    public IDistanceCalculator ColorCalculator { get; set; }
+    public IDistanceCalculator TemperatureCalculator { get; set; }
+
     [SerializeField]
     private DistanceCalculator brightnessCalculator;
 
@@ -20,7 +24,7 @@ public class LampController : DeviceController
     private DistanceCalculator temperatureCalculator;
 
     [SerializeField]
-    private Texture2D temperatureTexture;
+    public Texture2D temperatureTexture;
 
     private bool updateLightBrightness;
     private bool updateLightColor;
@@ -65,6 +69,16 @@ public class LampController : DeviceController
     private float lightBrightnessLockCache;    
     private Color lightColorLockCache;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        // set calculator
+        BrightnessCalculator = brightnessCalculator;
+        ColorCalculator = colorCalculator;
+        TemperatureCalculator = temperatureCalculator;
+    }
+
     void Update()
     {
         float brightness = 0f;
@@ -90,7 +104,7 @@ public class LampController : DeviceController
             if (!IsLocked)
             {
                 // light color value is locked
-                if (Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) + lockOnDelta && Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) + lockOnDelta)
+                if (Mathf.Abs(lockedPosition.z - BrightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.x - ColorCalculator.sidewardDistance) + lockOnDelta && Mathf.Abs(lockedPosition.z - BrightnessCalculator.forwardDistance) > Mathf.Abs(lockedPosition.y - ColorCalculator.upwardDistance) + lockOnDelta)
                 {
                     color = lightColorLockCache;
                     SetLightColor(color);
@@ -99,7 +113,7 @@ public class LampController : DeviceController
                 }
 
                 //  light brightness value is locked
-                else if (Mathf.Abs(lockedPosition.x - colorCalculator.sidewardDistance) > Mathf.Abs(lockedPosition.z + brightnessCalculator.forwardDistance) + lockOnDelta || Mathf.Abs(lockedPosition.y - colorCalculator.upwardDistance) > Mathf.Abs(lockedPosition.z - brightnessCalculator.forwardDistance) + lockOnDelta)
+                else if (Mathf.Abs(lockedPosition.x - ColorCalculator.sidewardDistance) > Mathf.Abs(lockedPosition.z + BrightnessCalculator.forwardDistance) + lockOnDelta || Mathf.Abs(lockedPosition.y - ColorCalculator.upwardDistance) > Mathf.Abs(lockedPosition.z - BrightnessCalculator.forwardDistance) + lockOnDelta)
                 {
                     brightness = lightBrightnessLockCache;
                     SetLightBrightness(brightness);
@@ -111,20 +125,19 @@ public class LampController : DeviceController
 
         if (updateLightBrightness)
         {
-            brightness = ConvertDistanceToBrightnessValue(brightnessCalculator.forwardDistance);
+            brightness = ConvertDistanceToBrightnessValue(BrightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
-
         }
 
         if (updateLightColor)
         {
-            color = ConvertDistanceToColorValue(colorCalculator.sidewardDistance, colorCalculator.upwardDistance);
+            color = ConvertDistanceToColorValue(ColorCalculator.sidewardDistance, ColorCalculator.upwardDistance);
             SetLightColor(color);
         }
 
         if (updateLightTemperature)
         {
-            temperatureColor = ConvertDistanceToTemperatureColorValue(temperatureCalculator.upwardDistance);
+            temperatureColor = ConvertDistanceToTemperatureColorValue(TemperatureCalculator.upwardDistance);
             SetLightTemperature(temperatureColor);
         }
 
@@ -151,7 +164,7 @@ public class LampController : DeviceController
         if (lockingSelected)
         {
             CacheLightValuesForLocking();
-            lockedPosition = new Vector3(colorCalculator.sidewardDistance, colorCalculator.upwardDistance, brightnessCalculator.forwardDistance);
+            lockedPosition = new Vector3(ColorCalculator.sidewardDistance, ColorCalculator.upwardDistance, BrightnessCalculator.forwardDistance);
         }
         else
         {
@@ -171,9 +184,9 @@ public class LampController : DeviceController
         updateLightBrightness = false;
         updateLightTemperature = false;
 
-        brightnessCalculator.Active = false;
-        colorCalculator.Active = false;
-        temperatureCalculator.Active = false;
+        BrightnessCalculator.Active = false;
+        ColorCalculator.Active = false;
+        TemperatureCalculator.Active = false;
     }
 
     public void PauseUpdatingLightBrightness(bool pause)
@@ -194,7 +207,7 @@ public class LampController : DeviceController
     public void UpdateLightColor()
     {
         updateLightColor = true;
-        colorCalculator.Active = true;
+        ColorCalculator.Active = true;
 
         ((LampView)view).ShowLightImagePreview();
     }
@@ -202,13 +215,13 @@ public class LampController : DeviceController
     public void UpdateLightBrightness()
     {
         updateLightBrightness = true;
-        brightnessCalculator.Active = true;
+        BrightnessCalculator.Active = true;
     }
 
     public void UpdateLightTemperature()
     {
         updateLightTemperature = true;
-        temperatureCalculator.Active = true;
+        TemperatureCalculator.Active = true;
     }
 
     public void UpdateLightColorAndBrightness()

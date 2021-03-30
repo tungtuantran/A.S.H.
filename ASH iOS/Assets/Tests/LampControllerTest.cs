@@ -14,7 +14,11 @@ namespace Tests
 
         private LampController lampController;
         private LampViewTest view;
-        private Device lamp1;
+        private Lamp lamp1;
+        private DistanceCalculatorTest brightnessCalculator;
+        private DistanceCalculatorTest colorCalculator;
+        private DistanceCalculatorTest temperatureCalculator;
+
 
         [SetUp]
         public void SetUp()
@@ -27,9 +31,18 @@ namespace Tests
             lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
             view = new LampViewTest();
 
+            brightnessCalculator = new DistanceCalculatorTest();
+            colorCalculator = new DistanceCalculatorTest();
+            temperatureCalculator = new DistanceCalculatorTest();
+
+
             lampController = controllerGO.GetComponent<LampController>();
             lampController.Device = lamp1;
             lampController.View = view;
+            lampController.BrightnessCalculator = brightnessCalculator;
+            lampController.ColorCalculator = colorCalculator;
+            lampController.TemperatureCalculator = temperatureCalculator;
+            lampController.temperatureTexture = (Texture2D)Resources.Load("Images/Color/Kelvin Scale");
         }
 
         [TearDown]
@@ -151,7 +164,29 @@ namespace Tests
             lampController.EditNameOfDevice();
             Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
-    
+
+        /*
+        // Set Light Brightness
+        [Test]
+        public void SetLightBrightnessDefault()
+        {
+            lampController.PauseUpdatingLightBrightness(false);
+            lampController.StopUpdating();
+            Assert.AreEqual(1.0f, lamp1.LightBrightness);
+        }
+
+        [Test]
+        public void SetLightBrightnessGood()
+        {
+            lampController.PauseUpdatingLightBrightness(false);
+
+            lampController.brightnessCalculator.Active = true;
+            lampController.brightnessCalculator.forwardDistance = 0.0050f;
+
+            lampController.StopUpdating();
+            Assert.AreEqual(0.5f, lamp1.LightBrightness);
+        }
+        */
     }
 
     public class LampViewTest : IDeviceView
@@ -193,5 +228,13 @@ namespace Tests
         {
             editNameInputField.text = text;
         }
+    }
+
+    public class DistanceCalculatorTest : IDistanceCalculator
+    {
+        public float upwardDistance { get; set; }
+        public float forwardDistance { get; set; }
+        public float sidewardDistance { get; set; }
+        public bool Active { get; set; }
     }
 }

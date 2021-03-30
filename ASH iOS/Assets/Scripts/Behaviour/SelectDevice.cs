@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class SelectDevice : MonoBehaviour
 {
 	public static Device selectedDevice { get; set; }
+
+	public UnityEvent onCollision;
+	public UnityEvent onStopCollision;
+
+	[SerializeField]
+	private MeshRenderer meshRenderer;
 
 	private int deviceId;
 
 	void Awake()
     {
 		deviceId = ImageTracking.deviceId;
+		meshRenderer.enabled = false;
     }
 
 	void Update()
@@ -25,6 +34,16 @@ public class SelectDevice : MonoBehaviour
 				if (GetComponent<BoxCollider>().Raycast(inputRay, out myHitInfo, 10000f))
 				{
 					selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+
+                    if (selectedDevice != null)
+                    {
+						meshRenderer.enabled = true;
+
+						if(onCollision != null)
+                        {
+							onCollision.Invoke();
+                        }
+					}
 				}
 			}
 		}
@@ -32,6 +51,12 @@ public class SelectDevice : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 			selectedDevice = null;
+			meshRenderer.enabled = false;
+
+			if (onStopCollision != null)
+			{
+				onStopCollision.Invoke();
+			}
 		}
 	} 
 }
