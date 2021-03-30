@@ -30,13 +30,13 @@ public class LampController : DeviceController
     private bool updateLightColor;
     private bool updateLightTemperature;
 
-    // cache light values for canceling when updating started
+    // cache light values for when updating started and for canceling
     private bool updatingStarted;
 
-    // cached values for canceling
-    private float lightBrightnessCancelCache;         
-    private Color lightColorCancelCache;
-    private Color lightTemperatureCancelCache;
+    // cached start values
+    private float lightBrightnessStartCache;         
+    private Color lightColorStartCache;
+    private Color lightTemperatureStartCache;
 
     // cache light values for lockng when locking is selected
     private bool lockingSelected;
@@ -85,16 +85,16 @@ public class LampController : DeviceController
         Color color = Color.white;
         Color temperatureColor = Color.white;
 
-        // canceling is selected
         if((updateLightBrightness || updateLightColor || updateLightTemperature) && !updatingStarted)
         {
-            CacheLightValuesForCanceling();
+            // updating started
+            CacheLightValuesOnStart();
             updatingStarted = true;
         }
 
-        // cancelins is not selected
         if (!updateLightBrightness && !updateLightColor && !updateLightTemperature && updatingStarted)
         {
+            // updating stopped
             updatingStarted = false;
         }
 
@@ -151,11 +151,11 @@ public class LampController : DeviceController
         device = new Lamp(deviceName, deviceId);
     }
 
-    public void InsertCachedLightValuesForCanceling()
+    public void InsertCachedLightValuesOnStart()
     {
-        SetLightBrightness(lightBrightnessCancelCache);
-        SetLightColor(lightColorCancelCache);
-        SetLightTemperature(lightTemperatureCancelCache);
+        SetLightBrightness(lightBrightnessStartCache);
+        SetLightColor(lightColorStartCache);
+        SetLightTemperature(lightTemperatureStartCache);
     }
 
     // locking for brightness and color only
@@ -163,7 +163,7 @@ public class LampController : DeviceController
     {
         if (lockingSelected)
         {
-            CacheLightValuesForLocking();
+            CacheLightValuesOnLocking();
             lockedPosition = new Vector3(ColorCalculator.sidewardDistance, ColorCalculator.upwardDistance, BrightnessCalculator.forwardDistance);
         }
         else
@@ -230,14 +230,14 @@ public class LampController : DeviceController
         UpdateLightBrightness();
     }
 
-    private void CacheLightValuesForCanceling()
+    private void CacheLightValuesOnStart()
     {
-        lightBrightnessCancelCache = ((Lamp)device).LightBrightness;
-        lightColorCancelCache = ((Lamp)device).LightColor;
-        lightTemperatureCancelCache = ((Lamp)device).LightTemperature;
+        lightBrightnessStartCache = ((Lamp)device).LightBrightness;
+        lightColorStartCache = ((Lamp)device).LightColor;
+        lightTemperatureStartCache = ((Lamp)device).LightTemperature;
     }
 
-    private void CacheLightValuesForLocking()
+    private void CacheLightValuesOnLocking()
     {
         lightBrightnessLockCache = ((Lamp)device).LightBrightness;
         lightColorLockCache = ((Lamp)device).LightColor;
@@ -246,7 +246,7 @@ public class LampController : DeviceController
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
         float brightnessDelta = distanceForBrightness * 100;                                                    // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
-        float brightness = maxBrightness - (maxBrightness - lightBrightnessCancelCache) - brightnessDelta;      // brightness = 1 - (1 - lightBrightnessCancelCache) - brightnessDelta;
+        float brightness = maxBrightness - (maxBrightness - lightBrightnessStartCache) - brightnessDelta;      // brightness = 1 - (1 - lightBrightnessStartCache) - brightnessDelta;
 
         if (brightness < minBrightness)
         {
@@ -268,7 +268,7 @@ public class LampController : DeviceController
 
         // get hue and saturation from cached color
         float hCache, sCache, vCache;
-        Color.RGBToHSV(lightColorCancelCache, out hCache, out sCache, out vCache);
+        Color.RGBToHSV(lightColorStartCache, out hCache, out sCache, out vCache);
 
         // hue h and saturation s from hsv
         // Mathf.Abs() to keep hue value positive
@@ -280,6 +280,11 @@ public class LampController : DeviceController
             s = 0f;
         }
 
+        if(s > 1f)
+        {
+            s = 1f;
+        }
+
         // set color
         return Color.HSVToRGB(h, s, 1f);
     }
@@ -289,7 +294,7 @@ public class LampController : DeviceController
         int texYDelta = Mathf.RoundToInt(distanceForTemperature * 100000);
 
         // get texY from temperatureCache
-        int texYCache = GetYOfPixelByColor(temperatureTexture, lightTemperatureCancelCache);
+        int texYCache = GetYOfPixelByColor(temperatureTexture, lightTemperatureStartCache);
 
         int texY = texYCache + texYDelta;
 
@@ -333,6 +338,26 @@ public class LampController : DeviceController
     private void SetLightBrightness(float brightness)
     {
         ((Lamp) device).LightBrightness = brightness;
+    }
+
+    // ---------------- test methods ----------------
+
+    public float TestConvertDistanceToBrightnessValue(float distanceForBrightness)
+    {
+        CacheLightValuesOnStart();
+        return ConvertDistanceToBrightnessValue(distanceForBrightness);
+    }
+
+    public Color TestConvertDistanceToColorValue(float distanceForHue, float distanceForSaturation)
+    {
+        CacheLightValuesOnStart();
+        return ConvertDistanceToColorValue(distanceForHue, distanceForSaturation);
+    }
+
+    public Color TestConvertDistanceToTemperatureColorValue(float distanceForTemperature)
+    {
+        CacheLightValuesOnStart();
+        return ConvertDistanceToTemperatureColorValue(distanceForTemperature);
     }
 }
 

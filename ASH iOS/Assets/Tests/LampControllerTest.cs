@@ -165,28 +165,140 @@ namespace Tests
             Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
 
-        /*
+        
         // Set Light Brightness
         [Test]
         public void SetLightBrightnessDefault()
         {
-            lampController.PauseUpdatingLightBrightness(false);
-            lampController.StopUpdating();
-            Assert.AreEqual(1.0f, lamp1.LightBrightness);
+            float brightness = lampController.TestConvertDistanceToBrightnessValue(0f);
+            Assert.AreEqual(1.0f, brightness);
         }
 
         [Test]
         public void SetLightBrightnessGood()
         {
-            lampController.PauseUpdatingLightBrightness(false);
-
-            lampController.brightnessCalculator.Active = true;
-            lampController.brightnessCalculator.forwardDistance = 0.0050f;
-
-            lampController.StopUpdating();
-            Assert.AreEqual(0.5f, lamp1.LightBrightness);
+            float brightness = lampController.TestConvertDistanceToBrightnessValue(0.005f);
+            Assert.AreEqual(0.5f, brightness);
         }
-        */
+
+        [Test]
+        public void SetLightBrightnessMaxReached()
+        {
+            float brightness = lampController.TestConvertDistanceToBrightnessValue(-0.001f);
+            Assert.AreEqual(1f, brightness);
+        }
+
+        [Test]
+        public void SetLightBrightnessMinReached()
+        {
+            float brightness = lampController.TestConvertDistanceToBrightnessValue(0.01f);
+            Assert.AreEqual(0.15f, brightness);
+        }
+
+        // Set Light Color
+        [Test]
+        public void SetLightColorDefault()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0f,0f);
+            Assert.AreEqual(new Color(1,1,1), color);
+        }
+
+        [Test]
+        public void SetLightColorGood()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0.005f, -0.0025f);
+            Assert.AreEqual(new Color(0.5f, 1f, 1f), color);
+        }
+
+        [Test]
+        public void SetLightColorSaturationSetToZero()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0.0f, -0.005f);
+            Assert.AreEqual(new Color(1f, 0f, 0f), color);
+        }
+
+        [Test]
+        public void SetLightColorSaturationSetToZeroAndSetHue()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0.005f, -0.005f);
+            Assert.AreEqual(new Color(0f, 1f, 1f), color);
+        }
+
+        [Test]
+        public void SetLightColorMinSaturationReached()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0.000f, -0.04f);
+            Assert.AreEqual(new Color(1f, 0f, 0f), color);
+        }
+
+        [Test]
+        public void SetLightColorMaxSaturationReached()
+        {
+            Color color = lampController.TestConvertDistanceToColorValue(0.000f, 0.04f);
+            Assert.AreEqual(new Color(1f, 1f, 1f), color);
+        }
+
+        // Set Light Temperature
+        [Test]
+        public void SetLightTemperatureDefault()
+        {
+            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(0.0f);
+            Assert.AreEqual(new Color(1, 1, 1), temperatureColor);
+        }
+
+        [Test]
+        public void SetLightTemperatureGood()
+        {
+            bool colorIsEqual = false;
+
+            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(0.005f);
+
+            float expectedR = Mathf.Round(0.973f * 10f);
+            float expectedG = Mathf.Round(0.737f * 10f);
+            float expectedB = Mathf.Round(0.239f * 10f);
+
+            if (expectedR == Mathf.Round(temperatureColor.r * 10f) && expectedG == Mathf.Round(temperatureColor.g * 10f) && expectedB == Mathf.Round(temperatureColor.b * 10f))
+            {
+                colorIsEqual = true;
+            }
+            Assert.IsTrue(colorIsEqual);
+        }
+
+        [Test]
+        public void SetLightTemperatureMaxReached()
+        {
+            bool colorIsEqual = false;
+
+            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(20f);
+
+            float expectedR = Mathf.Round(0.992f * 10f);
+            float expectedG = Mathf.Round(0.631f * 10f);
+            float expectedB = Mathf.Round(0.227f * 10f);
+
+            if (expectedR == Mathf.Round(temperatureColor.r * 10f) && expectedG == Mathf.Round(temperatureColor.g * 10f) && expectedB == Mathf.Round(temperatureColor.b * 10f))
+            {
+                colorIsEqual = true;
+            }
+            Assert.IsTrue(colorIsEqual);
+        }
+
+        [Test]
+        public void SetLightTemperatureMinReached()
+        {
+            bool colorIsEqual = false;
+
+            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(-20f);
+
+            float expectedR = Mathf.Round(0.490f * 10f);
+            float expectedG = Mathf.Round(0.706f * 10f);
+            float expectedB = Mathf.Round(0.855f * 10f);
+
+            if (expectedR == Mathf.Round(temperatureColor.r * 10f) && expectedG == Mathf.Round(temperatureColor.g * 10f) && expectedB == Mathf.Round(temperatureColor.b * 10f))
+            {
+                colorIsEqual = true;
+            }
+            Assert.IsTrue(colorIsEqual);
+        }
     }
 
     public class LampViewTest : IDeviceView
