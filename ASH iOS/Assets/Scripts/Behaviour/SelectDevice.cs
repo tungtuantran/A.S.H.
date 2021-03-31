@@ -6,7 +6,8 @@ using UnityEngine.EventSystems;
 
 public class SelectDevice : MonoBehaviour
 {
-	public static Device selectedDevice { get; set; }
+	public static bool active = true;
+	public static Device SelectedDevice { get; set; }
 
 	public UnityEvent onCollision;
 	public UnityEvent onStopCollision;
@@ -24,7 +25,7 @@ public class SelectDevice : MonoBehaviour
 
 	void Update()
 	{
-		if (selectedDevice == null)
+		if (active && SelectedDevice == null)
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -33,9 +34,9 @@ public class SelectDevice : MonoBehaviour
 
 				if (GetComponent<BoxCollider>().Raycast(inputRay, out myHitInfo, 10000f))
 				{
-					selectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+					SelectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
 
-                    if (selectedDevice != null)
+                    if (SelectedDevice != null)
                     {
 						meshRenderer.enabled = true;
 
@@ -50,13 +51,19 @@ public class SelectDevice : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-			selectedDevice = null;
-			meshRenderer.enabled = false;
+			Reset();
 
 			if (onStopCollision != null)
 			{
 				onStopCollision.Invoke();
 			}
 		}
-	} 
+	}
+
+    private void Reset()
+    {
+		SelectedDevice = null;
+		meshRenderer.enabled = false;
+		active = true;
+	}
 }

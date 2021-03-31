@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longpressToTurnAllOffOn: 1
-  swipeToCopyPaste: 1
+  collideToSelectDevice: 1
 --- !u!114 &60599232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3393,7 +3393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longpressToTurnAllOffOn: 0
-  swipeToCopyPaste: 1
+  collideToSelectDevice: 1
 --- !u!1 &631540276
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,10 +5608,6 @@ PrefabInstance:
     - target: {fileID: 3907379680848327275, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_Name
       value: Turn All Off
-      objectReference: {fileID: 0}
-    - target: {fileID: 4358449893122790941, guid: bde186092a8b44e3aa26004243b36578, type: 3}
-      propertyPath: longpressToTurnAllOffOn
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5178211469976417663, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12953,6 +12949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2029938750}
   - component: {fileID: 2029938749}
+  - component: {fileID: 2029938751}
   m_Layer: 0
   m_Name: CopyPasteSystem
   m_TagString: Untagged
@@ -12987,6 +12984,60 @@ Transform:
   m_Father: {fileID: 905877144}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029938751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029938748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f45f7a9a9944e2a95b2d09c4dbbbe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPointerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onPointerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2029938749}
+        m_TargetAssemblyTypeName: CopyPasteSystem, GameAssembly
+        m_MethodName: Paste
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2029938749}
+        m_TargetAssemblyTypeName: CopyPasteSystem, GameAssembly
+        m_MethodName: Copy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSwipeRight:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeLeft:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2043529282
 GameObject:
   m_ObjectHideFlags: 0

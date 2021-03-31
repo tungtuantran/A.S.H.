@@ -117,7 +117,6 @@ public class TurnAllOffOnSystem : MonoBehaviour
         distanceCalculator.Active = false;
         mouseDownTimer = 0.0f;
         aRDisplayToggle.gameObject.SetActive(false);
-        //fillImage.fillAmount = pointerDownTimer / requiredHoldTime;
     }
 
     private void SetActiveOfARDisplayToggle(bool isActive)

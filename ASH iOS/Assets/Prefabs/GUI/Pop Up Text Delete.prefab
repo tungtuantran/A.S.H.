@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longpressToTurnAllOffOn: 1
-  swipeToCopyPaste: 1
+  collideToSelectDevice: 1
 --- !u!114 &8006472145628254372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 331182747155995192, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
       propertyPath: m_Name
-      value: Remove Device Pop Up
+      value: Pop Up Text Delete
       objectReference: {fileID: 0}
     - target: {fileID: 331182747155995192, guid: 71f3cbb8e1f7d49219cef6221172f8e6, type: 3}
       propertyPath: m_IsActive

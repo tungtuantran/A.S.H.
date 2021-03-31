@@ -42,7 +42,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   longpressToTurnAllOffOn: 1
-  swipeToCopyPaste: 1
+  collideToSelectDevice: 1
 --- !u!1 &6578500773790530060
 GameObject:
   m_ObjectHideFlags: 0

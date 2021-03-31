@@ -6,7 +6,7 @@ using UnityEngine;
 public class DisableUIInteractions : MonoBehaviour
 {
     public bool longpressToTurnAllOffOn;
-    public bool swipeToCopyPaste;
+    public bool collideToSelectDevice;
 
     public void DisableInteractions()
     {
@@ -14,9 +14,10 @@ public class DisableUIInteractions : MonoBehaviour
         {
             TurnAllOffOnSystem.active = false;
         }
-        
-        if(swipeToCopyPaste){
-            CopyPasteSystem.active = false;
+
+        if (collideToSelectDevice)
+        {
+            SelectDevice.active = false;
         }
     }
 

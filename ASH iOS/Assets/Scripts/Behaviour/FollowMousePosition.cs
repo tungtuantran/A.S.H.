@@ -23,15 +23,15 @@ public class FollowMousePosition : MonoBehaviour
         height = ((RectTransform)transform).rect.height;
     }
 
-    void Update() {
+    public void SetPositionByMousePosition() {
 
         //set x axis value
-        if ((float) Input.mousePosition.x + width / 2 > Screen.width)       // if collids right border
+        if (Input.mousePosition.x + width / 2 > Screen.width)       // if collids right border
         {
             x = Screen.width - width / 2;
             SetPivotOfChildRectToLeft();
         }
-        else if((float) Input.mousePosition.x - width / 2 < 0)              // if collids left border
+        else if(Input.mousePosition.x - width / 2 < 0)              // if collids left border
         {
             x =  width / 2;
             SetPivotOfChildRectToRight();
@@ -42,12 +42,12 @@ public class FollowMousePosition : MonoBehaviour
         }
 
         //set y axis value
-        if ((float)Input.mousePosition.y + height / 2 > Screen.height)      // if collids top border
+        if (Input.mousePosition.y + height / 2 > Screen.height)      // if collids top border
         {
             y = Screen.height - height / 2;
             SetPivotOfChildRectToDown();
         }
-        else if ((float)Input.mousePosition.y - height / 2 < 0)             // if collids bottom border
+        else if (Input.mousePosition.y - height / 2 < 0)             // if collids bottom border
         {
             y = height / 2;
             SetPivotOfChildRectToUp();
@@ -59,7 +59,7 @@ public class FollowMousePosition : MonoBehaviour
         }
 
         //set child rect position by x and y axis value
-        this.transform.position = new Vector3(x, y, 0);
+        transform.position = new Vector3(x, y, 0);
 
     }
 
