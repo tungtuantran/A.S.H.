@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TurnAllOffOnSystem : MonoBehaviour
 {
-    private const float RequiredDistance = 0.6f;
+    private const float RequiredDistance = 0.2f;
 
     public static bool active = true;
 

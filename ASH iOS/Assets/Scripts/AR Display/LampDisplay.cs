@@ -6,24 +6,35 @@ using UnityEngine.UI;
 public class LampDisplay : DeviceDisplay
 {
     [SerializeField]
-    private Light _light;
+    private Light pointLight;
+
+    [SerializeField]
+    private Light spotLight;
 
     protected override void DisplayPropertiesOfTrackedAndRegisteredDevice()
     {
-        _light.gameObject.SetActive(registeredDevice.IsOn);
+        pointLight.gameObject.SetActive(registeredDevice.IsOn);
+        spotLight.gameObject.SetActive(registeredDevice.IsOn);
 
         Color lightColor = ((Lamp)registeredDevice).LightColor;
         float lightBrightness = ((Lamp)registeredDevice).LightBrightness;
         Color lightTemperature = ((Lamp)registeredDevice).LightTemperature;
 
-        _light.color = MixColorWithTemperature(lightColor, lightTemperature);
-        _light.intensity = lightBrightness;
-        
+        pointLight.color = MixColorWithTemperature(lightColor, lightTemperature);
+        pointLight.intensity = ConvertBrightnessToIntesity(lightBrightness);
+        spotLight.color = MixColorWithTemperature(lightColor, lightTemperature);
+        spotLight.intensity = ConvertBrightnessToIntesity(lightBrightness);
     }
 
     protected override void DisplayOffState()
     {
-        _light.gameObject.SetActive(false);
+        pointLight.gameObject.SetActive(false);
+        spotLight.gameObject.SetActive(false);
+    }
+
+    private float ConvertBrightnessToIntesity(float brightness)
+    {
+        return brightness * 4;
     }
 
     private Color MixColorWithTemperature(Color color, Color temperatureColor)
