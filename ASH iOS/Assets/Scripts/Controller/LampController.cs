@@ -58,7 +58,7 @@ public class LampController : DeviceController
                 {
                     ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
                 }
-                Handheld.Vibrate();
+                //Handheld.Vibrate();
             }
         }
     }
@@ -172,7 +172,7 @@ public class LampController : DeviceController
             updateLightColor = true;
             updateLightBrightness = true;
             IsLocked = false;
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
 
         this.lockingSelected = lockingSelected;

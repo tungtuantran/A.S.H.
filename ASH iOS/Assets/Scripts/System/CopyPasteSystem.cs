@@ -9,11 +9,19 @@ public class CopyPasteSystem : MonoBehaviour
     public static bool active = true;
 
     [SerializeField]
-    private Text copiedDeviceInformationText;
+    private FollowMousePosition swipeNotification;
+
+    [SerializeField]
+    private Text copiedPastedSwipeText;
+
+    void Awake()
+    {
+        swipeNotification.gameObject.SetActive(false);
+    }
 
     void Update()
     {
-        UpdateCopyText();
+        SetSwipeNotificationActive();
     }
 
     public void Copy()
@@ -23,7 +31,9 @@ public class CopyPasteSystem : MonoBehaviour
             if (SelectDevice.SelectedDevice != null)
             {
                 copiedDevice = SelectDevice.SelectedDevice;
-                Handheld.Vibrate();
+
+                copiedPastedSwipeText.text = "Copied " + copiedDevice.Name + "!";
+                //Handheld.Vibrate();
             }
         }
 
@@ -48,12 +58,18 @@ public class CopyPasteSystem : MonoBehaviour
                             ((Lamp)deviceToPasteIn).LightBrightness = ((Lamp)copiedDevice).LightBrightness;
                             ((Lamp)deviceToPasteIn).LightColor = ((Lamp)copiedDevice).LightColor;
                             ((Lamp)deviceToPasteIn).LightTemperature = ((Lamp)copiedDevice).LightTemperature;
-                            Handheld.Vibrate();
+                            //Handheld.Vibrate();
+
+                            copiedPastedSwipeText.text = "Pasted in " + copiedDevice.Name + "!";
                             break;
                         //is unknown
                         default:
                             break;
                     }
+                }
+                else
+                {
+                    copiedPastedSwipeText.text = "Failed to paste. Copied " + copiedDevice.DeviceName + "values are not convertable into" + deviceToPasteIn.DeviceName + " values.";
                 }
             }
         }
@@ -61,15 +77,21 @@ public class CopyPasteSystem : MonoBehaviour
         active = true;
     }
 
-    private void UpdateCopyText()
+    public void SetSwipeNotificationActive()
     {
-        if (copiedDevice != null)
+        if (SelectDevice.SelectedDevice != null)
         {
-            copiedDeviceInformationText.text = copiedDevice.Name;
+            // if its not already active
+            if (!swipeNotification.gameObject.activeSelf)
+            {
+                swipeNotification.SetPositionByMousePosition();
+                swipeNotification.gameObject.SetActive(true);
+            }
         }
         else
         {
-            copiedDeviceInformationText.text = "Empty";
+            swipeNotification.gameObject.SetActive(false);
+            copiedPastedSwipeText.text = "";
         }
     }
 }

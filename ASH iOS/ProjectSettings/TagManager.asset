@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DeviceCollection
   - OnOffAndSelect
+  - HapticSystem
   layers:
   - Default
   - TransparentFX

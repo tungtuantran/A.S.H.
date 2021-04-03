@@ -55,25 +55,22 @@ public class SwipeGesture : MonoBehaviour
         //swipe upwards
         if (currentSwipe.y > requiredSwipeDistance && currentSwipe.x > -requiredSwipeDistance && currentSwipe.x < requiredSwipeDistance)
         {
-            //Copy();
             onSwipeUp.Invoke();
             pointerDown = false;
 
-            //active = true;
             Debug.Log("up swipe");
         }
 
         //swipe down
         if (currentSwipe.y < -requiredSwipeDistance && currentSwipe.x > -requiredSwipeDistance && currentSwipe.x < requiredSwipeDistance)
         {
-            //Paste();
             onSwipeDown.Invoke();
             pointerDown = false;
 
-            //active = true;
             Debug.Log("down swipe");
         }
 
+        /*
         //swipe left
         if (currentSwipe.x < -requiredSwipeDistance && currentSwipe.y > -requiredSwipeDistance && currentSwipe.y < requiredSwipeDistance)
         {
@@ -92,6 +89,6 @@ public class SwipeGesture : MonoBehaviour
 
             Debug.Log("right swipe");
         }
-        
+        */
     }
 }
