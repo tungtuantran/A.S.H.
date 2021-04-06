@@ -8,6 +8,7 @@ using System;
 public class LampView : DeviceView
 {
     public Axes axes;
+    public AxesLabeling axesLabeling;
     public Text lightTextPreview;
     public Image lightImagePreview;
 
@@ -24,6 +25,15 @@ public class LampView : DeviceView
     {
         // preview hidden on default
         HideLightPreview();
+
+        //hide axes
+        axes.HideAxesAndStopRotation();
+
+        // hide axes labeling
+        axesLabeling.HideLabelOfXAxis();
+        axesLabeling.HideLabelOfYAxis();
+        axesLabeling.HideLabelOfZAxis();
+
     }
 
     public void UpdateAxis(bool updateLightBrightness, bool updateLightColor, bool updateLightTemperature)
@@ -31,21 +41,35 @@ public class LampView : DeviceView
         if (updateLightBrightness)
         {
             axes.zAxis.SetActive(true);
+
+            axesLabeling.SetLabelTextOfZAxis("Brightness");
+            axesLabeling.ShowLabelOfZAxis();
         }
         else
         {
             axes.zAxis.SetActive(false);
+
+            axesLabeling.HideLabelOfZAxis();
         }
 
         if (updateLightColor)
         {
             axes.xAxis.SetActive(true);
             axes.yAxis.SetActive(true);
+
+            axesLabeling.SetLabelTextOfXAxis("Hue");
+            axesLabeling.SetLabelTextOfYAxis("Saturation");
+            axesLabeling.ShowLabelOfXAxis();
+            axesLabeling.ShowLabelOfYAxis();
+
         }
         else
         {
             axes.xAxis.SetActive(false);
             axes.yAxis.SetActive(false);
+
+            axesLabeling.HideLabelOfXAxis();
+            axesLabeling.HideLabelOfYAxis();
         }
 
         if (updateLightTemperature)
@@ -54,6 +78,10 @@ public class LampView : DeviceView
             axes.yAxis.SetActive(true);
             axes.zAxis.SetActive(false);
 
+            axesLabeling.SetLabelTextOfYAxis("Temperature");
+            axesLabeling.HideLabelOfXAxis();
+            axesLabeling.ShowLabelOfYAxis();
+            axesLabeling.HideLabelOfZAxis();
         }
     }
 

@@ -22,9 +22,6 @@ public class Axes : MonoBehaviour
 
     private void Awake()
     {
-        // hide axes on default
-        HideAxes();
-
         CameraRotation = Camera.main.transform.localEulerAngles;
         _camera = Camera.main.transform;
 
@@ -78,7 +75,7 @@ public class Axes : MonoBehaviour
     }
 
     private void HideAxes()
-    {
+    { 
         axesCenter.SetActive(false);
         xAxis.SetActive(false);
         yAxis.SetActive(false);

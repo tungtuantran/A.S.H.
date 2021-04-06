@@ -5495,11 +5495,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 317150273064672861, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_Color.g
-      value: 0.781184
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 317150273064672861, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_Color.r
-      value: 0.8666667
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 890953974564347491, guid: bde186092a8b44e3aa26004243b36578, type: 3}
       propertyPath: m_Text
@@ -12130,7 +12130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8649346, b: 0, a: 0.4}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
