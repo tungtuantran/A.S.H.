@@ -34,7 +34,7 @@ public class LampDisplay : DeviceDisplay
 
     private float ConvertBrightnessToIntesity(float brightness)
     {
-        return brightness * 4;
+        return brightness * 2;
     }
 
     private Color MixColorWithTemperature(Color color, Color temperatureColor)
@@ -43,7 +43,14 @@ public class LampDisplay : DeviceDisplay
         Color.RGBToHSV(temperatureColor, out h, out s, out v);
 
         //the whiter the temperatureColor, the smaller its portion
-        float temperatureColorPortion = s;                  
+        float temperatureColorPortion = s;
+
+        // prevents the temperature portion from dominating
+        if(temperatureColorPortion > 0.5f)
+        {
+            temperatureColorPortion = 0.5f;
+        }
+
         float colorPortion = 1 - temperatureColorPortion;
         
         float r, g, b;

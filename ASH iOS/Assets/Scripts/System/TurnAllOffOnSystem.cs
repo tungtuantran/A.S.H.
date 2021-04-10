@@ -66,8 +66,9 @@ public class TurnAllOffOnSystem : MonoBehaviour
                     ShowARDisplayToggle();                                      // show ar display if it is not disabled
                     disableUIInteractions.DisableInteractions();                // disable swipe gesture to copy paste
 
-                    float distance = distanceCalculator.forwardDistance * 100;
-                    if (distance > RequiredDistance)
+                    float distance = distanceCalculator.upwardDistance * 100;
+                    Debug.Log(distance);
+                    if (distance < - RequiredDistance)
                     {
 
                         if (DeviceCollection.DeviceCollectionInstance.AllDevicesOff)
