@@ -2661,7 +2661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: 8. Set Light Color & Brightness
+      value: 7. Set Light Color & Brightness
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -11093,7 +11093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1885780482963673916, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Name
-      value: Edit Device Name Dropdown
+      value: Change Device Name Dropdown
       objectReference: {fileID: 0}
     - target: {fileID: 1885780482963673916, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_IsActive
@@ -11141,7 +11141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: 4. Edit Device Name
+      value: 4. Change Device Name
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -12713,7 +12713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721374282747235593, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_Text
-      value: 9. Set Light Temperature
+      value: 8. Set Light Temperature
       objectReference: {fileID: 0}
     - target: {fileID: 6926026745874667883, guid: fe157835b5b9844b292e79784152d03d, type: 3}
       propertyPath: m_AnchorMax.y
