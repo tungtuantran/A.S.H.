@@ -89,7 +89,10 @@ public class ImageTracking : MonoBehaviour
         if (devicePrefab != null)
         {
             Vector3 position = trackedImage.transform.position;
+            Vector3 rotation = new Vector3(trackedImage.transform.eulerAngles.x, trackedImage.transform.eulerAngles.y, trackedImage.transform.eulerAngles.z);
             devicePrefab.transform.position = position;
+            devicePrefab.transform.eulerAngles = rotation;
+
             devicePrefab.SetActive(true);
         }
     }
