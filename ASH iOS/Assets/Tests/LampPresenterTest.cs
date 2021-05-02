@@ -9,10 +9,10 @@ using UnityEngine.UI;
 
 namespace Tests
 {
-    public class LampControllerTest
+    public class LampPresenterTest
     {
 
-        private LampController lampController;
+        private LampPresenter LampPresenter;
         private LampViewTest view;
         private Lamp lamp1;
         private DistanceCalculatorTest brightnessCalculator;
@@ -26,7 +26,7 @@ namespace Tests
             DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
 
             GameObject controllerGO = new GameObject();
-            controllerGO.AddComponent<LampController>();
+            controllerGO.AddComponent<LampPresenter>();
 
             lamp1 = new Lamp("standing_lamp1", 1, "Lamp 1");
             view = new LampViewTest();
@@ -36,19 +36,19 @@ namespace Tests
             temperatureCalculator = new DistanceCalculatorTest();
 
 
-            lampController = controllerGO.GetComponent<LampController>();
-            lampController.Device = lamp1;
-            lampController.View = view;
-            lampController.BrightnessCalculator = brightnessCalculator;
-            lampController.ColorCalculator = colorCalculator;
-            lampController.TemperatureCalculator = temperatureCalculator;
-            lampController.temperatureTexture = (Texture2D)Resources.Load("Images/Color/Kelvin Scale");
+            LampPresenter = controllerGO.GetComponent<LampPresenter>();
+            LampPresenter.Device = lamp1;
+            LampPresenter.View = view;
+            LampPresenter.BrightnessCalculator = brightnessCalculator;
+            LampPresenter.ColorCalculator = colorCalculator;
+            LampPresenter.TemperatureCalculator = temperatureCalculator;
+            LampPresenter.temperatureTexture = (Texture2D)Resources.Load("Images/Color/Kelvin Scale");
         }
 
         [TearDown]
         public void Teardown()
         {
-            Object.Destroy(lampController.gameObject);
+            Object.Destroy(LampPresenter.gameObject);
             //DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
         }
 
@@ -58,16 +58,16 @@ namespace Tests
         public void SetSelectedDeviceOn()
         {
 
-            lampController.SetDeviceOnOff();
-            Assert.IsTrue(lampController.Device.IsOn);
+            LampPresenter.SetDeviceOnOff();
+            Assert.IsTrue(LampPresenter.Device.IsOn);
         }
 
         [Test]
         public void SetSelectedDeviceOff()
         {
-            lampController.SetDeviceOnOff();
-            lampController.SetDeviceOnOff();
-            Assert.IsFalse(lampController.Device.IsOn);
+            LampPresenter.SetDeviceOnOff();
+            LampPresenter.SetDeviceOnOff();
+            Assert.IsFalse(LampPresenter.Device.IsOn);
         }
 
         // RemoveSelectedDevice
@@ -79,7 +79,7 @@ namespace Tests
 
             bool removed = false;
 
-            lampController.RemoveDevice();
+            LampPresenter.RemoveDevice();
             if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1) == null)
             {
                 removed = true;
@@ -93,7 +93,7 @@ namespace Tests
         {
             bool removed = false;
 
-            lampController.RemoveDevice();
+            LampPresenter.RemoveDevice();
 
             if (DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Count == 0)
             {
@@ -107,8 +107,8 @@ namespace Tests
         public void RemoveSelectedDeviceSelectedDeviceIsNull()
         {
             //set selected device null
-            lampController.Device = null;
-            Assert.Throws<NoDeviceException>(() => lampController.RemoveDevice());
+            LampPresenter.Device = null;
+            Assert.Throws<NoDeviceException>(() => LampPresenter.RemoveDevice());
         }
 
         // AddDevice
@@ -116,7 +116,7 @@ namespace Tests
         public void AddDeviceGood()
         {
             view.SetAddNameInputFieldText("Lamp 1");
-            lampController.AddDevice();
+            LampPresenter.AddDevice();
             Assert.True(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(1) != null);
         }
 
@@ -125,14 +125,14 @@ namespace Tests
         public void AddDeviceNoInput()
         {
             view.SetAddNameInputFieldText("");
-            Assert.Throws<NoInputException>(() => lampController.AddDevice());
+            Assert.Throws<NoInputException>(() => LampPresenter.AddDevice());
         }
 
         [Test]
         public void AddDeviceWhiteSpaceInput()
         {
             view.SetAddNameInputFieldText("  ");
-            Assert.Throws<NoInputException>(() => lampController.AddDevice());
+            Assert.Throws<NoInputException>(() => LampPresenter.AddDevice());
         }
         
 
@@ -142,7 +142,7 @@ namespace Tests
         {
             string nameInput = "New Lamp";
             view.SetEditNameInputFieldText(nameInput);
-            lampController.EditNameOfDevice();
+            LampPresenter.EditNameOfDevice();
             Assert.True(lamp1.Name.Equals(nameInput));
         }
 
@@ -151,7 +151,7 @@ namespace Tests
         {
             string nameInput = "";
             view.SetEditNameInputFieldText(nameInput);
-            lampController.EditNameOfDevice();
+            LampPresenter.EditNameOfDevice();
             Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
 
@@ -161,7 +161,7 @@ namespace Tests
             string nameInput = " ";
 
             view.SetEditNameInputFieldText(nameInput);
-            lampController.EditNameOfDevice();
+            LampPresenter.EditNameOfDevice();
             Assert.True(lamp1.Name.Equals("Lamp 1"));
         }
 
@@ -170,28 +170,28 @@ namespace Tests
         [Test]
         public void SetLightBrightnessDefault()
         {
-            float brightness = lampController.TestConvertDistanceToBrightnessValue(0f);
+            float brightness = LampPresenter.TestConvertDistanceToBrightnessValue(0f);
             Assert.AreEqual(1.0f, brightness);
         }
 
         [Test]
         public void SetLightBrightnessGood()
         {
-            float brightness = lampController.TestConvertDistanceToBrightnessValue(0.005f);
+            float brightness = LampPresenter.TestConvertDistanceToBrightnessValue(0.005f);
             Assert.AreEqual(0.5f, brightness);
         }
 
         [Test]
         public void SetLightBrightnessMaxReached()
         {
-            float brightness = lampController.TestConvertDistanceToBrightnessValue(-0.001f);
+            float brightness = LampPresenter.TestConvertDistanceToBrightnessValue(-0.001f);
             Assert.AreEqual(1f, brightness);
         }
 
         [Test]
         public void SetLightBrightnessMinReached()
         {
-            float brightness = lampController.TestConvertDistanceToBrightnessValue(0.01f);
+            float brightness = LampPresenter.TestConvertDistanceToBrightnessValue(0.01f);
             Assert.AreEqual(0.15f, brightness);
         }
 
@@ -199,42 +199,42 @@ namespace Tests
         [Test]
         public void SetLightColorDefault()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0f,0f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0f,0f);
             Assert.AreEqual(new Color(1,1,1), color);
         }
 
         [Test]
         public void SetLightColorGood()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0.005f, -0.0025f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0.005f, -0.0025f);
             Assert.AreEqual(new Color(0.5f, 1f, 1f), color);
         }
 
         [Test]
         public void SetLightColorSaturationSetToZero()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0.0f, -0.005f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0.0f, -0.005f);
             Assert.AreEqual(new Color(1f, 0f, 0f), color);
         }
 
         [Test]
         public void SetLightColorSaturationSetToZeroAndSetHue()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0.005f, -0.005f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0.005f, -0.005f);
             Assert.AreEqual(new Color(0f, 1f, 1f), color);
         }
 
         [Test]
         public void SetLightColorMinSaturationReached()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0.000f, -0.04f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0.000f, -0.04f);
             Assert.AreEqual(new Color(1f, 0f, 0f), color);
         }
 
         [Test]
         public void SetLightColorMaxSaturationReached()
         {
-            Color color = lampController.TestConvertDistanceToColorValue(0.000f, 0.04f);
+            Color color = LampPresenter.TestConvertDistanceToColorValue(0.000f, 0.04f);
             Assert.AreEqual(new Color(1f, 1f, 1f), color);
         }
 
@@ -242,7 +242,7 @@ namespace Tests
         [Test]
         public void SetLightTemperatureDefault()
         {
-            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(0.0f);
+            Color temperatureColor = LampPresenter.TestConvertDistanceToTemperatureColorValue(0.0f);
             Assert.AreEqual(new Color(1, 1, 1), temperatureColor);
         }
 
@@ -251,7 +251,7 @@ namespace Tests
         {
             bool colorIsEqual = false;
 
-            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(0.005f);
+            Color temperatureColor = LampPresenter.TestConvertDistanceToTemperatureColorValue(0.005f);
 
             float expectedR = Mathf.Round(0.973f * 10f);
             float expectedG = Mathf.Round(0.737f * 10f);
@@ -269,7 +269,7 @@ namespace Tests
         {
             bool colorIsEqual = false;
 
-            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(20f);
+            Color temperatureColor = LampPresenter.TestConvertDistanceToTemperatureColorValue(20f);
 
             float expectedR = Mathf.Round(0.992f * 10f);
             float expectedG = Mathf.Round(0.631f * 10f);
@@ -287,7 +287,7 @@ namespace Tests
         {
             bool colorIsEqual = false;
 
-            Color temperatureColor = lampController.TestConvertDistanceToTemperatureColorValue(-20f);
+            Color temperatureColor = LampPresenter.TestConvertDistanceToTemperatureColorValue(-20f);
 
             float expectedR = Mathf.Round(0.490f * 10f);
             float expectedG = Mathf.Round(0.706f * 10f);

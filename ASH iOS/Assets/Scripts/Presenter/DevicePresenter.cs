@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public abstract class DeviceController : MonoBehaviour
+public abstract class DevicePresenter : MonoBehaviour
 {
     // Model
     protected Device device;

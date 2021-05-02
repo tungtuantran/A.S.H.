@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class LampController : DeviceController
+public class LampPresenter : DevicePresenter
 {
     private const float lockOnDelta = 0.0005f;
     private const float minBrightness = 0.15f;
