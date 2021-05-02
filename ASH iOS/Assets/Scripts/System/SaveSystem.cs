@@ -9,7 +9,8 @@ public class SaveSystem : MonoBehaviour
 
     private void Awake()
     {
-        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
+        //It's neccesary for serialization on iOS devices, because it forces a different code path in the BinaryFormatter that doesn't rely on run-time code generation which would break on iOS.
+        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes"); 
     }
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
@@ -42,7 +43,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void OnApplicationPause(bool pause)                         // saves on pause & exit
+    private void OnApplicationPause(bool pause)                         // saves on pause and also on exit
     {
         SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);
     }

@@ -20,7 +20,7 @@ public class DeviceCollection
 
     private DeviceCollection()
     {
-        //Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
+        // loads device collection data when device collection singlton object gets initialized
         LoadDeviceCollection();
     }
 
@@ -75,7 +75,7 @@ public class DeviceCollection
 
     public void LoadDeviceCollection()                                                 
     {
-        RegisteredDevices.Clear();                      //TODO: even neccesary if loadDeviceCollection gets only called when app starts?
+        RegisteredDevices.Clear();                      //just for safety but it's not even neccesary, because LoadDeviceCollection() gets only called when the app starts or where the registeredDevice array is already empty
 
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
         if (deviceCollectionData != null)
