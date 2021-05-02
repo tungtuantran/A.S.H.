@@ -20,7 +20,7 @@ public class DeviceCollection
 
     private DeviceCollection()
     {
-        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
+        //Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
         LoadDeviceCollection();
     }
 

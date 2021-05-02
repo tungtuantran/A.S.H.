@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public class SaveSystem : MonoBehaviour
 {
     private const string FILE_NAME = "/deviceCollection.dc";
+
+    private void Awake()
+    {
+        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes");                        //neccesary for serialization on iOS devices
+    }
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
@@ -20,6 +26,7 @@ public class SaveSystem : MonoBehaviour
     public static DeviceCollectionData LoadDeviceCollection()                         
     {
         string path = Application.persistentDataPath + FILE_NAME;
+
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

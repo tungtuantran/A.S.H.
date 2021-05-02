@@ -25,7 +25,6 @@ public class ImageTracking : MonoBehaviour
 
     private void OnEnable()
     {
-
         trackedImageManager.trackedImagesChanged += ImageChanged;
     }
 
