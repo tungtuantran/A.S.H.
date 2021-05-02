@@ -18,7 +18,7 @@ public interface IDeviceView
         set;
     }
 
-    Device trackedDevice
+    IDevice trackedDevice
     {
         get;
         set;

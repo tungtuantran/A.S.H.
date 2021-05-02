@@ -11,7 +11,7 @@ public class DeviceCollection
 {
     private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
 
-    public List<Device> RegisteredDevices { get; set; } = new List<Device>();
+    public List<IDevice> RegisteredDevices { get; set; } = new List<IDevice>();
     public bool AllDevicesOff { get; set; }
 
     static DeviceCollection()
@@ -31,9 +31,9 @@ public class DeviceCollection
         }
     }
 
-    public Device GetRegisteredDeviceByDeviceId(int deviceId)
+    public IDevice GetRegisteredDeviceByDeviceId(int deviceId)
     {
-        foreach(Device device in RegisteredDevices){
+        foreach(IDevice device in RegisteredDevices){
             if(device.Id == deviceId)
             {
                 return device;
@@ -42,7 +42,7 @@ public class DeviceCollection
         return null;
     }
 
-    public void AddRegisteredDevice(Device device)
+    public void AddRegisteredDevice(IDevice device)
     {
         if (device != null)
         {
@@ -55,7 +55,7 @@ public class DeviceCollection
         }
     }
 
-    public void RemoveRegisteredDevice(Device device)
+    public void RemoveRegisteredDevice(IDevice device)
     {
         if (device != null)
         {
@@ -84,7 +84,7 @@ public class DeviceCollection
             {
 
                 IDeviceData deviceData = deviceCollectionData.DeviceDataList[i];
-                Device device = null;
+                IDevice device = null;
 
                 switch (deviceData.GetType().Name)
                 {

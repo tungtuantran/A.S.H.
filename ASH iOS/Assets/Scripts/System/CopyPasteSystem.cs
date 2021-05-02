@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CopyPasteSystem : MonoBehaviour
 {
-    public static Device copiedDevice;
+    public static IDevice copiedDevice;
     public static bool active = true;
 
     [SerializeField]
@@ -46,7 +46,7 @@ public class CopyPasteSystem : MonoBehaviour
         {
             if (SelectDevice.SelectedDevice != null)
             {
-                Device deviceToPasteIn = SelectDevice.SelectedDevice;
+                IDevice deviceToPasteIn = SelectDevice.SelectedDevice;
 
                 //same type name
                 if (copiedDevice.GetType().Name.Equals(deviceToPasteIn.GetType().Name))

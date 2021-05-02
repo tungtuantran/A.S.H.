@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class SelectDevice : MonoBehaviour
 {
 	public static bool active = true;
-	public static Device SelectedDevice { get; set; }
+	public static IDevice SelectedDevice { get; set; }
 
 	public UnityEvent onCollision;
 	public UnityEvent onStopCollision;

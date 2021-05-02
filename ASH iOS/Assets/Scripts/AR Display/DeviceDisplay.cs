@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public abstract class DeviceDisplay : MonoBehaviour
 {
-    protected Device registeredDevice;
+    protected IDevice registeredDevice;
 
     private int deviceId;
 

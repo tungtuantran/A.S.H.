@@ -305,7 +305,7 @@ namespace Tests
     {
         public InputField editNameInputField { get; set; }
         public InputField addNameInputField { get; set; }
-        public Device trackedDevice { get; set; }
+        public IDevice trackedDevice { get; set; }
 
         public LampViewTest()
         {

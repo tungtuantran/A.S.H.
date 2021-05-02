@@ -6,9 +6,9 @@ using UnityEngine;
 public abstract class DevicePresenter : MonoBehaviour
 {
     // Model
-    protected Device device;
+    protected IDevice device;
 
-    public Device Device
+    public IDevice Device
     {
         get
         {
