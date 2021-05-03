@@ -56,7 +56,7 @@ public class LampPresenter : DevicePresenter
             {
                 if (view != null)
                 {
-                    ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
+                    ((LampView)view).OnUpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
                 }
                 //Handheld.Vibrate();
             }
@@ -79,8 +79,10 @@ public class LampPresenter : DevicePresenter
         TemperatureCalculator = temperatureCalculator;
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         float brightness = 0f;
         Color color = Color.white;
         Color temperatureColor = Color.white;
@@ -127,28 +129,36 @@ public class LampPresenter : DevicePresenter
         {
             brightness = ConvertDistanceToBrightnessValue(BrightnessCalculator.forwardDistance);
             SetLightBrightness(brightness);
+            ((LampView)view).OnUpdateLightBrightness(((Lamp)device).LightBrightness);
         }
 
         if (updateLightColor)
         {
             color = ConvertDistanceToColorValue(ColorCalculator.sidewardDistance, ColorCalculator.upwardDistance);
             SetLightColor(color);
+            ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
         }
 
         if (updateLightTemperature)
         {
             temperatureColor = ConvertDistanceToTemperatureColorValue(TemperatureCalculator.upwardDistance);
             SetLightTemperature(temperatureColor);
+            ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
         }
 
 
-        ((LampView)view).UpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
-        ((LampView)view).UpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
+        ((LampView)view).OnUpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
+        ((LampView)view).OnUpdateAxis(updateLightBrightness, updateLightColor, updateLightTemperature);
     }
 
     protected override void SetDevice(string deviceName, int deviceId)
     {
         device = new Lamp(deviceName, deviceId);
+    }
+
+    protected override void InsertDefaultValuesToDevice()
+    {
+        ((Lamp)device).SetDefaultValues();
     }
 
     public void InsertCachedLightValuesOnStart()
@@ -176,6 +186,21 @@ public class LampPresenter : DevicePresenter
         }
 
         this.lockingSelected = lockingSelected;
+    }
+
+    protected override void ShowView()
+    {
+        base.ShowView();
+
+        // if tracked device is registered in DeviceCollection
+        if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(device.Id) != null)
+        {
+            ((LampView)view).OnUpdateLightBrightness(((Lamp)device).LightBrightness);
+            ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
+            ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
+        }
+
+        Debug.Log("show view in lamp presenter called");
     }
 
     public override void StopUpdating()
@@ -209,19 +234,23 @@ public class LampPresenter : DevicePresenter
         updateLightColor = true;
         ColorCalculator.Active = true;
 
-        ((LampView)view).ShowLightImagePreview();
+        ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
     }
 
     public void UpdateLightBrightness()
     {
         updateLightBrightness = true;
         BrightnessCalculator.Active = true;
+
+        ((LampView)view).OnUpdateLightBrightness(((Lamp)device).LightBrightness);
     }
 
     public void UpdateLightTemperature()
     {
         updateLightTemperature = true;
         TemperatureCalculator.Active = true;
+
+        ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
     }
 
     public void UpdateLightColorAndBrightness()

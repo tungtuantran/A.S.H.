@@ -31,5 +31,6 @@ public interface IDevice
 
     void LoadDevice(IDeviceData device);
     string DeviceValuesToString();
+    void SetDefaultValues();
 
 }

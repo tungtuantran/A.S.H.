@@ -305,7 +305,6 @@ namespace Tests
     {
         public InputField editNameInputField { get; set; }
         public InputField addNameInputField { get; set; }
-        public IDevice trackedDevice { get; set; }
 
         public LampViewTest()
         {
@@ -321,14 +320,41 @@ namespace Tests
 
         public void OnDeviceAdded(string deviceName)
         {
+            //nothing
         }
 
         public void OnDeviceRemoved()
         {
+            //nothing
         }
 
-        public void OnEditDeviceName()
+        public void OnUpdateIsOn(bool isOn)
         {
+            //nothing
+        }
+        public void OnUpdateName(string name)
+        {
+            //nothing
+        }
+
+        public void OnRegisteredDevice(bool registered)
+        {
+            //nothing
+        }
+
+        public void OnUpdateLightColor(Color lightColor)
+        {
+            //nothing
+        }
+
+        public void OnUpdateLightTemperature(Color lightTemperature)
+        {
+            //nothing
+        }
+
+        public void OnUpdateLightBrightness(float lightBrightness)
+        {
+            //nothing
         }
 
         public void SetAddNameInputFieldText(string text)
@@ -340,6 +366,7 @@ namespace Tests
         {
             editNameInputField.text = text;
         }
+
     }
 
     public class DistanceCalculatorTest : IDistanceCalculator

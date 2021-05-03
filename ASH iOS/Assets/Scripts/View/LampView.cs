@@ -36,7 +36,7 @@ public class LampView : DeviceView
 
     }
 
-    public void UpdateAxis(bool updateLightBrightness, bool updateLightColor, bool updateLightTemperature)
+    public void OnUpdateAxis(bool updateLightBrightness, bool updateLightColor, bool updateLightTemperature)
     {
         if (updateLightBrightness)
         {
@@ -85,12 +85,7 @@ public class LampView : DeviceView
         }
     }
 
-    public void ShowLightImagePreview()
-    {
-        lightImagePreview.gameObject.SetActive(true);
-    }
-
-    public void UpdateLightPreview(Lamp lamp, bool updateLightBrightness, bool updateLightColor, bool updateLightTemperature)
+    public void OnUpdateLightPreview(Lamp lamp, bool updateLightBrightness, bool updateLightColor, bool updateLightTemperature)
     {
 
         if (!updateLightBrightness && !updateLightColor && !updateLightTemperature)
@@ -138,21 +133,28 @@ public class LampView : DeviceView
         }
     }
 
-    protected override void UpdateValueDisplay()
-    {
-        base.UpdateValueDisplay();
-
-        lightColorImage.color = ((Lamp)trackedDevice).LightColor;
-        lightTemperatureColorImage.color = ((Lamp)trackedDevice).LightTemperature;
-        float brightnessInPercent = ((Lamp)trackedDevice).LightBrightness * 100;
-        brightnessText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
-
-    }
-
     private void HideLightPreview()
     {
         lightTextPreview.gameObject.SetActive(false);
         lightImagePreview.gameObject.SetActive(false);
     }
 
+    public void OnUpdateLightColor(Color lightColor)
+    {
+        lightColorImage.color = lightColor;
+        lightImagePreview.gameObject.SetActive(true);
+    }
+
+    public void OnUpdateLightTemperature(Color lightTemperature)
+    {
+        lightTemperatureColorImage.color = lightTemperature;
+        lightImagePreview.gameObject.SetActive(true);
+    }
+
+    public void OnUpdateLightBrightness(float lightBrightness)
+    {
+        float brightnessInPercent = lightBrightness * 100;
+        brightnessText.text = Convert.ToInt32(brightnessInPercent).ToString() + "%";
+        lightImagePreview.gameObject.SetActive(true);
+    }
 }

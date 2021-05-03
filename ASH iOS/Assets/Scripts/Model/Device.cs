@@ -28,6 +28,12 @@ public abstract class Device : IDevice
 
     public abstract string DeviceValuesToString();
 
+    public virtual void SetDefaultValues()
+    {
+        Name = "";
+        IsOn = false;
+    }
+
     public override string ToString()
     {
         return "DeviceName: " + DeviceName + ", ID: " + Id + " , Name: " + Name + ", isOn: " + IsOn; 

@@ -7,7 +7,6 @@ public class DeviceView : MonoBehaviour, IDeviceView
 {
     public InputField editNameInputField { get; set; }
     public InputField addNameInputField { get; set; }
-    public IDevice trackedDevice { get; set; }
 
     [SerializeField]
     private DeviceMenu deviceMenu;
@@ -33,49 +32,12 @@ public class DeviceView : MonoBehaviour, IDeviceView
     [SerializeField]
     private InputField AddNameInputField;
 
-    protected bool setNameOnFirstTrack;
-
-    public bool SetNameOnFirstTrack
-    {
-        get
-        {
-            return setNameOnFirstTrack;
-        }
-
-        set
-        {
-            setNameOnFirstTrack = value;
-        }
-    }
-
     void Start()
     {
         addNameInputField = AddNameInputField;
         editNameInputField = EditNameInputField;
         addDevicePopUp.SetActive(false);
         removeDevicePopUp.SetActive(false);
-
-        DisplayARView(false);
-    }
-
-    void Update()
-    {
-        if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(trackedDevice.Id) != null)                         // if tracked device is registered in DeviceCollection
-        {
-            UpdateValueDisplay();
-
-            if (!setNameOnFirstTrack)                                   // execute update name only on first track
-            {
-                setNameOnFirstTrack = true;
-                UpdateName();
-            }
-
-            DisplayARView(true);
-        }
-        else
-        {
-            DisplayARView(false);
-        }
     }
 
     public void ShowHideAddDevicePopUp()                                // for "add me" button and cancel button
@@ -111,24 +73,14 @@ public class DeviceView : MonoBehaviour, IDeviceView
         addButton.gameObject.SetActive(false);
     }
 
-    public void OnEditDeviceName()
-    {
-        UpdateName();
-    }
-
     public void OnDeviceRemoved()
     {
         removeDevicePopUp.SetActive(false);
     }
 
-    private void UpdateName()
+    public void OnUpdateIsOn(bool isOn)
     {
-        editNameInputField.text = trackedDevice.Name;
-    }
-
-    protected virtual void UpdateValueDisplay()
-    {
-        if (trackedDevice.IsOn)
+        if (isOn)
         {
             onOffImage.color = Color.green;
         }
@@ -138,19 +90,28 @@ public class DeviceView : MonoBehaviour, IDeviceView
         }
     }
 
-    private void DisplayARView(bool active)
+    public void OnUpdateName(string name)
     {
-        if (active)
+        editNameInputField.text = name;
+    }
+
+    public void OnRegisteredDevice(bool registered)
+    {
+        if (registered)
         {
             addButton.gameObject.SetActive(false);
             deviceMenu.gameObject.SetActive(true);
             aRDisplay.SetActive(true);
+
+            Debug.Log("show AR Display");
         }
         else
         {
             addButton.gameObject.SetActive(true);
             deviceMenu.gameObject.SetActive(false);
             aRDisplay.SetActive(false);
+
+            Debug.Log("hide AR Display");
 
         }
     }

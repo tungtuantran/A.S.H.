@@ -34,11 +34,6 @@ public abstract class DevicePresenter : MonoBehaviour
         set
         {
             view = value;
-
-            if(view != null)
-            {
-                view.trackedDevice = device;
-            }
         }
     }
 
@@ -62,6 +57,11 @@ public abstract class DevicePresenter : MonoBehaviour
         View = deviceView;
     }
 
+    protected virtual void Update()
+    {
+        ShowView();
+    }
+
     public void SetDeviceOnOff()
     {
         if (device.IsOn)
@@ -72,12 +72,15 @@ public abstract class DevicePresenter : MonoBehaviour
         {
             device.IsOn = true;
         }
+
+        view.OnUpdateIsOn(device.IsOn);
     }
 
     public void RemoveDevice()
     {
         DeviceCollection.DeviceCollectionInstance.RemoveRegisteredDevice(device);
         view.OnDeviceRemoved();
+        view.OnRegisteredDevice(false);
     }
 
     public void EditNameOfDevice()
@@ -90,19 +93,22 @@ public abstract class DevicePresenter : MonoBehaviour
         }
         // else keep old name
 
-        view.OnEditDeviceName();
+        view.OnUpdateName(device.Name);
     }
 
     public void AddDevice()
     {
+        // clears basically the values from the device object first -> inserts default values before adding the device 
+        InsertDefaultValuesToDevice();
+
         string name = view.addNameInputField.text;
 
         if (!string.IsNullOrWhiteSpace(name))
         {
             device.Name = name;
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
-
             view.OnDeviceAdded(name);
+            view.OnRegisteredDevice(true);
         }
         else
         {
@@ -110,8 +116,24 @@ public abstract class DevicePresenter : MonoBehaviour
         }
     }
 
+    protected virtual void ShowView()
+    {
+        // if tracked device is registered in DeviceCollection
+        if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(device.Id) != null)
+        {
+            view.OnUpdateIsOn(device.IsOn);
+            view.OnUpdateName(device.Name);
+            view.OnRegisteredDevice(true);
+        }
+        else
+        {
+            view.OnRegisteredDevice(false);
+        }
+    }
+
     public abstract void StopUpdating();
 
     protected abstract void SetDevice(string deviceName, int deviceId);
 
+    protected abstract void InsertDefaultValuesToDevice();
 }

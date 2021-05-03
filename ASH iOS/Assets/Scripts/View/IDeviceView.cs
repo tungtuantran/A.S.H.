@@ -18,14 +18,9 @@ public interface IDeviceView
         set;
     }
 
-    IDevice trackedDevice
-    {
-        get;
-        set;
-    }
-
-
     void OnDeviceAdded(string deviceName);
-    void OnEditDeviceName();
     void OnDeviceRemoved();
+    void OnUpdateIsOn(bool isOn);
+    void OnUpdateName(string name);
+    void OnRegisteredDevice(bool registered);
 }
