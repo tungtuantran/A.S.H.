@@ -16,8 +16,6 @@ public class DistanceCalculator: MonoBehaviour, IDistanceCalculator
     public float forwardDistance { get; set; }
     public float sidewardDistance { get; set; }
 
-    //private bool active;
-
     private bool active;
 
     public bool Active {
@@ -40,13 +38,13 @@ public class DistanceCalculator: MonoBehaviour, IDistanceCalculator
     {
         if (Active)
         {
-            upwardDistance = CalculateDistancBetweenCameraAndPlane(upwardVector);
-            forwardDistance = CalculateDistancBetweenCameraAndPlane(forwardVector);
-            sidewardDistance = CalculateDistancBetweenCameraAndPlane(sidewardVector);
+            upwardDistance = CalculateDistanceBetweenCameraAndPlane(upwardVector);
+            forwardDistance = CalculateDistanceBetweenCameraAndPlane(forwardVector);
+            sidewardDistance = CalculateDistanceBetweenCameraAndPlane(sidewardVector);
         }
     }
 
-    private float CalculateDistancBetweenCameraAndPlane(Vector3 normalVector)
+    private float CalculateDistanceBetweenCameraAndPlane(Vector3 normalVector)
     {
         // calculate a with plane equation
         float a = normalVector.x * supportVector.x + normalVector.y * supportVector.y + normalVector.z * supportVector.z;
