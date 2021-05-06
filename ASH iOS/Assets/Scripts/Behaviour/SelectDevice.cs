@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class SelectDevice : MonoBehaviour
 {
 	public static bool active = true;
-	public static IDevice SelectedDevice { get; set; }
+	public static DevicePresenter DevicePresenterOfSelectedDevice { get; set; }
 
 	public UnityEvent onCollision;
 	public UnityEvent onStopCollision;
@@ -15,17 +15,20 @@ public class SelectDevice : MonoBehaviour
 	[SerializeField]
 	private MeshRenderer meshRenderer;
 
-	private int deviceId;
+	[SerializeField]
+	private DevicePresenter devicePresenter;
+
+	//private int deviceId;
 
 	void Awake()
     {
-		deviceId = ImageTracking.deviceId;
+		//deviceId = ImageTracking.deviceId;
 		meshRenderer.enabled = false;
     }
 
 	void Update()
 	{
-		if (active && SelectedDevice == null)
+		if (active && DevicePresenterOfSelectedDevice == null)
 		{
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -34,10 +37,10 @@ public class SelectDevice : MonoBehaviour
 
 				if (GetComponent<BoxCollider>().Raycast(inputRay, out myHitInfo, 10000f))
 				{
-					SelectedDevice = DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(deviceId);
+					//if device is registered
+					if(DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(devicePresenter.Device.Id) != null) {
 
-                    if (SelectedDevice != null)
-                    {
+						DevicePresenterOfSelectedDevice = devicePresenter;
 						meshRenderer.enabled = true;
 
 						if(onCollision != null)
@@ -62,7 +65,7 @@ public class SelectDevice : MonoBehaviour
 
     private void Reset()
     {
-		SelectedDevice = null;
+		DevicePresenterOfSelectedDevice = null;
 		meshRenderer.enabled = false;
 		active = true;
 	}

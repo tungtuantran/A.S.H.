@@ -79,10 +79,8 @@ public class LampPresenter : DevicePresenter
         TemperatureCalculator = temperatureCalculator;
     }
 
-    protected override void Update()
+    void Update()
     {
-        base.Update();
-
         float brightness = 0f;
         Color color = Color.white;
         Color temperatureColor = Color.white;
@@ -161,6 +159,15 @@ public class LampPresenter : DevicePresenter
         ((Lamp)device).SetDefaultValues();
     }
 
+    public override void InsertCopiedValuesToDevice(IDevice copiedDevice)
+    {
+        Lamp copiedLamp = (Lamp)copiedDevice;
+
+        SetLightBrightness(copiedLamp.LightBrightness);
+        SetLightColor(copiedLamp.LightColor);
+        SetLightTemperature(copiedLamp.LightTemperature);
+    }
+
     public void InsertCachedLightValuesOnStart()
     {
         SetLightBrightness(lightBrightnessStartCache);
@@ -188,7 +195,7 @@ public class LampPresenter : DevicePresenter
         this.lockingSelected = lockingSelected;
     }
 
-    protected override void ShowView()
+    public override void ShowView()
     {
         base.ShowView();
 
@@ -199,8 +206,6 @@ public class LampPresenter : DevicePresenter
             ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
             ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
         }
-
-        Debug.Log("show view in lamp presenter called");
     }
 
     public override void StopUpdating()
@@ -275,7 +280,7 @@ public class LampPresenter : DevicePresenter
     private float ConvertDistanceToBrightnessValue(float distanceForBrightness)
     {
         float brightnessDelta = distanceForBrightness * 100;                                                    // example: 0.0035 -> 0.35 (für farbsättigung wo 0-100%: *10000)
-        float brightness = maxBrightness - (maxBrightness - lightBrightnessStartCache) - brightnessDelta;      // brightness = 1 - (1 - lightBrightnessStartCache) - brightnessDelta;
+        float brightness = maxBrightness - (maxBrightness - lightBrightnessStartCache) - brightnessDelta;       // brightness = 1 - (1 - lightBrightnessStartCache) - brightnessDelta;
 
         if (brightness < minBrightness)
         {
@@ -388,6 +393,7 @@ public class LampPresenter : DevicePresenter
         CacheLightValuesOnStart();
         return ConvertDistanceToTemperatureColorValue(distanceForTemperature);
     }
+
 }
 
 [Serializable]

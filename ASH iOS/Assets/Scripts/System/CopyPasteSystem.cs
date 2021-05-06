@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class CopyPasteSystem : MonoBehaviour
 {
-    public static IDevice copiedDevice;
     public static bool active = true;
 
     [SerializeField]
@@ -13,6 +12,8 @@ public class CopyPasteSystem : MonoBehaviour
 
     [SerializeField]
     private Text copiedPastedSwipeText;
+
+    private IDevice copiedDevice;
 
     void Awake()
     {
@@ -28,12 +29,11 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if(active)
         {
-            if (SelectDevice.SelectedDevice != null)
+            if (SelectDevice.DevicePresenterOfSelectedDevice != null)
             {
-                copiedDevice = SelectDevice.SelectedDevice;
+                copiedDevice = SelectDevice.DevicePresenterOfSelectedDevice.Device;
 
                 copiedPastedSwipeText.text = "Copied " + copiedDevice.Name + "!";
-                //Handheld.Vibrate();
             }
         }
 
@@ -44,28 +44,17 @@ public class CopyPasteSystem : MonoBehaviour
     {
         if (active)
         {
-            if (SelectDevice.SelectedDevice != null)
+            if (SelectDevice.DevicePresenterOfSelectedDevice != null)
             {
-                IDevice deviceToPasteIn = SelectDevice.SelectedDevice;
+                IDevice deviceToPasteIn = SelectDevice.DevicePresenterOfSelectedDevice.Device;
 
                 //same type name
                 if (copiedDevice.GetType().Name.Equals(deviceToPasteIn.GetType().Name))
                 {
-                    switch (copiedDevice.GetType().Name)
-                    {
-                        //is lamp
-                        case "Lamp":
-                            ((Lamp)deviceToPasteIn).LightBrightness = ((Lamp)copiedDevice).LightBrightness;
-                            ((Lamp)deviceToPasteIn).LightColor = ((Lamp)copiedDevice).LightColor;
-                            ((Lamp)deviceToPasteIn).LightTemperature = ((Lamp)copiedDevice).LightTemperature;
-                            //Handheld.Vibrate();
+                    SelectDevice.DevicePresenterOfSelectedDevice.InsertCopiedValuesToDevice(copiedDevice);
+                    SelectDevice.DevicePresenterOfSelectedDevice.ShowView();
 
-                            copiedPastedSwipeText.text = "Pasted in " + copiedDevice.Name + "!";
-                            break;
-                        //is unknown
-                        default:
-                            break;
-                    }
+                    copiedPastedSwipeText.text = "Pasted in " + copiedDevice.Name + "!";
                 }
                 else
                 {
@@ -79,7 +68,7 @@ public class CopyPasteSystem : MonoBehaviour
 
     public void SetSwipeNotificationActive()
     {
-        if (SelectDevice.SelectedDevice != null)
+        if (SelectDevice.DevicePresenterOfSelectedDevice != null)
         {
             // if its not already active
             if (!swipeNotification.gameObject.activeSelf)

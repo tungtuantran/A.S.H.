@@ -1051,6 +1051,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   meshRenderer: {fileID: 7890127422013914384}
+  devicePresenter: {fileID: 8545963289420267992}
 --- !u!114 &8999351576624722175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,7 +1714,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -300}
+  m_AnchoredPosition: {x: 0, y: -325}
   m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &433753012795432340

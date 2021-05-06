@@ -57,7 +57,7 @@ public abstract class DevicePresenter : MonoBehaviour
         View = deviceView;
     }
 
-    protected virtual void Update()
+    void Start()
     {
         ShowView();
     }
@@ -109,6 +109,8 @@ public abstract class DevicePresenter : MonoBehaviour
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
             view.OnDeviceAdded(name);
             view.OnRegisteredDevice(true);
+
+            ShowView();
         }
         else
         {
@@ -116,7 +118,7 @@ public abstract class DevicePresenter : MonoBehaviour
         }
     }
 
-    protected virtual void ShowView()
+    public virtual void ShowView()
     {
         // if tracked device is registered in DeviceCollection
         if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(device.Id) != null)
@@ -133,7 +135,10 @@ public abstract class DevicePresenter : MonoBehaviour
 
     public abstract void StopUpdating();
 
-    protected abstract void SetDevice(string deviceName, int deviceId);
+    public abstract void InsertCopiedValuesToDevice(IDevice copiedDevice);
 
     protected abstract void InsertDefaultValuesToDevice();
+
+    protected abstract void SetDevice(string deviceName, int deviceId);
+
 }

@@ -102,17 +102,12 @@ public class DeviceView : MonoBehaviour, IDeviceView
             addButton.gameObject.SetActive(false);
             deviceMenu.gameObject.SetActive(true);
             aRDisplay.SetActive(true);
-
-            Debug.Log("show AR Display");
         }
         else
         {
             addButton.gameObject.SetActive(true);
             deviceMenu.gameObject.SetActive(false);
             aRDisplay.SetActive(false);
-
-            Debug.Log("hide AR Display");
-
         }
     }
 }
