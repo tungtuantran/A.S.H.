@@ -6,8 +6,8 @@ using UnityEngine;
 public class Lamp : Device
 {
     public Color LightColor { get; set; } = Color.white;
-    public float LightBrightness { get; set; } = 1.0f;              // 0.15 - 1.00
-    public Color LightTemperature { get; set; } = Color.white;      //public float LightTemperature { get; set; } = 4000.0f;          // 2700k - 6500k -> TODO ????
+    public float LightBrightness { get; set; } = 1.0f;              // 0.15 - 1.0
+    public Color LightTemperature { get; set; } = Color.white;
 
     public Lamp(string deviceName, int id, string name): base(deviceName, id, name)
     {

@@ -25,7 +25,7 @@ public class DropdownButton : MonoBehaviour
         Collapse();
     }
 
-    //toggles beteween expand and collabse
+    // toggles beteween expand and collabse
     public void ExpandCollapse()
     {
         if (!body.activeSelf)
@@ -42,7 +42,7 @@ public class DropdownButton : MonoBehaviour
         UpdateArrowImage();
     }
 
-    //gets called by dropdown mananger
+    // gets called by dropdown mananger
     public void Collapse()
     {
         body.SetActive(false);

@@ -52,8 +52,6 @@ public abstract class LongPressButton : MonoBehaviour
                 {
                     currentlyActive = true;
                     onHold.Invoke();
-                    //Handheld.Vibrate();
-                    //HapticsSystem.PlayTransientHaptics();
                 }
                 Reset();
             }

@@ -8,7 +8,7 @@ using System;
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracking : MonoBehaviour
 {
-    //Tracked Data of TrackedImage
+    // Tracked Data of TrackedImage
     public static int deviceId { get; set; }                // example: 001
     public static string deviceName { get; set; }           // example: table_lamp1
 
@@ -57,14 +57,14 @@ public class ImageTracking : MonoBehaviour
 
     private void UpdateImage(ARTrackedImage trackedImage)
     {
-        //Decode codeString to get device name and Id
+        // Decode codeString to get device name and Id
         string codeString = trackedImage.referenceImage.name;       // example: TL1_001
         string[] splittedCode = codeString.Split('_');              // example: [TL1], [001]
 
         deviceName = DeviceShortNameToName(splittedCode[0]);
         deviceId = ConvertIdStringToInteger(splittedCode[1]);
 
-        //Spawn devicePrefab
+        // Spawn devicePrefab
         GameObject devicePrefab = null;
 
         try
@@ -105,13 +105,13 @@ public class ImageTracking : MonoBehaviour
         }
         catch (FormatException e)
         {
-            //if idInString is not convertable to an integer
+            // if idInString is not convertable to an integer
             throw new InvalidMarkerException("Invalid Device ID", e);       
         }
 
         if(idInInteger == 0)
         {
-            //if id = 0
+            // if id = 0
             throw new InvalidMarkerException("Invalid Device ID");
         }
 

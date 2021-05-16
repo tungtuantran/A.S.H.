@@ -9,7 +9,7 @@ using System;
  */
 public class DeviceCollection
 {
-    private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();         //Singleton pattern
+    private static readonly DeviceCollection deviceCollectionInstance = new DeviceCollection();     // Singleton
 
     public List<IDevice> RegisteredDevices { get; set; } = new List<IDevice>();
     public bool AllDevicesOff { get; set; }
@@ -68,14 +68,14 @@ public class DeviceCollection
         }
     }
 
-    public void SaveDeviceCollection()                 //has to be called if sth needs to be updated
+    public void SaveDeviceCollection()                 // has to be called if sth. needs to be updated
     {
         SaveSystem.SaveDeviceCollection(this);
     }
 
     public void LoadDeviceCollection()                                                 
     {
-        RegisteredDevices.Clear();                      //just for safety but it's not even neccesary, because LoadDeviceCollection() gets only called when the app starts or where the registeredDevice array is already empty
+        RegisteredDevices.Clear();                      // just for safety but it's not even neccesary, because LoadDeviceCollection() gets only called when the app starts or when the registeredDevice array is already empty
 
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
         if (deviceCollectionData != null)

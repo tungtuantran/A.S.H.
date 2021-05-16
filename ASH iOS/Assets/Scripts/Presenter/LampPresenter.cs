@@ -58,7 +58,6 @@ public class LampPresenter : DevicePresenter
                 {
                     ((LampView)view).OnUpdateLightPreview((Lamp)device, updateLightBrightness, updateLightColor, updateLightTemperature);
                 }
-                //Handheld.Vibrate();
             }
         }
     }
@@ -189,7 +188,6 @@ public class LampPresenter : DevicePresenter
             updateLightColor = true;
             updateLightBrightness = true;
             IsLocked = false;
-            //Handheld.Vibrate();
         }
 
         this.lockingSelected = lockingSelected;

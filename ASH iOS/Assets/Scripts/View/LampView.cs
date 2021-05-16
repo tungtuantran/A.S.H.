@@ -26,7 +26,7 @@ public class LampView : DeviceView
         // preview hidden on default
         HideLightPreview();
 
-        //hide axes
+        // hide axes
         axes.HideAxesAndStopRotation();
 
         // hide axes labeling

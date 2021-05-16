@@ -19,7 +19,6 @@ namespace Tests
         private DistanceCalculatorTest colorCalculator;
         private DistanceCalculatorTest temperatureCalculator;
 
-
         [SetUp]
         public void SetUp()
         {
@@ -49,7 +48,7 @@ namespace Tests
         public void Teardown()
         {
             Object.Destroy(LampPresenter.gameObject);
-            //DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
+            // DeviceCollection.DeviceCollectionInstance.RegisteredDevices.Clear();
         }
 
 
@@ -320,41 +319,41 @@ namespace Tests
 
         public void OnDeviceAdded(string deviceName)
         {
-            //nothing
+            // nothing
         }
 
         public void OnDeviceRemoved()
         {
-            //nothing
+            // nothing
         }
 
         public void OnUpdateIsOn(bool isOn)
         {
-            //nothing
+            // nothing
         }
         public void OnUpdateName(string name)
         {
-            //nothing
+            // nothing
         }
 
         public void OnRegisteredDevice(bool registered)
         {
-            //nothing
+            // nothing
         }
 
         public void OnUpdateLightColor(Color lightColor)
         {
-            //nothing
+            // nothing
         }
 
         public void OnUpdateLightTemperature(Color lightTemperature)
         {
-            //nothing
+            // nothing
         }
 
         public void OnUpdateLightBrightness(float lightBrightness)
         {
-            //nothing
+            // nothing
         }
 
         public void SetAddNameInputFieldText(string text)

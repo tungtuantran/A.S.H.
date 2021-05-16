@@ -14,7 +14,7 @@ public class DropdownManager : MonoBehaviour
     
     void Update()
     {
-        //pause updating if CollapseAllExceptCurrentlyExpanded() is still running
+        // pause updating if CollapseAllExceptCurrentlyExpanded() is still running
         if (!collapsing)
         {
             foreach (DropdownButton dropdown in dropdownList)

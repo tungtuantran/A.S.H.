@@ -49,8 +49,6 @@ public class EnterLongPressButton : LongPressButton, IPointerEnterHandler, IPoin
         {
             OnRelease();
             currentlyActive = false;
-            //Handheld.Vibrate();
-            //HapticsSystem.PlayTransientHaptics();
         }
 
         base.Update();

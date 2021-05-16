@@ -48,7 +48,7 @@ public class CopyPasteSystem : MonoBehaviour
             {
                 IDevice deviceToPasteIn = SelectDevice.DevicePresenterOfSelectedDevice.Device;
 
-                //same type name
+                // same type name
                 if (copiedDevice.GetType().Name.Equals(deviceToPasteIn.GetType().Name))
                 {
                     SelectDevice.DevicePresenterOfSelectedDevice.InsertCopiedValuesToDevice(copiedDevice);

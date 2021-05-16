@@ -135,10 +135,10 @@ public class TurnAllOffOnSystem : MonoBehaviour
 
     private void ShowARDisplayToggle()
     {
-        //if aRDisplayToggle not already activated
+        // if aRDisplayToggle not already activated
         if (!aRDisplayToggle.gameObject.activeSelf)
         {
-            //aRDisplayToggle imitating rotation of camera
+            // aRDisplayToggle imitating rotation of camera
             aRDisplayToggle.transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, Camera.main.transform.eulerAngles.z);
         }
 

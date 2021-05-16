@@ -57,8 +57,6 @@ public class SwipeGesture : MonoBehaviour
         {
             onSwipeUp.Invoke();
             pointerDown = false;
-
-            Debug.Log("up swipe");
         }
 
         //swipe down
@@ -66,29 +64,6 @@ public class SwipeGesture : MonoBehaviour
         {
             onSwipeDown.Invoke();
             pointerDown = false;
-
-            Debug.Log("down swipe");
         }
-
-        /*
-        //swipe left
-        if (currentSwipe.x < -requiredSwipeDistance && currentSwipe.y > -requiredSwipeDistance && currentSwipe.y < requiredSwipeDistance)
-        {
-
-            onSwipeLeft.Invoke();
-            pointerDown = false;
-
-            Debug.Log("left swipe");
-        }
-
-        //swipe right
-        if (currentSwipe.x > requiredSwipeDistance && currentSwipe.y > -requiredSwipeDistance && currentSwipe.y < requiredSwipeDistance)
-        {
-            onSwipeRight.Invoke();
-            pointerDown = false;
-
-            Debug.Log("right swipe");
-        }
-        */
     }
 }

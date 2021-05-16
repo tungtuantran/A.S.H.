@@ -8,7 +8,7 @@ public abstract class Device : IDevice
 
     public string DeviceName { get; set; }
     public int Id { get; set; }
-    public string Name { get; set; }                       // name chosen by user
+    public string Name { get; set; }    // name chosen by user
     public bool IsOn { get; set; }
 
     public Device(string deviceName, int id, string name)
