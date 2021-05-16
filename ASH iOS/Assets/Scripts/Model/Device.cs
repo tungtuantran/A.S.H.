@@ -24,7 +24,7 @@ public abstract class Device : IDevice
         Id = id;
     }
 
-    public abstract void LoadDevice(IDeviceData device);
+    public abstract void LoadDevice(DeviceData device);
 
     public abstract string DeviceValuesToString();
 

@@ -29,7 +29,7 @@ public interface IDevice
         set;
     }
 
-    void LoadDevice(IDeviceData device);
+    void LoadDevice(DeviceData device);
     string DeviceValuesToString();
     void SetDefaultValues();
 

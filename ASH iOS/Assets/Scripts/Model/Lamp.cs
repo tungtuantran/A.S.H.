@@ -17,7 +17,7 @@ public class Lamp : Device
     {
     }
 
-    public override void LoadDevice(IDeviceData deviceData)
+    public override void LoadDevice(DeviceData deviceData)
     {
         LampData lampData = (LampData) deviceData;
         DeviceName = lampData.DeviceName;

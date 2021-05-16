@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class DeviceCollectionData
 {
-    public IDeviceData[] DeviceDataList { get; set; }
-    public bool AllDevicesOff { get; set; }
+    [SerializeReference]
+    public IDeviceData[] DeviceDataList;
+    public bool AllDevicesOff;
 
     public DeviceCollectionData(DeviceCollection deviceCollection)
     {

@@ -83,8 +83,10 @@ public class DeviceCollection
             for (int i = 0; i < deviceCollectionData.DeviceDataList.Length; i++)
             {
 
-                IDeviceData deviceData = deviceCollectionData.DeviceDataList[i];
+                DeviceData deviceData = (DeviceData) deviceCollectionData.DeviceDataList[i];
                 IDevice device = null;
+
+                Debug.Log("device type name: " + deviceData.GetType().Name);
 
                 switch (deviceData.GetType().Name)
                 {
@@ -92,7 +94,7 @@ public class DeviceCollection
                         device = new Lamp(deviceData.DeviceName, deviceData.Id, deviceData.Name);
                         break;
                     default:
-                        Debug.LogError("Uknown Data Type");
+                        Debug.LogError("Unknown Device Data Type");
                         break;
                 }
 
@@ -104,7 +106,7 @@ public class DeviceCollection
             }
 
             AllDevicesOff = deviceCollectionData.AllDevicesOff;
-        }
+        } 
     }
 }
 

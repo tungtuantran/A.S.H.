@@ -4,24 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class LampData : IDeviceData
+public class LampData : DeviceData
 {
-    public string DeviceName { get; set; }
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public bool IsOn { get; set; } = false;
+    public float[] LightColor;
+    public float LightBrightness;               //10 out of 10
+    public float[] LightTemperature;
 
-    public float[] LightColor { get; set; }
-    public float LightBrightness { get; set; }               //10 out of 10
-    public float[] LightTemperature { get; set; }
-
-    public LampData(Lamp lamp)
+    public LampData(Lamp lamp) : base(lamp)
     {
-        DeviceName = lamp.DeviceName;
-        Id = lamp.Id;
-        Name = lamp.Name;
-        IsOn = lamp.IsOn;
-
         LightColor = new float[4];
         LightColor[0] = lamp.LightColor.r;
         LightColor[1] = lamp.LightColor.g;

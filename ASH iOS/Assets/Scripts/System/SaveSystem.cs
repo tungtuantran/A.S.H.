@@ -2,39 +2,39 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
+using Newtonsoft.Json;
 
 public class SaveSystem : MonoBehaviour
 {
-    private const string FILE_NAME = "/deviceCollection.dc";
-
-    private void Awake()
-    {
-        //It's neccesary for serialization on iOS devices, because it forces a different code path in the BinaryFormatter that doesn't rely on run-time code generation which would break on iOS.
-        Environment.SetEnvironmentVariable("MONO_REFLECTION_SERIALIZER", "yes"); 
-    }
+    private const string FILE_NAME = "/deviceCollection.txt";
 
     public static void SaveDeviceCollection(DeviceCollection deviceCollection)
     {
-        BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + FILE_NAME;
-        FileStream stream = new FileStream(path, FileMode.Create);
-
         DeviceCollectionData deviceCollectionData = new DeviceCollectionData(deviceCollection);
-        formatter.Serialize(stream, deviceCollectionData);
-        stream.Close();
+        
+        using (StreamWriter stream = new StreamWriter(path))
+        {
+            string json = JsonUtility.ToJson(deviceCollectionData);
+            stream.Write(json);
+        }
     }
 
-    public static DeviceCollectionData LoadDeviceCollection()                         
+    public static DeviceCollectionData LoadDeviceCollection()
     {
         string path = Application.persistentDataPath + FILE_NAME;
 
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
-            DeviceCollectionData deviceCollectionData = formatter.Deserialize(stream) as DeviceCollectionData;
-            stream.Close();
-            return deviceCollectionData;                               
+            DeviceCollectionData deviceCollectionData;
+          
+            using (StreamReader stream = new StreamReader(path))
+            {
+                string json = stream.ReadToEnd();
+                deviceCollectionData = JsonUtility.FromJson<DeviceCollectionData>(json);
+            }
+
+            return deviceCollectionData;
         }
         else
         {
@@ -43,7 +43,7 @@ public class SaveSystem : MonoBehaviour
         }
     }
 
-    private void OnApplicationPause(bool pause)                         // saves on pause and also on exit
+    private void OnApplicationPause(bool pause)     // saves on pause and also on exit
     {
         SaveDeviceCollection(DeviceCollection.DeviceCollectionInstance);
     }
