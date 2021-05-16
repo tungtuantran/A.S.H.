@@ -108,9 +108,10 @@ public abstract class DevicePresenter : MonoBehaviour
             device.Name = name;
             DeviceCollection.DeviceCollectionInstance.AddRegisteredDevice(device);
             view.OnDeviceAdded(name);
-            view.OnRegisteredDevice(true);
 
-            ShowView();
+            view.OnUpdateIsOn(device.IsOn);
+            view.OnUpdateName(device.Name);
+            view.OnRegisteredDevice(true);
         }
         else
         {

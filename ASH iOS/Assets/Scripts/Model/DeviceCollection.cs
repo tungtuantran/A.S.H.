@@ -80,28 +80,31 @@ public class DeviceCollection
         DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
         if (deviceCollectionData != null)
         {
-            for (int i = 0; i < deviceCollectionData.DeviceDataList.Length; i++)
+            if (deviceCollectionData.DeviceDataList != null)
             {
-
-                DeviceData deviceData = (DeviceData) deviceCollectionData.DeviceDataList[i];
-                IDevice device = null;
-
-                Debug.Log("device type name: " + deviceData.GetType().Name);
-
-                switch (deviceData.GetType().Name)
+                for (int i = 0; i < deviceCollectionData.DeviceDataList.Length; i++)
                 {
-                    case "LampData":
-                        device = new Lamp(deviceData.DeviceName, deviceData.Id, deviceData.Name);
-                        break;
-                    default:
-                        Debug.LogError("Unknown Device Data Type");
-                        break;
-                }
 
-                if (device != null)
-                {
-                    device.LoadDevice(deviceData);
-                    RegisteredDevices.Add(device);
+                    DeviceData deviceData = (DeviceData)deviceCollectionData.DeviceDataList[i];
+                    IDevice device = null;
+
+                    Debug.Log("device type name: " + deviceData.GetType().Name);
+
+                    switch (deviceData.GetType().Name)
+                    {
+                        case "LampData":
+                            device = new Lamp(deviceData.DeviceName, deviceData.Id, deviceData.Name);
+                            break;
+                        default:
+                            Debug.LogError("Unknown Device Data Type");
+                            break;
+                    }
+
+                    if (device != null)
+                    {
+                        device.LoadDevice(deviceData);
+                        RegisteredDevices.Add(device);
+                    }
                 }
             }
 

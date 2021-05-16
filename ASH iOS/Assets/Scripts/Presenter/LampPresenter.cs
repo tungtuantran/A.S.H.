@@ -202,9 +202,17 @@ public class LampPresenter : DevicePresenter
         // if tracked device is registered in DeviceCollection
         if (DeviceCollection.DeviceCollectionInstance.GetRegisteredDeviceByDeviceId(device.Id) != null)
         {
-            ((LampView)view).OnUpdateLightBrightness(((Lamp)device).LightBrightness);
-            ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
-            ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
+            try
+            {
+                ((LampView)view).OnUpdateLightBrightness(((Lamp)device).LightBrightness);
+                ((LampView)view).OnUpdateLightTemperature(((Lamp)device).LightTemperature);
+                ((LampView)view).OnUpdateLightColor(((Lamp)device).LightColor);
+
+            // if specified casting failed
+            }catch(InvalidCastException e)
+            {
+                Debug.LogError("Speficied casting from Device to Lamp failed. " + device.GetType().Name);
+            }
         }
     }
 
