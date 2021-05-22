@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
+/*
+ * Swipe Gesture for Up and Down.
+ */
 public class SwipeGesture : MonoBehaviour
 {
     private const float requiredSwipeDistance = 350f;

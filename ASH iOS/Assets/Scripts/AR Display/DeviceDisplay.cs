@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
+/*
+ * Displays Property Values of Device
+ */
 public abstract class DeviceDisplay : MonoBehaviour
 {
     protected IDevice registeredDevice;

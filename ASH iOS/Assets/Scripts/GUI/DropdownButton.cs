@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Customized Dropdown Element
+ */
 public class DropdownButton : MonoBehaviour
 {
     public Image arrowDown;

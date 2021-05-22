@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/NewMain.unity
+    path: Assets/Scenes/Main.unity
     guid: 53be6df74d0ce43d1842de86607c057d
   - enabled: 0
     path: Assets/Scripts/UnityCoreHaptics/Example/Haptic Demo.unity

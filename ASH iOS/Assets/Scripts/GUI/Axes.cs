@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Displays the spatial axes. 
+ */
 public class Axes : MonoBehaviour
 {
     private Vector3 CameraRotation;

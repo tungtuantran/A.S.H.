@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 using System;
 
+/*
+ * Handles Image / Marker Detection and Tracking.
+ */
 [RequireComponent(typeof(ARTrackedImageManager))]
 public class ImageTracking : MonoBehaviour
 {

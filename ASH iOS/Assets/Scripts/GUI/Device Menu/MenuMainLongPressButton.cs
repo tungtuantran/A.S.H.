@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine.EventSystems;
 
 /**
- * selects long press button just if if pointer is down
+ * Main Menu as Long Press Button for Device Menu. 
+ * (Selects Long Press Button just if pointer is down.)
  */
 public class MenuMainLongPressButton : LongPressButton, IPointerDownHandler, IPointerUpHandler
 {

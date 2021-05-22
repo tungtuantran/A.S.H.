@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Displays the label of each Axis.
+ */
 public class AxesLabeling : MonoBehaviour
 {
     [SerializeField]

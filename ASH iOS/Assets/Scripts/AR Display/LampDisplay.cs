@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
+/*
+ * Displays Properties Values of Lamp
+ */
 public class LampDisplay : DeviceDisplay
 {
     [SerializeField]

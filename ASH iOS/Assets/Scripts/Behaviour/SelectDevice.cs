@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
+/*
+ * Selects a device through raycasting.
+ */
 public class SelectDevice : MonoBehaviour
 {
 	public static bool active = true;

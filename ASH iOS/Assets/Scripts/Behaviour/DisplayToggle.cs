@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Toggle for two GameObjects: Displays the one and hides the other.
+ */
 public class DisplayToggle : MonoBehaviour
 {
     public GameObject activeDisplay;

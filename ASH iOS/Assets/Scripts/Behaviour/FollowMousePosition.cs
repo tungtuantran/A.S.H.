@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Places a RectTransform depending on the mouse position
+ */
 public class FollowMousePosition : MonoBehaviour
 {
 
@@ -55,7 +56,7 @@ public class FollowMousePosition : MonoBehaviour
         else
         {
             y = Input.mousePosition.y;
-            SetPivotOfChildRectToUp();                                      // back to default pivot
+            SetPivotOfChildRectToUp();                              // back to default pivot
         }
 
         //set child rect position by x and y axis value

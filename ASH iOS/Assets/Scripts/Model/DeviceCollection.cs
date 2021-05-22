@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 /*
- * saveDeviceCollection() if device gets added, removed or updated
- * loadDeviceCollection() if app gets (re)started
+ * Collection of registered Devices
+ * Saves device collection, if device gets added, removed or updated.
+ * Loads device collection, if app gets (re)started.
  */
 public class DeviceCollection
 {
@@ -70,14 +70,14 @@ public class DeviceCollection
 
     public void SaveDeviceCollection()                 // has to be called if sth. needs to be updated
     {
-        SaveSystem.SaveDeviceCollection(this);
+        SaveAndLoadSystem.SaveDeviceCollection(this);
     }
 
     public void LoadDeviceCollection()                                                 
     {
         RegisteredDevices.Clear();                      // just for safety but it's not even neccesary, because LoadDeviceCollection() gets only called when the app starts or when the registeredDevice array is already empty
 
-        DeviceCollectionData deviceCollectionData = SaveSystem.LoadDeviceCollection();
+        DeviceCollectionData deviceCollectionData = SaveAndLoadSystem.LoadDeviceCollection();
         if (deviceCollectionData != null)
         {
             if (deviceCollectionData.DeviceDataList != null)

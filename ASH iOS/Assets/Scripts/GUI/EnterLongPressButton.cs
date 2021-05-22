@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine.EventSystems;
 
 /**
- * selecting long press button by just entering and holding
+ * Long Press Button
+ * Selecting by just entering and holding.
  */
 public class EnterLongPressButton : LongPressButton, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler
 {

@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[System.Serializable]
+/*
+ * Data of Lamp as an inheritance of DeviceData
+ */
+[Serializable]
 public class LampData : DeviceData
 {
     public float[] LightColor;
-    public float LightBrightness;               //10 out of 10
+    public float LightBrightness;
     public float[] LightTemperature;
 
     public LampData(Lamp lamp) : base(lamp)

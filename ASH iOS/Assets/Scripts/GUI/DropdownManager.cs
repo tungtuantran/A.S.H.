@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Dropdown Mananger for the customized Dropdowns. If one dropdown is expanded, then collapse the others.
+ */
 public class DropdownManager : MonoBehaviour
 {
 

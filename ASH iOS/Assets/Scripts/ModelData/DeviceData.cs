@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-[System.Serializable]
+/*
+ * Data of Device Model
+ */
+[Serializable]
 public class DeviceData : IDeviceData
 {
     public string DeviceName;

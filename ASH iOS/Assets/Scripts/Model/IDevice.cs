@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IDevice
+﻿public interface IDevice
 {
-
     string DeviceName
     {
         get;

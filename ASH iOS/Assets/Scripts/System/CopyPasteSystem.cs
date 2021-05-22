@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Handles copy/paste actions for device values.
+ */
 public class CopyPasteSystem : MonoBehaviour
 {
     public static bool active = true;

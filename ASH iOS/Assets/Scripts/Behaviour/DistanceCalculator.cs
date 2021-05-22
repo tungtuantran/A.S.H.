@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
+/*
+ * Calculates the distance in certain directions between start position and current position of AR Camera / mobile device.
+ */
 public class DistanceCalculator: MonoBehaviour, IDistanceCalculator
 {
     private Transform aRCamera;

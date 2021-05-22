@@ -1,9 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
+/**
+ * Short Press Button
+ * Selecting by a quick click/tap.
+ */
 public class ShortPressButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 

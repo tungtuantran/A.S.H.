@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 
+/*
+ * GameObject looks at (AR) Camera.
+ */
 public class LookAtARCamera : MonoBehaviour
 {
     private Camera aRCamera;

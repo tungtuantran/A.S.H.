@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/*
+ * Abstract Class for Device Models
+ */
 public abstract class Device : IDevice
 {
     private DeviceCollection deviceCollection = DeviceCollection.DeviceCollectionInstance;

@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-
+/*
+ * View of Lamp as an inheritance of DeviceView
+ */
 public class LampView : DeviceView
 {
     public Axes axes;

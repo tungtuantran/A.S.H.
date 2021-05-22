@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine.EventSystems;
 
-/**
- * selecting long press button by just entering
+/*
+ * Sub Menu as Long Press Button for Device Menu.
+ * (Selecting Long Press Button by just entering.)
  */
 public class MenuSubLongPressButton : LongPressButton, IPointerEnterHandler, IPointerExitHandler
 {

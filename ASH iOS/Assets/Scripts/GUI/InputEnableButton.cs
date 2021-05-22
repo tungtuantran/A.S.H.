@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Enables Button if TextInput is not empty.
+ */
 public class InputEnableButton : MonoBehaviour
 {
     [SerializeField]

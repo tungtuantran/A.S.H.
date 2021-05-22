@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System;
-using Newtonsoft.Json;
 
-public class SaveSystem : MonoBehaviour
+/*
+ * Saves and loads data of the registered devices.
+ */
+public class SaveAndLoadSystem : MonoBehaviour
 {
     private const string FILE_NAME = "/deviceCollection.txt";
 

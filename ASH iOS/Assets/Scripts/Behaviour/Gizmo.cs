@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Creates a Gizmo
+ */
 public class Gizmo : MonoBehaviour
 {
     public float gizmoSize = .75f;

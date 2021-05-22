@@ -3307,7 +3307,7 @@ GameObject:
   - component: {fileID: 629529137}
   - component: {fileID: 629529138}
   m_Layer: 0
-  m_Name: TurnAllOffOnSystem
+  m_Name: Turn All Off or On System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10828,7 +10828,7 @@ GameObject:
   - component: {fileID: 1444125582}
   - component: {fileID: 1444125581}
   m_Layer: 0
-  m_Name: SaveSystem
+  m_Name: Sav And Load System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11281,7 +11281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424474c944baf45cba6a43644983dd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 1528673287}
 --- !u!114 &1528673287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12266,7 +12265,7 @@ GameObject:
   - component: {fileID: 2029938751}
   - component: {fileID: 2029938752}
   m_Layer: 0
-  m_Name: CopyPasteSystem
+  m_Name: Copy Paste System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

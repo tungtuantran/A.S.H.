@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * Lamp Model as an inheritance of Device
+ */
 public class Lamp : Device
 {
     public Color LightColor { get; set; } = Color.white;

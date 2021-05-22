@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * View of Device
+ */
 public class DeviceView : MonoBehaviour, IDeviceView
 {
     public InputField editNameInputField { get; set; }

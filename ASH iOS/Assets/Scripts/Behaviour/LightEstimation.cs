@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
+/*
+ * Configures Lighting Estimation in the scene to enhance the AR experience.
+ */
 public class LightEstimation : MonoBehaviour
 {
     private ARCameraManager aRCameraManger;

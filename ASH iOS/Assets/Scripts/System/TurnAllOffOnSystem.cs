@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
+/*
+ * Handles "turn all off/on" action.
+ */
 public class TurnAllOffOnSystem : MonoBehaviour
 {
     private const float RequiredDistance = 0.2f;

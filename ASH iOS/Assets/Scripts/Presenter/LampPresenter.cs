@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using System;
 
+/*
+ * Presenter of Lamp as an inheritance of DevicePresenter
+ */
 public class LampPresenter : DevicePresenter
 {
     private const float lockOnDelta = 0.0005f;
