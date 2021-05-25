@@ -1,7 +1,7 @@
 # A.S.H.
 
 Demo video:
-https://youtu.be/jPgZ1OEcgWM
+https://youtu.be/Pn4haaWxtlU
 
 How to install A.S.H. to your iOS device?
 1. Build the project (for iOS) via Unity
