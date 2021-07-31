@@ -1,5 +1,7 @@
 # A.S.H.
 
+A.S.H. stands for Augmented Smart Home. 
+
 Demo video:
 https://youtu.be/Pn4haaWxtlU
 
